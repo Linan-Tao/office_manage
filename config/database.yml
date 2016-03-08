@@ -1,0 +1,32 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+base: &base
+  adapter: mysql2
+  encoding: utf8
+  collation: utf8_general_ci
+  strict: false
+  reconnect: false
+  wait_timeout: 600
+  pool: 25
+  host: localhost
+  username: root
+  strict: false
+  username: root
+  password:
+  host: 127.0.0.1
+  port: 3307
+
+development: 
+  <<: *base
+  database: office_manage_dev
+
+test:
+  <<: *base
+  database: office_manage_test
+
+staging:
+  <<: *base
+  database: office_manage_staging
+
+production:
+  <<: *base
+  database: office_manage
