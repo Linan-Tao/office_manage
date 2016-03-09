@@ -1,0 +1,30 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="awidget login-reg">
+         <div class="awidget-head">
+         </div>
+         <div class="awidget-body">
+            <!-- Page title -->
+            <div class="page-title text-center">
+               <h2><a href="#">忘记密码？</a></h2>
+               <hr />
+            </div>
+
+				<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+				  <%= f.error_notification %>
+
+				  <div class="form-inputs">
+				    <%= f.input :email, required: true, autofocus: true %>
+				  </div>
+
+				  <div class="form-actions">
+				    <%= f.button :submit, "给我发送重置密码", class: 'btn btn-info' %>
+				    <p class="pull-right"><%= render "devise/shared/links" %></p>
+				  </div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+

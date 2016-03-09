@@ -1,0 +1,38 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="awidget login-reg">
+         <div class="awidget-head">
+         </div>
+         <div class="awidget-body">
+            <!-- Page title -->
+            <div class="page-title text-center">
+               <h2><a href="#">编辑 <%= resource_name.to_s.humanize %></a></h2>
+               <hr />
+            </div>
+
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs">
+                  <%= f.input :email, required: true, autofocus: true %>
+
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                  <% end %>
+
+                  <%= f.input :password, autocomplete: "off", hint: "不改密码的话就不填！", required: false %>
+                  <%= f.input :password_confirmation, required: false %>
+                  <%= f.input :current_password, hint: "需要当前密码来确认修改！", required: true %>
+                </div>
+
+                <div class="form-actions">
+                  <%= f.button :submit, "更新", class: 'btn btn-info' %>
+                  <%= link_to "返回", :back, class: 'btn btn-info pull-right' %>
+                </div>
+              <% end %>
+          </div>
+      </div>
+    </div>
+</div>
+
+
