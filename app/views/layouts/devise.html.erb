@@ -9,21 +9,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if user_signed_in? %>
-	  <%= render '/layouts/header' %>
-	  <div class="page-content blocky">
-	    <div class="container">
-
-	      <%= render '/layouts/menu' %>
-	      <div class="mainy">
-	        <%= render '/layouts/messages' %>
-	        <%= yield %>
+	<div class="header">
+	   <div class="container">
+	      <div class="row">
+	         <div class="col-md-12">
+	            <!-- Logo -->
+	            <div class="logo text-center">
+	               <h1><a href="#">家具办公OA</a></h1>
+	            </div>
+	         </div>
 	      </div>
-	      <div class="clearfix"></div>
-
-	    </div>
+	   </div>
+	</div>
+      <!-- Page content -->
+	<%= render '/layouts/messages' %>    
+	<div class="page-content blocky">
+   	<div class="container">
+	    <%= yield %>
+	      
+	    <div class="clearfix"></div>
 	  </div>
-	<% end %>
+	</div>
   <%= render '/layouts/footer' %>
 </body>
 </html>

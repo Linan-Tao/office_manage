@@ -1,0 +1,40 @@
+
+<div class="row">
+   <div class="col-md-12">
+      <div class="awidget login-reg">
+         <div class="awidget-head">
+         
+         </div>
+         <div class="awidget-body">
+            <!-- Page title -->
+            <div class="page-title text-center">
+               <h2><a href="#">注册</a></h2>
+               <hr />
+            </div>
+            <!-- Page title -->
+            
+            <br />
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+            	<%= f.error_notification %>
+         
+							<%= f.input :email, required: true, autofocus: true %>
+    
+  						<%= f.input :password, required: true, hint: ("密码至少#{@minimum_password_length}位" if @minimum_password_length) %>
+    
+            	<%= f.input :password_confirmation, required: true %>
+
+              <hr />
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-4">
+                  <button type="submit" class="btn btn-info">注册</button>
+                  <button type="reset" class="btn btn-default">重置</button>
+                </div>
+                <div class="col-lg-offset-2 col-lg-4">
+                  <%= render "devise/shared/links" %>
+                </div>
+              </div>
+            <%end%>
+         </div>
+      </div>
+   </div>
+</div>

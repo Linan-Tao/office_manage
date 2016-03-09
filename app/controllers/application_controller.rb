@@ -3,4 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_action :authenticate_user!
   protect_from_forgery with: :exception
+  layout :layout_by_devise
+
+  def after_sign_in_path_for(resource)
+    users_path
+  end
+
+  def layout_by_devise
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
+  end
+
 end
