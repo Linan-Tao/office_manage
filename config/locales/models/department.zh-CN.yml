@@ -1,0 +1,15 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      department: 部门
+    attributes:
+      department:
+        name: 部门名称
+        number: 部门人数
+        desc: 部门职能
+        manager_id: 部门经理
+    errors:
+      department: 
+  helpers:
+    department: 

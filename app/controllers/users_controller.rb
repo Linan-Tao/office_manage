@@ -5,6 +5,16 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    #select2 serch params
+    if params[:term]
+      @users = @users.where("name LIKE '%#{params[:term]}%'")
+    end
+    @users = @users.order("updated_at DESC").page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: {:users => @users.select(:id, :name), :total => @users.size} }
+    end   
   end
 
   # GET /users/1
