@@ -1,0 +1,18 @@
+<%= simple_form_for(@department, url: @department.new_record? ? departments_path : department_path(@department)) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <div class="form-inputs">
+    <div class="form-group string optional">
+      <label class="string optional control-label" for="user_id">部门经理</label><br/>
+      <input type="hidden" id="remoteDataExample" name='input' data-id="<%=@department.manager_id%>" data-name="<%=@department.manager.name if @department.manager.present? %>"/>
+    </div>
+    <%= f.input :number %>
+    <%= f.input :desc %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary'  %>
+  </div>
+<% end %>
+
+

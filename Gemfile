@@ -14,6 +14,7 @@ gem 'devise-i18n'
 gem 'figaro'
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
+gem "rolify"
 gem 'pundit'
 gem 'simple_form'
 gem 'guard-rails'
