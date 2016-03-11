@@ -1,25 +1,66 @@
-<p id="notice"><%= notice %></p>
+<h3>注册用户管理</h3>
 
-<h1>Listing Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<form class="form-inline" role="search">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="btn-group" role="group" aria-label="">
+        <% Department.all.map{|d| [d.id, d.name]}.push([nil, '所有用户']).each do |k, name| %>
+          <%= link_to name, users_path(department: k), class: "btn btn-default #{'btn-primary' if params[:department].to_s == k.to_s}" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-6 text-right">
+      <div class="input-group">
+        <%= hidden_field_tag :department, params[:department] %>
+        <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入Email/登录名称...' %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">查询</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</form>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>联系方式</th>
+            <th>用户名</th>
+            <th>注册日期</th>
+            <th>所属部门</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= link_to user.email, user %></td>
+            <td><%= user.name %></td>
+            <td><%= user.created_at.to_date %></td>
+            <td>
+              <% if current_user.has_role? :admin %>
+                <%= form_for(user, url: user_path(user)) do |f| %>
+                  <%= f.select(:department_id, Department.all.map{|d| [d.name, d.id]}, include_blank: true ) %>
+                  <%= f.submit '修改部门', :class => 'button-xs btn-primary' %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <% if current_user.has_role? :admin %>
+                <%= link_to("删除", user_path(user), :data => { :confirm => "确定要删除吗?" }, :method => :delete) unless user == current_user %>
+                <%= link_to("修改权限", user_path(user)) unless user == current_user %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= paginate @users %>

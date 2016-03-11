@@ -1,4 +1,4 @@
-function load_on_page_ready(){
+
   /* Admin sidebar starts */
   $(document).ready(function(){
 
@@ -163,7 +163,7 @@ function load_on_page_ready(){
   /* ************************************** */   
 
   /* Slider starts */
-
+function load_on_page_ready(){
       $(function() {
           // Horizontal slider
           $( "#master1, #master2" ).slider({

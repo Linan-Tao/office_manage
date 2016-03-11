@@ -18,6 +18,8 @@
             	<%= f.error_notification %>
          
 							<%= f.input :email, required: true, autofocus: true %>
+
+              <%= f.input :name, required: true%>
     
   						<%= f.input :password, required: true, hint: ("密码至少#{@minimum_password_length}位" if @minimum_password_length) %>
     

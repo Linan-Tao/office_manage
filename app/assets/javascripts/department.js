@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $("#remoteDataExample").select2({
     placeholder: "Search user",
-    minimumInputLength: 2,
+    minimumInputLength: 1,
     ajax: {
         url: "/users.json",
         dataType: 'json',
