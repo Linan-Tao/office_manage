@@ -19,8 +19,10 @@
       user:
         new:
           email: '电子邮件'
+          name:   '员工名'
         edit:
           email: '电子邮件'
+          name:   '员工名'
     hints:
       defaults:
         username: '用户名'

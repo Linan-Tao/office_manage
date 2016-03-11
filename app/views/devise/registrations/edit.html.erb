@@ -19,7 +19,7 @@
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
                   <% end %>
-
+                  <%= f.input :name, required: true %>
                   <%= f.input :password, autocomplete: "off", hint: "不改密码的话就不填！", required: false %>
                   <%= f.input :password_confirmation, required: false %>
                   <%= f.input :current_password, hint: "需要当前密码来确认修改！", required: true %>

@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     if params[:term]
       @users = @users.where("name LIKE '%#{params[:term]}%'")
     end
+    if params[:department]
+      @users = @users.where(department_id: params[:department])
+    end
+
+    if params[:q]
+      @users = @users.where("users.name like :keyword OR users.email like :keyword", keyword: "%#{params[:q]}%")
+    end
+
     @users = @users.order("updated_at DESC").page(params[:page])
 
     respond_to do |format|
@@ -38,7 +46,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -52,7 +60,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_path, notice: '修改成功' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -79,6 +87,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:department_id)
     end
 end
