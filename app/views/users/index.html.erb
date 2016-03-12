@@ -1,25 +1,31 @@
-<h3>注册用户管理</h3>
-
-<form class="form-inline" role="search">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="btn-group" role="group" aria-label="">
-        <% Department.all.map{|d| [d.id, d.name]}.push([nil, '所有用户']).each do |k, name| %>
-          <%= link_to name, users_path(department: k), class: "btn btn-default #{'btn-primary' if params[:department].to_s == k.to_s}" %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-lg-6 text-right">
+<!-- Page title -->
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 员工管理<small>员工</small>
+    <span class="pull-right">
+      <form class="form-inline" role="search">
       <div class="input-group">
         <%= hidden_field_tag :department, params[:department] %>
         <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入Email/登录名称...' %>
         <span class="input-group-btn">
           <button type="submit" class="btn btn-default">查询</button>
         </span>
-      </div>
+      </div>        
+      </form>
+    </span>
+  </h2>
+  <hr />
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="btn-group" role="group" aria-label="">
+      <% Department.all.map{|d| [d.id, d.name]}.push([nil, '所有用户']).each do |k, name| %>
+        <%= link_to name, users_path(department: k), class: "btn btn-default #{'btn-primary' if params[:department].to_s == k.to_s}" %>
+      <% end %>
     </div>
   </div>
-</form>
+</div>
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -53,7 +59,6 @@
             <td>
               <% if current_user.has_role? :admin %>
                 <%= link_to("删除", user_path(user), :data => { :confirm => "确定要删除吗?" }, :method => :delete) unless user == current_user %>
-                <%= link_to("修改权限", user_path(user)) unless user == current_user %>
               <% end %>
             </td>
           </tr>

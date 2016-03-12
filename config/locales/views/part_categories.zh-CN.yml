@@ -1,0 +1,20 @@
+---
+zh-CN:
+  part_categories:
+    index:
+      title: Part categories
+    show:
+      title: Part category
+    edit:
+      title: Editing Part category
+    new:
+      title: New Part category
+  flash:
+    part_categories:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

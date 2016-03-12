@@ -1,0 +1,72 @@
+<!-- Page title -->
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 部件管理<small>部件</small>
+    <span class="pull-right">
+      <%= link_to '添加', new_part_path, class: 'btn btn-lg btn-info' %>
+    </span>
+  </h2>
+  <hr />
+</div>
+<!-- Page title -->
+<form class="form-inline" role="search">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="btn-group" role="group" aria-label="">
+        <% PartCategory.all.map{|d| [d.id, d.name]}.push([nil, '所有部件种类']).each do |k, name| %>
+          <%= link_to name, parts_path(category: k), class: "btn btn-default #{'btn-primary' if params[:category].to_s == k.to_s}" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-4 text-right">
+      <div class="input-group">
+        <%= hidden_field_tag :category, params[:categoryv] %>
+        <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入部件名称...' %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">查询</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="awidget full-width">
+   <div class="awidget-head">
+      <div class="row">
+         <div class="col-md-12 col-sm-12">
+            <h3>所有部件
+            </h3>
+         </div>
+      </div>   
+   </div>
+   <div class="awidget-body">
+      <table class="table table-hover table-bordered ">
+       <thead>
+         <tr>
+           <th>ID</th>
+           <th>部件种类</th>
+           <th>名称</th>
+           <th>库存</th>
+           <th>处理</th>
+         </tr>
+       </thead>
+       <tbody>
+         <% @parts.each do |part| %>
+           <tr>
+             <td><%= part.id %></td>
+             <td><%= part.part_category.try(:name) %></td>
+             <td><%= part.name %></td>
+             <td><%= part.number %></td>
+             <td>
+                <%= link_to  edit_part_path(part),  class: 'btn btn-xs btn-warning' do %>
+                    <i class="fa fa-pencil"></i>
+                 <% end %>
+                <%= link_to  part_path(part), data: {:confirm => '确定要删除吗?'}, :method => :delete, class: 'btn btn-xs btn-danger' do %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+             </td>
+           </tr>
+         <% end %>                              
+
+       </tbody>
+     </table>
+    </div>
+</div>
