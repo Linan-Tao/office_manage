@@ -1,21 +1,21 @@
-class DepartmentPolicy
-  attr_reader :user, :department
+class UserPolicy
+  attr_reader :user
 
-  def initialize(user, department)
+  def initialize(user, record)
     @user = user
-    @department = department
+    @record = record
   end
 
   def index?
-    @user.has_role?(:admin)
+    @user.has_role?(:admin) || @user.has_role?(:renshibu)
   end
 
   def show?
-    @user.has_role?(:admin)
+    @user.has_role?(:admin) || @user.has_role?(:renshibu)
   end
 
   def create?
-    @user.has_role?(:admin)
+    @user.has_role?(:admin) || @user.has_role?(:renshibu)
   end
 
   def new?
@@ -23,7 +23,7 @@ class DepartmentPolicy
   end
 
   def update?
-    @user.has_role?(:admin)
+    @user.has_role?(:admin) || @user.has_role?(:renshibu)
   end
 
   def edit?
@@ -31,7 +31,7 @@ class DepartmentPolicy
   end
 
   def destroy?
-    @user.has_role?(:admin)
+    @user.has_role?(:admin) || @user.has_role?(:renshibu)
   end
 
   def scope

@@ -1,0 +1,13 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      part_category: 配件种类
+    attributes:
+      part_category:
+        name: 种类名称
+        note: 备注
+    errors:
+      part_category: 
+  helpers:
+    part_category: 

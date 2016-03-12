@@ -17,20 +17,15 @@
                 </ul>
             </li>
             <li><a href="widgets.html"><i class="fa fa-th"></i> Widgets</a></li>
-            <li class="has_submenu">
+            <li class="has_submenu <%= 'current open' if  ['part_categories', 'parts'].include?(controller_name) %>">
                 <a href="#">
-                    <i class="fa fa-file"></i> Pages
+                    <i class="fa fa-file"></i> 仓储信息
                     <span class="caret pull-right"></span>
                 </a>
                 <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                    <li><a href="errorlog.html">Error Log</a></li>
-                    <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="404.html">404</a></li>
-                    <li><a href="makepost.html">Make Post</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="media.html">Media</a></li>
+                    <li class='<%="#{'active' if controller_name == 'part_categories'}" %>'><a href="/part_categories">配件种类</a></li>
+                    <li class='<%="#{'active' if controller_name == 'parts'}" %>'><a href="/parts">配件</a></li>
+                    <li><a href="errorlog.html">板料</a></li>         
                 </ul>
             </li> 
             <li><a href="calendar.html"><i class="fa fa-calendar"></i> Calendar</a></li>

@@ -1,0 +1,50 @@
+<!-- Page title -->
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 部件种类管理<small>部件种类</small>
+    <span class="pull-right">
+      <%= link_to '添加', new_part_category_path, class: 'btn btn-lg btn-info' %>
+    </span>
+  </h2>
+  <hr />
+</div>
+<!-- Page title -->
+<div class="awidget full-width">
+   <div class="awidget-head">
+      <div class="row">
+         <div class="col-md-12 col-sm-12">
+            <h3>所有部件种类
+            </h3>
+         </div>
+      </div>   
+   </div>
+   <div class="awidget-body">
+      <table class="table table-hover table-bordered ">
+       <thead>
+         <tr>
+           <th>ID</th>
+           <th>名称</th>
+           <th>备注</th>
+           <th>处理</th>
+         </tr>
+       </thead>
+       <tbody>
+         <% @part_categories.each do |part_category| %>
+           <tr>
+             <td><%= part_category.id %></td>
+             <td><%= part_category.name %></td>
+             <td><%= part_category.note %></td>
+             <td>
+                <%= link_to  edit_part_category_path(part_category),  class: 'btn btn-xs btn-warning' do %>
+                    <i class="fa fa-pencil"></i>
+                 <% end %>
+                <%= link_to  part_category_path(part_category), data: {:confirm => '确定要删除吗?'}, :method => :delete, class: 'btn btn-xs btn-danger' do %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+             </td>
+           </tr>
+         <% end %>                              
+
+       </tbody>
+     </table>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      part: 部件
+    attributes:
+      part:
+        name: 名称
+        number: 库存
+        brand: 品牌
+        price: 价格
+        part_category: 部件种类
+        supplier: 供应商
+    errors:
+      part: 
+  helpers:
+    part: 
