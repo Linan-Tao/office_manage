@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      material: Material
+    attributes:
+      material: {}
+    errors:
+      material: 
+  helpers:
+    material: 

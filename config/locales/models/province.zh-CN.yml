@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      province: Province
+    attributes:
+      province: {}
+    errors:
+      province: 
+  helpers:
+    province: 

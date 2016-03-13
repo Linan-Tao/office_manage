@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      condition: Condition
+    attributes:
+      condition: {}
+    errors:
+      condition: 
+  helpers:
+    condition: 

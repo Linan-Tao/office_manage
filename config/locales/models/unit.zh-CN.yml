@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      unit: Unit
+    attributes:
+      unit: {}
+    errors:
+      unit: 
+  helpers:
+    unit: 
