@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      work: Work
+    attributes:
+      work: {}
+    errors:
+      work: 
+  helpers:
+    work: 

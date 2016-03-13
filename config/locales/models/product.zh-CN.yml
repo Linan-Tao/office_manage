@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      product: Product
+    attributes:
+      product: {}
+    errors:
+      product: 
+  helpers:
+    product: 

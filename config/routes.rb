@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :units
+  resources :products
+  resources :agents
+  resources :materials
+  resources :orders
   resources :suppliers
   resources :parts
   resources :part_categories
