@@ -4,31 +4,26 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    authorize Department
     @departments = Department.all
   end
 
   # GET /departments/1
   # GET /departments/1.json
   def show
-    authorize @department
   end
 
   # GET /departments/new
   def new
-    authorize Department
     @department = Department.new
   end
 
   # GET /departments/1/edit
   def edit
-    authorize @department
   end
 
   # POST /departments
   # POST /departments.json
   def create
-    authorize Department
     @department = Department.new(department_params)
 
     respond_to do |format|
@@ -45,7 +40,6 @@ class DepartmentsController < ApplicationController
   # PATCH/PUT /departments/1
   # PATCH/PUT /departments/1.json
   def update
-    authorize @department
     respond_to do |format|
       if @department.update(department_params)
         format.html { redirect_to @department, notice: 'Department was successfully updated.' }
@@ -60,7 +54,6 @@ class DepartmentsController < ApplicationController
   # DELETE /departments/1
   # DELETE /departments/1.json
   def destroy
-    authorize @department
     @department.destroy
     respond_to do |format|
       format.html { redirect_to departments_url, notice: 'Department was successfully destroyed.' }

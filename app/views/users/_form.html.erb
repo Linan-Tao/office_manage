@@ -1,10 +1,17 @@
-<%= simple_form_for(@user) do |f| %>
+<%= simple_form_for(@user, url: @user.new_record? ? users_path : user_path(@user)) do |f| %>
   <%= f.error_notification %>
+  <%= f.input :email, disabled: true, hint: '邮件账户不能更改！' %>
 
-  <div class="form-inputs">
-  </div>
+  <%= f.input :name %>
+  <%= f.association :department, :include_blank => true %>
+  <%= f.input :gender, collection: [['男', 0] ,['女', 1]], as: :radio_buttons %>
+  <%= f.input :status, collection: User.status, as: :radio_buttons%>
+  <%= f.association :roles, as: :check_boxes%>
+
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary'  %>
   </div>
 <% end %>
+
+

@@ -16,7 +16,7 @@
                     <li><a href="form.html">Form</a></li>
                 </ul>
             </li>
-            <li><a href="widgets.html"><i class="fa fa-th"></i> Widgets</a></li>
+            <li <%="#{'current' if controller_name == 'roles'}" %>><a href="/roles"><i class="fa fa-th"></i> 角色权限管理</a></li>
             <li class="has_submenu <%= 'current open' if  ['part_categories', 'parts'].include?(controller_name) %>">
                 <a href="#">
                     <i class="fa fa-file"></i> 仓储信息

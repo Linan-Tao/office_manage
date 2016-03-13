@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :change_role]
 
   # GET /users
   # GET /users.json
   def index
-    # authorize User
     @users = User.all
     #select2 serch params
     if params[:term]
@@ -29,7 +28,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    authorize @user
   end
 
   # GET /users/new
@@ -60,7 +58,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    authorize @user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: '修改成功' }
@@ -75,13 +72,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    authorize @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -91,6 +88,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:department_id)
+      params.require(:user).permit(:department_id, :gender, :status, :name, :role_ids => [])
     end
 end
