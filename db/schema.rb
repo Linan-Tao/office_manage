@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312071208) do
+ActiveRecord::Schema.define(version: 20160313022946) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -46,15 +46,32 @@ ActiveRecord::Schema.define(version: 20160312071208) do
   add_index "parts", ["supplier_id"], name: "index_parts_on_supplier_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.integer  "resource_id",   limit: 4
-    t.string   "resource_type", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name",       limit: 32, null: false
+    t.string   "key",        limit: 32, null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["key"], name: "index_roles_on_key", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "roles_permissions", force: :cascade do |t|
+    t.integer "role_id", limit: 4
+    t.string  "klass",   limit: 255, null: false
+    t.string  "actions", limit: 255, null: false
+  end
+
+  add_index "roles_permissions", ["role_id"], name: "index_roles_permissions_on_role_id", using: :btree
+
+  create_table "roles_users", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "role_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
+  add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -87,13 +104,6 @@ ActiveRecord::Schema.define(version: 20160312071208) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "users_roles", id: false, force: :cascade do |t|
-    t.integer "user_id", limit: 4
-    t.integer "role_id", limit: 4
-  end
-
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "parts", "part_categories"
 end

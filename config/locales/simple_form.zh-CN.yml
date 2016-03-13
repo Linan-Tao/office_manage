@@ -23,6 +23,10 @@
         edit:
           email: '电子邮件'
           name:   '员工名'
+          roles: '角色'
+          department: '部门'
+          gender: '性别'
+          status: '状态'
     hints:
       defaults:
         username: '用户名'

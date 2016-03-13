@@ -38,6 +38,7 @@
             <th>用户名</th>
             <th>注册日期</th>
             <th>所属部门</th>
+            <th>角色</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -49,16 +50,19 @@
             <td><%= user.name %></td>
             <td><%= user.created_at.to_date %></td>
             <td>
-              <% if current_user.has_role? :admin %>
-                <%= form_for(user, url: user_path(user)) do |f| %>
-                  <%= f.select(:department_id, Department.all.map{|d| [d.name, d.id]}, include_blank: true ) %>
-                  <%= f.submit '修改部门', :class => 'button-xs btn-primary' %>
-                <% end %>
-              <% end %>
+              <%= user.department.try(:name)%>
             </td>
             <td>
-              <% if current_user.has_role? :admin %>
-                <%= link_to("删除", user_path(user), :data => { :confirm => "确定要删除吗?" }, :method => :delete) unless user == current_user %>
+              <%= user.roles.map(&:name).join(',')%>
+            </td>
+            <td>
+              <% unless user.role?("administrator") %>
+                <%= link_to  edit_user_path(user),  class: 'btn btn-xs btn-warning' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to user_path(user), :data => { :confirm => "确定要删除吗?" }, :method => :delete, :class => 'btn btn-xs btn-danger' do %>
+                <i class="fa fa-times"></i>
+                <%end%>
               <% end %>
             </td>
           </tr>
