@@ -1,6 +1,10 @@
-<h1>Editing User</h1>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  员工管理 <small>修改员工信息</small>
+    <span class="pull-right">
+      <%= link_to('返回',users_path, class: 'btn btn-lg btn-default') %>
+    </span>
+  </h2>
+  <hr />
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
