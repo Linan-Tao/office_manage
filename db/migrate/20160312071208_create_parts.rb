@@ -1,5 +1,6 @@
 class CreateParts < ActiveRecord::Migration
   def change
+    # 配件表
     create_table :parts do |t|
     	t.references :part_category, index: true, foreign_key: true
     	t.string :name

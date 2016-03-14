@@ -1,0 +1,20 @@
+---
+zh-CN:
+  order_parts:
+    index:
+      title: Order parts
+    show:
+      title: Order part
+    edit:
+      title: Editing Order part
+    new:
+      title: New Order part
+  flash:
+    order_parts:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

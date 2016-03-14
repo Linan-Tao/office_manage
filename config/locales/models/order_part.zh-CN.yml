@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      order_part: Order part
+    attributes:
+      order_part: {}
+    errors:
+      order_part: 
+  helpers:
+    order_part: 

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :units
+  resources :produces
+  resources :produce_tasks
+  resources :purchases
+  resources :offers
+  resources :order_parts
+  resources :order_units
   resources :products
   resources :agents
   resources :materials

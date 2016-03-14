@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      produce_task: Produce task
+    attributes:
+      produce_task: {}
+    errors:
+      produce_task: 
+  helpers:
+    produce_task: 

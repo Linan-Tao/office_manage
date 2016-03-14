@@ -1,0 +1,20 @@
+---
+zh-CN:
+  purchases:
+    index:
+      title: Purchases
+    show:
+      title: Purchase
+    edit:
+      title: Editing Purchase
+    new:
+      title: New Purchase
+  flash:
+    purchases:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
