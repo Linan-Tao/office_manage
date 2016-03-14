@@ -1,0 +1,11 @@
+---
+zh-CN:
+  active_record:
+    models:
+      purchase: Purchase
+    attributes:
+      purchase: {}
+    errors:
+      purchase: 
+  helpers:
+    purchase: 

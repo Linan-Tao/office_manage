@@ -1,0 +1,20 @@
+---
+zh-CN:
+  produce_tasks:
+    index:
+      title: Produce tasks
+    show:
+      title: Produce task
+    edit:
+      title: Editing Produce task
+    new:
+      title: New Produce task
+  flash:
+    produce_tasks:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

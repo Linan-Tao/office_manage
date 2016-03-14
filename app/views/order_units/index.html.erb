@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Order Units</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_units.each do |order_unit| %>
+      <tr>
+        <td><%= link_to 'Show', order_unit %></td>
+        <td><%= link_to 'Edit', edit_order_unit_path(order_unit) %></td>
+        <td><%= link_to 'Destroy', order_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order unit', new_order_unit_path %>

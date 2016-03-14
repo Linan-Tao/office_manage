@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Produce Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produce_tasks.each do |produce_task| %>
+      <tr>
+        <td><%= link_to 'Show', produce_task %></td>
+        <td><%= link_to 'Edit', edit_produce_task_path(produce_task) %></td>
+        <td><%= link_to 'Destroy', produce_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Produce task', new_produce_task_path %>

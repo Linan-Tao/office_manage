@@ -1,0 +1,20 @@
+---
+zh-CN:
+  order_units:
+    index:
+      title: Order units
+    show:
+      title: Order unit
+    edit:
+      title: Editing Order unit
+    new:
+      title: New Order unit
+  flash:
+    order_units:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
