@@ -148,9 +148,9 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.string   "customer_code", limit: 255
     t.integer  "agent_id",      limit: 4
     t.string   "server_code",   limit: 255
-    t.string   "type",          limit: 255
+    t.integer  "type",          limit: 4
     t.string   "patch_origin",  limit: 255
-    t.string   "status",        limit: 255
+    t.integer  "status",        limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "employee",      limit: 255
@@ -277,34 +277,6 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.string   "note",         limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-  end
-
-  create_table "units", force: :cascade do |t|
-    t.string   "code",             limit: 255
-    t.string   "name",             limit: 255
-    t.integer  "lenght",           limit: 4
-    t.integer  "width",            limit: 4
-    t.integer  "thick",            limit: 4
-    t.string   "ramark",           limit: 255
-    t.string   "order_code",       limit: 255
-    t.string   "color",            limit: 255
-    t.integer  "out_edge_thick",   limit: 4
-    t.integer  "in_edge_thick",    limit: 4
-    t.string   "back_texture",     limit: 255
-    t.string   "back_color",       limit: 255
-    t.string   "door_type",        limit: 255
-    t.string   "door_color",       limit: 255
-    t.string   "door_mould",       limit: 255
-    t.string   "door_handle_type", limit: 255
-    t.string   "door_edge_type",   limit: 255
-    t.integer  "door_edge_thick",  limit: 4
-    t.string   "customer_code",    limit: 255
-    t.string   "job_code",         limit: 255
-    t.string   "pack_code",        limit: 255
-    t.string   "next_job",         limit: 255
-    t.string   "employee_code",    limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
   end
 
   create_table "users", force: :cascade do |t|

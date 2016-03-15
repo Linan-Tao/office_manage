@@ -1,10 +1,10 @@
-<%= simple_form_for(@order) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-  </div>
-
+<%= simple_form_for(@order, url: @order.new_record? ? orders_path : order_path(@order)) do |f| %>
+  	<%= f.input :order_code %>
+  	<%= f.input :status, collection: Order.status, as: :radio_buttons%>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary'  %>
   </div>
 <% end %>
+
+
+

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resources :purchases
   resources :offers
   resources :order_parts
-  resources :order_units
+  resources :order_units do
+    collection do
+      post :import
+    end
+  end
   resources :products
   resources :agents
   resources :materials

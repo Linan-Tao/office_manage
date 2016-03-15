@@ -52,6 +52,8 @@ group :development do
   gem 'byebug'
 end
 group :development, :test do
+  gem 'pry'
+  gem 'pry-debugger'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rubocop'
