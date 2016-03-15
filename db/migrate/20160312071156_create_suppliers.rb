@@ -1,5 +1,6 @@
 class CreateSuppliers < ActiveRecord::Migration
   def change
+    # 供货商
     create_table :suppliers do |t|
     	t.string :name
     	t.string :mobile

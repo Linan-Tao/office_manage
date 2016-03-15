@@ -16,6 +16,17 @@
                     <li><a href="form.html">Form</a></li>
                 </ul>
             </li>
+            <li class="has_submenu <%= 'current open' if ['agents', 'suppliers'].include?(controller_name) %>">
+                 <a href="#">
+                    <i class="fa fa-sitemap"></i> 客户信息
+                    <span class="caret pull-right"></span>
+                 </a>
+                 <!-- Sub menu -->
+                 <ul>
+                    <li class='<%="#{'active' if controller_name == 'suppliers'}" %>'><a href="/suppliers">供货商</a></li>
+                    <li class='<%="#{'active' if controller_name == 'agents'}" %>'><a href="/agents">代理商</a></li>
+                </ul>
+            </li>
             <li <%="#{'current' if controller_name == 'roles'}" %>><a href="/roles"><i class="fa fa-th"></i> 角色权限管理</a></li>
             <li class="has_submenu <%= 'current open' if  ['part_categories', 'parts'].include?(controller_name) %>">
                 <a href="#">
@@ -25,11 +36,11 @@
                 <ul>
                     <li class='<%="#{'active' if controller_name == 'part_categories'}" %>'><a href="/part_categories">配件种类</a></li>
                     <li class='<%="#{'active' if controller_name == 'parts'}" %>'><a href="/parts">配件</a></li>
-                    <li><a href="errorlog.html">板料</a></li>         
+                    <li class='<%="#{'active' if controller_name == 'materials'}" %>'><a href="/materials">物料</a></li>    
                 </ul>
             </li> 
-            <li><a href="calendar.html"><i class="fa fa-calendar"></i> Calendar</a></li>
-            <li><a href="gallery.html"><i class="fa fa-camera"></i> Gallery</a></li>
+            <li class='<%="#{'current' if controller_name == 'orders'}" %>'><a href="/orders"><i class="fa fa-calendar"></i> 订单</a></li>
+            <li class='<%="#{'current' if controller_name == 'order_units'}" %>'><a href="/order_units"><i class="fa fa-calendar"></i> 拆单报价</a></li>
         </ul>
     </div>
-</div>
+</div>"
