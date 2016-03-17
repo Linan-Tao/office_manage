@@ -25,14 +25,11 @@ class AgentsController < ApplicationController
   # POST /agents.json
   def create
     @agent = Agent.new(agent_params)
-
     respond_to do |format|
       if @agent.save
-        format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
-        format.json { render :show, status: :created, location: @agent }
+        format.html { redirect_to @agent, notice: '代理商新建成功！' }
       else
         format.html { render :new }
-        format.json { render json: @agent.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +39,9 @@ class AgentsController < ApplicationController
   def update
     respond_to do |format|
       if @agent.update(agent_params)
-        format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agent }
+        format.html { redirect_to @agent, notice: '代理商更新成功！' }
       else
         format.html { render :edit }
-        format.json { render json: @agent.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +51,7 @@ class AgentsController < ApplicationController
   def destroy
     @agent.destroy
     respond_to do |format|
-      format.html { redirect_to agents_url, notice: 'Agent was successfully destroyed.' }
+      format.html { redirect_to agents_url, notice: '代理商已删除。' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +64,9 @@ class AgentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agent_params
-      params.fetch(:agent, {})
+      params.require(:agent).permit(:code,:province,:city,:district,:address,
+                                                              :name, :principal,:mobile,:e_account,:fax,
+                                                              :email,:wechar,:logistics,:order_condition,
+                                                              :send_condition,:pay_cycle)
     end
 end

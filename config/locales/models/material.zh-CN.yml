@@ -1,11 +1,17 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       material: Material
     attributes:
-      material: {}
+      material:
+        origin_material: 大板原料
+        type_no: 类别型号
+        brand: 品牌
+        supplier: 供应商
+        standard_type: 规格型号
+        standard_no: 规格序号
     errors:
-      material: 
+      material:
   helpers:
-    material: 
+    material:

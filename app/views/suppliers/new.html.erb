@@ -1,5 +1,12 @@
-<h1>New Supplier</h1>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  供应商管理 <small>新建</small>
+    <span class="pull-right">
+      <%= link_to('返回',suppliers_path, class: 'btn btn-lg btn-default') %>
+    </span>
+  </h2>
+  <hr />
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', suppliers_path %>
+<div class="container">
+  <%= render 'form' %>
+</div>

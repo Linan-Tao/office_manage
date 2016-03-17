@@ -1,10 +1,22 @@
-<%= simple_form_for(@agent) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= simple_form_for(@agent, url: @agent.new_record? ? agents_path : agent_path(@agent)) do |f| %>
+<%= f.error_notification %>
+<%= f.input :code, input_html:{placeholder:'代理商编号'} %>
+<%= f.input :name, input_html:{placeholder:'代理商名称'} %>
+<%= f.input :principal, input_html:{placeholder:'负责人'} %>
+<%= f.input :mobile, input_html:{placeholder:'代理商电话'} %>
+<%= f.input :fax, input_html:{placeholder:'传真号码'} %>
+<%= f.input :email, input_html:{placeholder:'代理商邮箱'} %>
+<%= f.input :e_account, input_html:{placeholder:'代理商QQ'} %>
+<%= f.input :wechar, input_html:{placeholder:'代理商微信'} %>
+<%= f.input :logistics, input_html:{placeholder:'指定物流'} %>
+<%= f.input :pay_cycle, input_html:{placeholder:'结账周期（天）'} %>
+<%= f.association :province %>
+<%= f.association :city %>
+<%= f.association :district %>
+<%= f.input :address, input_html:{placeholder:'代理商地址'} %>
+<%= f.input :order_condition, collection: Agent.order_condition, as: :radio_buttons %>
+<%= f.input :send_condition, collection: Agent.send_condition, as: :radio_buttons %>
+<div class="form-actions">
+  <%= f.button :submit,value:'提交', class: 'btn btn-lg btn-block btn-primary'  %>
+</div>
 <% end %>

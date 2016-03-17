@@ -1,11 +1,16 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       supplier: Supplier
     attributes:
-      supplier: {}
+      supplier:
+        name: 名称
+        mobile: 电话
+        bank_account: 账户
+        address: 地址
+        note: 备注
     errors:
-      supplier: 
+      supplier:
   helpers:
-    supplier: 
+    supplier:
