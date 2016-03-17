@@ -1,4 +1,3 @@
-
 <%= simple_form_for(@part, url: @part.new_record? ? parts_path : part_path(@part)) do |f| %>
   <%= f.association :part_category, :include_blank => true%>
   <%= f.input :name %>

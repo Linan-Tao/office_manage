@@ -1,4 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  代理商管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',agents_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
 
-<%= link_to 'Edit', edit_agent_path(@agent) %> |
-<%= link_to 'Back', agents_path %>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>代理商详细</h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">代理商编号</th>
+          <td class="col-xs-4"><%= @agent.code %></td>
+          <th class="col-xs-2 text-center info">代理商名称</th>
+          <td class="col-xs-4"><%= @agent.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">负责人</th>
+          <td class="col-xs-4"><%= @agent.principal %></td>
+          <th class="col-xs-2 text-center info">代理商电话</th>
+          <td class="col-xs-4"><%= @agent.mobile %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">传真号码</th>
+          <td class="col-xs-4"><%= @agent.fax %></td>
+          <th class="col-xs-2 text-center info">代理商邮箱</th>
+          <td class="col-xs-4"><%= @agent.email %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">代理商QQ</th>
+          <td class="col-xs-4"><%= @agent.e_account %></td>
+          <th class="col-xs-2 text-center info">微信号</th>
+          <td class="col-xs-4"><%= @agent.wechar %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">指定物流</th>
+          <td class="col-xs-4"><%= @agent.logistics %></td>
+          <th class="col-xs-2 text-center info">结账周期（天）</th>
+          <td class="col-xs-4"><%= @agent.pay_cycle %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">省市县</th>
+          <td colspan="3"><%= @agent.province %><%= @agent.city %><%= @agent.district %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">详细地址</th>
+          <td colspan="3"><%= @agent.address %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">下单条件</th>
+          <td class="col-xs-4"><%= @agent.order_condition_name %></td>
+          <th class="col-xs-2 text-center info">发货条件</th>
+          <td class="col-xs-4"><%= @agent.send_condition_name %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

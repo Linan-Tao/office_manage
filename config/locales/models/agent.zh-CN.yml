@@ -1,11 +1,28 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       agent: Agent
     attributes:
-      agent: {}
+      agent:
+        code: 编号
+        area: 省市县
+        province: 省
+        city: 市
+        district: 县
+        address: 地址
+        name: 代理商名称
+        principal: 负责人
+        mobile: 代理商电话
+        e_account: QQ账号
+        fax: 传真
+        email: 邮箱
+        wechar: 微信号
+        logistics: 指定物流
+        order_condition: 下单条件
+        send_condition: 发货条件
+        pay_cycle: 结账周期（天）
     errors:
-      agent: 
+      agent:
   helpers:
-    agent: 
+    agent:

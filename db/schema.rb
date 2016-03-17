@@ -14,29 +14,27 @@
 ActiveRecord::Schema.define(version: 20160314124302) do
 
   create_table "agents", force: :cascade do |t|
-    t.string   "code",         limit: 255
-    t.integer  "province_id",  limit: 4
-    t.integer  "city_id",      limit: 4
-    t.integer  "district_id",  limit: 4
-    t.string   "address",      limit: 255
-    t.string   "name",         limit: 255
-    t.string   "principal",    limit: 255
-    t.string   "mobile",       limit: 255
-    t.string   "e_account",    limit: 255
-    t.string   "fax",          limit: 255
-    t.string   "email",        limit: 255
-    t.string   "wechar",       limit: 255
-    t.string   "logistics",    limit: 255
-    t.integer  "condition_id", limit: 4
-    t.string   "pay_cycle",    limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "code",            limit: 255
+    t.integer  "province_id",     limit: 4
+    t.integer  "city_id",         limit: 4
+    t.integer  "district_id",     limit: 4
+    t.string   "address",         limit: 255
+    t.string   "name",            limit: 255
+    t.string   "principal",       limit: 255
+    t.string   "mobile",          limit: 255
+    t.string   "e_account",       limit: 255
+    t.string   "fax",             limit: 255
+    t.string   "email",           limit: 255
+    t.string   "wechar",          limit: 255
+    t.string   "logistics",       limit: 255
+    t.integer  "order_condition", limit: 4
+    t.integer  "send_condition",  limit: 4
+    t.string   "pay_cycle",       limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  add_index "agents", ["city_id"], name: "index_agents_on_city_id", using: :btree
-  add_index "agents", ["district_id"], name: "index_agents_on_district_id", using: :btree
   add_index "agents", ["name"], name: "index_agents_on_name", using: :btree
-  add_index "agents", ["province_id"], name: "index_agents_on_province_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
@@ -77,12 +75,14 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.string   "origin_material", limit: 255
     t.string   "type_no",         limit: 255
     t.string   "brand",           limit: 255
-    t.integer  "supply_id",       limit: 4
+    t.integer  "supplier_id",     limit: 4
     t.string   "standard_type",   limit: 255
     t.string   "standard_no",     limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
+
+  add_index "materials", ["supplier_id"], name: "index_materials_on_supplier_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
@@ -311,9 +311,6 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.datetime "updated_at",                null: false
   end
 
-  add_foreign_key "agents", "cities"
-  add_foreign_key "agents", "districts"
-  add_foreign_key "agents", "provinces"
   add_foreign_key "cities", "provinces"
   add_foreign_key "districts", "cities"
   add_foreign_key "offers", "orders"

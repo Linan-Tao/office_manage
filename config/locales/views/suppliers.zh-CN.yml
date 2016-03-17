@@ -2,13 +2,15 @@
 zh-CN:
   suppliers:
     index:
-      title: Suppliers
+      title: 列表
     show:
-      title: Supplier
+      title: 详细
     edit:
-      title: Editing Supplier
+      title: 编辑
     new:
-      title: New Supplier
+      title: 新建
+    destroy:
+      title: 删除
   flash:
     suppliers:
       create:

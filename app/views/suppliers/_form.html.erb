@@ -1,10 +1,11 @@
-<%= simple_form_for(@supplier) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= simple_form_for(@supplier, url: @supplier.new_record? ? suppliers_path : supplier_path(@supplier)) do |f| %>
+<%= f.error_notification %>
+<%= f.input :name, input_html:{placeholder:'供应商名称'} %>
+<%= f.input :mobile, input_html:{placeholder:'供应商电话'} %>
+<%= f.input :bank_account, input_html:{placeholder:'供应商账号'} %>
+<%= f.input :address, input_html:{placeholder:'供应商名地址'} %>
+<%= f.input :note, input_html:{placeholder:'备注信息'} %>
+<div class="form-actions">
+  <%= f.button :submit, value:'提交', class: 'btn btn-lg btn-block btn-primary'  %>
+</div>
 <% end %>
