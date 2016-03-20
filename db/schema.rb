@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314124302) do
+ActiveRecord::Schema.define(version: 20160320044802) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -71,23 +71,48 @@ ActiveRecord::Schema.define(version: 20160314124302) do
   add_index "districts", ["city_id", "name"], name: "index_districts_on_city_id_and_name", unique: true, using: :btree
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
-  create_table "materials", force: :cascade do |t|
-    t.string   "origin_material", limit: 255
-    t.string   "type_no",         limit: 255
-    t.string   "brand",           limit: 255
-    t.integer  "supplier_id",     limit: 4
-    t.string   "standard_type",   limit: 255
-    t.string   "standard_no",     limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+  create_table "material_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
+  create_table "material_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.integer  "material_category_id", limit: 4
+    t.integer  "material_type_id",     limit: 4
+    t.integer  "number",               limit: 4
+    t.decimal  "price",                            precision: 9, scale: 6
+    t.string   "code",                 limit: 255
+    t.string   "unit",                 limit: 255
+    t.integer  "supplier_id",          limit: 4
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+  end
+
+  add_index "materials", ["material_category_id"], name: "index_materials_on_material_category_id", using: :btree
+  add_index "materials", ["material_type_id"], name: "index_materials_on_material_type_id", using: :btree
   add_index "materials", ["supplier_id"], name: "index_materials_on_supplier_id", using: :btree
+
+  create_table "mix_tasks", force: :cascade do |t|
+    t.integer  "number",       limit: 4
+    t.decimal  "availability",             precision: 8, scale: 2
+    t.string   "file_path",    limit: 255
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
 
   create_table "offers", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
-    t.string   "item",       limit: 255
-    t.integer  "number",     limit: 4
+    t.string   "item_name",  limit: 255
+    t.integer  "item_id",    limit: 4
+    t.string   "item_type",  limit: 255
+    t.decimal  "number",                 precision: 8, scale: 2
     t.decimal  "price",                  precision: 8, scale: 2
     t.decimal  "total",                  precision: 8, scale: 2
     t.string   "category",   limit: 255
@@ -96,21 +121,25 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.datetime "updated_at",                                     null: false
   end
 
+  add_index "offers", ["item_id"], name: "index_offers_on_item_id", using: :btree
   add_index "offers", ["order_id"], name: "index_offers_on_order_id", using: :btree
   add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
   create_table "order_parts", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.integer  "part_id",    limit: 4
-    t.integer  "number",     limit: 4
-    t.string   "note",       limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "order_id",        limit: 4
+    t.integer  "part_id",         limit: 4
+    t.integer  "number",          limit: 4
+    t.string   "note",            limit: 255
+    t.integer  "produce_task_id", limit: 4
+    t.integer  "state",           limit: 4,   default: 0
+    t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "order_parts", ["order_id"], name: "index_order_parts_on_order_id", using: :btree
   add_index "order_parts", ["part_id"], name: "index_order_parts_on_part_id", using: :btree
+  add_index "order_parts", ["produce_task_id"], name: "index_order_parts_on_produce_task_id", using: :btree
 
   create_table "order_units", force: :cascade do |t|
     t.integer  "order_id",         limit: 4
@@ -135,12 +164,15 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.string   "door_handle_type", limit: 255
     t.string   "door_edge_type",   limit: 255
     t.integer  "door_edge_thick",  limit: 4
+    t.integer  "produce_task_id",  limit: 4
+    t.integer  "state",            limit: 4,   default: 0
     t.integer  "user_id",          limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_index "order_units", ["order_id"], name: "index_order_units_on_order_id", using: :btree
+  add_index "order_units", ["produce_task_id"], name: "index_order_units_on_produce_task_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_code",    limit: 255
@@ -150,11 +182,13 @@ ActiveRecord::Schema.define(version: 20160314124302) do
     t.string   "server_code",   limit: 255
     t.integer  "type",          limit: 4
     t.string   "patch_origin",  limit: 255
-    t.integer  "status",        limit: 4
+    t.integer  "work_id",       limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "employee",      limit: 255
   end
+
+  add_index "orders", ["work_id"], name: "index_orders_on_work_id", using: :btree
 
   create_table "part_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -178,35 +212,35 @@ ActiveRecord::Schema.define(version: 20160314124302) do
   add_index "parts", ["supplier_id"], name: "index_parts_on_supplier_id", using: :btree
 
   create_table "produce_tasks", force: :cascade do |t|
-    t.integer  "item_id",    limit: 4
-    t.string   "item_type",  limit: 255
-    t.integer  "work_id",    limit: 4
-    t.decimal  "area",                   precision: 8, scale: 2
-    t.decimal  "work_hour",              precision: 8, scale: 2
-    t.integer  "produce_id", limit: 4
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.integer  "user_id",    limit: 4
+    t.integer  "order_id",     limit: 4
+    t.integer  "item_id",      limit: 4
+    t.string   "item_type",    limit: 255
+    t.string   "sequence",     limit: 255
+    t.decimal  "area",                     precision: 9, scale: 6
+    t.integer  "mix_task_id",  limit: 4
+    t.integer  "mix_status",   limit: 4
+    t.decimal  "availability",             precision: 8, scale: 2
+    t.integer  "work_id",      limit: 4
+    t.integer  "state",        limit: 4
+    t.integer  "number",       limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
-  add_index "produce_tasks", ["produce_id"], name: "index_produce_tasks_on_produce_id", using: :btree
-  add_index "produce_tasks", ["user_id"], name: "index_produce_tasks_on_user_id", using: :btree
-  add_index "produce_tasks", ["work_id"], name: "index_produce_tasks_on_work_id", using: :btree
+  add_index "produce_tasks", ["item_id"], name: "index_produce_tasks_on_item_id", using: :btree
+  add_index "produce_tasks", ["mix_task_id"], name: "index_produce_tasks_on_mix_task_id", using: :btree
+  add_index "produce_tasks", ["order_id"], name: "index_produce_tasks_on_order_id", using: :btree
 
   create_table "produces", force: :cascade do |t|
-    t.integer  "material_id", limit: 4
-    t.integer  "number",      limit: 4
-    t.decimal  "use_rate",                precision: 8, scale: 2
-    t.integer  "work_id",     limit: 4
-    t.string   "file_path",   limit: 255
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.integer  "produce_task_id", limit: 4
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "work_id",         limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  add_index "produces", ["material_id"], name: "index_produces_on_material_id", using: :btree
-  add_index "produces", ["user_id"], name: "index_produces_on_user_id", using: :btree
-  add_index "produces", ["work_id"], name: "index_produces_on_work_id", using: :btree
+  add_index "produces", ["produce_task_id"], name: "index_produces_on_produce_task_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -221,6 +255,7 @@ ActiveRecord::Schema.define(version: 20160314124302) do
   end
 
   create_table "purchases", force: :cascade do |t|
+    t.string   "original_code",  limit: 255
     t.integer  "item_id",        limit: 4
     t.string   "item_type",      limit: 255
     t.string   "number",         limit: 255
@@ -304,6 +339,7 @@ ActiveRecord::Schema.define(version: 20160314124302) do
   create_table "works", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.integer  "department_id", limit: 4
+    t.string   "symbol_name",   limit: 255
     t.integer  "sequence",      limit: 4
     t.integer  "cycle",         limit: 4
     t.string   "remark",        limit: 255
@@ -313,16 +349,20 @@ ActiveRecord::Schema.define(version: 20160314124302) do
 
   add_foreign_key "cities", "provinces"
   add_foreign_key "districts", "cities"
+  add_foreign_key "materials", "material_categories"
+  add_foreign_key "materials", "material_types"
+  add_foreign_key "materials", "suppliers"
   add_foreign_key "offers", "orders"
   add_foreign_key "offers", "users"
   add_foreign_key "order_parts", "orders"
   add_foreign_key "order_parts", "parts"
+  add_foreign_key "order_parts", "produce_tasks"
   add_foreign_key "order_units", "orders"
+  add_foreign_key "order_units", "produce_tasks"
+  add_foreign_key "orders", "works"
   add_foreign_key "parts", "part_categories"
-  add_foreign_key "produce_tasks", "users"
-  add_foreign_key "produce_tasks", "works"
-  add_foreign_key "produces", "materials"
-  add_foreign_key "produces", "users"
-  add_foreign_key "produces", "works"
+  add_foreign_key "produce_tasks", "mix_tasks"
+  add_foreign_key "produce_tasks", "orders"
+  add_foreign_key "produces", "produce_tasks"
   add_foreign_key "purchases", "users"
 end

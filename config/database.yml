@@ -10,9 +10,9 @@ base: &base
   host: localhost
   username: root
   strict: false
-  password: '123abc..'
+  password: 
   host: 127.0.0.1
-  port: 3306
+  port: 3307
 
 development:
   <<: *base

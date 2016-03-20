@@ -2,6 +2,7 @@ class CreatePurchases < ActiveRecord::Migration
 	#采购单
   def change
     create_table :purchases do |t|
+        t.string  :original_code  #原始单号：混单号／生产单号
     	t.integer :item_id, index: true # 采购物料／配件id，用polymorphic方式
     	t.string :item_type # 采购物料／配件
     	t.string :number #数量
@@ -15,7 +16,6 @@ class CreatePurchases < ActiveRecord::Migration
     	t.decimal :discount, precision: 8, scale: 2 #折扣
     	t.integer :pay_type #付款方式
     	t.timestamps :pay_time #付款时间
-    	# t.references :bill #关联单据   后面再加
     	t.references :user, index: true, foreign_key: true
       t.timestamps null: false
     end

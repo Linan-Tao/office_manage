@@ -2,9 +2,18 @@
 
 <h1>Listing Produce Tasks</h1>
 
-<table>
+<table class="table table-border">
   <thead>
     <tr>
+      <th>Order</th>
+      <th>Material category</th>
+      <th>Material type</th>
+      <th>Sequence</th>
+      <th>Area</th>
+      <th>Mix task</th>
+      <th>Mix status</th>
+      <th>Availability</th>
+      <th>Work</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +21,15 @@
   <tbody>
     <% @produce_tasks.each do |produce_task| %>
       <tr>
+        <td><%= produce_task.order.order_code %></td>
+        <td><%= produce_task.item_name %></td>
+        <td><%= produce_task.item_category%></td>  
+        <td><%= produce_task.sequence %></td>
+        <td><%= produce_task.area %></td>
+        <td><%= produce_task.mix_task %></td>
+        <td><%= produce_task.mix_status %></td>
+        <td><%= produce_task.availability %></td>
+        <td><%= produce_task.work.try(:name) %></td>
         <td><%= link_to 'Show', produce_task %></td>
         <td><%= link_to 'Edit', edit_produce_task_path(produce_task) %></td>
         <td><%= link_to 'Destroy', produce_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

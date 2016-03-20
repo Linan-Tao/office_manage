@@ -1,6 +1,7 @@
 class OrderUnitsController < ApplicationController
   before_action :set_order_unit, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_order, only: [:import, :index,:show, :edit, :update, :destroy]
+  include OrdersHelper
   # GET /order_units
   # GET /order_units.json
   def index
@@ -53,15 +54,10 @@ class OrderUnitsController < ApplicationController
 
   def import
     if params[:file].original_filename !~ /.csv$/
-      redirect_to orders_path, notice: '文件格式不正确！'
+      return redirect_to order_path(@order), notice: '文件格式不正确！'
     end
-    return_hash = OrderUnit.import(params[:file])
-    if return_hash[:status] == 'error'
-      redirect_to orders_path, notice: '订单创建不成功:'+return_hash[:error_message]
-    end
-    if return_hash[:status] == 'ok'
-      redirect_to order_path(return_hash[:order_id]), notice: '订单创建成功.'
-    end
+    return_message = import_order_units(params[:file], @order.order_code)
+    redirect_to order_path(@order), notice: return_message
   end
 
   # DELETE /order_units/1
@@ -78,6 +74,10 @@ class OrderUnitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order_unit
       @order_unit = OrderUnit.find(params[:id])
+    end
+
+    def set_order
+      @order = Order.find(params[:order_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,20 @@
+---
+zh-CN:
+  material_categories:
+    index:
+      title: Material categories
+    show:
+      title: Material category
+    edit:
+      title: Editing Material category
+    new:
+      title: New Material category
+  flash:
+    material_categories:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

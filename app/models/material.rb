@@ -1,4 +1,6 @@
 class Material < ActiveRecord::Base
-  has_many :purchases, as: :item
-  belongs_to :supplier
+	belongs_to :material_category
+	belongs_to :material_type
+	belongs_to :supplier
+	validates :material_category_id, uniqueness: { scope: :material_type_id }
 end

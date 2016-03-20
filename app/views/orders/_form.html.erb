@@ -1,6 +1,6 @@
 <%= simple_form_for(@order, url: @order.new_record? ? orders_path : order_path(@order)) do |f| %>
   	<%= f.input :order_code %>
-  	<%= f.input :status, collection: Order.status, as: :radio_buttons%>
+  	<%= f.association :work, :include_blank => false%>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary'  %>
   </div>

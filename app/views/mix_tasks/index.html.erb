@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mix Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Availability</th>
+      <th>File path</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mix_tasks.each do |mix_task| %>
+      <tr>
+        <td><%= mix_task.number %></td>
+        <td><%= mix_task.availability %></td>
+        <td><%= mix_task.file_path %></td>
+        <td><%= link_to 'Show', mix_task %></td>
+        <td><%= link_to 'Edit', edit_mix_task_path(mix_task) %></td>
+        <td><%= link_to 'Destroy', mix_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mix task', new_mix_task_path %>

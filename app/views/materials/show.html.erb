@@ -1,41 +1,39 @@
-<div class="page-title">
-  <h2><i class="fa fa-desktop color"></i>  物料管理 <small>详细</small>
-  <span class="pull-right">
-    <%= link_to('返回',materials_path, class: 'btn btn-lg btn-default') %>
-  </span>
-  </h2>
-  <hr />
-</div>
-<div class="awidget full-width">
-  <div class="awidget-head">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <h3>物料详细</h3>
-      </div>
-    </div>
-  </div>
-  <div class="awidget-body">
-    <table class="table table-hover table-striped table-bordered">
-      <tbody>
-        <tr>
-          <th class="col-xs-2 text-center info">大板原料</th>
-          <td class="col-xs-4"><%= @material.origin_material %></td>
-          <th class="col-xs-2 text-center info">类别型号</th>
-          <td class="col-xs-4"><%= @material.type_no %></td>
-        </tr>
-        <tr>
-          <th class="col-xs-2 text-center info">品牌</th>
-          <td class="col-xs-4"><%= @material.brand %></td>
-          <th class="col-xs-2 text-center info">供应商</th>
-          <td class="col-xs-4"><%= @material.supplier.try(:name) %></td>
-        </tr>
-        <tr>
-          <th class="col-xs-2 text-center info">规格型号</th>
-          <td class="col-xs-4"><%= @material.standard_type %></td>
-          <th class="col-xs-2 text-center info">规格序号</th>
-          <td class="col-xs-4"><%= @material.standard_no %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Material category:</strong>
+  <%= @material.material_category %>
+</p>
+
+<p>
+  <strong>Material type:</strong>
+  <%= @material.material_type %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @material.number %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @material.price %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @material.code %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @material.unit %>
+</p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @material.supplier %>
+</p>
+
+<%= link_to 'Edit', edit_material_path(@material) %> |
+<%= link_to 'Back', materials_path %>

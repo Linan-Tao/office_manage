@@ -4,7 +4,11 @@ zh-CN:
     models:
       produce: Produce
     attributes:
-      produce: {}
+      produce:
+        produce_task: Produce task
+        start_time: Start time
+        end_time: End time
+        work: Work
     errors:
       produce: 
   helpers:

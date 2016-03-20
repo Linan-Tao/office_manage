@@ -2,18 +2,26 @@ Rails.application.routes.draw do
 
   resources :produces
   resources :produce_tasks
+  resources :mix_tasks
+  resources :materials
+  resources :material_types
+  resources :material_categories
   resources :purchases
-  resources :offers
-  resources :order_parts
-  resources :order_units do
-    collection do
-      post :import
-    end
-  end
   resources :products
   resources :agents
-  resources :materials
-  resources :orders
+  resources :orders do
+    resources :order_units do
+      collection do
+        post :import
+      end
+    end
+    resources :order_parts do
+      collection do
+        post :batch_create
+      end
+    end
+    resources :offers
+  end
 
   get 'visitors/index'
 

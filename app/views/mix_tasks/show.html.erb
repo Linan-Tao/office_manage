@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @mix_task.number %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @mix_task.availability %>
+</p>
+
+<p>
+  <strong>File path:</strong>
+  <%= @mix_task.file_path %>
+</p>
+
+<%= link_to 'Edit', edit_mix_task_path(@mix_task) %> |
+<%= link_to 'Back', mix_tasks_path %>

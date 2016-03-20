@@ -8,29 +8,12 @@
   <hr />
 </div>
 <!-- Page title -->
-<div class="awidget full-width">
-   <div class="awidget-head">
-      <%=form_tag import_order_units_path, multipart: true, class: 'form-inline' do%>
-        <div class="row">
-           <div class="col-md-6 col-sm-6">
-              <%= file_field_tag :file%>
-           </div>
-           <div class="col-md-6 col-sm-6">
-              <%= submit_tag "导入拆单文件", class: 'btn btn-info btn-lg'%>
-           </div>
-        </div>
-      <%end%>   
-   </div>
-   <div class="awidget-body">
-      <p>请导入csv文件，表头为部件名称,板材,长,宽,厚,数量,裁切尺寸,柜体名称,订单号,订货商,终端信息,封边,纹理,备注,条码,流水号</p>
-   </div>
-</div>
 
 <div class="awidget full-width">
    <div class="awidget-head">    
         <div class="row">
            <div class="col-md-12 col-sm-12">
-              <h1>订单列表</h1>
+              <h3>订单列表</h3>
            </div>
         </div>
    </div>
@@ -47,8 +30,11 @@
             <% @orders.each do |order|%>
               <tr>
                 <td><%= order.order_code%></td>
-                <td><%= order.status_name%></td>
+                <td><%= order.work.name%></td>
                <td>
+                  <% if order.checked? %>
+                  <%= link_to '创建生产任务单',new_produce_task_path(order_id: order.id), class: 'btn btn-xs btn-info'%>
+                  <% end %>
                   <%= link_to  order_path(order),  class: 'btn btn-xs btn-success' do %>
                       <i class="fa fa-eye"></i>
                    <% end %>

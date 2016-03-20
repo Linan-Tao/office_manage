@@ -18,7 +18,7 @@ class ProducesControllerTest < ActionController::TestCase
 
   test "should create produce" do
     assert_difference('Produce.count') do
-      post :create, produce: {  }
+      post :create, produce: { end_time: @produce.end_time, produce_task_id: @produce.produce_task_id, start_time: @produce.start_time, work: @produce.work }
     end
 
     assert_redirected_to produce_path(assigns(:produce))
@@ -35,7 +35,7 @@ class ProducesControllerTest < ActionController::TestCase
   end
 
   test "should update produce" do
-    patch :update, id: @produce, produce: {  }
+    patch :update, id: @produce, produce: { end_time: @produce.end_time, produce_task_id: @produce.produce_task_id, start_time: @produce.start_time, work: @produce.work }
     assert_redirected_to produce_path(assigns(:produce))
   end
 
