@@ -15,6 +15,9 @@ class MixTasksController < ApplicationController
   # GET /mix_tasks/new
   def new
     @mix_task = MixTask.new
+    #需要混单的生产任务单
+    work_id = Work.where(symbol_name: "open").first.id
+    @produce_tasks = ProduceTask.where(item_type: "Material", work_id: work_id, mix_status: ProduceTask.mix_statuses[:not_mix])
   end
 
   # GET /mix_tasks/1/edit
@@ -24,10 +27,21 @@ class MixTasksController < ApplicationController
   # POST /mix_tasks
   # POST /mix_tasks.json
   def create
-    @mix_task = MixTask.new(mix_task_params)
-
+    # @mix_task = MixTask.new(mix_task_params)
+    @mix_task = MixTask.new
+    if params[:produce_tasks].nil?
+      return redirect_to new_mix_task_path, notice: '请勾选需要混单的单号'
+    end
+    @mix_task.number = params[:number]
+    @mix_task.availability = params[:availability]
+    @mix_task.file_path = params[:file_path]
     respond_to do |format|
       if @mix_task.save
+        ProduceTask.where(id: params[:produce_tasks][:id]).each do |pt| 
+          pt.mix_task_id = @mix_task.id
+          pt.mix_status = ProduceTask.mix_statuses[:mixed]
+          pt.save
+        end
         format.html { redirect_to @mix_task, notice: 'Mix task was successfully created.' }
         format.json { render :show, status: :created, location: @mix_task }
       else

@@ -8,7 +8,7 @@ class CreateProduceTasks < ActiveRecord::Migration
       t.string :sequence #所需工序
       t.decimal :area, precision: 9, scale: 6  #本单大板的面积
       t.references :mix_task, index: true, foreign_key: true  #混单号
-      t.integer :mix_status   #混单状态：未混单，已混单，不需要混单
+      t.integer :mix_status, default: 0   #混单状态：未混单，已混单，不需要混单
       t.decimal :availability, precision: 8, scale: 2  #不混单下 材料的利用率
       t.references :work  #工序进度
       t.integer :state #板料或者配件
