@@ -3,23 +3,42 @@ class Order < ActiveRecord::Base
   validates_presence_of :order_code
   has_many :order_units
   has_many :order_parts
+  has_many :produce_tasks
+  has_many :offers
+  accepts_nested_attributes_for :offers
+  belongs_to :work
 
-  #订单状态:未拆单，已拆单，已报价，已审核，已下单
-  enum status: [:not_separate, :separated, :offered, :checked, :open]
-
-  def self.status
-    [['未拆单', 'not_separate'], ['已拆单', 'separated'], ['已报价', 'offered'], ['已审核', 'checked'], ['已下单', 'open']]
+  def not_separate?
+    work.symbol_name == "not_separate"
   end
 
-  def status_name
-  	case status
-  	when 'not_separate' then '未拆单'
-  	when "separated" then '已拆单'
-  	when "offered" then '已报价'
-    when "checked" then '已审核'
-	when "open" then 	'已下单'
-	else 
-		"未知状态"
-	end
+  def separated?
+    work.symbol_name == "separated"
   end
+
+  def checked?
+    work.symbol_name == "checked"
+  end
+
+  def separated!
+    self.work_id = Work.find_by(symbol_name: "separated").id
+    self.save!
+  end
+
+  def offered!
+    self.work_id = Work.find_by(symbol_name: "offered").id
+    self.save!
+  end
+
+  # 财务已审核，审核后自动产出生产作业单
+  def checked!
+    self.work_id = Work.find_by(symbol_name: "checked").id
+    self.save!
+  end
+
+  def open!
+    self.work_id = Work.find_by(symbol_name: "open").id
+    self.save!    
+  end
+
 end

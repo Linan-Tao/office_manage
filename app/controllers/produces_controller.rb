@@ -69,6 +69,6 @@ class ProducesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def produce_params
-      params.fetch(:produce, {})
+      params.require(:produce).permit(:produce_task_id, :start_time, :end_time, :work)
     end
 end

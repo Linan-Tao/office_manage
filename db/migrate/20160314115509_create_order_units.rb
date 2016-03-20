@@ -24,6 +24,8 @@ class CreateOrderUnits < ActiveRecord::Migration
       t.string :door_handle_type # 门板拉手类别
       t.string :door_edge_type # 门板封边类别
       t.integer :door_edge_thick # 门板封边厚
+      t.references :produce_task, index: true, foreign_key: true
+      t.integer :state, default: 0 #已创建生产任务，未创建生产任务
       t.references :user # 工艺员
       t.timestamps null: false
     end

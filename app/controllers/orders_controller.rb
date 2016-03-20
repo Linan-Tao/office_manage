@@ -1,16 +1,21 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  include OrdersHelper
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order("updated_at DESC")
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
     @order_units = @order.order_units
+    @part_categories = PartCategory.all
+    @order_parts = @order.order_parts
+    @material_categories = MaterialCategory.all
+    @material_types = MaterialType.all
+    @order_offers = @order.offers
   end
 
   # GET /orders/new
@@ -41,6 +46,10 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    if params[:order][:type] == "offer"
+      message = import_offers(params)
+      return redirect_to @order, notice: message
+    end
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
@@ -70,6 +79,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_code, :status)
+      params.require(:order).permit(:order_code, :work_id)
     end
 end

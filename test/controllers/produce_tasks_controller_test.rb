@@ -18,7 +18,7 @@ class ProduceTasksControllerTest < ActionController::TestCase
 
   test "should create produce_task" do
     assert_difference('ProduceTask.count') do
-      post :create, produce_task: {  }
+      post :create, produce_task: { area: @produce_task.area, availability: @produce_task.availability, material_category_id: @produce_task.material_category_id, material_type: @produce_task.material_type, mix_status: @produce_task.mix_status, mix_task_id: @produce_task.mix_task_id, order_id: @produce_task.order_id, sequence: @produce_task.sequence, work: @produce_task.work }
     end
 
     assert_redirected_to produce_task_path(assigns(:produce_task))
@@ -35,7 +35,7 @@ class ProduceTasksControllerTest < ActionController::TestCase
   end
 
   test "should update produce_task" do
-    patch :update, id: @produce_task, produce_task: {  }
+    patch :update, id: @produce_task, produce_task: { area: @produce_task.area, availability: @produce_task.availability, material_category_id: @produce_task.material_category_id, material_type: @produce_task.material_type, mix_status: @produce_task.mix_status, mix_task_id: @produce_task.mix_task_id, order_id: @produce_task.order_id, sequence: @produce_task.sequence, work: @produce_task.work }
     assert_redirected_to produce_task_path(assigns(:produce_task))
   end
 

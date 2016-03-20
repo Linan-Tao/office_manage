@@ -11,10 +11,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise-i18n'
-gem 'figaro'
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
-gem 'pundit'
 gem 'simple_form'
 gem 'guard-rails'
 gem 'acts-as-taggable-on', '3.5.0'
@@ -27,7 +25,7 @@ gem 'bootstrap_flash_messages', '~> 1.0.0'
 gem 'select2-rails', '~> 3.5.9'
 gem 'jquery-turbolinks'
 gem 'font-awesome-sass', '~> 4.2.0'
-gem 'cocoon' #Dynamic nested forms
+gem "nested_form"
 
 
 #I18n

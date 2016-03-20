@@ -1,0 +1,151 @@
+<div class="awidget full-width">
+   <div class="awidget-head"> 
+      <div class="row">
+         <div class="col-md-12 col-sm-12">
+            <h3>报价单
+               <p class="pull-right">
+                  总价: <%=@order_offers.map(&:total).sum %>元
+               </p>
+            </h3>
+         </div>
+      </div>
+   </div>
+   <div class="awidget-body">
+      <div class="table-responsive" style="height: 300px;">
+          <table class="table table-border">
+            <thead>
+               <tr>
+                  <td>计件项目</td>
+                  <td>数量</td>
+                  <td>单价</td>
+                  <td>总额</td>
+                  <td>类别</td>
+               </tr>
+            </thead>
+            <tbody>
+               <% @order_offers.each do |offer|%>
+                  <tr>
+                    <td><%= offer.item_name%></td>
+                     <td><%= offer.number%></td>
+                     <td><%= offer.price%></td>
+                     <td><%= offer.total%></td>
+                     <td><%= offer.category%></td>
+                  </tr>
+               <% end %>
+            </tbody>
+          </table>
+       </div>
+   </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="offer" tabindex="-1" role="dialog" aria-labelledby="offerLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= nested_form_for @order do |f| %>
+      <%=f.hidden_field :type, value: "offer"%>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="offerLabel">订单号<%= @order.order_code %>报价单</h4>
+      </div>
+      <div class="modal-body">
+         <div class="awidget full-width">
+            <div class="awidget-head"> 
+               <div class="row">
+                  <div class="col-md-12 col-sm-12">
+                     <h3>大板原料                  
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <div class="awidget-body">
+              
+               <table class="table" id="tasks">
+                  <tr>
+                     <td>计价项目</td>
+                     <td>类别</td>
+                     <td>面积</td>
+                     <td>操作</td>
+                  </tr>
+                  <%= f.fields_for :offers, :wrapper => false do |offer_form| %>
+                  <tr class="fields">
+                    <td>
+                      <%= offer_form.select(:material_category_id, options_for_select(@material_categories.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+                    </td>
+                    <td>
+                     <%= offer_form.select(:material_type_id, options_for_select(@material_types.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+                    </td>
+                    <td>
+                      <%= offer_form.number_field :number,:step => 'any', class: 'form-control', style: 'width: 60px;'%>
+                    </td>
+                    <td>
+                     <%= offer_form.link_to_remove "删除", class: 'btn btn-info' %>
+                    </td>
+                    
+                  </tr>
+                  <% end %>
+               </table>
+               <p><%= f.link_to_add "添加", :offers, :data => { :target => "#tasks" }, class: 'btn btn-info' %></p>
+            </div>
+         </div>
+         <div class="awidget full-width">
+            <div class="awidget-head"> 
+               <div class="row">
+                  <div class="col-md-12 col-sm-12">
+                     <h3>配件</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="awidget-body">
+               <table class="table">
+                  <tr>
+                     <td>计价项目</td>
+                     <td>数量</td>
+                     <td>价格</td>
+                     <td>总价</td>
+                     <td>类别</td>
+                  </tr>               
+               <%@order_parts.each do |order_part| %>
+                  <tr>
+                     <td><%= order_part.part.name%></td>
+                     <td><%= order_part.number%></td>
+                     <td><%= order_part.part.price%></td>
+                     <td><%= order_part.number * order_part.part.price.to_f%></td>
+                     <td><%= order_part.part.part_category.name%></td>
+                  </tr>
+               <%end%>
+               </table>
+            </div>
+         </div>
+         <div class="awidget full-width">
+            <div class="awidget-head"> 
+               <div class="row">
+                  <div class="col-md-12 col-sm-12">
+                     <h3>加工费</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="awidget-body">
+               <table class="table">
+                  <tr>
+                     <td>计价项目</td>
+                     <td>数量</td>
+                     <td>价格</td>
+                  </tr>               
+                  <tr>
+                     <td><%= text_field_tag :item,nil,class: "form-control", style: "width: 100px"%></td>
+                     <td><%= text_field_tag :item_number,nil,class: "form-control", style: "width: 50px"%></td>
+                     <td><%= text_field_tag :item_price,nil,class: "form-control", style: "width: 100px"%></td>
+                  </tr>
+               </table>
+            </div>
+         </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <%= submit_tag "保存", class: 'btn btn-info'%>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>

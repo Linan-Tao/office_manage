@@ -4,7 +4,8 @@ class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = Purchase.all
+    # @purchases = Purchase.all
+    @not_purchases_orders = Order.where(work_id: 6)
   end
 
   # GET /purchases/1

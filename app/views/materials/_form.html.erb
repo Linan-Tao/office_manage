@@ -1,12 +1,17 @@
-<%= simple_form_for(@material, url: @material.new_record? ? materials_path : material_path(@material)) do |f| %>
-<%= f.error_notification %>
-<%= f.input :origin_material, placeholed: '大板原料' %>
-<%= f.input :type_no, placeholed: '类别型号' %>
-<%= f.input :brand, placeholed: '品牌' %>
-<%= f.association :supplier %>
-<%= f.input :standard_type, placeholed: '规格型号' %>
-<%= f.input :standard_no, placeholed: '规格序号' %>
-<div class="form-actions">
-  <%= f.button :submit,value:'提交', class: 'btn btn-lg btn-block btn-primary'  %>
-</div>
+<%= simple_form_for(@material) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :material_category %>
+    <%= f.association :material_type %>
+    <%= f.input :number %>
+    <%= f.input :price %>
+    <%= f.input :code %>
+    <%= f.input :unit %>
+    <%= f.association :supplier %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>

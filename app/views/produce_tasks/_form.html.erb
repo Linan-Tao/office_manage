@@ -2,6 +2,15 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :order %>
+    <%= f.association :material_category %>
+    <%= f.input :material_type %>
+    <%= f.input :sequence %>
+    <%= f.input :area %>
+    <%= f.association :mix_task %>
+    <%= f.input :mix_status %>
+    <%= f.input :availability %>
+    <%= f.input :work %>
   </div>
 
   <div class="form-actions">

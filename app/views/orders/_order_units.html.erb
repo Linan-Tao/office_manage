@@ -1,0 +1,48 @@
+<div class="awidget full-width">
+   <div class="awidget-head"> 
+		<div class="row">
+		   <div class="col-md-12 col-sm-12">
+		      <h3>拆单信息
+            </h3>
+		   </div>
+		</div>
+   </div>
+   <div class="awidget-body">
+      <div class="table-responsive" style="height: 300px;">
+      	 <table class="table table-border">
+      	 	<thead>
+      	 		<tr>
+      	 			<td>部件名称</td>
+      	 			<td>板料</td>
+      	 			<td>长</td>
+      	 			<td>宽</td>
+      	 			<td>厚</td>
+      	 			<td>数量</td>
+      	 			<td>剪裁尺寸</td>
+      	 			<td>颜色</td>
+      	 			<td>封边</td>
+      	 			<td>纹理</td>
+      	 			<td>备注</td>
+      	 		</tr>
+      	 	</thead>
+      	 	<tbody>
+      	 		<% @order_units.each do |unit|%>
+      	 			<tr>
+      	 				<td><%= unit.unit_name%></td>
+      	 				<td><%= unit.name%></td>
+      	 				<td><%= unit.lenght%></td>
+      	 				<td><%= unit.width%></td>
+      	 				<td><%= unit.thick%></td>
+      	 				<td><%= unit.number%></td>
+      	 				<td><%= unit.size%></td>
+      	 				<td><%= unit.color%></td>
+      	 				<td><%= unit.edge%></td>
+      	 				<td><%= unit.texture%></td>
+      	 				<td><%= unit.note%></td>
+      	 			</tr>
+      	 		<% end %>
+      	 	</tbody>
+      	 </table>
+       </div>
+   </div>
+</div>

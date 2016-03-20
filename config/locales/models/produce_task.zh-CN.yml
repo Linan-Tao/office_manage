@@ -4,7 +4,16 @@ zh-CN:
     models:
       produce_task: Produce task
     attributes:
-      produce_task: {}
+      produce_task:
+        order: Order
+        material_category: Material category
+        material_type: Material type
+        sequence: Sequence
+        area: Area
+        mix_task: Mix task
+        mix_status: Mix status
+        availability: Availability
+        work: Work
     errors:
       produce_task: 
   helpers:

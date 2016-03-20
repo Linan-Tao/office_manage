@@ -1,0 +1,20 @@
+---
+zh-CN:
+  mix_tasks:
+    index:
+      title: Mix tasks
+    show:
+      title: Mix task
+    edit:
+      title: Editing Mix task
+    new:
+      title: New Mix task
+  flash:
+    mix_tasks:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
