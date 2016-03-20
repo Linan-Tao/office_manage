@@ -18,7 +18,6 @@ class ProduceTasksController < ApplicationController
     if params[:order_id]
       @order = Order.find(params[:order_id])
     end
-    @order = Order.first
   end
 
   # GET /produce_tasks/1/edit
