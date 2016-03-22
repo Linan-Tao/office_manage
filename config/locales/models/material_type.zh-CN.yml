@@ -1,12 +1,12 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       material_type: Material type
     attributes:
       material_type:
-        name: Name
+        name: 板料类型
     errors:
-      material_type: 
+      material_type:
   helpers:
-    material_type: 
+    material_type:

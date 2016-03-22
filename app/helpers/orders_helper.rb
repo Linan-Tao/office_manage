@@ -2,7 +2,7 @@ module OrdersHelper
 	# 导入拆单文件
 	def import_order_units(file, order_code)
     table = CSV.read(file.path, {:headers => true, :encoding => 'GB18030:UTF-8'})
-    headers = table.headers.map(&:strip)
+    headers = table.headers[0..15].map(&:strip)
     if headers == ["部件名称", "板材", "长", "宽", "厚", "数量", "裁切尺寸", "柜体名称", "订单号", "订货商", "终端信息", "封边", "纹理", "备注", "条码", "流水号"]
       order = Order.find_by(order_code: order_code)
       # 拆单文件中的订单号
@@ -11,7 +11,7 @@ module OrdersHelper
         ActiveRecord::Base.transaction do
           table.each do |row|
             record = OrderUnit.new(
-                :order_id   => order.id, 
+                :order_id   => order.id,
                 :unit_name => row[0],
                 :name => row[1],
                 :lenght => row[2],

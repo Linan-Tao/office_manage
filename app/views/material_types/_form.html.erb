@@ -1,11 +1,11 @@
-<%= simple_form_for(@material_type) do |f| %>
+<%= simple_form_for(@material_type,url: @material_type.new_record? ? material_types_path : material_type_path(@material_type)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
+    <%= f.input :name, placeholder: '板料类型名称' %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value: '提交' %>
   </div>
 <% end %>

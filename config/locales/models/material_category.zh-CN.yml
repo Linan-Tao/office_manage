@@ -1,12 +1,12 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       material_category: Material category
     attributes:
       material_category:
-        name: Name
+        name: 名称
     errors:
-      material_category: 
+      material_category:
   helpers:
-    material_category: 
+    material_category:

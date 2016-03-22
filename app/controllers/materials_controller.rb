@@ -25,7 +25,6 @@ class MaterialsController < ApplicationController
   # POST /materials.json
   def create
     @material = Material.new(material_params)
-
     respond_to do |format|
       if @material.save
         format.html { redirect_to @material, notice: 'Material was successfully created.' }
@@ -69,6 +68,6 @@ class MaterialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:material_category_id, :material_type_id, :number, :price, :code, :unit, :supplier)
+      params.require(:material).permit(:material_category_id, :material_type_id, :number, :price, :code, :unit, :supplier_id)
     end
 end

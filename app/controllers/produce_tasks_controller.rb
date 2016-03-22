@@ -36,8 +36,8 @@ class ProduceTasksController < ApplicationController
     material = Material.find_or_create_by(material_category_id: params[:material_category_id], material_type_id: params[:material_type_id])
     @produce_task = ProduceTask.find_or_create_by(order_id: @order.id, item_id: material.id, item_type: material.class)
     @produce_task.area = params[:area].to_f
-    @produce_task.number = params[:number].to_i 
-    
+    @produce_task.number = params[:number].to_i
+    @produce_task.work_id = 6
     @produce_task.save!
 
     order_units.each do |unit|

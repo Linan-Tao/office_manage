@@ -1,18 +1,18 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       material: Material
     attributes:
       material:
-        material_category: Material category
-        material_type: Material type
-        number: Number
-        price: Price
-        code: Code
+        material_category: 板料种类
+        material_type: 板料类型
+        number: 数量
+        price: 价格
+        code: 编码
         unit: Unit
-        supplier: Supplier
+        supplier: 供应商
     errors:
-      material: 
+      material:
   helpers:
-    material: 
+    material:
