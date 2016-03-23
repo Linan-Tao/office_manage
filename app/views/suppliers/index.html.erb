@@ -10,21 +10,21 @@
 <div class="awidget full-width">
   <div class="awidget-head">
     <div class="row">
-      <div class="col-md-12 col-sm-12">
+      <div class="col-xs-12 col-sm-12">
         <h3>供应商列表</h3>
       </div>
     </div>
   </div>
   <div class="awidget-body">
-    <table class="table table-hover table-bordered table-striped">
+    <table class="table table-hover table-bordered table-striped text-center">
       <thead>
         <tr class="info">
-          <th>名称</th>
-          <th>电话</th>
-          <th>账户</th>
-          <th>地址</th>
-          <th>备注</th>
-          <th>操作</th>
+          <th class="text-center">名称</th>
+          <th class="text-center">电话</th>
+          <th class="text-center">账户</th>
+          <th class="text-center">地址</th>
+          <th class="text-center">备注</th>
+          <th class="text-center" colspan="3">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -35,9 +35,9 @@
           <td><%= supplier.bank_account %></td>
           <td><%= supplier.address %></td>
           <td><%= supplier.note %></td>
-          <td><%= link_to t('suppliers.show.title'), supplier %>&nbsp;
-          <%= link_to t('suppliers.edit.title'), edit_supplier_path(supplier) %>&nbsp;
-          <%= link_to t('suppliers.destroy.title'), supplier, method: :delete, data: { confirm: '确定删除？' } %></td>
+          <td><%= link_to supplier, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><%end%>
+          <%= link_to edit_supplier_path(supplier), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><%end%>
+          <%= link_to supplier, method: :delete, data: { confirm: '确定删除？' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><%end%>
         </tr>
         <% end %>
       </tbody>

@@ -1,10 +1,10 @@
 <%= simple_form_for(@produce_task) do |f| %>
   <%= f.error_notification %>
-
+<!-- 重写此form参考new.html.erb -->
   <div class="form-inputs">
     <%= f.association :order %>
-    <%= f.association :material_category %>
-    <%= f.input :material_type %>
+    <%= f.association :material_category ，%>
+    <%= f.association :material_type %>
     <%= f.input :sequence %>
     <%= f.input :area %>
     <%= f.association :mix_task %>
@@ -17,3 +17,5 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+

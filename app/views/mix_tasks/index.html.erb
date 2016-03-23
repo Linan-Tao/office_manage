@@ -1,31 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Mix Tasks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Availability</th>
-      <th>File path</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @mix_tasks.each do |mix_task| %>
-      <tr>
-        <td><%= mix_task.number %></td>
-        <td><%= mix_task.availability %></td>
-        <td><%= mix_task.file_path %></td>
-        <td><%= link_to 'Show', mix_task %></td>
-        <td><%= link_to 'Edit', edit_mix_task_path(mix_task) %></td>
-        <td><%= link_to 'Destroy', mix_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 混单管理 <small>列表</small>
+  <span class="pull-right">
+    <%= link_to '添加', new_mix_task_path, class: 'btn btn-lg btn-info' %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <h3>混单列表</h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered text-center">
+      <thead>
+        <tr class="info">
+          <th class="col-xs-2 text-center">板料数量</th>
+          <th class="col-xs-2 text-center">材料利用率</th>
+          <th class="col-xs-6 text-center">混单文件</th>
+          <th class="col-xs-2 text-center" colspan="3">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @mix_tasks.each do |mix_task| %>
+        <tr>
+          <td><%= mix_task.number %></td>
+          <td><%= mix_task.availability %></td>
+          <td><%= mix_task.file_path %></td>
+          <td><%= link_to mix_task, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
+            <%= link_to edit_mix_task_path(mix_task), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
+            <%= link_to mix_task, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <br>
-
-<%= link_to 'New Mix task', new_mix_task_path %>
