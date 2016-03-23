@@ -1,0 +1,20 @@
+<%= simple_form_for(@staff) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.input :name %>
+    <%= f.association :department %>
+    <%= f.input :id_card %>
+    <%= f.input :base_salary %>
+    <%= f.input :old_age_insurance %>
+    <%= f.input :medicare_insurance %>
+    <%= f.input :unemployed_insurance %>
+    <%= f.input :house_fund %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
