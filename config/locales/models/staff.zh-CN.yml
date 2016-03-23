@@ -1,0 +1,21 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      staff: 员工基础信息
+    attributes:
+      staff:
+        user: 用户编号
+        name: 姓名
+        department: 部门
+        id_card: 省份证号
+        base_salary: 基本工资
+        old_age_insurance: 养老保险
+        medicare_insurance: 医疗保险
+        unemployed_insurance: 失业保险
+        house_fund: 公积金
+        status: 在职状态
+    errors:
+      staff: 
+  helpers:
+    staff: 

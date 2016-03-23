@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @staff.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @staff.name %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @staff.department %>
+</p>
+
+<p>
+  <strong>Id card:</strong>
+  <%= @staff.id_card %>
+</p>
+
+<p>
+  <strong>Base salary:</strong>
+  <%= @staff.base_salary %>
+</p>
+
+<p>
+  <strong>Old age insurance:</strong>
+  <%= @staff.old_age_insurance %>
+</p>
+
+<p>
+  <strong>Medicare insurance:</strong>
+  <%= @staff.medicare_insurance %>
+</p>
+
+<p>
+  <strong>Unemployed insurance:</strong>
+  <%= @staff.unemployed_insurance %>
+</p>
+
+<p>
+  <strong>House fund:</strong>
+  <%= @staff.house_fund %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @staff.status %>
+</p>
+
+<%= link_to 'Edit', edit_staff_path(@staff) %> |
+<%= link_to 'Back', staffs_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :staffs
   resources :produces
   resources :produce_tasks
   resources :mix_tasks
