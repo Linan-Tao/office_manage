@@ -1,11 +1,13 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       order: Order
     attributes:
-      order: {}
+      order:
+        order_code: 订单编号
+        work: 工序
     errors:
-      order: 
+      order:
   helpers:
-    order: 
+    order:

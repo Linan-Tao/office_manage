@@ -1,14 +1,12 @@
-<%= simple_form_for(@produce) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.association :produce_task %>
-    <%= f.input :start_time %>
-    <%= f.input :end_time %>
-    <%= f.association :work %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= simple_form_for(@produce,url: @produce.new_record? ? produces_path : produce_path(@produce)) do |f| %>
+<%= f.error_notification %>
+<div class="form-inputs">
+  <%= f.association :produce_task %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.association :work %>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
+</div>
 <% end %>

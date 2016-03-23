@@ -1,14 +1,14 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       mix_task: Mix task
     attributes:
       mix_task:
-        number: Number
-        availability: Availability
-        file_path: File path
+        number: 大板数量
+        availability: 利用率
+        file_path: 混单文件
     errors:
-      mix_task: 
+      mix_task:
   helpers:
-    mix_task: 
+    mix_task:
