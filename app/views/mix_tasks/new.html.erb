@@ -1,84 +1,87 @@
 <!-- Page title -->
 <div class="page-title">
   <h3><i class="fa fa-desktop color"></i> 混单管理<small>混单创建或审核</small>
-    <span class="pull-right">
-    	
-    </span>
+  <span class="pull-right">
+
+  </span>
   </h3>
   <hr />
 </div>
+
+<!-- 审核混单 -->
 <%=form_tag mix_tasks_path(@mix_task), class: 'form-inline' do%>
-	<div class="awidget full-width">
-	   <div class="awidget-head">    
-	        <div class="row">
-	           <div class="col-md-12 col-sm-12">
-	              <h3>生产任务单</h3>
-                <p class="pull-right">
-                  
-                </p>
-	           </div>
-	        </div>
-	   </div>
-	   <div class="awidget-body">
-	   	<div class="table-responsive" style="height: 300px;">
-      	 <table class="table table-border">
-      	 	<thead>
-      	 		<tr>
-      	 			<td>勾选</td>
-      	 			<td>生产单号</td>
-      	 			<td>订单号</td>
-      	 			<td>物料名称</td>
-      	 			<td>物料型号</td>
-      	 			<td>本单面积</td>
-      	 			<td>大板数量</td>
-              <td>所需工序</td>
-      	 		</tr>
-      	 	</thead>
-      	 	<tbody>
-      	 		<% @produce_tasks.each do |pt|%>
-      	 			<tr>
-      	 				<td><%=check_box_tag 'produce_tasks[id][]', pt.id%></td>
-      	 				<td><%= pt.id%></td>
-                <td><%= pt.order.order_code%></td>
-                <td><%= pt.item_name%></td>
-                <td><%= pt.item_category%></td>
-                <td><%= pt.area%></td>
-                <td><%= pt.number%></td>
-                <td><%= pt.sequence%></td>
-      	 			</tr>
-      	 		<% end %>
-      	 	</tbody>
-      	 </table>
-      	</div>
-	   </div>
-	</div>
-	<div class="awidget full-width">
-	   <div class="awidget-head">    
-	        <div class="row">
-	           <div class="col-md-12 col-sm-12">
-	              <h3>混单数据
-	              	<p class="pull-right">
-	              		<%= submit_tag "创建混单", class: 'btn btn-info'%>
-	              	</p>
-	              </h3>
-	           </div>
-	        </div>
-	   </div>
-	   <div class="awidget-body">
-        <div class="row">
-           <div class="col-md-4 col-sm-4">
-		     	  <%=label_tag 'number','大板总数'%>
-			   	  <%= number_field_tag(:number, nil,{ :class => 'form-control', :required => true}) %>
-           </div>
-           <div class="col-md-4 col-sm-4">
-            <%=label_tag 'availability','板料利用率'%>
-            <%= number_field_tag :availability, nil,:step => 'any', class: 'form-control', :required => true%>
-           </div>
-           <div class="col-md-4 col-sm-4">
-			   	  <%=label_tag 'file_path','混单文件路径'%>
-			   	  <%= text_field_tag :file_path, nil, class: 'form-control'%>
-			   	 </div>
-        </div>
-	   </div>
-	</div>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>生产任务单</h3>
+        <p class="pull-right">
+
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <div class="table-responsive" style="height: 300px;">
+      <table class="table table-border">
+        <thead>
+          <tr>
+            <td>勾选</td>
+            <td>生产单号</td>
+            <td>订单号</td>
+            <td>物料名称</td>
+            <td>物料型号</td>
+            <td>本单面积</td>
+            <td>大板数量</td>
+            <td>所需工序</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @produce_tasks.each do |pt|%>
+          <tr>
+            <td><%=check_box_tag 'produce_tasks[id][]', pt.id%></td>
+            <td><%= pt.id%></td>
+            <td><%= pt.order.order_code%></td>
+            <td><%= pt.item_name%></td>
+            <td><%= pt.item_category%></td>
+            <td><%= pt.area%></td>
+            <td><%= pt.number%></td>
+            <td><%= pt.sequence%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- 创建混单 -->
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>混单数据
+        <p class="pull-right">
+          <%= submit_tag "创建混单", class: 'btn btn-info'%>
+        </p>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <%=label_tag 'number','大板总数'%>
+        <%= number_field_tag(:number, nil,{ :class => 'form-control', :required => true}) %>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <%=label_tag 'availability','板料利用率'%>
+        <%= number_field_tag :availability, nil,:step => 'any', class: 'form-control', :required => true%>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <%=label_tag 'file_path','混单文件路径'%>
+        <%= text_field_tag :file_path, nil, class: 'form-control'%>
+      </div>
+    </div>
+  </div>
+</div>
 <%end%>
