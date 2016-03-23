@@ -3,7 +3,7 @@
 <!-- 重写此form参考new.html.erb -->
   <div class="form-inputs">
     <%= f.association :order %>
-    <%= f.association :material_category ，%>
+    <%= f.association :material_category%>
     <%= f.association :material_type %>
     <%= f.input :sequence %>
     <%= f.input :area %>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value: '提交' %>
   </div>
 <% end %>
 

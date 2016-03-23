@@ -1,15 +1,15 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       produce: Produce
     attributes:
       produce:
-        produce_task: Produce task
-        start_time: Start time
-        end_time: End time
-        work: Work
+        produce_task: 生产任务编号
+        start_time: 开始时间
+        end_time: 完成时间
+        work: 工序名称
     errors:
-      produce: 
+      produce:
   helpers:
-    produce: 
+    produce:
