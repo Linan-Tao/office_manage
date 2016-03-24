@@ -15,7 +15,7 @@ class CreatePurchases < ActiveRecord::Migration
     	t.decimal :actual_pay, precision: 8, scale: 2 #实付款
     	t.decimal :discount, precision: 8, scale: 2 #折扣
     	t.integer :pay_type #付款方式
-    	t.timestamps :pay_time #付款时间
+    	t.datetime :pay_time #付款时间
     	t.references :user, index: true, foreign_key: true
       t.timestamps null: false
     end

@@ -5,10 +5,10 @@ zh-CN:
       staff: 员工基础信息
     attributes:
       staff:
-        user: 用户编号
+        user: 帐号
         name: 姓名
         department: 部门
-        id_card: 省份证号
+        id_card: 身份证号
         base_salary: 基本工资
         old_age_insurance: 养老保险
         medicare_insurance: 医疗保险
@@ -16,6 +16,6 @@ zh-CN:
         house_fund: 公积金
         status: 在职状态
     errors:
-      staff: 
+      staff:
   helpers:
-    staff: 
+    staff:

@@ -1,54 +1,63 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @staff.user %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @staff.name %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @staff.department %>
-</p>
-
-<p>
-  <strong>Id card:</strong>
-  <%= @staff.id_card %>
-</p>
-
-<p>
-  <strong>Base salary:</strong>
-  <%= @staff.base_salary %>
-</p>
-
-<p>
-  <strong>Old age insurance:</strong>
-  <%= @staff.old_age_insurance %>
-</p>
-
-<p>
-  <strong>Medicare insurance:</strong>
-  <%= @staff.medicare_insurance %>
-</p>
-
-<p>
-  <strong>Unemployed insurance:</strong>
-  <%= @staff.unemployed_insurance %>
-</p>
-
-<p>
-  <strong>House fund:</strong>
-  <%= @staff.house_fund %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @staff.status %>
-</p>
-
-<%= link_to 'Edit', edit_staff_path(@staff) %> |
-<%= link_to 'Back', staffs_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  员工管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',staffs_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>员工详细</h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">账号</th>
+          <td class="col-xs-10"><%= @staff.user.id %></td>
+        </tr>
+         <tr>
+          <th class="col-xs-2 text-center info">姓名</th>
+          <td class="col-xs-10"><%= @staff.name %></td>
+        </tr>
+         <tr>
+          <th class="col-xs-2 text-center info">所属部门</th>
+          <td class="col-xs-10"><%= @staff.department.name %></td>
+        </tr>
+         <tr>
+          <th class="col-xs-2 text-center info">身份证号</th>
+          <td class="col-xs-10"><%= @staff.id_card %></td>
+        </tr>
+         <tr>
+          <th class="col-xs-2 text-center info">基本工资</th>
+          <td class="col-xs-10"><%= @staff.base_salary %></td>
+        </tr>
+         <tr>
+          <th class="col-xs-2 text-center info">养老保险</th>
+          <td class="col-xs-10"><%= @staff.old_age_insurance %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">医疗保险</th>
+          <td class="col-xs-10"><%= @staff.medicare_insurance %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">失业保险</th>
+          <td class="col-xs-10"><%= @staff.unemployed_insurance %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">公积金</th>
+          <td class="col-xs-10"><%= @staff.house_fund %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">状态</th>
+          <td class="col-xs-10"><%= @staff.status_name %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

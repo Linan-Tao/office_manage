@@ -5,7 +5,6 @@ zh-CN:
       agent: Agent
     attributes:
       agent:
-        code: 编号
         area: 省市县
         province: 省
         city: 市

@@ -1,4 +1,4 @@
-<%= simple_form_for(@staff) do |f| %>
+<%= simple_form_for(@staff, url: @staff.new_record? ? staffs_path : staff_path(@staff)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -11,10 +11,10 @@
     <%= f.input :medicare_insurance %>
     <%= f.input :unemployed_insurance %>
     <%= f.input :house_fund %>
-    <%= f.input :status %>
+    <%= f.input :status, collection: Staff.status, as: :radio_buttons %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
   </div>
 <% end %>

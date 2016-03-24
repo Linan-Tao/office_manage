@@ -1,6 +1,5 @@
 <%= simple_form_for(@agent, url: @agent.new_record? ? agents_path : agent_path(@agent)) do |f| %>
 <%= f.error_notification %>
-<%= f.input :code, input_html:{placeholder:'代理商编号'} %>
 <%= f.input :name, input_html:{placeholder:'代理商名称'} %>
 <%= f.input :principal, input_html:{placeholder:'负责人'} %>
 <%= f.input :mobile, input_html:{placeholder:'代理商电话'} %>

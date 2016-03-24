@@ -1,6 +1,4 @@
-
-
-  $(document).ready(function(){
+$(document).ready(function(){
 
     $(".has_submenu > a").click(function(e){
       e.preventDefault();
@@ -18,12 +16,12 @@
         menu_li.addClass("open");
       }
     });
-    
+
   });
 
 
 
-  
+
 
 
 
