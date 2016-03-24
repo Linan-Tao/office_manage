@@ -1,11 +1,26 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       purchase: Purchase
     attributes:
-      purchase: {}
+      purchase:
+        original_code: 原始单号
+        item_id: 物件编号
+        item_type: 物件类型
+        number: 数量
+        unit: 单位
+        note: 备注
+        way: 下单方式
+        arrival_number: 到货数量
+        price: 单价
+        payable: 应付款
+        actual_pay: 实付款
+        discount: 折扣
+        pay_type: 付款方式
+        pay_time: 付款时间
+        user: 用户账号
     errors:
-      purchase: 
+      purchase:
   helpers:
-    purchase: 
+    purchase:

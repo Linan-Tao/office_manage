@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320044802) do
+ActiveRecord::Schema.define(version: 20160323081346) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20160320044802) do
     t.string   "customer_code", limit: 255
     t.integer  "agent_id",      limit: 4
     t.string   "server_code",   limit: 255
-    t.integer  "type",          limit: 4
+    t.integer  "order_type",    limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
     t.datetime "created_at",                null: false
@@ -304,6 +304,24 @@ ActiveRecord::Schema.define(version: 20160320044802) do
   add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
+  create_table "staffs", force: :cascade do |t|
+    t.integer  "user_id",              limit: 4
+    t.string   "name",                 limit: 255
+    t.integer  "department_id",        limit: 4
+    t.string   "id_card",              limit: 255
+    t.decimal  "base_salary",                      precision: 8, scale: 2
+    t.decimal  "old_age_insurance",                precision: 8, scale: 2
+    t.decimal  "medicare_insurance",               precision: 8, scale: 2
+    t.decimal  "unemployed_insurance",             precision: 8, scale: 2
+    t.decimal  "house_fund",                       precision: 8, scale: 2
+    t.integer  "status",               limit: 4
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+  end
+
+  add_index "staffs", ["department_id"], name: "index_staffs_on_department_id", using: :btree
+  add_index "staffs", ["user_id"], name: "index_staffs_on_user_id", using: :btree
+
   create_table "suppliers", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.string   "mobile",       limit: 255
@@ -365,4 +383,6 @@ ActiveRecord::Schema.define(version: 20160320044802) do
   add_foreign_key "produce_tasks", "orders"
   add_foreign_key "produces", "produce_tasks"
   add_foreign_key "purchases", "users"
+  add_foreign_key "staffs", "departments"
+  add_foreign_key "staffs", "users"
 end

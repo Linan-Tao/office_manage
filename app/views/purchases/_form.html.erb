@@ -1,10 +1,23 @@
-<%= simple_form_for(@purchase) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= simple_form_for(@purchase,url: @purchase.new_record? ? purchases_path : purchase_path(@purchase)) do |f| %>
+<%= f.error_notification %>
+<div class="form-inputs">
+  <%= f.input :original_code %>
+  <%= f.input :item_id %>
+  <%= f.input :item_type %>
+  <%= f.input :number %>
+  <%= f.input :unit %>
+  <%= f.input :note %>
+  <%= f.input :way %>
+  <%= f.input :arrival_number %>
+  <%= f.input :price %>
+  <%= f.input :payable %>
+  <%= f.input :actual_pay %>
+  <%= f.input :discount %>
+  <%= f.input :pay_type %>
+  <%= f.input :pay_time %>
+  <%= f.association :user %>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
+</div>
 <% end %>
