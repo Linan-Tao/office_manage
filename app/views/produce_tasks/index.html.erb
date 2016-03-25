@@ -6,8 +6,17 @@
 <div class="awidget full-width">
   <div class="awidget-head">
     <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <h3>生产任务列表</h3>
+      <div class="col-lg-12">
+        <span class="pull-right">
+          <form class="form-inline" role="search">
+            <div class="input-group">
+              <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入订单号...' %>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">查询</button>
+              </span>
+            </div>
+          </form>
+        </span>
       </div>
     </div>
   </div>

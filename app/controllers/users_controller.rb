@@ -6,23 +6,10 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     #select2 serch params
-    if params[:term]
-      @users = @users.where("name LIKE '%#{params[:term]}%'")
-    end
-    if params[:department]
-      @users = @users.where(department_id: params[:department])
-    end
-
-    if params[:q]
-      @users = @users.where("users.name like :keyword OR users.email like :keyword", keyword: "%#{params[:q]}%")
-    end
-
+    @users = @users.where("name LIKE '%#{params[:term]}%'")  if params[:term].present?
+    @users = @users.where(department_id: params[:department]) if params[:department].present?
+    @users = @users.where("users.name like :keyword OR users.email like :keyword", keyword: "%#{params[:q]}%") if params[:q].present?
     @users = @users.order("updated_at DESC").page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: {:users => @users.select(:id, :name), :total => @users.size} }
-    end   
   end
 
   # GET /users/1

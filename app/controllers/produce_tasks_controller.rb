@@ -5,6 +5,7 @@ class ProduceTasksController < ApplicationController
   # GET /produce_tasks.json
   def index
     @produce_tasks = ProduceTask.all
+    @produce_tasks = @produce_tasks.joins(:order).where(orders: { order_code: params[:q] }) if params[:q].present?
   end
 
   # GET /produce_tasks/1
@@ -22,6 +23,14 @@ class ProduceTasksController < ApplicationController
 
   # GET /produce_tasks/1/edit
   def edit
+    item_type = @produce_task.item_type
+    if  item_type == "Material"
+    @material_category_id = @produce_task.item.material_category_id
+    @material_type_id = @produce_task.item.material_type_id
+    elsif item_type == "Part"
+      # 干啥
+      @part_id = @produce_task.item_id
+    end
   end
 
   # POST /produce_tasks

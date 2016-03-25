@@ -2,15 +2,26 @@
   <%= f.error_notification %>
 <!-- 重写此form参考new.html.erb -->
   <div class="form-inputs">
-    <%= f.association :order %>
-    <%= f.association :material_category%>
-    <%= f.association :material_type %>
+    <%= f.input :order,disable: true %>
+    <% if @material_category_id && @material_type_id %>
+    <div class="form-group">
+    <%= label_tag '板料种类' %>
+    <%= select_tag :material_category, options_from_collection_for_select(MaterialCategory.all, "id", "name", @material_category_id), class: 'form-control' %>
+    </div>
+    <div class="form-group">
+    <%= label_tag '板料型号' %>
+    <%= select_tag :material_type, options_from_collection_for_select(MaterialType.all, "id", "name", @material_type_id), class: 'form-control' %>
+    </div>
+    <% else %>
+    <%= label_tag '部件' %>
+    <%= select_tag :part, options_from_collection_for_select(Part.all, "id", "name", @part_id), class: "form-control" %>
+    <% end %>
     <%= f.input :sequence %>
     <%= f.input :area %>
     <%= f.association :mix_task %>
-    <%= f.input :mix_status %>
+    <%= f.input :mix_status, collection: ProduceTask.mix_status, as: :radio_buttons %>
     <%= f.input :availability %>
-    <%= f.input :work %>
+    <%= f.association :work %>
   </div>
 
   <div class="form-actions">

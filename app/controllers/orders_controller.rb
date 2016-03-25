@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all.order("updated_at DESC")
+    @orders = @orders.where(work_id: params[:work_id]) if params[:work_id].present?
   end
 
   # GET /orders/1
