@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.string   "item_name",  limit: 255
     t.integer  "item_id",    limit: 4
     t.string   "item_type",  limit: 255
-    t.decimal  "number",                 precision: 8, scale: 2
+    t.decimal  "number",                 precision: 9, scale: 6
     t.decimal  "price",                  precision: 8, scale: 2
     t.decimal  "total",                  precision: 8, scale: 2
     t.string   "category",   limit: 255
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.string   "customer_code", limit: 255
     t.integer  "agent_id",      limit: 4
     t.string   "server_code",   limit: 255
-    t.integer  "type",          limit: 4
+    t.integer  "order_type",    limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
     t.datetime "created_at",                null: false
@@ -332,13 +332,13 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.string   "sequence",     limit: 255
     t.decimal  "area",                     precision: 9, scale: 6
     t.integer  "mix_task_id",  limit: 4
-    t.integer  "mix_status",   limit: 4
+    t.integer  "mix_status",   limit: 4,                           default: 0
     t.decimal  "availability",             precision: 8, scale: 2
     t.integer  "work_id",      limit: 4
     t.integer  "state",        limit: 4
     t.integer  "number",       limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
   end
 
   add_index "produce_tasks", ["item_id"], name: "index_produce_tasks_on_item_id", using: :btree
@@ -385,6 +385,7 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.integer  "user_id",        limit: 4
+    t.datetime "pay_time"
     t.string   "checker",        limit: 255
     t.integer  "check_status",   limit: 4
     t.datetime "check_date"

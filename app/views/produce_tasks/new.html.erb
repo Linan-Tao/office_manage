@@ -1,6 +1,6 @@
 <!-- Page title -->
 <div class="page-title">
-  <h3><i class="fa fa-desktop color"></i> 生产任务单管理<small>创建成产任务</small>
+  <h3><i class="fa fa-desktop color"></i> 生产任务单管理<small>创建生产任务</small>
   <span class="pull-right">
     操作订单<%=@order.order_code %>
   </span>
@@ -72,17 +72,17 @@
   </div>
   <div class="awidget-body">
     <div class="row">
-      <div class="col-md-6 col-sm-6">
+      <div class="col-xs-6 col-sm-6">
         <%=label_tag 'material_category_id','原料名称'%>
         <%= select_tag(:material_category_id, options_for_select(MaterialCategory.all.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
         <%=label_tag 'material_type_id','原料型号'%>
         <%= select_tag(:material_type_id, options_for_select(MaterialType.all.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
       </div>
-      <div class="col-md-6 col-sm-6">
-        <%=label_tag 'area','板料面积'%>
-        <%= number_field_tag :area, nil,:step => 'any', class: 'form-control', :required => true%>
-        <%=label_tag 'number','数量'%>
-        <%= number_field_tag :number, nil, :class => 'form-control', :required => true%>
+      <div class="col-xs-6 col-sm-6 ">
+        <%=label_tag 'area','面积' %>
+        <%= number_field_tag :area, nil,:step => 'any', class: 'form-control', :required => true, style: 'width: 30%' %>
+        <%=label_tag 'number','数量' %>
+        <%= number_field_tag :number, nil, :class => 'form-control', :required => true, style: 'width: 30%' %>
       </div>
     </div>
   </div>
