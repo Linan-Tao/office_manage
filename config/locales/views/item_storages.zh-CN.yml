@@ -1,0 +1,20 @@
+---
+zh-CN:
+  item_storages:
+    index:
+      title: Item storages
+    show:
+      title: Item storage
+    edit:
+      title: Editing Item storage
+    new:
+      title: New Item storage
+  flash:
+    item_storages:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

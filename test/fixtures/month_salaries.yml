@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  name: MyString
+  total: 9.99
+  extra: 9.99
+  add: 
+  cut: 9.99
+  bonus: 9.99
+  old_age_insurance: 9.99
+  medicare_insurance: 9.99
+  unemployed_insurance: 9.99
+  house_fund: 9.99
+  pre_tax: 9.99
+  income_tax: 9.99
+  actual: 9.99
+
+two:
+  user_id: 
+  name: MyString
+  total: 9.99
+  extra: 9.99
+  add: 
+  cut: 9.99
+  bonus: 9.99
+  old_age_insurance: 9.99
+  medicare_insurance: 9.99
+  unemployed_insurance: 9.99
+  house_fund: 9.99
+  pre_tax: 9.99
+  income_tax: 9.99
+  actual: 9.99

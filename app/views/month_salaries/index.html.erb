@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Month Salaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Total</th>
+      <th>Extra</th>
+      <th>Add</th>
+      <th>Cut</th>
+      <th>Bonus</th>
+      <th>Old age insurance</th>
+      <th>Medicare insurance</th>
+      <th>Unemployed insurance</th>
+      <th>House fund</th>
+      <th>Pre tax</th>
+      <th>Income tax</th>
+      <th>Actual</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @month_salaries.each do |month_salary| %>
+      <tr>
+        <td><%= month_salary.user %></td>
+        <td><%= month_salary.name %></td>
+        <td><%= month_salary.total %></td>
+        <td><%= month_salary.extra %></td>
+        <td><%= month_salary.add %></td>
+        <td><%= month_salary.cut %></td>
+        <td><%= month_salary.bonus %></td>
+        <td><%= month_salary.old_age_insurance %></td>
+        <td><%= month_salary.medicare_insurance %></td>
+        <td><%= month_salary.unemployed_insurance %></td>
+        <td><%= month_salary.house_fund %></td>
+        <td><%= month_salary.pre_tax %></td>
+        <td><%= month_salary.income_tax %></td>
+        <td><%= month_salary.actual %></td>
+        <td><%= link_to 'Show', month_salary %></td>
+        <td><%= link_to 'Edit', edit_month_salary_path(month_salary) %></td>
+        <td><%= link_to 'Destroy', month_salary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Month salary', new_month_salary_path %>

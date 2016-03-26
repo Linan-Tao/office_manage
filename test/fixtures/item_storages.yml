@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  storage_date: 2016-03-26 16:24:27
+  receiver: MyString
+  purchase: 
+  item_id: 1
+  item_type: MyString
+  brand: MyString
+  number: 1
+  supplier_id: 
+
+two:
+  storage_date: 2016-03-26 16:24:27
+  receiver: MyString
+  purchase: 
+  item_id: 1
+  item_type: MyString
+  brand: MyString
+  number: 1
+  supplier_id: 

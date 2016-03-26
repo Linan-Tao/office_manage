@@ -13,7 +13,6 @@
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'users'}" %>'><a href="/users">员工表</a></li>
                     <li class='<%="#{'active' if controller_name == 'staffs'}" %>'><a href="/staffs">员工基础信息</a></li>
-                    <li><a href="form.html">Form</a></li>
                 </ul>
             </li>
             <li class="has_submenu <%= 'current open' if ['agents', 'suppliers'].include?(controller_name) %>">
@@ -27,8 +26,22 @@
                     <li class='<%="#{'active' if controller_name == 'agents'}" %>'><a href="/agents">代理商</a></li>
                 </ul>
             </li>
+            <li class="has_submenu <%= 'current open' if ['order_bills', 'flow_bills', 'month_salaries', 'assets', 'application_funds'].include?(controller_name)%>">
+                 <a href="#">
+                    <i class="fa fa-sitemap"></i> 财务
+                    <span class="caret pull-right"></span>
+                 </a>
+                 <!-- Sub menu -->
+                 <ul>
+                    <li class='<%="#{'active' if controller_name == 'order_bills'}" %>'><a href="/order_bills">订单到款表</a></li>
+                    <li class='<%="#{'active' if controller_name == 'flow_bills'}" %>'><a href="/flow_bills">流水单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'month_salaries'}" %>'><a href="/month_salaries">工资单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'application_funds'}" %>'><a href="/application_funds">资金科目</a></li>
+                    <li class='<%="#{'active' if controller_name == 'assets'}" %>'><a href="/assets">耐用资产</a></li>
+                </ul>
+            </li>
             <li <%="#{'current' if controller_name == 'roles'}" %>><a href="/roles"><i class="fa fa-th"></i> 角色权限管理</a></li>
-            <li class="has_submenu <%= 'current open' if  ['part_categories', 'parts', 'material_categories', 'material_types', 'materials'].include?(controller_name) %>">
+            <li class="has_submenu <%= 'current open' if  ['part_categories', 'parts', 'material_categories', 'material_types', 'materials', 'item_storages', 'out_storages'].include?(controller_name) %>">
                 <a href="#">
                     <i class="fa fa-file"></i> 仓储信息
                     <span class="caret pull-right"></span>
@@ -39,6 +52,8 @@
                     <li class='<%="#{'active' if controller_name == 'material_categories'}" %>'><a href="/material_categories">板料种类</a></li>
                     <li class='<%="#{'active' if controller_name == 'material_types'}" %>'><a href="/material_types">板料型号</a></li>
                     <li class='<%="#{'active' if controller_name == 'materials'}" %>'><a href="/materials">板料资料</a></li>
+                    <li class='<%="#{'active' if controller_name == 'item_storages'}" %>'><a href="/item_storages">外购入库</a></li>
+                    <li class='<%="#{'active' if controller_name == 'out_storages'}" %>'><a href="/out_storages">领料出库</a></li>
                 </ul>
             </li>
             <li class='<%="#{'current' if controller_name == 'orders'}" %>'><a href="/orders"><i class="fa fa-th"></i> 订单</a></li>

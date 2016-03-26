@@ -1,0 +1,24 @@
+<%= simple_form_for(@month_salary) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.input :name %>
+    <%= f.input :total %>
+    <%= f.input :extra %>
+    <%= f.input :add %>
+    <%= f.input :cut %>
+    <%= f.input :bonus %>
+    <%= f.input :old_age_insurance %>
+    <%= f.input :medicare_insurance %>
+    <%= f.input :unemployed_insurance %>
+    <%= f.input :house_fund %>
+    <%= f.input :pre_tax %>
+    <%= f.input :income_tax %>
+    <%= f.input :actual %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

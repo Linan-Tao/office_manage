@@ -1,0 +1,17 @@
+---
+zh-CN:
+  active_record:
+    models:
+      asset: Asset
+    attributes:
+      asset:
+        name: Name
+        total: Total
+        remain_value: Remain value
+        buy_date: Buy date
+        note: Note
+        number: Number
+    errors:
+      asset: 
+  helpers:
+    asset: 

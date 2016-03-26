@@ -1,0 +1,1 @@
+json.extract! @flow_bill, :id, :bill_date, :customer, :total, :account, :note, :server_code, :order_code, :bill_code, :operator, :operate_date, :check_status, :check_date, :application_fund_id, :checker, :bill_type, :purchase_code, :created_at, :updated_at

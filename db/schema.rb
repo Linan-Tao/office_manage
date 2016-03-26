@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323081346) do
+ActiveRecord::Schema.define(version: 20160326085620) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -35,6 +35,24 @@ ActiveRecord::Schema.define(version: 20160323081346) do
   end
 
   add_index "agents", ["name"], name: "index_agents_on_name", using: :btree
+
+  create_table "application_funds", force: :cascade do |t|
+    t.integer  "fund_type",  limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "assets", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.decimal  "total",                    precision: 8, scale: 2
+    t.decimal  "remain_value",             precision: 8, scale: 2
+    t.datetime "buy_date"
+    t.string   "note",         limit: 255
+    t.integer  "number",       limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
 
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
@@ -71,6 +89,45 @@ ActiveRecord::Schema.define(version: 20160323081346) do
   add_index "districts", ["city_id", "name"], name: "index_districts_on_city_id_and_name", unique: true, using: :btree
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
 
+  create_table "flow_bills", force: :cascade do |t|
+    t.datetime "bill_date"
+    t.string   "customer",            limit: 255
+    t.decimal  "total",                           precision: 8, scale: 2
+    t.string   "account",             limit: 255
+    t.string   "note",                limit: 255
+    t.string   "server_code",         limit: 255
+    t.string   "order_code",          limit: 255
+    t.string   "bill_code",           limit: 255
+    t.integer  "operator",            limit: 4
+    t.datetime "operate_date"
+    t.integer  "check_status",        limit: 4
+    t.datetime "check_date"
+    t.integer  "application_fund_id", limit: 4
+    t.string   "checker",             limit: 255
+    t.integer  "bill_type",           limit: 4
+    t.string   "purchase_code",       limit: 255
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+  end
+
+  add_index "flow_bills", ["application_fund_id"], name: "index_flow_bills_on_application_fund_id", using: :btree
+
+  create_table "item_storages", force: :cascade do |t|
+    t.datetime "storage_date"
+    t.string   "receiver",     limit: 255
+    t.integer  "purchase_id",  limit: 4
+    t.integer  "item_id",      limit: 4
+    t.string   "item_type",    limit: 255
+    t.string   "brand",        limit: 255
+    t.integer  "number",       limit: 4
+    t.integer  "supplier_id",  limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "item_storages", ["purchase_id"], name: "index_item_storages_on_purchase_id", using: :btree
+  add_index "item_storages", ["supplier_id"], name: "index_item_storages_on_supplier_id", using: :btree
+
   create_table "material_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -93,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160323081346) do
     t.integer  "supplier_id",          limit: 4
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
+    t.integer  "applied_number",       limit: 4
   end
 
   add_index "materials", ["material_category_id"], name: "index_materials_on_material_category_id", using: :btree
@@ -107,12 +165,33 @@ ActiveRecord::Schema.define(version: 20160323081346) do
     t.datetime "updated_at",                                       null: false
   end
 
+  create_table "month_salaries", force: :cascade do |t|
+    t.integer  "user_id",              limit: 4
+    t.string   "name",                 limit: 255
+    t.decimal  "total",                            precision: 8, scale: 2
+    t.decimal  "extra",                            precision: 8, scale: 2
+    t.decimal  "add",                              precision: 8, scale: 2
+    t.decimal  "cut",                              precision: 8, scale: 2
+    t.decimal  "bonus",                            precision: 8, scale: 2
+    t.decimal  "old_age_insurance",                precision: 8, scale: 2
+    t.decimal  "medicare_insurance",               precision: 8, scale: 2
+    t.decimal  "unemployed_insurance",             precision: 8, scale: 2
+    t.decimal  "house_fund",                       precision: 8, scale: 2
+    t.decimal  "pre_tax",                          precision: 8, scale: 2
+    t.decimal  "income_tax",                       precision: 8, scale: 2
+    t.decimal  "actual",                           precision: 8, scale: 2
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+  end
+
+  add_index "month_salaries", ["user_id"], name: "index_month_salaries_on_user_id", using: :btree
+
   create_table "offers", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
     t.string   "item_name",  limit: 255
     t.integer  "item_id",    limit: 4
     t.string   "item_type",  limit: 255
-    t.decimal  "number",                 precision: 9, scale: 6
+    t.decimal  "number",                 precision: 8, scale: 2
     t.decimal  "price",                  precision: 8, scale: 2
     t.decimal  "total",                  precision: 8, scale: 2
     t.string   "category",   limit: 255
@@ -124,6 +203,23 @@ ActiveRecord::Schema.define(version: 20160323081346) do
   add_index "offers", ["item_id"], name: "index_offers_on_item_id", using: :btree
   add_index "offers", ["order_id"], name: "index_offers_on_order_id", using: :btree
   add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
+
+  create_table "order_bills", force: :cascade do |t|
+    t.integer  "order_id",      limit: 4
+    t.decimal  "total",                     precision: 8, scale: 2
+    t.decimal  "paid",                      precision: 8, scale: 2
+    t.decimal  "left",                      precision: 8, scale: 2
+    t.datetime "pay_date"
+    t.string   "pay_account",   limit: 255
+    t.integer  "directive",     limit: 4
+    t.integer  "user_id",       limit: 4
+    t.date     "delivery_date"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
+
+  add_index "order_bills", ["order_id"], name: "index_order_bills_on_order_id", using: :btree
+  add_index "order_bills", ["user_id"], name: "index_order_bills_on_user_id", using: :btree
 
   create_table "order_parts", force: :cascade do |t|
     t.integer  "order_id",        limit: 4
@@ -180,7 +276,7 @@ ActiveRecord::Schema.define(version: 20160323081346) do
     t.string   "customer_code", limit: 255
     t.integer  "agent_id",      limit: 4
     t.string   "server_code",   limit: 255
-    t.integer  "order_type",    limit: 4
+    t.integer  "type",          limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
     t.datetime "created_at",                null: false
@@ -189,6 +285,23 @@ ActiveRecord::Schema.define(version: 20160323081346) do
   end
 
   add_index "orders", ["work_id"], name: "index_orders_on_work_id", using: :btree
+
+  create_table "out_storages", force: :cascade do |t|
+    t.datetime "out_date"
+    t.integer  "department_id",   limit: 4
+    t.string   "out_user",        limit: 255
+    t.integer  "produce_task_id", limit: 4
+    t.integer  "item_id",         limit: 4
+    t.string   "item_type",       limit: 255
+    t.string   "number",          limit: 255
+    t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "out_storages", ["department_id"], name: "index_out_storages_on_department_id", using: :btree
+  add_index "out_storages", ["produce_task_id"], name: "index_out_storages_on_produce_task_id", using: :btree
+  add_index "out_storages", ["user_id"], name: "index_out_storages_on_user_id", using: :btree
 
   create_table "part_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -206,6 +319,7 @@ ActiveRecord::Schema.define(version: 20160323081346) do
     t.integer  "supplier_id",      limit: 4
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
+    t.integer  "applied_number",   limit: 4
   end
 
   add_index "parts", ["part_category_id"], name: "index_parts_on_part_category_id", using: :btree
@@ -218,13 +332,13 @@ ActiveRecord::Schema.define(version: 20160323081346) do
     t.string   "sequence",     limit: 255
     t.decimal  "area",                     precision: 9, scale: 6
     t.integer  "mix_task_id",  limit: 4
-    t.integer  "mix_status",   limit: 4,                           default: 0
+    t.integer  "mix_status",   limit: 4
     t.decimal  "availability",             precision: 8, scale: 2
     t.integer  "work_id",      limit: 4
     t.integer  "state",        limit: 4
     t.integer  "number",       limit: 4
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "produce_tasks", ["item_id"], name: "index_produce_tasks_on_item_id", using: :btree
@@ -271,9 +385,14 @@ ActiveRecord::Schema.define(version: 20160323081346) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.integer  "user_id",        limit: 4
+    t.string   "checker",        limit: 255
+    t.integer  "check_status",   limit: 4
+    t.datetime "check_date"
+    t.integer  "supplier_id",    limit: 4
   end
 
   add_index "purchases", ["item_id"], name: "index_purchases_on_item_id", using: :btree
+  add_index "purchases", ["supplier_id"], name: "index_purchases_on_supplier_id", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -367,21 +486,31 @@ ActiveRecord::Schema.define(version: 20160323081346) do
 
   add_foreign_key "cities", "provinces"
   add_foreign_key "districts", "cities"
+  add_foreign_key "flow_bills", "application_funds"
+  add_foreign_key "item_storages", "purchases"
+  add_foreign_key "item_storages", "suppliers"
   add_foreign_key "materials", "material_categories"
   add_foreign_key "materials", "material_types"
   add_foreign_key "materials", "suppliers"
+  add_foreign_key "month_salaries", "users"
   add_foreign_key "offers", "orders"
   add_foreign_key "offers", "users"
+  add_foreign_key "order_bills", "orders"
+  add_foreign_key "order_bills", "users"
   add_foreign_key "order_parts", "orders"
   add_foreign_key "order_parts", "parts"
   add_foreign_key "order_parts", "produce_tasks"
   add_foreign_key "order_units", "orders"
   add_foreign_key "order_units", "produce_tasks"
   add_foreign_key "orders", "works"
+  add_foreign_key "out_storages", "departments"
+  add_foreign_key "out_storages", "produce_tasks"
+  add_foreign_key "out_storages", "users"
   add_foreign_key "parts", "part_categories"
   add_foreign_key "produce_tasks", "mix_tasks"
   add_foreign_key "produce_tasks", "orders"
   add_foreign_key "produces", "produce_tasks"
+  add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "users"
   add_foreign_key "staffs", "departments"
   add_foreign_key "staffs", "users"

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @order_bill.order %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @order_bill.total %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @order_bill.paid %>
+</p>
+
+<p>
+  <strong>Left:</strong>
+  <%= @order_bill.left %>
+</p>
+
+<p>
+  <strong>Pay date:</strong>
+  <%= @order_bill.pay_date %>
+</p>
+
+<p>
+  <strong>Pay account:</strong>
+  <%= @order_bill.pay_account %>
+</p>
+
+<p>
+  <strong>Directive:</strong>
+  <%= @order_bill.directive %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order_bill.user %>
+</p>
+
+<p>
+  <strong>Delivery date:</strong>
+  <%= @order_bill.delivery_date %>
+</p>
+
+<%= link_to 'Edit', edit_order_bill_path(@order_bill) %> |
+<%= link_to 'Back', order_bills_path %>

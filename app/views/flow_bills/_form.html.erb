@@ -1,0 +1,26 @@
+<%= simple_form_for(@flow_bill) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :bill_date %>
+    <%= f.input :customer %>
+    <%= f.input :total %>
+    <%= f.input :account %>
+    <%= f.input :note %>
+    <%= f.input :server_code %>
+    <%= f.input :order_code %>
+    <%= f.input :bill_code %>
+    <%= f.input :operator %>
+    <%= f.input :operate_date %>
+    <%= f.input :check_status %>
+    <%= f.input :check_date %>
+    <%= f.association :application_fund %>
+    <%= f.input :checker %>
+    <%= f.input :bill_type %>
+    <%= f.input :purchase_code %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

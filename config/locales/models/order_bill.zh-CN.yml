@@ -1,0 +1,20 @@
+---
+zh-CN:
+  active_record:
+    models:
+      order_bill: Order bill
+    attributes:
+      order_bill:
+        order: Order
+        total: Total
+        paid: Paid
+        left: Left
+        pay_date: Pay date
+        pay_account: Pay account
+        directive: Directive
+        user: User
+        delivery_date: Delivery date
+    errors:
+      order_bill: 
+  helpers:
+    order_bill: 

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Out Storages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Out date</th>
+      <th>Department</th>
+      <th>Out user</th>
+      <th>Produce task</th>
+      <th>Item</th>
+      <th>Item type</th>
+      <th>Number</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @out_storages.each do |out_storage| %>
+      <tr>
+        <td><%= out_storage.out_date %></td>
+        <td><%= out_storage.department %></td>
+        <td><%= out_storage.out_user %></td>
+        <td><%= out_storage.produce_task %></td>
+        <td><%= out_storage.item_id %></td>
+        <td><%= out_storage.item_type %></td>
+        <td><%= out_storage.number %></td>
+        <td><%= out_storage.user %></td>
+        <td><%= link_to 'Show', out_storage %></td>
+        <td><%= link_to 'Edit', edit_out_storage_path(out_storage) %></td>
+        <td><%= link_to 'Destroy', out_storage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Out storage', new_out_storage_path %>

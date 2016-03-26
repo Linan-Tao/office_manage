@@ -1,0 +1,25 @@
+---
+zh-CN:
+  active_record:
+    models:
+      month_salary: Month salary
+    attributes:
+      month_salary:
+        user: User
+        name: Name
+        total: Total
+        extra: Extra
+        add: Add
+        cut: Cut
+        bonus: Bonus
+        old_age_insurance: Old age insurance
+        medicare_insurance: Medicare insurance
+        unemployed_insurance: Unemployed insurance
+        house_fund: House fund
+        pre_tax: Pre tax
+        income_tax: Income tax
+        actual: Actual
+    errors:
+      month_salary: 
+  helpers:
+    month_salary: 

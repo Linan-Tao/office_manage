@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bill date:</strong>
+  <%= @flow_bill.bill_date %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @flow_bill.customer %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @flow_bill.total %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @flow_bill.account %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @flow_bill.note %>
+</p>
+
+<p>
+  <strong>Server code:</strong>
+  <%= @flow_bill.server_code %>
+</p>
+
+<p>
+  <strong>Order code:</strong>
+  <%= @flow_bill.order_code %>
+</p>
+
+<p>
+  <strong>Bill code:</strong>
+  <%= @flow_bill.bill_code %>
+</p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @flow_bill.operator %>
+</p>
+
+<p>
+  <strong>Operate date:</strong>
+  <%= @flow_bill.operate_date %>
+</p>
+
+<p>
+  <strong>Check status:</strong>
+  <%= @flow_bill.check_status %>
+</p>
+
+<p>
+  <strong>Check date:</strong>
+  <%= @flow_bill.check_date %>
+</p>
+
+<p>
+  <strong>Application fund:</strong>
+  <%= @flow_bill.application_fund %>
+</p>
+
+<p>
+  <strong>Checker:</strong>
+  <%= @flow_bill.checker %>
+</p>
+
+<p>
+  <strong>Bill type:</strong>
+  <%= @flow_bill.bill_type %>
+</p>
+
+<p>
+  <strong>Purchase code:</strong>
+  <%= @flow_bill.purchase_code %>
+</p>
+
+<%= link_to 'Edit', edit_flow_bill_path(@flow_bill) %> |
+<%= link_to 'Back', flow_bills_path %>

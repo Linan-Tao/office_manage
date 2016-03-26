@@ -1,0 +1,20 @@
+---
+zh-CN:
+  flow_bills:
+    index:
+      title: Flow bills
+    show:
+      title: Flow bill
+    edit:
+      title: Editing Flow bill
+    new:
+      title: New Flow bill
+  flash:
+    flow_bills:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
