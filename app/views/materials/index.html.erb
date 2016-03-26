@@ -9,8 +9,23 @@
 <div class="awidget full-width">
   <div class="awidget-head">
     <div class="row">
-      <div class="col-xs-12 col-sm-12">
-        <h3>板料管理列表</h3>
+      <div class="col-lg-12">
+        <span class="pull-right">
+          <form class="form-inline" role="search">
+          <div class="input-group">
+              <%= select_tag :material_category, options_from_collection_for_select(MaterialCategory.all, "id", "name", params[:material_category]), prompt: '所有种类', class: 'form-control' %>
+            </div>
+            <div class="input-group">
+              <%= select_tag :material_type, options_from_collection_for_select(MaterialType.all, "id", "name", params[:material_type]), prompt: '所有类型', class: 'form-control' %>
+            </div>
+            <div class="input-group">
+              <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入Email/登录名称...' %>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">查询</button>
+              </span>
+            </div>
+          </form>
+        </span>
       </div>
     </div>
   </div>

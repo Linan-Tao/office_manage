@@ -21,6 +21,10 @@ class ProduceTask < ActiveRecord::Base
     end
   end
 
+  def self.mix_status
+    [["已混单", "mixed"], ["未混单","not_mix"], ["无需混单","no_need_mixed"]]
+  end
+
   def item_name
   	 if item_type == "Material"
   	 	 item.material_category.name

@@ -5,6 +5,8 @@ class MaterialsController < ApplicationController
   # GET /materials.json
   def index
     @materials = Material.all
+    @materials = @materials.where(material_category_id: params[:material_category]) if params[:material_category].present?
+    @materials = @materials.where(material_type_id: params[:material_type]) if params[:material_type].present?
   end
 
   # GET /materials/1
