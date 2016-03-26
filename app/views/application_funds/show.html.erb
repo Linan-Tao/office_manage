@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fund type:</strong>
+  <%= @application_fund.fund_type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @application_fund.name %>
+</p>
+
+<%= link_to 'Edit', edit_application_fund_path(@application_fund) %> |
+<%= link_to 'Back', application_funds_path %>

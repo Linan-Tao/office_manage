@@ -1,0 +1,27 @@
+---
+zh-CN:
+  active_record:
+    models:
+      flow_bill: Flow bill
+    attributes:
+      flow_bill:
+        bill_date: Bill date
+        customer: Customer
+        total: Total
+        account: Account
+        note: Note
+        server_code: Server code
+        order_code: Order code
+        bill_code: Bill code
+        operator: Operator
+        operate_date: Operate date
+        check_status: Check status
+        check_date: Check date
+        application_fund: Application fund
+        checker: Checker
+        bill_type: Bill type
+        purchase_code: Purchase code
+    errors:
+      flow_bill: 
+  helpers:
+    flow_bill: 

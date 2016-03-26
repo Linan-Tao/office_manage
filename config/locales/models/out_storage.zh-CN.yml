@@ -1,0 +1,19 @@
+---
+zh-CN:
+  active_record:
+    models:
+      out_storage: Out storage
+    attributes:
+      out_storage:
+        out_date: Out date
+        department: Department
+        out_user: Out user
+        produce_task: Produce task
+        item_id: Item
+        item_type: Item type
+        number: Number
+        user: User
+    errors:
+      out_storage: 
+  helpers:
+    out_storage: 

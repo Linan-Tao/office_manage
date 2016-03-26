@@ -1,0 +1,20 @@
+---
+zh-CN:
+  application_funds:
+    index:
+      title: Application funds
+    show:
+      title: Application fund
+    edit:
+      title: Editing Application fund
+    new:
+      title: New Application fund
+  flash:
+    application_funds:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

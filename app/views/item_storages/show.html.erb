@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Storage date:</strong>
+  <%= @item_storage.storage_date %>
+</p>
+
+<p>
+  <strong>Receiver:</strong>
+  <%= @item_storage.receiver %>
+</p>
+
+<p>
+  <strong>Purchase:</strong>
+  <%= @item_storage.purchase %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @item_storage.item_id %>
+</p>
+
+<p>
+  <strong>Item type:</strong>
+  <%= @item_storage.item_type %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @item_storage.brand %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @item_storage.number %>
+</p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @item_storage.supplier %>
+</p>
+
+<%= link_to 'Edit', edit_item_storage_path(@item_storage) %> |
+<%= link_to 'Back', item_storages_path %>

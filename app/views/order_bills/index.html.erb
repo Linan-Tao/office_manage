@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Order Bills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Total</th>
+      <th>Paid</th>
+      <th>Left</th>
+      <th>Pay date</th>
+      <th>Pay account</th>
+      <th>Directive</th>
+      <th>User</th>
+      <th>Delivery date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_bills.each do |order_bill| %>
+      <tr>
+        <td><%= order_bill.order %></td>
+        <td><%= order_bill.total %></td>
+        <td><%= order_bill.paid %></td>
+        <td><%= order_bill.left %></td>
+        <td><%= order_bill.pay_date %></td>
+        <td><%= order_bill.pay_account %></td>
+        <td><%= order_bill.directive %></td>
+        <td><%= order_bill.user %></td>
+        <td><%= order_bill.delivery_date %></td>
+        <td><%= link_to 'Show', order_bill %></td>
+        <td><%= link_to 'Edit', edit_order_bill_path(order_bill) %></td>
+        <td><%= link_to 'Destroy', order_bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order bill', new_order_bill_path %>

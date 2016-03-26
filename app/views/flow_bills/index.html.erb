@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Flow Bills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bill date</th>
+      <th>Customer</th>
+      <th>Total</th>
+      <th>Account</th>
+      <th>Note</th>
+      <th>Server code</th>
+      <th>Order code</th>
+      <th>Bill code</th>
+      <th>Operator</th>
+      <th>Operate date</th>
+      <th>Check status</th>
+      <th>Check date</th>
+      <th>Application fund</th>
+      <th>Checker</th>
+      <th>Bill type</th>
+      <th>Purchase code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flow_bills.each do |flow_bill| %>
+      <tr>
+        <td><%= flow_bill.bill_date %></td>
+        <td><%= flow_bill.customer %></td>
+        <td><%= flow_bill.total %></td>
+        <td><%= flow_bill.account %></td>
+        <td><%= flow_bill.note %></td>
+        <td><%= flow_bill.server_code %></td>
+        <td><%= flow_bill.order_code %></td>
+        <td><%= flow_bill.bill_code %></td>
+        <td><%= flow_bill.operator %></td>
+        <td><%= flow_bill.operate_date %></td>
+        <td><%= flow_bill.check_status %></td>
+        <td><%= flow_bill.check_date %></td>
+        <td><%= flow_bill.application_fund %></td>
+        <td><%= flow_bill.checker %></td>
+        <td><%= flow_bill.bill_type %></td>
+        <td><%= flow_bill.purchase_code %></td>
+        <td><%= link_to 'Show', flow_bill %></td>
+        <td><%= link_to 'Edit', edit_flow_bill_path(flow_bill) %></td>
+        <td><%= link_to 'Destroy', flow_bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Flow bill', new_flow_bill_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @asset.name %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @asset.total %>
+</p>
+
+<p>
+  <strong>Remain value:</strong>
+  <%= @asset.remain_value %>
+</p>
+
+<p>
+  <strong>Buy date:</strong>
+  <%= @asset.buy_date %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @asset.note %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @asset.number %>
+</p>
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>

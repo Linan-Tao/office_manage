@@ -1,0 +1,13 @@
+---
+zh-CN:
+  active_record:
+    models:
+      application_fund: Application fund
+    attributes:
+      application_fund:
+        fund_type: Fund type
+        name: Name
+    errors:
+      application_fund: 
+  helpers:
+    application_fund: 

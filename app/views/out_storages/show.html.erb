@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Out date:</strong>
+  <%= @out_storage.out_date %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @out_storage.department %>
+</p>
+
+<p>
+  <strong>Out user:</strong>
+  <%= @out_storage.out_user %>
+</p>
+
+<p>
+  <strong>Produce task:</strong>
+  <%= @out_storage.produce_task %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @out_storage.item_id %>
+</p>
+
+<p>
+  <strong>Item type:</strong>
+  <%= @out_storage.item_type %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @out_storage.number %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @out_storage.user %>
+</p>
+
+<%= link_to 'Edit', edit_out_storage_path(@out_storage) %> |
+<%= link_to 'Back', out_storages_path %>

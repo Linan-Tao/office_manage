@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  out_date: 2016-03-26 16:28:30
+  department_id: 
+  out_user: MyString
+  produce_task_id: 
+  item_id: 1
+  item_type: MyString
+  number: MyString
+  user_id: 
+
+two:
+  out_date: 2016-03-26 16:28:30
+  department_id: 
+  out_user: MyString
+  produce_task_id: 
+  item_id: 1
+  item_type: MyString
+  number: MyString
+  user_id: 

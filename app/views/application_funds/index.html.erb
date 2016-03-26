@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Application Funds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fund type</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @application_funds.each do |application_fund| %>
+      <tr>
+        <td><%= application_fund.fund_type %></td>
+        <td><%= application_fund.name %></td>
+        <td><%= link_to 'Show', application_fund %></td>
+        <td><%= link_to 'Edit', edit_application_fund_path(application_fund) %></td>
+        <td><%= link_to 'Destroy', application_fund, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Application fund', new_application_fund_path %>
