@@ -1,5 +1,5 @@
 <div class="awidget full-width">
-   <div class="awidget-head"> 
+   <div class="awidget-head">
       <div class="row">
          <div class="col-md-12 col-sm-12">
             <h3>报价单
@@ -40,8 +40,13 @@
 
 <!-- Modal -->
 <div class="modal fade" id="offer" tabindex="-1" role="dialog" aria-labelledby="offerLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" style="width: auto;">
     <div class="modal-content">
+    <div class="row">
+      <div class="col-md-6 table-responsive" style="max-height: 900px;">
+        <%= render 'table' %>
+      </div>
+      <div class="col-md-6">
       <%= nested_form_for @order do |f| %>
       <%=f.hidden_field :type, value: "offer"%>
       <div class="modal-header">
@@ -50,16 +55,16 @@
       </div>
       <div class="modal-body">
          <div class="awidget full-width">
-            <div class="awidget-head"> 
+            <div class="awidget-head">
                <div class="row">
                   <div class="col-md-12 col-sm-12">
-                     <h3>大板原料                  
+                     <h3>大板原料
                      </h3>
                   </div>
                </div>
             </div>
             <div class="awidget-body">
-              
+
                <table class="table" id="tasks">
                   <tr>
                      <td>计价项目</td>
@@ -81,7 +86,7 @@
                     <td>
                      <%= offer_form.link_to_remove "删除", class: 'btn btn-info' %>
                     </td>
-                    
+
                   </tr>
                   <% end %>
                </table>
@@ -89,7 +94,7 @@
             </div>
          </div>
          <div class="awidget full-width">
-            <div class="awidget-head"> 
+            <div class="awidget-head">
                <div class="row">
                   <div class="col-md-12 col-sm-12">
                      <h3>配件</h3>
@@ -104,7 +109,7 @@
                      <td>价格</td>
                      <td>总价</td>
                      <td>类别</td>
-                  </tr>               
+                  </tr>
                <%@order_parts.each do |order_part| %>
                   <tr>
                      <td><%= order_part.part.name%></td>
@@ -118,7 +123,7 @@
             </div>
          </div>
          <div class="awidget full-width">
-            <div class="awidget-head"> 
+            <div class="awidget-head">
                <div class="row">
                   <div class="col-md-12 col-sm-12">
                      <h3>加工费</h3>
@@ -131,7 +136,7 @@
                      <td>计价项目</td>
                      <td>数量</td>
                      <td>价格</td>
-                  </tr>               
+                  </tr>
                   <tr>
                      <td><%= text_field_tag :item,nil,class: "form-control", style: "width: 100px"%></td>
                      <td><%= text_field_tag :item_number,nil,class: "form-control", style: "width: 50px"%></td>
@@ -139,13 +144,15 @@
                   </tr>
                </table>
             </div>
-         </div>        
+         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <%= submit_tag "保存", class: 'btn btn-info'%>
       </div>
       <%end%>
+       </div>
+    </div>
     </div>
   </div>
 </div>

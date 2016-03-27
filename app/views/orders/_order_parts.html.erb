@@ -1,12 +1,12 @@
 <div class="awidget full-width">
-   <div class="awidget-head"> 
+   <div class="awidget-head">
       <div class="row">
          <div class="col-md-12 col-sm-12">
             <h3>配件信息
                <p class="pull-right">
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-                    所需配件
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#orderPartsModal">
+                    添加配件
                   </button>
                </p>
             </h3>
@@ -40,18 +40,18 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="orderPartsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">订单号<%= @order.order_code %>配件下单</h4>
+        <h4 class="modal-title" id="myModalLabel">订单：<%= @order.order_code %>  添加配件</h4>
       </div>
       <%=form_tag batch_create_order_order_parts_path(@order), class: 'form-inline' do%>
       <div class="modal-body">
            <% @part_categories.each do |pc|%>
                <div class="awidget full-width">
-                  <div class="awidget-head"> 
+                  <div class="awidget-head">
                      <div class="row">
                         <div class="col-md-12 col-sm-12">
                            <h3><%=pc.name%></h3>
@@ -67,7 +67,7 @@
                         <%end%>
                      </div>
                   </div>
-               </div>          
+               </div>
            <%end %>
       </div>
       <div class="modal-footer">
