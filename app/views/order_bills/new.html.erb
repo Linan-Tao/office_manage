@@ -1,5 +1,22 @@
-<h1>New Order Bill</h1>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  订单到款 <small>添加</small>
+    <span class="pull-right">
+      <%= link_to('返回',order_bills_path, class: 'btn btn-lg btn-default') %>
+    </span>
+  </h2>
+  <hr />
+</div>
+<!-- Page title -->
 
-<%= render 'form' %>
-
-<%= link_to 'Back', order_bills_path %>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <h3>订单到款新建</h3>
+  </div>
+  <div class="awidget-body">
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>

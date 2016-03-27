@@ -5,7 +5,12 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all.order("updated_at DESC")
+    @orders = @orders.where("order_code LIKE '%#{params[:term]}%'")  if params[:term].present?
     @orders = @orders.where(work_id: params[:work_id]) if params[:work_id].present?
+    respond_to do |format|
+       format.html
+       format.json { render json: {:orders => @orders.select(:id, :order_code), :total => @orders.size} }
+     end
   end
 
   # GET /orders/1

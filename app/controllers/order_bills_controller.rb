@@ -5,6 +5,7 @@ class OrderBillsController < ApplicationController
   # GET /order_bills.json
   def index
     @order_bills = OrderBill.all
+    @order_bills = @order_bills.joins(:order).where(orders: { order_code: params[:q] }) if params[:q].present?
   end
 
   # GET /order_bills/1

@@ -1,19 +1,19 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       out_storage: Out storage
     attributes:
       out_storage:
-        out_date: Out date
-        department: Department
-        out_user: Out user
-        produce_task: Produce task
-        item_id: Item
-        item_type: Item type
-        number: Number
-        user: User
+        out_date: 出库时间
+        department: 领料部门
+        out_user: 领料人
+        produce_task: 订单编号
+        item_id: 项目编号
+        item_type: 项目类型
+        number: 数量
+        user: 登记人
     errors:
-      out_storage: 
+      out_storage:
   helpers:
-    out_storage: 
+    out_storage:

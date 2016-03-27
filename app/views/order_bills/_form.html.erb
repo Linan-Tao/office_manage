@@ -1,19 +1,20 @@
-<%= simple_form_for(@order_bill) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.association :order %>
-    <%= f.input :total %>
-    <%= f.input :paid %>
-    <%= f.input :left %>
-    <%= f.input :pay_date %>
-    <%= f.input :pay_account %>
-    <%= f.input :directive %>
-    <%= f.association :user %>
-    <%= f.input :delivery_date %>
+<%= simple_form_for(@order_bill, url: @order_bill.new_record? ? order_bills_path : order_bill_path(@order_bill)) do |f| %>
+<%= f.error_notification %>
+<div class="form-inputs">
+  <div class="form-group string optional">
+    <label class="string optional control-label" for="remoteOrder">订单号</label><br/>
+    <input type="hidden" id="remoteOrder" name='input' data-id="<%=@order_bill.order_id %>"  data-name="<%=@order_bill.order.order_code if @order_bill.order.present? %>"/>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.input :total %>
+  <%= f.input :paid %>
+  <%= f.input :left %>
+  <%= f.input :pay_date %>
+  <%= f.input :pay_account %>
+  <%= f.input :directive %>
+  <%= f.association :user %>
+  <%= f.input :delivery_date %>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
+</div>
 <% end %>
