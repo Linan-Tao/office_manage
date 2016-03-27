@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   validates_presence_of :order_code
   has_many :order_units
   has_many :order_parts
-  has_many :produce_tasks
+  # has_many :produce_tasks
   has_many :offers
   accepts_nested_attributes_for :offers
   belongs_to :work

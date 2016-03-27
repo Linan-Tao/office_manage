@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326085620) do
+ActiveRecord::Schema.define(version: 20160326124747) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.string   "item_name",  limit: 255
     t.integer  "item_id",    limit: 4
     t.string   "item_type",  limit: 255
-    t.decimal  "number",                 precision: 9, scale: 6
+    t.decimal  "number",                 precision: 8, scale: 2
     t.decimal  "price",                  precision: 8, scale: 2
     t.decimal  "total",                  precision: 8, scale: 2
     t.string   "category",   limit: 255
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.string   "customer_code", limit: 255
     t.integer  "agent_id",      limit: 4
     t.string   "server_code",   limit: 255
-    t.integer  "order_type",    limit: 4
+    t.integer  "type",          limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
     t.datetime "created_at",                null: false
@@ -332,13 +332,13 @@ ActiveRecord::Schema.define(version: 20160326085620) do
     t.string   "sequence",     limit: 255
     t.decimal  "area",                     precision: 9, scale: 6
     t.integer  "mix_task_id",  limit: 4
-    t.integer  "mix_status",   limit: 4,                           default: 0
+    t.integer  "mix_status",   limit: 4
     t.decimal  "availability",             precision: 8, scale: 2
     t.integer  "work_id",      limit: 4
     t.integer  "state",        limit: 4
     t.integer  "number",       limit: 4
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "produce_tasks", ["item_id"], name: "index_produce_tasks_on_item_id", using: :btree
@@ -369,30 +369,30 @@ ActiveRecord::Schema.define(version: 20160326085620) do
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.string   "original_code",  limit: 255
-    t.integer  "item_id",        limit: 4
-    t.string   "item_type",      limit: 255
-    t.string   "number",         limit: 255
-    t.string   "unit",           limit: 255
-    t.string   "note",           limit: 255
-    t.integer  "way",            limit: 4
-    t.integer  "arrival_number", limit: 4
-    t.decimal  "price",                      precision: 8, scale: 2
-    t.decimal  "payable",                    precision: 8, scale: 2
-    t.decimal  "actual_pay",                 precision: 8, scale: 2
-    t.decimal  "discount",                   precision: 8, scale: 2
-    t.integer  "pay_type",       limit: 4
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.integer  "user_id",        limit: 4
-    t.datetime "pay_time"
-    t.string   "checker",        limit: 255
-    t.integer  "check_status",   limit: 4
+    t.integer  "item_id",         limit: 4
+    t.string   "item_type",       limit: 255
+    t.string   "number",          limit: 255
+    t.string   "unit",            limit: 255
+    t.string   "note",            limit: 255
+    t.integer  "way",             limit: 4
+    t.integer  "arrival_number",  limit: 4
+    t.decimal  "price",                       precision: 8, scale: 2
+    t.decimal  "payable",                     precision: 8, scale: 2
+    t.decimal  "actual_pay",                  precision: 8, scale: 2
+    t.decimal  "discount",                    precision: 8, scale: 2
+    t.integer  "pay_type",        limit: 4
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.integer  "user_id",         limit: 4
+    t.string   "checker",         limit: 255
+    t.integer  "check_status",    limit: 4
     t.datetime "check_date"
-    t.integer  "supplier_id",    limit: 4
+    t.integer  "supplier_id",     limit: 4
+    t.integer  "produce_task_id", limit: 4
   end
 
   add_index "purchases", ["item_id"], name: "index_purchases_on_item_id", using: :btree
+  add_index "purchases", ["produce_task_id"], name: "index_purchases_on_produce_task_id", using: :btree
   add_index "purchases", ["supplier_id"], name: "index_purchases_on_supplier_id", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
@@ -511,6 +511,7 @@ ActiveRecord::Schema.define(version: 20160326085620) do
   add_foreign_key "produce_tasks", "mix_tasks"
   add_foreign_key "produce_tasks", "orders"
   add_foreign_key "produces", "produce_tasks"
+  add_foreign_key "purchases", "produce_tasks"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "users"
   add_foreign_key "staffs", "departments"

@@ -16,9 +16,7 @@ class ProduceTasksController < ApplicationController
   # GET /produce_tasks/new
   def new
     @produce_task = ProduceTask.new
-    if params[:order_id]
-      @order = Order.find(params[:order_id])
-    end
+    @order_units = OrderUnit.where(state: 0)
   end
 
   # GET /produce_tasks/1/edit
@@ -37,29 +35,29 @@ class ProduceTasksController < ApplicationController
   # POST /produce_tasks.json
   def create
     # @produce_task = ProduceTask.new(produce_task_params)
-    @order = Order.find(params[:order_id])
+    # @order = Order.find(params[:order_id])
     if params[:units].nil? || params[:units][:id].empty?
       return redirect_to new_produce_task_path(order_id: @order.id), notice: "创建失败，请选择部件!"
     end
-    order_units = @order.order_units.where(id: params[:units][:id])
+    order_units = OrderUnit.where(id: params[:units][:id])
     material = Material.find_or_create_by(material_category_id: params[:material_category_id], material_type_id: params[:material_type_id])
-    @produce_task = ProduceTask.find_or_create_by(order_id: @order.id, item_id: material.id, item_type: material.class)
-    @produce_task.area = params[:area].to_f
-    @produce_task.number = params[:number].to_i
-    @produce_task.work_id = 6
-    @produce_task.save!
+    produce_task = ProduceTask.new(item_id: material.id, item_type: material.class)
+    produce_task.area = params[:area].to_f
+    produce_task.number = params[:number].to_i
+    produce_task.work_id = 6
+    produce_task.save!
 
     order_units.each do |unit|
       unit.state = 1
-      unit.produce_task_id = @produce_task.id
+      unit.produce_task_id = produce_task.id
       unit.save!
     end
 
-    if @order.order_units.where(state: 0).any?
-      redirect_to new_produce_task_path(order_id: @order.id), notice: '创建成功，请继续创建'
+    if OrderUnit.where(state: 0).any?
+      redirect_to new_produce_task_path(), notice: '创建成功，请继续创建'
     else
-      create_part_produce_tasks(@order)
-      redirect_to produce_tasks_path, notice: "该订单#{@order.order_code}生产任务单创建完成，订单状态已改为已下单"
+      create_part_produce_tasks
+      redirect_to produce_tasks_path, notice: "所有订单的生产任务单创建完成，采购单已经生成。"
     end
   end
 
@@ -98,17 +96,18 @@ class ProduceTasksController < ApplicationController
       params.require(:produce_task).permit(:order_id, :material_category_id, :material_type_id, :sequence, :area, :mix_task_id, :mix_status, :availability, :work)
     end
 
-    def create_part_produce_tasks(order)
-      order_parts = order.order_parts
-      order_parts.each do |order_part|
-        produce_task = ProduceTask.new(order_id: order.id, item_id: order_part.part.id, item_type: order_part.part.class)
+    def create_part_produce_tasks
+      OrderPart.where(state: 0).each do |order_part|
+        produce_task = ProduceTask.new(item_id: order_part.part.id, item_type: order_part.part.class)
         produce_task.number = order_part.number.to_i
+        produce_task.work_id = 6
         produce_task.save!
         order_part.state = 1
         order_part.produce_task_id = produce_task.id
         order_part.save!
-        order.open!
+        unless order_part.order.open?
+          order.open!
+        end
       end
     end
-
 end

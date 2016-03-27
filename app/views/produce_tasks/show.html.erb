@@ -1,6 +1,6 @@
 <!-- Page title -->
 <div class="page-title">
-  <h3><i class="fa fa-desktop color"></i> 生产任务单管理<small>成产任务详细</small>
+  <h3><i class="fa fa-desktop color"></i> 生产任务单管理<small>生产任务详细</small>
     <span class="pull-right">
     </span>
   </h3>
@@ -46,6 +46,7 @@
          <table class="table table-border">
           <thead>
             <tr>
+              <td>订单号</td>
               <td>部件名称</td>
               <td>板料</td>
               <td>长</td>
@@ -62,6 +63,7 @@
           <tbody>
             <% @produce_task.order_units.each do |unit|%>
               <tr>
+                <td><%= unit.order.order_code%></td>
                 <td><%= unit.unit_name%></td>
                 <td><%= unit.name%></td>
                 <td><%= unit.lenght%></td>
