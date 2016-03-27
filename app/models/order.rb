@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   has_many :order_parts
   # has_many :produce_tasks
   has_many :offers
-  accepts_nested_attributes_for :offers
+  accepts_nested_attributes_for :offers, :order_units, :allow_destroy => true
   belongs_to :work
 
   def not_separate?
@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
 
   def open!
     self.work_id = Work.find_by(symbol_name: "open").id
-    self.save!    
+    self.save!
   end
 
 end
