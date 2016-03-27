@@ -1,20 +1,20 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       order_bill: Order bill
     attributes:
       order_bill:
-        order: Order
-        total: Total
-        paid: Paid
-        left: Left
-        pay_date: Pay date
-        pay_account: Pay account
-        directive: Directive
-        user: User
-        delivery_date: Delivery date
+        order: 订单号
+        total: 应收款
+        paid: 实收款
+        left: 未收款
+        pay_date: 结付日
+        pay_account: 付款账户
+        directive: 指令
+        user: 催款人
+        delivery_date: 发货日期
     errors:
-      order_bill: 
+      order_bill:
   helpers:
-    order_bill: 
+    order_bill:

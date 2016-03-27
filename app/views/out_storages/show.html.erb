@@ -1,44 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  领料出库 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',out_storages_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
 
-<p>
-  <strong>Out date:</strong>
-  <%= @out_storage.out_date %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @out_storage.department %>
-</p>
-
-<p>
-  <strong>Out user:</strong>
-  <%= @out_storage.out_user %>
-</p>
-
-<p>
-  <strong>Produce task:</strong>
-  <%= @out_storage.produce_task %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @out_storage.item_id %>
-</p>
-
-<p>
-  <strong>Item type:</strong>
-  <%= @out_storage.item_type %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @out_storage.number %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @out_storage.user %>
-</p>
-
-<%= link_to 'Edit', edit_out_storage_path(@out_storage) %> |
-<%= link_to 'Back', out_storages_path %>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>领料出库详细</h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">出库时间</th>
+          <td class="col-xs-4"><%= @out_storage.out_date %></td>
+          <th class="col-xs-2 text-center info">领料部门</th>
+          <td class="col-xs-4"><%= @out_storage.department.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">领料人</th>
+          <td class="col-xs-4"><%= @out_storage.out_user %></td>
+          <th class="col-xs-2 text-center info">订单编号</th>
+          <td class="col-xs-4"><%= @out_storage.produce_task.order.order_code %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">项目编号</th>
+          <td class="col-xs-4"><%= @out_storage.item_id %></td>
+          <th class="col-xs-2 text-center info">项目类型</th>
+          <td class="col-xs-4"><%= @out_storage.item_type %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">数量</th>
+          <td class="col-xs-4"><%= @out_storage.number %></td>
+          <th class="col-xs-2 text-center info">登记人</th>
+          <td class="col-xs-4"><%= @out_storage.user.name %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

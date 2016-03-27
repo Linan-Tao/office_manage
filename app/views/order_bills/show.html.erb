@@ -1,49 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  订单到款 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',order_bills_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
 
-<p>
-  <strong>Order:</strong>
-  <%= @order_bill.order %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @order_bill.total %>
-</p>
-
-<p>
-  <strong>Paid:</strong>
-  <%= @order_bill.paid %>
-</p>
-
-<p>
-  <strong>Left:</strong>
-  <%= @order_bill.left %>
-</p>
-
-<p>
-  <strong>Pay date:</strong>
-  <%= @order_bill.pay_date %>
-</p>
-
-<p>
-  <strong>Pay account:</strong>
-  <%= @order_bill.pay_account %>
-</p>
-
-<p>
-  <strong>Directive:</strong>
-  <%= @order_bill.directive %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @order_bill.user %>
-</p>
-
-<p>
-  <strong>Delivery date:</strong>
-  <%= @order_bill.delivery_date %>
-</p>
-
-<%= link_to 'Edit', edit_order_bill_path(@order_bill) %> |
-<%= link_to 'Back', order_bills_path %>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>订单到款详细</h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">订单号</th>
+          <td class="col-xs-4"><%= @order_bill.order.order_code %></td>
+          <th class="col-xs-2 text-center info">应收款</th>
+          <td class="col-xs-4"><%= @order_bill.total %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">实收款</th>
+          <td class="col-xs-4"><%= @order_bill.paid %></td>
+          <th class="col-xs-2 text-center info">未收款</th>
+          <td class="col-xs-4"><%= @order_bill.left %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">结付日</th>
+          <td class="col-xs-4"><%= @order_bill.pay_date %></td>
+          <th class="col-xs-2 text-center info">付款账户</th>
+          <td class="col-xs-4"><%= @order_bill.pay_account %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">指令</th>
+          <td class="col-xs-4"><%= @order_bill.directive %></td>
+          <th class="col-xs-2 text-center info">催款人</th>
+          <td class="col-xs-4"><%= @order_bill.user.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">发货日期</th>
+          <td class="col-xs-4"><%= @order_bill.delivery_date %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,41 +1,70 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Out Storages</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Out date</th>
-      <th>Department</th>
-      <th>Out user</th>
-      <th>Produce task</th>
-      <th>Item</th>
-      <th>Item type</th>
-      <th>Number</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @out_storages.each do |out_storage| %>
-      <tr>
-        <td><%= out_storage.out_date %></td>
-        <td><%= out_storage.department %></td>
+<!-- Page title -->
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 领料出库 <small>列表</small>
+  <span class="pull-right">
+    <%= link_to '添加', new_out_storage_path, class: 'btn btn-lg btn-info' %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<!-- Page title -->
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <span class="pull-right">
+          <form class="form-inline" role="search">
+            <div class="text-left">
+              <div class="input-group">
+                <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入订单编号...' %>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">查询</button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-striped table-hover table-bordered text-center">
+      <thead>
+        <tr class="info">
+          <th class="text-center">出库时间</th>
+          <th class="text-center">领料部门</th>
+          <th class="text-center">领料人</th>
+          <th class="text-center">订单编号</th>
+          <th class="text-center">项目编号</th>
+          <th class="text-center">项目类型</th>
+          <th class="text-center">数量</th>
+          <th class="text-center">登记人</th>
+          <th class="text-center" colspan="3">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @out_storages.each do |out_storage| %>
+        <tr>
+          <td><%= out_storage.out_date %></td>
+        <td><%= out_storage.department.name %></td>
         <td><%= out_storage.out_user %></td>
-        <td><%= out_storage.produce_task %></td>
+        <td><%= out_storage.produce_task.order.order_code %></td>
         <td><%= out_storage.item_id %></td>
         <td><%= out_storage.item_type %></td>
         <td><%= out_storage.number %></td>
-        <td><%= out_storage.user %></td>
-        <td><%= link_to 'Show', out_storage %></td>
-        <td><%= link_to 'Edit', edit_out_storage_path(out_storage) %></td>
-        <td><%= link_to 'Destroy', out_storage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Out storage', new_out_storage_path %>
+        <td><%= out_storage.user.name %></td>
+          <td>
+            <%= link_to out_storage, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
+            <%= link_to  edit_out_storage_path(out_storage),  class: 'btn btn-xs btn-warning' do %>
+            <i class="fa fa-pencil"></i>
+            <% end %>
+            <%= link_to  part_path(out_storage), data: {:confirm => '确定要删除吗?'}, :method => :delete, class: 'btn btn-xs btn-danger' do %>
+            <i class="fa fa-times"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

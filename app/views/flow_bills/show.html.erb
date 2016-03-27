@@ -1,84 +1,73 @@
-<p id="notice"><%= notice %></p>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  流水账单 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',flow_bills_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
 
-<p>
-  <strong>Bill date:</strong>
-  <%= @flow_bill.bill_date %>
-</p>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>流水账单详细</h3>
+      </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">填单日期</th>
+          <td class="col-xs-4"><%= @flow_bill.bill_date %></td>
+          <th class="col-xs-2 text-center info">收支客户</th>
+          <td class="col-xs-4"><%= @flow_bill.customer %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">收支金额</th>
+          <td class="col-xs-4"><%= @flow_bill.total %></td>
+          <th class="col-xs-2 text-center info">收支账号</th>
+          <td class="col-xs-4"><%= @flow_bill.account %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">备注</th>
+          <td class="col-xs-4"><%= @flow_bill.note %></td>
+          <th class="col-xs-2 text-center info">终端号</th>
+          <td class="col-xs-4"><%= @flow_bill.server_code %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">订单号</th>
+          <td class="col-xs-4"><%= @flow_bill.order_code %></td>
+          <th class="col-xs-2 text-center info">票据号</th>
+          <td class="col-xs-4"><%= @flow_bill.bill_code %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">操作员</th>
+          <td class="col-xs-4"><%= @flow_bill.operator %></td>
+          <th class="col-xs-2 text-center info">操作日期</th>
+          <td class="col-xs-4"><%= @flow_bill.operate_date %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">审核状态</th>
+          <td class="col-xs-4"><%= @flow_bill.check_status %></td>
+          <th class="col-xs-2 text-center info">审核日期</th>
+          <td class="col-xs-4"><%= @flow_bill.check_date %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">资金科目</th>
+          <td class="col-xs-4"><%= @flow_bill.application_fund %></td>
+          <th class="col-xs-2 text-center info">审核人</th>
+          <td class="col-xs-4"><%= @flow_bill.checker %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">单据类型</th>
+          <td class="col-xs-4"><%= @flow_bill.bill_type %></td>
+          <th class="col-xs-2 text-center info">采购单号</th>
+          <td class="col-xs-4"><%= @flow_bill.purchase_code %></td>
+        </tr>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @flow_bill.customer %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @flow_bill.total %>
-</p>
-
-<p>
-  <strong>Account:</strong>
-  <%= @flow_bill.account %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @flow_bill.note %>
-</p>
-
-<p>
-  <strong>Server code:</strong>
-  <%= @flow_bill.server_code %>
-</p>
-
-<p>
-  <strong>Order code:</strong>
-  <%= @flow_bill.order_code %>
-</p>
-
-<p>
-  <strong>Bill code:</strong>
-  <%= @flow_bill.bill_code %>
-</p>
-
-<p>
-  <strong>Operator:</strong>
-  <%= @flow_bill.operator %>
-</p>
-
-<p>
-  <strong>Operate date:</strong>
-  <%= @flow_bill.operate_date %>
-</p>
-
-<p>
-  <strong>Check status:</strong>
-  <%= @flow_bill.check_status %>
-</p>
-
-<p>
-  <strong>Check date:</strong>
-  <%= @flow_bill.check_date %>
-</p>
-
-<p>
-  <strong>Application fund:</strong>
-  <%= @flow_bill.application_fund %>
-</p>
-
-<p>
-  <strong>Checker:</strong>
-  <%= @flow_bill.checker %>
-</p>
-
-<p>
-  <strong>Bill type:</strong>
-  <%= @flow_bill.bill_type %>
-</p>
-
-<p>
-  <strong>Purchase code:</strong>
-  <%= @flow_bill.purchase_code %>
-</p>
-
-<%= link_to 'Edit', edit_flow_bill_path(@flow_bill) %> |
-<%= link_to 'Back', flow_bills_path %>
+      </tbody>
+    </table>
+  </div>
+</div>

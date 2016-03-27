@@ -1,4 +1,4 @@
-<%= simple_form_for(@produce_task) do |f| %>
+<%= simple_form_for(@produce_task, url: @produce_task.new_record? ? produce_tasks_path : produce_task_path(@produce_task)) do |f| %>
   <%= f.error_notification %>
 <!-- 重写此form参考new.html.erb -->
   <div class="form-inputs">
