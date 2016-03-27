@@ -43,7 +43,7 @@
         </tr>
         <tr>
           <th class="col-xs-2 text-center info">供应商</th>
-          <td class="col-xs-10"><%= @material.supplier.name %></td>
+          <td class="col-xs-10"><%= @material.supplier.try(:name) %></td>
         </tr>
       </tbody>
     </table>

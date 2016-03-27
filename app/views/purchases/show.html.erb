@@ -10,17 +10,42 @@
   <div class="awidget-head">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <h3>采购单详细</h3>
+        <h3>采购单详细
+          <span class="pull-right">
+            <%= link_to "审核通过", checked_purchase_path(@purchase), class: 'btn btn-info'%>
+            <%= link_to "审核不通过", check_failed_purchase_path(@purchase), class: 'btn btn-info'%>
+          </span>
+        </h3>
       </div>
     </div>
   </div>
   <div class="awidget-body">
     <table class="table table-hover table-striped table-bordered">
       <tbody>
-        <tr>
-          <th class="col-xs-2 text-center info">原始单号</th>
-          <td class="col-xs-10"><%= @purchase.original_code %></td>
-        </tr>
+          <thead>
+            <tr>
+              <td>生产单号</td>
+              <td>项目名称</td>
+              <td>项目类别</td>
+              <td>项目数量</td>
+              <td>应付款</td>
+              <td>单价</td>
+              <td>到货数量</td>
+              <td>审核状态</td>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><%=@purchase.produce_task_id%></td>
+                <td><%=@purchase.item_name %></td>
+                <td><%=@purchase.item_category%></td>
+                <td><%=@purchase.number%></td>
+                <td><%=@purchase.payable%></td>
+                <td><%=@purchase.price%></td>
+                <td><%=@purchase.arrival_number%></td>
+                <td><%=@purchase.check_status_name%></td>
+              </tr>
+          </tbody>
       </tbody>
     </table>
   </div>

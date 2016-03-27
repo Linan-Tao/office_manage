@@ -1,7 +1,7 @@
 <%= simple_form_for(@purchase,url: @purchase.new_record? ? purchases_path : purchase_path(@purchase)) do |f| %>
 <%= f.error_notification %>
 <div class="form-inputs">
-  <%= f.association :produce_task %>
+  <%= f.input :produce_task_id %>
   <%= f.input :item_id %>
   <%= f.input :item_type %>
   <%= f.input :number %>

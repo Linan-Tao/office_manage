@@ -40,7 +40,10 @@ class ProduceTasksController < ApplicationController
       return redirect_to new_produce_task_path(order_id: @order.id), notice: "创建失败，请选择部件!"
     end
     order_units = OrderUnit.where(id: params[:units][:id])
-    material = Material.find_or_create_by(material_category_id: params[:material_category_id], material_type_id: params[:material_type_id])
+    material = Material.find_by(material_category_id: params[:material_category_id], material_type_id: params[:material_type_id])
+    if material.blank?
+      return  redirect_to new_produce_task_path(), notice: '创建失败，没有该种物料'
+    end
     produce_task = ProduceTask.new(item_id: material.id, item_type: material.class)
     produce_task.area = params[:area].to_f
     produce_task.number = params[:number].to_i

@@ -25,6 +25,8 @@
               <td>项目名称</td>
               <td>项目类别</td>
               <td>项目数量</td>
+              <td>应付款</td>
+              <td>单价</td>
               <td>到货数量</td>
               <td>审核状态</td>
               <td>操作</td>
@@ -37,9 +39,21 @@
                 <td><%=pur.item_name %></td>
                 <td><%=pur.item_category%></td>
                 <td><%=pur.number%></td>
+                <td><%=pur.payable%></td>
+                <td><%=pur.price%></td>
                 <td><%=pur.arrival_number%></td>
                 <td><%= pur.check_status_name%></td>
-                <td><%= link_to edit_purchase_path(pur), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %></td>
+                <td><%= link_to edit_purchase_path(pur), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
+                <%=link_to purchase_path(pur), class: 'btn btn-xs btn-success' do %>
+                  <i class="fa fa-check"></i>
+                <%end%>
+                <% if pur.not_submit? || pur.check_failed? %>
+                  <%= form_for pur, {class: 'form-inline'} do |f|%>
+                    <input type="hidden" name="purchase[check_status]" value="not_check">
+                    <button class="btn btn-xs btn-warning">提交审核</button>
+                  <%end%>
+                <%end%>
+                </td>
               </tr>
             <%end%>
           </tbody>
