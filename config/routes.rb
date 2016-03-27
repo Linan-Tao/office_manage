@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   resources :materials
   resources :material_types
   resources :material_categories
-  resources :purchases
+  resources :purchases do
+    member do
+      get :checked
+      get :check_failed
+    end
+  end
   resources :products
   resources :agents
   resources :orders do

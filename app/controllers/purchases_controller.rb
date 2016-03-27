@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :set_purchase, only: [:show, :edit, :update, :destroy, :checked, :check_failed]
 
   # GET /purchases
   # GET /purchases.json
@@ -61,6 +61,16 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def checked
+    @purchase.checked!
+    redirect_to purchases_url, notice: '审核通过'
+  end
+
+  def check_failed
+    @purchase.check_failed!
+    redirect_to purchases_url, notice: "审核不通过"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_purchase
@@ -69,6 +79,6 @@ class PurchasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_params
-      params.fetch(:purchase, {})
+      params.require(:purchase).permit(:produce_task_id, :check_status)
     end
 end
