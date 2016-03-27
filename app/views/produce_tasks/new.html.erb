@@ -2,13 +2,12 @@
 <div class="page-title">
   <h3><i class="fa fa-desktop color"></i> 生产任务单管理<small>创建生产任务</small>
   <span class="pull-right">
-    操作订单<%=@order.order_code %>
+    
   </span>
   </h3>
   <hr />
 </div>
 <%=form_tag produce_tasks_path(@produce_task), class: 'form-inline' do%>
-<%=hidden_field_tag 'order_id', @order.id%>
 <div class="awidget full-width">
   <div class="awidget-head">
     <div class="row">
@@ -18,11 +17,12 @@
     </div>
   </div>
   <div class="awidget-body">
-    <div class="table-responsive" style="height: 300px;">
+    <div class="table-responsive" style="height: 500px;">
       <table class="table table-border">
         <thead>
           <tr>
             <td>勾选</td>
+            <th>订单号</th>
             <td>部件名称</td>
             <td>板料</td>
             <td>长</td>
@@ -37,9 +37,10 @@
           </tr>
         </thead>
         <tbody>
-          <% @order.order_units.where(state: 0).each do |unit|%>
+          <% @order_units.each do |unit|%>
           <tr>
             <td><%=check_box_tag 'units[id][]', unit.id%></td>
+            <td><%= unit.order.order_code %></td>
             <td><%= unit.unit_name%></td>
             <td><%= unit.name%></td>
             <td><%= unit.lenght%></td>
@@ -80,9 +81,9 @@
       </div>
       <div class="col-xs-6 col-sm-6 ">
         <%=label_tag 'area','面积' %>
-        <%= number_field_tag :area, nil,:step => 'any', class: 'form-control', :required => true, style: 'width: 30%' %>
+        <%= number_field_tag :area, nil,:step => 'any', class: 'form-control', :required => true%>
         <%=label_tag 'number','数量' %>
-        <%= number_field_tag :number, nil, :class => 'form-control', :required => true, style: 'width: 30%' %>
+        <%= number_field_tag :number, nil, :class => 'form-control', :required => true%>
       </div>
     </div>
   </div>

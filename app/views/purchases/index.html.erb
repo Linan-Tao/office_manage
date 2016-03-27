@@ -13,7 +13,7 @@
    <div class="awidget-head">
         <div class="row">
            <div class="col-md-12 col-sm-12">
-              <h3>已下单还未采购的清单表</h3>
+              <h3>采购清单表</h3>
            </div>
         </div>
    </div>
@@ -25,18 +25,22 @@
               <td>项目名称</td>
               <td>项目类别</td>
               <td>项目数量</td>
+              <td>到货数量</td>
+              <td>审核状态</td>
+              <td>操作</td>
             </tr>
           </thead>
           <tbody>
-            <% @not_purchases_orders.each do |order|%>
-              <% order.produce_tasks.each do |pt|%>
+            <% @purchases.each do |pur|%>
               <tr>
-                <td><%=pt.id%></td>
-                <td><%=pt.item_name %></td>
-                <td><%=pt.item_category%></td>
-                <td><%=pt.number%></td>
+                <td><%=pur.produce_task_id%></td>
+                <td><%=pur.item_name %></td>
+                <td><%=pur.item_category%></td>
+                <td><%=pur.number%></td>
+                <td><%=pur.arrival_number%></td>
+                <td><%= pur.check_status_name%></td>
+                <td><%= link_to edit_purchase_path(pur), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %></td>
               </tr>
-              <%end %>
             <%end%>
           </tbody>
       </table>

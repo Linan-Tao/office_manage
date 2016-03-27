@@ -1,5 +1,8 @@
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 生产任务管理 <small>列表</small>
+  <h2><i class="fa fa-desktop color"></i> 生产任务管理 
+    <span class="pull-right">
+      <%= link_to '创建生产任务', new_produce_task_path, class: 'btn btn-info'%>
+    </span>
   </h2>
   <hr />
 </div>
@@ -29,9 +32,7 @@
           <th class="col-xs-1 text-center">型号</th>
           <th class="text-center">工序</th>
           <th class="text-center">面积</th>
-          <th class="text-center">混单号</th>
-          <th class="text-center">混单状态</th>
-          <th class="text-center">利用率</th>
+          <th class="text-center">数量</th>
           <th class="text-center">工序进度</th>
           <th colspan="3">操作</th>
         </tr>
@@ -39,14 +40,12 @@
       <tbody>
         <% @produce_tasks.each do |produce_task| %>
         <tr>
-          <td><%= produce_task.order.order_code %></td>
+          <td><%= produce_task.order_units.map{|ou| ou.order.order_code}.uniq.join(',') %></td>
           <td><%= produce_task.item_name %></td>
           <td><%= produce_task.item_category%></td>
           <td><%= produce_task.sequence %></td>
           <td><%= produce_task.area %></td>
-          <td><%= produce_task.mix_task.try(:id) %></td>
-          <td><%= produce_task.mix_status_name %></td>
-          <td><%= produce_task.availability %></td>
+          <td><%= produce_task.number %></td>
           <td><%= produce_task.work.try(:name) %></td>
           <td><%= link_to produce_task, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
             <%= link_to edit_produce_task_path(produce_task), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
