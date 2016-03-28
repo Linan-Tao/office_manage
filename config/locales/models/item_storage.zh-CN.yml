@@ -1,19 +1,19 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       item_storage: Item storage
     attributes:
       item_storage:
-        storage_date: Storage date
-        receiver: Receiver
-        purchase: Purchase
-        item_id: Item
-        item_type: Item type
-        brand: Brand
-        number: Number
-        supplier: Supplier
+        storage_date: 入库日期
+        receiver: 收货人
+        purchase: 采购单号
+        item_id: 编号
+        item_type: 类型
+        brand: 品牌
+        number: 数量
+        supplier: 供应商
     errors:
-      item_storage: 
+      item_storage:
   helpers:
-    item_storage: 
+    item_storage:
