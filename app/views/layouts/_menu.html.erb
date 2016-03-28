@@ -2,7 +2,7 @@
     <div class="side-cont">
         <ul class="nav">
             <!-- Main menu -->
-            <li><a href="#"><i class="fa fa-home"></i> 控制面板</a></li>
+            <li class="<%="#{'current' if controller_name == 'visitors_index'}" %>"><a href="/visitors/index"><i class="fa fa-home"></i> 控制面板</a></li>
             <li class="<%="#{'current' if controller_name == 'departments'}" %>"><a href="/departments"><i class="fa fa-bar-chart-o"></i> 部门信息</a></li>
             <li class="has_submenu <%= 'current open' if ['users', 'staffs'].include?(controller_name)%>">
                  <a href="#">

@@ -16,6 +16,7 @@
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
+                      <li><%= link_to current_user.name, '/visitors/index' %></li>
                       <li><%= link_to '修改密码', edit_user_registration_path %></li>
                       <li><%= link_to '退出', destroy_user_session_path, :method=>'delete' %></li>
                     </ul>
