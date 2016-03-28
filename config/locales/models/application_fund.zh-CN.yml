@@ -1,13 +1,13 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       application_fund: Application fund
     attributes:
       application_fund:
-        fund_type: Fund type
-        name: Name
+        fund_type: 类型
+        name: 名称
     errors:
-      application_fund: 
+      application_fund:
   helpers:
-    application_fund: 
+    application_fund:

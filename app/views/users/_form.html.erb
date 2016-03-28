@@ -4,13 +4,13 @@
 
   <%= f.input :name %>
   <%= f.association :department, :include_blank => true %>
-  <%= f.input :gender, collection: [['男', 0] ,['女', 1]], as: :radio_buttons %>
-  <%= f.input :status, collection: User.status, as: :radio_buttons%>
+  <%= f.input :gender, collection: [['男', 0] ,['女', 1]], as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
+  <%= f.input :status, collection: User.status, as: :radio_buttons, item_wrapper_class: 'radio-inline'%>
   <%= f.association :roles, as: :check_boxes%>
 
 
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary'  %>
+    <%= f.button :submit, value:'提交', class: 'btn btn-lg btn-block btn-primary'  %>
   </div>
 <% end %>
 

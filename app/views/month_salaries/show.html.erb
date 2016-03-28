@@ -1,74 +1,58 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @month_salary.user %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @month_salary.name %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @month_salary.total %>
-</p>
-
-<p>
-  <strong>Extra:</strong>
-  <%= @month_salary.extra %>
-</p>
-
-<p>
-  <strong>Add:</strong>
-  <%= @month_salary.add %>
-</p>
-
-<p>
-  <strong>Cut:</strong>
-  <%= @month_salary.cut %>
-</p>
-
-<p>
-  <strong>Bonus:</strong>
-  <%= @month_salary.bonus %>
-</p>
-
-<p>
-  <strong>Old age insurance:</strong>
-  <%= @month_salary.old_age_insurance %>
-</p>
-
-<p>
-  <strong>Medicare insurance:</strong>
-  <%= @month_salary.medicare_insurance %>
-</p>
-
-<p>
-  <strong>Unemployed insurance:</strong>
-  <%= @month_salary.unemployed_insurance %>
-</p>
-
-<p>
-  <strong>House fund:</strong>
-  <%= @month_salary.house_fund %>
-</p>
-
-<p>
-  <strong>Pre tax:</strong>
-  <%= @month_salary.pre_tax %>
-</p>
-
-<p>
-  <strong>Income tax:</strong>
-  <%= @month_salary.income_tax %>
-</p>
-
-<p>
-  <strong>Actual:</strong>
-  <%= @month_salary.actual %>
-</p>
-
-<%= link_to 'Edit', edit_month_salary_path(@month_salary) %> |
-<%= link_to 'Back', month_salaries_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  工资管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',month_salaries_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">编号</th>
+          <td class="col-xs-4"><%= @month_salary.user.id %></td>
+          <th class="col-xs-2 text-center info">姓名</th>
+          <td class="col-xs-4"><%= @month_salary.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">应发</th>
+          <td class="col-xs-4"><%= @month_salary.total %></td>
+          <th class="col-xs-2 text-center info">补贴</th>
+          <td class="col-xs-4"><%= @month_salary.extra %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">加班</th>
+          <td class="col-xs-4"><%= @month_salary.add %></td>
+          <th class="col-xs-2 text-center info">扣款</th>
+          <td class="col-xs-4"><%= @month_salary.cut %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">奖金</th>
+          <td class="col-xs-4"><%= @month_salary.bonus %></td>
+          <th class="col-xs-2 text-center info">养老金</th>
+          <td class="col-xs-4"><%= @month_salary.old_age_insurance %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">医疗险</th>
+          <td class="col-xs-4"><%= @month_salary.medicare_insurance %></td>
+          <th class="col-xs-2 text-center info">失业险</th>
+          <td class="col-xs-4"><%= @month_salary.unemployed_insurance %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">公积金</th>
+          <td class="col-xs-4"><%= @month_salary.house_fund %></td>
+          <th class="col-xs-2 text-center info">税前</th>
+          <td class="col-xs-4"><%= @month_salary.pre_tax %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">所得税</th>
+          <td class="col-xs-4"><%= @month_salary.income_tax %></td>
+          <th class="col-xs-2 text-center info">实得</th>
+          <td class="col-xs-4"><%= @month_salary.actual %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

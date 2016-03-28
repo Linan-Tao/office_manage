@@ -1,34 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @asset.name %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @asset.total %>
-</p>
-
-<p>
-  <strong>Remain value:</strong>
-  <%= @asset.remain_value %>
-</p>
-
-<p>
-  <strong>Buy date:</strong>
-  <%= @asset.buy_date %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @asset.note %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @asset.number %>
-</p>
-
-<%= link_to 'Edit', edit_asset_path(@asset) %> |
-<%= link_to 'Back', assets_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  固定资产 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',assets_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">名称</th>
+          <td class="col-xs-4"><%= @asset.name %></td>
+          <th class="col-xs-2 text-center info">金额</th>
+          <td class="col-xs-4"><%= @asset.total %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">折旧后</th>
+          <td class="col-xs-4"><%= @asset.remain_value %></td>
+          <th class="col-xs-2 text-center info">购买日期</th>
+          <td class="col-xs-4"><%= @asset.buy_date %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">数量</th>
+          <td class="col-xs-4"><%= @asset.number %></td>
+          <th class="col-xs-2 text-center info">备注</th>
+          <td class="col-xs-4"><%= @asset.note %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

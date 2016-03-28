@@ -4,6 +4,7 @@ class AssetsController < ApplicationController
   # GET /assets
   # GET /assets.json
   def index
+    binding.pry
     @assets = Asset.all
   end
 

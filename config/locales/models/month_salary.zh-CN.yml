@@ -1,25 +1,25 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       month_salary: Month salary
     attributes:
       month_salary:
-        user: User
-        name: Name
-        total: Total
-        extra: Extra
-        add: Add
-        cut: Cut
-        bonus: Bonus
-        old_age_insurance: Old age insurance
-        medicare_insurance: Medicare insurance
-        unemployed_insurance: Unemployed insurance
-        house_fund: House fund
-        pre_tax: Pre tax
-        income_tax: Income tax
-        actual: Actual
+        user: 编号
+        name: 姓名
+        total: 应发
+        extra: 补贴
+        add: 加班工资
+        cut: 扣款
+        bonus: 奖金
+        old_age_insurance: 养老金
+        medicare_insurance: 医疗险
+        unemployed_insurance: 失业险
+        house_fund: 公积金
+        pre_tax: 税前
+        income_tax: 所得税
+        actual: 实得
     errors:
-      month_salary: 
+      month_salary:
   helpers:
-    month_salary: 
+    month_salary:

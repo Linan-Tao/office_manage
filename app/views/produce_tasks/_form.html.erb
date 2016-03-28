@@ -19,7 +19,7 @@
     <%= f.input :sequence %>
     <%= f.input :area %>
     <%= f.association :mix_task %>
-    <%= f.input :mix_status, collection: ProduceTask.mix_status, as: :radio_buttons %>
+    <%= f.input :mix_status, collection: ProduceTask.mix_status, as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
     <%= f.input :availability %>
     <%= f.association :work %>
   </div>
