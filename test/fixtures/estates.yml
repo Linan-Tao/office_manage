@@ -4,7 +4,7 @@ one:
   name: MyString
   total: 9.99
   remain_value: 9.99
-  buy_date: 2016-03-26 15:31:50
+  buy_date: 2016-03-28
   note: MyString
   number: 1
 
@@ -12,6 +12,6 @@ two:
   name: MyString
   total: 9.99
   remain_value: 9.99
-  buy_date: 2016-03-26 15:31:50
+  buy_date: 2016-03-28
   note: MyString
   number: 1

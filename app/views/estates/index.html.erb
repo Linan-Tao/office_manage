@@ -2,7 +2,7 @@
 <div class="page-title">
   <h2><i class="fa fa-desktop color"></i> 固定资产
   <span class="pull-right">
-    <%= link_to '添加', new_asset_path, class: 'btn btn-lg btn-info' %>
+    <%= link_to '添加', new_estate_path, class: 'btn btn-lg btn-info' %>
   </span>
   </h2>
   <hr />
@@ -23,22 +23,22 @@
         </tr>
       </thead>
       <tbody>
-        <% @assets.each do |asset|%>
+        <% @estates.each do |estate|%>
         <tr>
-          <td><%= asset.name %></td>
-          <td><%= asset.total %></td>
-          <td><%= asset.remain_value %></td>
-          <td><%= asset.buy_date %></td>
-          <td><%= asset.note %></td>
-          <td><%= asset.number %></td>
+          <td><%= estate.name %></td>
+          <td><%= estate.total %></td>
+          <td><%= estate.remain_value %></td>
+          <td><%= estate.buy_date %></td>
+          <td><%= estate.note %></td>
+          <td><%= estate.number %></td>
           <td>
-            <%= link_to  asset,  class: 'btn btn-xs btn-success' do %>
+            <%= link_to  estate,  class: 'btn btn-xs btn-success' do %>
             <i class="fa fa-eye"></i>
             <% end %>
-            <%= link_to  edit_asset_path(asset),  class: 'btn btn-xs btn-warning' do %>
+            <%= link_to  edit_estate_path(estate),  class: 'btn btn-xs btn-warning' do %>
             <i class="fa fa-pencil"></i>
             <% end %>
-            <%= link_to  asset, data: {:confirm => '确定要删除吗?'}, :method => :delete, class: 'btn btn-xs btn-danger' do %>
+            <%= link_to  estate, data: {:confirm => '确定要删除吗?'}, :method => :delete, class: 'btn btn-xs btn-danger' do %>
             <i class="fa fa-times"></i>
             <% end %>
           </td>

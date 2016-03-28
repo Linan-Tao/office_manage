@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326124747) do
+ActiveRecord::Schema.define(version: 20160328113914) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -88,6 +88,17 @@ ActiveRecord::Schema.define(version: 20160326124747) do
 
   add_index "districts", ["city_id", "name"], name: "index_districts_on_city_id_and_name", unique: true, using: :btree
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
+
+  create_table "estates", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.decimal  "total",                    precision: 8, scale: 2
+    t.decimal  "remain_value",             precision: 8, scale: 2
+    t.date     "buy_date"
+    t.string   "note",         limit: 255
+    t.integer  "number",       limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
 
   create_table "flow_bills", force: :cascade do |t|
     t.datetime "bill_date"
