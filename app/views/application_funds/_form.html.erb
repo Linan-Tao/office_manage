@@ -1,12 +1,12 @@
-<%= simple_form_for(@application_fund) do |f| %>
+<%= simple_form_for(@application_fund, url: @application_fund.new_record? ? application_funds_path : application_fund_path(@application_fund)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :fund_type %>
+    <%= f.input :fund_type, collection: ApplicationFund.fund_type, as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
     <%= f.input :name %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value:'提交', class: 'btn btn-lg btn-block btn-primary' %>
   </div>
 <% end %>

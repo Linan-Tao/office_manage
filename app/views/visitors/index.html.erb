@@ -1,4 +1,12 @@
-<h1>Visitors#index</h1>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 个人首页 <small>管理</small>
+  <span class="pull-right">
+    <%= link_to '编辑', edit_user_path(@current_user), class: 'btn btn-lg btn-info' %>
+  </span>
+  </h2>
+  <hr />
+</div>
+
 <%# Rails flash messages styled for Bootstrap 3.0 %>
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>

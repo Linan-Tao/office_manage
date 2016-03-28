@@ -1,17 +1,17 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       asset: Asset
     attributes:
       asset:
-        name: Name
-        total: Total
-        remain_value: Remain value
-        buy_date: Buy date
-        note: Note
-        number: Number
+        name: 名称
+        total: 金额
+        remain_value: 折旧后
+        buy_date: 购买日期
+        note: 备注
+        number: 数量
     errors:
-      asset: 
+      asset:
   helpers:
-    asset: 
+    asset:

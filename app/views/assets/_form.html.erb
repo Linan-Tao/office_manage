@@ -1,16 +1,14 @@
-<%= simple_form_for(@asset) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :total %>
-    <%= f.input :remain_value %>
-    <%= f.input :buy_date %>
-    <%= f.input :note %>
-    <%= f.input :number %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= simple_form_for(@asset, url: @asset.new_record? ? assets_path : asset_path(@asset)) do |f| %>
+<%= f.error_notification %>
+<div class="form-inputs">
+  <%= f.input :name %>
+  <%= f.input :total %>
+  <%= f.input :remain_value %>
+  <%= f.input :buy_date %>
+  <%= f.input :note %>
+  <%= f.input :number %>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, value:'提交', class: 'btn btn-lg btn-block btn-primary' %>
+</div>
 <% end %>

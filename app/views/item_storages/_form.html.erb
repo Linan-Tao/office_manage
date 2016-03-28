@@ -1,18 +1,16 @@
-<%= simple_form_for(@item_storage) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :storage_date %>
-    <%= f.input :receiver %>
-    <%= f.input :purchase %>
-    <%= f.input :item_id %>
-    <%= f.input :item_type %>
-    <%= f.input :brand %>
-    <%= f.input :number %>
-    <%= f.association :supplier %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= simple_form_for(@item_storage, url: @item_storage.new_record? ? item_storages_path : item_storage_path(@item_storage)) do |f| %>
+<%= f.error_notification %>
+<div class="form-inputs">
+  <%= f.input :storage_date %>
+  <%= f.input :receiver %>
+  <%= f.association :purchase %>
+  <%= f.input :item_id %>
+  <%= f.input :item_type %>
+  <%= f.input :brand %>
+  <%= f.input :number %>
+  <%= f.association :supplier %>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, value:'提交', class: 'btn btn-lg btn-block btn-primary' %>
+</div>
 <% end %>

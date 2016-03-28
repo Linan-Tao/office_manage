@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  $(".alert.alert-success").fadeOut(4000);
+
 
     $(".has_submenu > a").click(function(e){
       e.preventDefault();

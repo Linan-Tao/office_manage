@@ -1,6 +1,13 @@
-<h1>Editing Application Fund</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @application_fund %> |
-<%= link_to 'Back', application_funds_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  资金科目 <small>编辑</small>
+  <span class="pull-right">
+    <%= link_to('返回',application_funds_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <%= render 'form' %>
+  </div>
+</div>
