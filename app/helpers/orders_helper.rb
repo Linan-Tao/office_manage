@@ -57,16 +57,18 @@ module OrdersHelper
     order = Order.find(offers_params[:id])
     ActiveRecord::Base.transaction do
       # 板料
-      offers_params[:order][:offers_attributes].values.each do |offer|
-        next unless offer[:_destroy] == "false"
-        material = Material.find_or_create_by(material_category_id: offer[:material_category_id], material_type_id: offer[:material_type_id])
-        offer_m = order.offers.find_or_create_by(item_id: material.id, item_type: material.class)
-        offer_m.price = material.price.to_f
-        offer_m.number = offer[:number].to_f
-        offer_m.total = offer_m.price * offer_m.number
-        offer_m.item_name = material.material_category.name
-        offer_m.category = material.material_type.name
-        offer_m.save
+      if offers_params[:order] && offers_params[:order][:offers_attributes]
+        offers_params[:order][:offers_attributes].values.each do |offer|
+          next unless offer[:_destroy] == "false"
+          material = Material.find_or_create_by(material_category_id: offer[:material_category_id], material_type_id: offer[:material_type_id])
+          offer_m = order.offers.find_or_create_by(item_id: material.id, item_type: material.class)
+          offer_m.price = material.price.to_f
+          offer_m.number = offer[:number].to_f
+          offer_m.total = offer_m.price * offer_m.number
+          offer_m.item_name = material.material_category.name
+          offer_m.category = material.material_type.name
+          offer_m.save
+        end
       end
       # 配件
       order.order_parts.each do |order_part|
@@ -89,6 +91,8 @@ module OrdersHelper
         offer_r.save
       end
       order.offered!
+      order.offer_time = Time.now()
+      order.save!
       return "报价单创建成功"
     end
   end

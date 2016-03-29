@@ -26,7 +26,7 @@
                     <li class='<%="#{'active' if controller_name == 'agents'}" %>'><a href="/agents">代理商</a></li>
                 </ul>
             </li>
-            <li class="has_submenu <%= 'current open' if ['order_bills', 'flow_bills', 'month_salaries', 'assets', 'application_funds'].include?(controller_name)%>">
+            <li class="has_submenu <%= 'current open' if ['purchases', 'order_bills', 'flow_bills', 'month_salaries', 'assets', 'application_funds'].include?(controller_name)%>">
                  <a href="#">
                     <i class="fa fa-sitemap"></i> 财务
                     <span class="caret pull-right"></span>
@@ -35,6 +35,7 @@
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'order_bills' and action_name=='not_check'}" %>'><a href="/order_bills/not_check">未审核订单</a></li>
                     <li class='<%="#{'active' if controller_name == 'order_bills' and action_name == 'checked'}" %>'><a href="/order_bills/checked">已审核订单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'purchases' and action_name == 'not_check'}" %>'><a href="/purchases/not_check">未审核采购单</a></li>
                     <li class='<%="#{'active' if controller_name == 'flow_bills'}" %>'><a href="/flow_bills">流水单</a></li>
                     <li class='<%="#{'active' if controller_name == 'month_salaries'}" %>'><a href="/month_salaries">工资单</a></li>
                     <li class='<%="#{'active' if controller_name == 'application_funds'}" %>'><a href="/application_funds">资金科目</a></li>
@@ -58,9 +59,19 @@
                 </ul>
             </li>
             <li class='<%="#{'current' if controller_name == 'orders'}" %>'><a href="/orders"><i class="fa fa-th"></i> 订单</a></li>
-            <li class='<%="#{'current' if controller_name == 'produce_tasks'}" %>'><a href="/produce_tasks"><i class="fa fa-th"></i> 生产任务</a></li>
+            <li class="has_submenu <%= 'current open' if ['produce_tasks'].include?(controller_name) %>">
+                 <a href="#">
+                    <i class="fa fa-sitemap"></i> 生产任务
+                    <span class="caret pull-right"></span>
+                 </a>
+                 <!-- Sub menu -->
+                 <ul>
+                    <li class='<%="#{'active' if controller_name == 'produce_tasks' and ['not_open', 'new'].include?(action_name)}" %>'><a href="/produce_tasks/not_open">未下单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">已下单</a></li>
+                </ul>
+            </li>
             <li class='<%="#{'current' if controller_name == 'purchases'}" %>'><a href="/purchases"><i class="fa fa-th"></i> 采购</a></li>
             <li class='<%="#{'current' if controller_name == 'produces'}" %>'><a href="/produces"><i class="fa fa-th"></i> 生产单</a></li>
         </ul>
     </div>
-</div>"
+</div>

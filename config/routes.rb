@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   resources :application_funds
   resources :staffs
   resources :produces
-  resources :produce_tasks
+
+  resources :produce_tasks do
+    collection do 
+      get :not_open
+    end
+  end
   resources :mix_tasks
   resources :materials
   resources :material_types
@@ -17,6 +22,9 @@ Rails.application.routes.draw do
     member do
       get :checked
       get :check_failed
+    end
+    collection do
+      get :not_check
     end
   end
   resources :products
@@ -40,6 +48,7 @@ Rails.application.routes.draw do
   end
   get "order_bills/not_check"
   get "order_bills/checked"
+
 
   get 'visitors/index'
 

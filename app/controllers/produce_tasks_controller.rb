@@ -109,6 +109,10 @@ class ProduceTasksController < ApplicationController
     end
   end
 
+  def not_open
+    @orders  = Order.checked
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_produce_task

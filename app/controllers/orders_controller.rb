@@ -80,6 +80,8 @@ class OrdersController < ApplicationController
   def open_order
     @order = Order.find(params[:id])
     @order.checked!
+    @order.check_time = Time.now()
+    @order.save!
     redirect_to order_bills_checked_path, notice: "订单审核通过，可下单"
   end
 

@@ -7,6 +7,9 @@ class PurchasesController < ApplicationController
     @purchases = Purchase.all
   end
 
+  def not_check
+    @purchases = Purchase.where(check_status: 1)
+  end
   # GET /purchases/1
   # GET /purchases/1.json
   def show

@@ -1,0 +1,58 @@
+<!-- Page title -->
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 未审核采购单
+  </h2>
+  <hr />
+</div>
+<!-- Page title -->
+
+<div class="awidget full-width">
+   <div class="awidget-head">
+        <div class="row">
+           <div class="col-md-12 col-sm-12">
+              <h3>采购清单表</h3>
+           </div>
+        </div>
+   </div>
+   <div class="awidget-body">
+      <table class="table table-hover table-striped table-bordered text-center">
+          <thead>
+            <tr class="info">
+              <td>生产单号</td>
+              <td>项目名称</td>
+              <td>项目类别</td>
+              <td>项目数量</td>
+              <td>应付款</td>
+              <td>单价</td>
+              <td>到货数量</td>
+              <td>审核状态</td>
+              <td colspan="3">操作</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @purchases.each do |pur|%>
+              <tr>
+                <td><%=pur.produce_task_id %></td>
+                <td><%=pur.item_name %></td>
+                <td><%=pur.item_category%></td>
+                <td><%=pur.number%></td>
+                <td><%=pur.payable%></td>
+                <td><%=pur.price%></td>
+                <td><%=pur.arrival_number%></td>
+                <td><%= pur.check_status_name%></td>
+                <td>
+                <%=link_to purchase_path(pur), class: 'btn btn-xs btn-success' do %>
+                  <i class="fa fa-check"></i>
+                <%end%>
+               
+                  <%= form_for pur, {class: 'form-inline'} do |f|%>
+                    <input type="hidden" name="purchase[check_status]" value="checked">
+                    <button class="btn btn-xs btn-warning">审核通过</button>
+                  <%end%>
+                </td>
+              </tr>
+            <%end%>
+          </tbody>
+      </table>
+   </div>
+</div>
