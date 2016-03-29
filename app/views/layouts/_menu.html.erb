@@ -33,7 +33,8 @@
                  </a>
                  <!-- Sub menu -->
                  <ul>
-                    <li class='<%="#{'active' if controller_name == 'order_bills'}" %>'><a href="/order_bills">订单到款表</a></li>
+                    <li class='<%="#{'active' if controller_name == 'order_bills' and action_name=='not_check'}" %>'><a href="/order_bills/not_check">未审核订单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'order_bills' and action_name == 'checked'}" %>'><a href="/order_bills/checked">已审核订单</a></li>
                     <li class='<%="#{'active' if controller_name == 'flow_bills'}" %>'><a href="/flow_bills">流水单</a></li>
                     <li class='<%="#{'active' if controller_name == 'month_salaries'}" %>'><a href="/month_salaries">工资单</a></li>
                     <li class='<%="#{'active' if controller_name == 'application_funds'}" %>'><a href="/application_funds">资金科目</a></li>

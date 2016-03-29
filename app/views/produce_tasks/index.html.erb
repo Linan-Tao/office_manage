@@ -40,7 +40,7 @@
       <tbody>
         <% @produce_tasks.each do |produce_task| %>
         <tr>
-          <td><%= produce_task.order_units.map{|ou| ou.order.order_code}.uniq.join(',') %></td>
+          <td><%= produce_task.order_units.map{|ou| ou.order.order_code}.uniq.join(',') + produce_task.order_parts.map{|ou| ou.order.order_code}.uniq.join(',') %></td>
           <td><%= produce_task.item_name %></td>
           <td><%= produce_task.item_category%></td>
           <td><%= produce_task.sequence %></td>
@@ -49,7 +49,9 @@
           <td><%= produce_task.work.try(:name) %></td>
           <td><%= link_to produce_task, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
             <%= link_to edit_produce_task_path(produce_task), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
+            <% if produce_task.purchase.try(&:not_submit?) %>
             <%= link_to  produce_task, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
+            <%end%>
           </td>
         </tr>
         <% end %>

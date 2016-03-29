@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :month_salaries
   resources :assets
   resources :flow_bills
-  resources :order_bills
   resources :application_funds
   resources :staffs
   resources :produces
@@ -34,7 +33,13 @@ Rails.application.routes.draw do
       end
     end
     resources :offers
+    resources :order_bills
+    member do 
+      get :open_order
+    end
   end
+  get "order_bills/not_check"
+  get "order_bills/checked"
 
   get 'visitors/index'
 
