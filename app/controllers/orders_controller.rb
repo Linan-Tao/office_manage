@@ -87,6 +87,7 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:order_code, :work_id,
                                                               order_units_attributes: [:id, :unit_name, :name, :lenght, :width, :thick,
-                                                              :number, :size, :color, :edge, :texture, :note, :_destroy])
+                                                              :number, :size, :color, :edge, :texture, :note, :_destroy],
+                                                              order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])
     end
 end

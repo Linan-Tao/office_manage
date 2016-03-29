@@ -41,15 +41,16 @@
           <tbody>
             <% @orders.each do |order|%>
               <tr>
-                <td><%= order.order_code%></td>
-                <td><%= order.work.name%></td>
+                <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
+                <td><% if order.work.name == '已报价' %>
+                <%= link_to '报价信息', '#', class:'detail-link'  %>
+                <% else %>
+                <%= order.work.name %>
+                <% end %></td>
                <td>
                   <% if order.checked? %>
                   <%= link_to '创建生产任务单',new_produce_task_path(order_id: order.id), class: 'btn btn-xs btn-info'%>
                   <% end %>
-                  <%= link_to  order_path(order),  class: 'btn btn-xs btn-success' do %>
-                      <i class="fa fa-eye"></i>
-                   <% end %>
                   <%= link_to  edit_order_path(order),  class: 'btn btn-xs btn-warning' do %>
                       <i class="fa fa-pencil"></i>
                    <% end %>
