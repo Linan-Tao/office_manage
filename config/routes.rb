@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :estates
   resources :out_storages
   resources :item_storages
   resources :month_salaries
-  resources :assets
   resources :flow_bills
   resources :application_funds
   resources :staffs

@@ -4,3 +4,11 @@
 .radio-inline {
   margin-top: 0px;
 }
+
+.detail-link{
+  color: #16cbe6 !important;
+  &:hover{
+    border-bottom:1px solid #0fa6bc !important;
+    background-color: #F9F9F9;
+  }
+}

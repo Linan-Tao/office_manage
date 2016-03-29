@@ -1,80 +1,88 @@
 <div class="awidget full-width">
-   <div class="awidget-head">
-      <div class="row">
-         <div class="col-md-12 col-sm-12">
-            <h3>配件信息
-               <p class="pull-right">
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#orderPartsModal">
-                    添加配件
-                  </button>
-               </p>
-            </h3>
-         </div>
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>配件信息
+        <p class="pull-right">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#orderPartsModal">
+          编辑
+          </button>
+        </p>
+        </h3>
       </div>
-   </div>
-   <div class="awidget-body">
-      <div class="table-responsive" style="height: 300px;">
-          <table class="table table-border">
-            <thead>
-               <tr>
-                  <td>配件种类</td>
-                  <td>配件名称</td>
-                  <td>数量</td>
-                  <td>备注</td>
-               </tr>
-            </thead>
-            <tbody>
-               <% @order_parts.each do |part|%>
-                  <tr>
-                    <td><%= part.part.part_category.name%></td>
-                     <td><%= part.part.name%></td>
-                     <td><%= part.number%></td>
-                     <td><%= part.note%></td>
-                  </tr>
-               <% end %>
-            </tbody>
-          </table>
-       </div>
-   </div>
+    </div>
+  </div>
+  <div class="awidget-body">
+    <div class="table-responsive" style="height: 300px;">
+      <table class="table table-border">
+        <thead>
+          <tr>
+            <td>配件种类</td>
+            <td>配件名称</td>
+            <td>数量</td>
+            <td>备注</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_parts.each do |part|%>
+          <tr>
+            <td><%= part.part.part_category.name%></td>
+            <td><%= part.part.name%></td>
+            <td><%= part.number%></td>
+            <td><%= part.note%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="orderPartsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+      <%= nested_form_for @order do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">订单：<%= @order.order_code %>  添加配件</h4>
+        <h4 class="modal-title" id="myModalLabel">订单：<%= @order.order_code %>  <small>配件</small></h4>
       </div>
-      <%=form_tag batch_create_order_order_parts_path(@order), class: 'form-inline' do%>
       <div class="modal-body">
-           <% @part_categories.each do |pc|%>
-               <div class="awidget full-width">
-                  <div class="awidget-head">
-                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                           <h3><%=pc.name%></h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="awidget-body">
-                     <div class="row">
-                        <% pc.parts.each do |part|%>
-                          <div class="col-md-4 pt5" >
-                          <%= number_field_tag nil, nil, name: "part[#{part.id}]", class: 'form-control', style: 'width: 60px;'%>*<%= part.name%>
-                          </div>
-                        <%end%>
-                     </div>
-                  </div>
-               </div>
-           <%end %>
+        <table class="table" id="parts">
+          <tr>
+            <th>配件类型</th>
+            <th>配件名称</th>
+            <th>数量</th>
+            <th>备注</th>
+            <th>操作</th>
+          </tr>
+          <%= f.fields_for :order_parts, :wrapper => false do |part_form| %>
+          <tr class="fields">
+            <td>
+              <%= part_form.select :part_category_id, PartCategory.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+            </td>
+            <td>
+              <%= part_form.select :part_id, Part.all.collect { |p| [p.name, p.id] } , class: 'form-control' %>
+            </td>
+            <td>
+              <%= part_form.number_field :number, in: 1..500, class: 'form-control' %>
+            </td>
+            <td>
+              <%= part_form.text_field :note, class: 'form-control'%>
+            </td>
+            <td>
+              <%= part_form.link_to_remove "删除", class: 'btn btn-info' %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+        <p><%= f.link_to_add "添加", :order_parts, :data => { :target => "#parts" }, class: 'btn btn-info' %></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <%= submit_tag "保存", class: 'btn btn-info'%>
       </div>
+      <% end%>
     </div>
-     <% end%>
   </div>
 </div>

@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   has_many :order_bills, dependent: :destroy
   # has_many :produce_tasks
   has_many :offers, dependent: :destroy
-  accepts_nested_attributes_for :offers, :order_units, :allow_destroy => true
+  accepts_nested_attributes_for :offers, :order_units, :order_parts, :allow_destroy => true
   belongs_to :work
 
   # 查询所有已审核的订单
