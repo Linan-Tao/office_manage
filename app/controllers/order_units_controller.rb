@@ -54,19 +54,25 @@ class OrderUnitsController < ApplicationController
 
   # 导入文件，或手工输入
   def import
-    if params[:file] && params[:file].original_filename !~ /.csv$/
-      return redirect_to order_path(@order), notice: '文件格式不正确！'
-      return_message = import_order_units(params[:file], @order.order_code)
-    elsif params[:unit]
-      params[:unit].each_pair do |key,value|
-        next unless value.present?
-        order_unit = @order.order_units.find_or_create_by(unit_id: key)
-        order_unit.number = value if value.present?
-        order_unit.save!
+    # 有上传文件时
+    if params[:file]
+      if params[:file].original_filename !~ /.csv$/
+        return redirect_to order_path(@order), notice: '文件格式不正确！'
+      else
+        return_message = import_order_units(params[:file], @order.order_code)
       end
-      return_message = '配件添加成功！'
+    # 没有上传文件时，判断是否手工添加部件
     else
-      return_message = '配件添加失败！'
+      # 手工添加了部件时，遍历保存
+      if params[:unit]
+        params[:unit].each_pair do |key,value|
+          next unless value.present?
+          order_unit = @order.order_units.find_or_create_by(unit_id: key)
+          order_unit.number = value if value.present?
+          order_unit.save!
+        end
+        return_message = '配件添加成功！'
+      end
     end
     redirect_to order_path(@order), notice: return_message
   end

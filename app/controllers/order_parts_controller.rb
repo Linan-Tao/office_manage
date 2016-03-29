@@ -62,7 +62,7 @@ class OrderPartsController < ApplicationController
   end
 
   def batch_create
-    if params[:part]      
+    if params[:part]
       params[:part].each_pair do |key,value|
         next unless value.present?
         order_part = @order.order_parts.find_or_create_by(part_id: key)
