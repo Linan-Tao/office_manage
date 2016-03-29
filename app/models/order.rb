@@ -1,12 +1,16 @@
 class Order < ActiveRecord::Base
   has_many :products # 一个订单包含多个产品
   validates_presence_of :order_code
-  has_many :order_units
-  has_many :order_parts
+  has_many :order_units, dependent: :destroy
+  has_many :order_parts, dependent: :destroy
+  has_many :order_bills, dependent: :destroy
   # has_many :produce_tasks
-  has_many :offers
+  has_many :offers, dependent: :destroy
   accepts_nested_attributes_for :offers, :order_units, :allow_destroy => true
   belongs_to :work
+
+  # 查询所有已审核的订单
+  scope :checked, -> { where("work_id = ?", Work.find_by(symbol_name: "checked").id) }
 
   def not_separate?
     work.symbol_name == "not_separate"

@@ -16,7 +16,8 @@ class ProduceTasksController < ApplicationController
   # GET /produce_tasks/new
   def new
     @produce_task = ProduceTask.new
-    @order_units = OrderUnit.where(state: 0)
+    # 财务审核通过方可下单
+    @order_units = OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where(state: 0)
   end
 
   # GET /produce_tasks/1/edit
@@ -56,10 +57,16 @@ class ProduceTasksController < ApplicationController
       unit.save!
     end
 
-    if OrderUnit.where(state: 0).any?
+    if OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where(state: 0).any?
       redirect_to new_produce_task_path(), notice: '创建成功，请继续创建'
     else
       create_part_produce_tasks
+      # 下单成功
+      Order.checked.each do |ord|
+        if ord.order_units.where(state: 0).empty? && ord.order_parts.where(state: 0).empty?
+          ord.open!
+        end
+      end
       redirect_to produce_tasks_path, notice: "所有订单的生产任务单创建完成，采购单已经生成。"
     end
   end
@@ -81,9 +88,23 @@ class ProduceTasksController < ApplicationController
   # DELETE /produce_tasks/1
   # DELETE /produce_tasks/1.json
   def destroy
+    OrderUnit.where(produce_task_id: @produce_task.id).each do |ou|
+      ou.produce_task_id = nil
+      ou.state = 0
+      ou.save!
+      ou.order.checked! unless ou.order.checked?
+    end
+
+    OrderPart.where(produce_task_id: @produce_task.id).each do |op|
+      op.produce_task_id = nil
+      op.state = 0
+      op.save!
+      op.order.checked! unless op.order.checked?
+    end
+
     @produce_task.destroy
     respond_to do |format|
-      format.html { redirect_to produce_tasks_url, notice: 'Produce task was successfully destroyed.' }
+      format.html { redirect_to produce_tasks_url, notice: '该生产任务已删除，请重新创建' }
       format.json { head :no_content }
     end
   end
@@ -100,7 +121,7 @@ class ProduceTasksController < ApplicationController
     end
 
     def create_part_produce_tasks
-      OrderPart.where(state: 0).each do |order_part|
+      OrderPart.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where(state: 0).each do |order_part|
         produce_task = ProduceTask.new(item_id: order_part.part.id, item_type: order_part.part.class)
         produce_task.number = order_part.number.to_i
         produce_task.work_id = 6
@@ -108,9 +129,6 @@ class ProduceTasksController < ApplicationController
         order_part.state = 1
         order_part.produce_task_id = produce_task.id
         order_part.save!
-        unless order_part.order.open?
-          order.open!
-        end
       end
     end
 end

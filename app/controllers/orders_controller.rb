@@ -77,6 +77,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def open_order
+    @order = Order.find(params[:id])
+    @order.checked!
+    redirect_to order_bills_checked_path, notice: "订单审核通过，可下单"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

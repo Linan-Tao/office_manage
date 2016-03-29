@@ -56,18 +56,8 @@ class OrderUnitsController < ApplicationController
   def import
     if params[:file] && params[:file].original_filename !~ /.csv$/
       return redirect_to order_path(@order), notice: '文件格式不正确！'
-      return_message = import_order_units(params[:file], @order.order_code)
-    elsif params[:unit]
-      params[:unit].each_pair do |key,value|
-        next unless value.present?
-        order_unit = @order.order_units.find_or_create_by(unit_id: key)
-        order_unit.number = value if value.present?
-        order_unit.save!
-      end
-      return_message = '配件添加成功！'
-    else
-      return_message = '配件添加失败！'
     end
+    return_message = import_order_units(params[:file], @order.order_code)
     redirect_to order_path(@order), notice: return_message
   end
 

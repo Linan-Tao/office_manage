@@ -25,7 +25,6 @@ class RolesController < ApplicationController
   # POST /roles.json
   def create
     @role = Role.new(role_params)
-    binding.pry
     respond_to do |format|
       if @role.save && set_roles_permissions(@role, params[:roles_permissions])
         format.html { redirect_to roles_path, notice: '角色创建成功' }

@@ -4,8 +4,8 @@ class OrderBillsController < ApplicationController
   # GET /order_bills
   # GET /order_bills.json
   def index
-    @order_bills = OrderBill.all
-    @order_bills = @order_bills.joins(:order).where(orders: { order_code: params[:q] }) if params[:q].present?
+    @order = Order.find(params[:order_id])
+    @order_bills = @order.order_bills
   end
 
   # GET /order_bills/1
@@ -16,6 +16,9 @@ class OrderBillsController < ApplicationController
   # GET /order_bills/new
   def new
     @order_bill = OrderBill.new
+    @order = Order.find(params[:order_id])
+    @order_bill.order_id = @order.id
+    @order_bill.total = @order.offers.map(&:total).sum
   end
 
   # GET /order_bills/1/edit
@@ -26,10 +29,12 @@ class OrderBillsController < ApplicationController
   # POST /order_bills.json
   def create
     @order_bill = OrderBill.new(order_bill_params)
-
+    @order = Order.find(params[:order_id])
+    @order_bill.order_id = @order.id
+    @order_bill.total = @order.offers.map(&:total).sum
     respond_to do |format|
       if @order_bill.save
-        format.html { redirect_to @order_bill, notice: 'Order bill was successfully created.' }
+        format.html { redirect_to order_order_bills_path(@order), notice: 'Order bill was successfully created.' }
         format.json { render :show, status: :created, location: @order_bill }
       else
         format.html { render :new }
@@ -60,6 +65,14 @@ class OrderBillsController < ApplicationController
       format.html { redirect_to order_bills_url, notice: 'Order bill was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def not_check
+    @orders = Order.where("work_id in (?)", Work.where(symbol_name: ['offered', 'waiting_bill']).map(&:id).join(','))
+  end
+
+  def checked
+    @orders = Order.checked
   end
 
   private

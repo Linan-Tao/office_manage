@@ -11,8 +11,8 @@ class CreateOrders < ActiveRecord::Migration
       t.string :patch_origin # 补单原单号
       t.references :work, index: true, foreign_key: true #工序名称
       t.timestamps :offer_time # 分解报价时间
-      t.timestamps :check_time # 账单回传时间
-      t.timestamps :verify_time # 到款审核时间
+      t.timestamps :check_time # 到款审核时间
+      t.timestamps :verify_time # 账单回传时间
       t.string :employee # 接单员
       t.timestamps null: false
     end
