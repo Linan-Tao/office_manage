@@ -31,10 +31,10 @@
     <table class="table table-striped table-hover table-bordered text-center">
       <thead>
         <tr class="info">
+          <th class="text-center">生产单号</th>
           <th class="text-center">出库时间</th>
           <th class="text-center">领料部门</th>
           <th class="text-center">领料人</th>
-          <th class="text-center">订单编号</th>
           <th class="text-center">项目编号</th>
           <th class="text-center">项目类型</th>
           <th class="text-center">数量</th>
@@ -45,10 +45,10 @@
       <tbody>
         <% @out_storages.each do |out_storage| %>
         <tr>
-          <td><%= out_storage.out_date %></td>
+        <td><%= out_storage.produce_task.id %></td>
+        <td><%= out_storage.out_date %></td>
         <td><%= out_storage.department.name %></td>
         <td><%= out_storage.out_user %></td>
-        <td><%= out_storage.produce_task.order_id %></td>
         <td><%= out_storage.item_id %></td>
         <td><%= out_storage.item_type %></td>
         <td><%= out_storage.number %></td>

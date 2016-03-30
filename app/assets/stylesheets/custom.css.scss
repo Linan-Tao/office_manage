@@ -12,3 +12,8 @@
     background-color: #F9F9F9;
   }
 }
+
+/* 必填字段*标记为红色 */
+label.required abbr{
+  color: red;
+}

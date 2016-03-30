@@ -1,25 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Offers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @offers.each do |offer| %>
-      <tr>
-        <td><%= link_to 'Show', offer %></td>
-        <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
-        <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Offer', new_offer_path %>
+<!-- Page title -->
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 报价单 <small>列表</small>
+  <span class="pull-right">
+    <%= link_to('返回',orders_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<!-- Page title -->
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered text-center">
+      <thead>
+        <tr class="info">
+          <td>订单号</td>
+          <td>计件项目</td>
+          <td>类别</td>
+          <td>数量</td>
+          <td>单价</td>
+          <td>总额</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @offers.each do |offer|%>
+        <tr>
+          <td><%= offer.order.order_code %></td>
+          <td><%= offer.item_name%></td>
+          <td><%= offer.category%></td>
+          <td><%= offer.number%></td>
+          <td><%= offer.price%></td>
+          <td><%= offer.total%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

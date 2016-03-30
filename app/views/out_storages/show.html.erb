@@ -19,16 +19,16 @@
     <table class="table table-hover table-striped table-bordered">
       <tbody>
         <tr>
+          <th class="col-xs-2 text-center info">生产单号</th>
+          <td class="col-xs-4"><%= @out_storage.produce_task.id %></td>
           <th class="col-xs-2 text-center info">出库时间</th>
           <td class="col-xs-4"><%= @out_storage.out_date %></td>
-          <th class="col-xs-2 text-center info">领料部门</th>
-          <td class="col-xs-4"><%= @out_storage.department.name %></td>
         </tr>
         <tr>
+          <th class="col-xs-2 text-center info">领料部门</th>
+          <td class="col-xs-4"><%= @out_storage.department.name %></td>
           <th class="col-xs-2 text-center info">领料人</th>
           <td class="col-xs-4"><%= @out_storage.out_user %></td>
-          <th class="col-xs-2 text-center info">订单编号</th>
-          <td class="col-xs-4"><%= @out_storage.produce_task.order.order_code %></td>
         </tr>
         <tr>
           <th class="col-xs-2 text-center info">项目编号</th>

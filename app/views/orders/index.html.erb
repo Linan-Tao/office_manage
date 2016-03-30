@@ -2,7 +2,7 @@
 <div class="page-title">
   <h2><i class="fa fa-desktop color"></i> 订单管理
     <span class="pull-right">
-      <%= link_to '添加订单', new_order_path, class: 'btn btn-lg btn-info' %>
+      <%= link_to '添加', new_order_path, class: 'btn btn-lg btn-info' %>
     </span>
   </h2>
   <hr />
@@ -42,8 +42,8 @@
             <% @orders.each do |order|%>
               <tr>
                 <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
-                <td><% if order.work.name == '已报价' %>
-                <%= link_to '报价信息', '#', class:'detail-link'  %>
+                <td><% if order.work.sequence > 2 %><!-- 工序值 -->
+                <%= link_to order.work.name, order_offers_path(order), class:'detail-link'  %>
                 <% else %>
                 <%= order.work.name %>
                 <% end %></td>
