@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    @offers = Offer.all
+    @offers = Offer.where(order_id: params[:order_id])
   end
 
   # GET /offers/1
@@ -69,6 +69,6 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.fetch(:offer, {})
+      params.require(:offer).permit(:order_id)
     end
 end

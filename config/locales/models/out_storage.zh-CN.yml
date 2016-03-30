@@ -8,7 +8,7 @@ zh-CN:
         out_date: 出库时间
         department: 领料部门
         out_user: 领料人
-        produce_task: 订单编号
+        produce_task: 生产单号
         item_id: 项目编号
         item_type: 项目类型
         number: 数量
