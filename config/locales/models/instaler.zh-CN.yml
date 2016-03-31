@@ -1,0 +1,19 @@
+---
+zh-CN:
+  active_record:
+    models:
+      instaler: Instaler
+    attributes:
+      instaler:
+        name: Name
+        install_type: Install type
+        phone: Phone
+        tech_rank: Tech rank
+        serve_rank: Serve rank
+        price_rank: Price rank
+        secure_rank: Secure rank
+        credit_rank: Credit rank
+    errors:
+      instaler: 
+  helpers:
+    instaler: 

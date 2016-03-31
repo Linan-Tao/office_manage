@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :delivery_plans
+  resources :instalers
+  resources :drivers
+  resources :logistic_providers
   resources :estates
   resources :out_storages
   resources :item_storages

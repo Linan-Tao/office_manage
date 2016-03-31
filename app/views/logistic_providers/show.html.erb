@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @logistic_provider.name %>
+</p>
+
+<p>
+  <strong>Director:</strong>
+  <%= @logistic_provider.director %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @logistic_provider.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @logistic_provider.phone %>
+</p>
+
+<p>
+  <strong>Qq:</strong>
+  <%= @logistic_provider.qq %>
+</p>
+
+<p>
+  <strong>Delivery way:</strong>
+  <%= @logistic_provider.delivery_way %>
+</p>
+
+<p>
+  <strong>Arrival cycle:</strong>
+  <%= @logistic_provider.arrival_cycle %>
+</p>
+
+<p>
+  <strong>Serve rank:</strong>
+  <%= @logistic_provider.serve_rank %>
+</p>
+
+<p>
+  <strong>Price rank:</strong>
+  <%= @logistic_provider.price_rank %>
+</p>
+
+<p>
+  <strong>Secure rank:</strong>
+  <%= @logistic_provider.secure_rank %>
+</p>
+
+<p>
+  <strong>Credit rank:</strong>
+  <%= @logistic_provider.credit_rank %>
+</p>
+
+<%= link_to 'Edit', edit_logistic_provider_path(@logistic_provider) %> |
+<%= link_to 'Back', logistic_providers_path %>

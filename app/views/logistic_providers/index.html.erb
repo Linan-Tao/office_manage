@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Logistic Providers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Director</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Qq</th>
+      <th>Delivery way</th>
+      <th>Arrival cycle</th>
+      <th>Serve rank</th>
+      <th>Price rank</th>
+      <th>Secure rank</th>
+      <th>Credit rank</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logistic_providers.each do |logistic_provider| %>
+      <tr>
+        <td><%= logistic_provider.name %></td>
+        <td><%= logistic_provider.director %></td>
+        <td><%= logistic_provider.address %></td>
+        <td><%= logistic_provider.phone %></td>
+        <td><%= logistic_provider.qq %></td>
+        <td><%= logistic_provider.delivery_way %></td>
+        <td><%= logistic_provider.arrival_cycle %></td>
+        <td><%= logistic_provider.serve_rank %></td>
+        <td><%= logistic_provider.price_rank %></td>
+        <td><%= logistic_provider.secure_rank %></td>
+        <td><%= logistic_provider.credit_rank %></td>
+        <td><%= link_to 'Show', logistic_provider %></td>
+        <td><%= link_to 'Edit', edit_logistic_provider_path(logistic_provider) %></td>
+        <td><%= link_to 'Destroy', logistic_provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Logistic provider', new_logistic_provider_path %>

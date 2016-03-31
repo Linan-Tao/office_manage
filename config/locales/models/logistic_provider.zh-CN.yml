@@ -1,0 +1,22 @@
+---
+zh-CN:
+  active_record:
+    models:
+      logistic_provider: Logistic provider
+    attributes:
+      logistic_provider:
+        name: Name
+        director: Director
+        address: Address
+        phone: Phone
+        qq: Qq
+        delivery_way: Delivery way
+        arrival_cycle: Arrival cycle
+        serve_rank: Serve rank
+        price_rank: Price rank
+        secure_rank: Secure rank
+        credit_rank: Credit rank
+    errors:
+      logistic_provider: 
+  helpers:
+    logistic_provider: 

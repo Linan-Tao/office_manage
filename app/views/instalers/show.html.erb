@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @instaler.name %>
+</p>
+
+<p>
+  <strong>Install type:</strong>
+  <%= @instaler.install_type %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @instaler.phone %>
+</p>
+
+<p>
+  <strong>Tech rank:</strong>
+  <%= @instaler.tech_rank %>
+</p>
+
+<p>
+  <strong>Serve rank:</strong>
+  <%= @instaler.serve_rank %>
+</p>
+
+<p>
+  <strong>Price rank:</strong>
+  <%= @instaler.price_rank %>
+</p>
+
+<p>
+  <strong>Secure rank:</strong>
+  <%= @instaler.secure_rank %>
+</p>
+
+<p>
+  <strong>Credit rank:</strong>
+  <%= @instaler.credit_rank %>
+</p>
+
+<%= link_to 'Edit', edit_instaler_path(@instaler) %> |
+<%= link_to 'Back', instalers_path %>

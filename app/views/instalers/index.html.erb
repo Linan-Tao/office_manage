@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Instalers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Install type</th>
+      <th>Phone</th>
+      <th>Tech rank</th>
+      <th>Serve rank</th>
+      <th>Price rank</th>
+      <th>Secure rank</th>
+      <th>Credit rank</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instalers.each do |instaler| %>
+      <tr>
+        <td><%= instaler.name %></td>
+        <td><%= instaler.install_type %></td>
+        <td><%= instaler.phone %></td>
+        <td><%= instaler.tech_rank %></td>
+        <td><%= instaler.serve_rank %></td>
+        <td><%= instaler.price_rank %></td>
+        <td><%= instaler.secure_rank %></td>
+        <td><%= instaler.credit_rank %></td>
+        <td><%= link_to 'Show', instaler %></td>
+        <td><%= link_to 'Edit', edit_instaler_path(instaler) %></td>
+        <td><%= link_to 'Destroy', instaler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Instaler', new_instaler_path %>

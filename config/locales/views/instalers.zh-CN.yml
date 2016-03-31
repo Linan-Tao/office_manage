@@ -1,0 +1,20 @@
+---
+zh-CN:
+  instalers:
+    index:
+      title: Instalers
+    show:
+      title: Instaler
+    edit:
+      title: Editing Instaler
+    new:
+      title: New Instaler
+  flash:
+    instalers:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
