@@ -1,0 +1,18 @@
+<%= simple_form_for(@driver) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :car_type %>
+    <%= f.input :car_code %>
+    <%= f.input :phone %>
+    <%= f.input :serve_rank %>
+    <%= f.input :price_rank %>
+    <%= f.input :secure_rank %>
+    <%= f.input :credit_rank %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

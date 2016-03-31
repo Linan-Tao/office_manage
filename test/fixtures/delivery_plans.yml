@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_id: 
+  produce_task_ids: MyString
+  number: 1
+  fin_type: 1
+  agency_fund: 9.99
+  delivery_date: 2016-03-31 15:46:26
+  specify_logistic: 1
+  logistic_provider_id: 
+  logistic_code: MyString
+
+two:
+  order_id: 
+  produce_task_ids: MyString
+  number: 1
+  fin_type: 1
+  agency_fund: 9.99
+  delivery_date: 2016-03-31 15:46:26
+  specify_logistic: 1
+  logistic_provider_id: 
+  logistic_code: MyString

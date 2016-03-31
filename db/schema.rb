@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328113914) do
+ActiveRecord::Schema.define(version: 20160331074626) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -43,17 +43,6 @@ ActiveRecord::Schema.define(version: 20160328113914) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "assets", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.decimal  "total",                    precision: 8, scale: 2
-    t.decimal  "remain_value",             precision: 8, scale: 2
-    t.datetime "buy_date"
-    t.string   "note",         limit: 255
-    t.integer  "number",       limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-  end
-
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
     t.string  "name",        limit: 255
@@ -69,6 +58,23 @@ ActiveRecord::Schema.define(version: 20160328113914) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "delivery_plans", force: :cascade do |t|
+    t.integer  "order_id",             limit: 4
+    t.string   "produce_task_ids",     limit: 255
+    t.integer  "number",               limit: 4
+    t.integer  "fin_type",             limit: 4
+    t.decimal  "agency_fund",                      precision: 8, scale: 2
+    t.datetime "delivery_date"
+    t.integer  "specify_logistic",     limit: 4
+    t.integer  "logistic_provider_id", limit: 4
+    t.string   "logistic_code",        limit: 255
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+  end
+
+  add_index "delivery_plans", ["logistic_provider_id"], name: "index_delivery_plans_on_logistic_provider_id", using: :btree
+  add_index "delivery_plans", ["order_id"], name: "index_delivery_plans_on_order_id", using: :btree
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -88,6 +94,19 @@ ActiveRecord::Schema.define(version: 20160328113914) do
 
   add_index "districts", ["city_id", "name"], name: "index_districts_on_city_id_and_name", unique: true, using: :btree
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
+
+  create_table "drivers", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "car_type",    limit: 4
+    t.string   "car_code",    limit: 255
+    t.string   "phone",       limit: 255
+    t.integer  "serve_rank",  limit: 4
+    t.integer  "price_rank",  limit: 4
+    t.integer  "secure_rank", limit: 4
+    t.integer  "credit_rank", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "estates", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -123,6 +142,19 @@ ActiveRecord::Schema.define(version: 20160328113914) do
 
   add_index "flow_bills", ["application_fund_id"], name: "index_flow_bills_on_application_fund_id", using: :btree
 
+  create_table "instalers", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.integer  "install_type", limit: 4
+    t.string   "phone",        limit: 255
+    t.integer  "tech_rank",    limit: 4
+    t.integer  "serve_rank",   limit: 4
+    t.integer  "price_rank",   limit: 4
+    t.integer  "secure_rank",  limit: 4
+    t.integer  "credit_rank",  limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "item_storages", force: :cascade do |t|
     t.datetime "storage_date"
     t.string   "receiver",     limit: 255
@@ -138,6 +170,22 @@ ActiveRecord::Schema.define(version: 20160328113914) do
 
   add_index "item_storages", ["purchase_id"], name: "index_item_storages_on_purchase_id", using: :btree
   add_index "item_storages", ["supplier_id"], name: "index_item_storages_on_supplier_id", using: :btree
+
+  create_table "logistic_providers", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "director",      limit: 255
+    t.string   "address",       limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "qq",            limit: 255
+    t.string   "delivery_way",  limit: 255
+    t.integer  "arrival_cycle", limit: 4
+    t.integer  "serve_rank",    limit: 4
+    t.integer  "price_rank",    limit: 4
+    t.integer  "secure_rank",   limit: 4
+    t.integer  "credit_rank",   limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "material_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -202,7 +250,7 @@ ActiveRecord::Schema.define(version: 20160328113914) do
     t.string   "item_name",  limit: 255
     t.integer  "item_id",    limit: 4
     t.string   "item_type",  limit: 255
-    t.decimal  "number",                 precision: 8, scale: 2
+    t.decimal  "number",                 precision: 9, scale: 6
     t.decimal  "price",                  precision: 8, scale: 2
     t.decimal  "total",                  precision: 8, scale: 2
     t.string   "category",   limit: 255
@@ -287,12 +335,17 @@ ActiveRecord::Schema.define(version: 20160328113914) do
     t.string   "customer_code", limit: 255
     t.integer  "agent_id",      limit: 4
     t.string   "server_code",   limit: 255
-    t.integer  "type",          limit: 4
+    t.integer  "order_type",    limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
+    t.datetime "offer_time"
+    t.datetime "check_time"
+    t.datetime "verify_time"
+    t.datetime "require_time"
+    t.datetime "send_time"
+    t.string   "employee",      limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.string   "employee",      limit: 255
   end
 
   add_index "orders", ["work_id"], name: "index_orders_on_work_id", using: :btree
@@ -343,13 +396,13 @@ ActiveRecord::Schema.define(version: 20160328113914) do
     t.string   "sequence",     limit: 255
     t.decimal  "area",                     precision: 9, scale: 6
     t.integer  "mix_task_id",  limit: 4
-    t.integer  "mix_status",   limit: 4
+    t.integer  "mix_status",   limit: 4,                           default: 0
     t.decimal  "availability",             precision: 8, scale: 2
     t.integer  "work_id",      limit: 4
     t.integer  "state",        limit: 4
     t.integer  "number",       limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
   end
 
   add_index "produce_tasks", ["item_id"], name: "index_produce_tasks_on_item_id", using: :btree
@@ -392,11 +445,12 @@ ActiveRecord::Schema.define(version: 20160328113914) do
     t.decimal  "actual_pay",                  precision: 8, scale: 2
     t.decimal  "discount",                    precision: 8, scale: 2
     t.integer  "pay_type",        limit: 4
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "pay_time"
     t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
     t.string   "checker",         limit: 255
-    t.integer  "check_status",    limit: 4
+    t.integer  "check_status",    limit: 4,                           default: 0
     t.datetime "check_date"
     t.integer  "supplier_id",     limit: 4
     t.integer  "produce_task_id", limit: 4
@@ -497,6 +551,8 @@ ActiveRecord::Schema.define(version: 20160328113914) do
   end
 
   add_foreign_key "cities", "provinces"
+  add_foreign_key "delivery_plans", "logistic_providers"
+  add_foreign_key "delivery_plans", "orders"
   add_foreign_key "districts", "cities"
   add_foreign_key "flow_bills", "application_funds"
   add_foreign_key "item_storages", "purchases"

@@ -4,10 +4,29 @@ class Order < ActiveRecord::Base
   has_many :order_units, dependent: :destroy
   has_many :order_parts, dependent: :destroy
   has_many :order_bills, dependent: :destroy
-  # has_many :produce_tasks
   has_many :offers, dependent: :destroy
   accepts_nested_attributes_for :offers, :order_units, :order_parts, :allow_destroy => true
   belongs_to :work
+  belongs_to :agent
+
+  enum order_type: {
+    normal: 0,      #正常单
+    urgent: 1,       # 加急单
+    patch: 2,    # 补单
+  }
+  def order_type_name
+    case order_type
+      when 'normal' then '正常单'
+      when 'urgent' then '加急单'
+      when "patch" then '补单'
+    else
+      "未知状态"
+    end
+  end
+
+  def self.order_type
+    [['正常单', 'normal'], ["加急单", "urgent"], ["补单","patch"]]
+  end
 
   # 查询所有已审核的订单
   scope :checked, -> { where("work_id = ?", Work.find_by(symbol_name: "checked").id) }

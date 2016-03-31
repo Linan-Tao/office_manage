@@ -72,6 +72,19 @@
             </li>
             <li class='<%="#{'current' if controller_name == 'purchases'}" %>'><a href="/purchases"><i class="fa fa-th"></i> 采购</a></li>
             <li class='<%="#{'current' if controller_name == 'produces'}" %>'><a href="/produces"><i class="fa fa-th"></i> 生产单</a></li>
+            <li class="has_submenu <%= 'current open' if ['delivery_plans', 'logistic_providers', 'drivers', 'instalers'].include?(controller_name) %>">
+                 <a href="#">
+                    <i class="fa fa-sitemap"></i> 发货／物流
+                    <span class="caret pull-right"></span>
+                 </a>
+                 <!-- Sub menu -->
+                 <ul>
+                    <li class='<%="#{'active' if controller_name == 'delivery_plans'}" %>'><a href="/delivery_plans">发货计划单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'logistic_providers' }" %>'><a href="/logistic_providers">物流商</a></li>
+                    <li class='<%="#{'active' if controller_name == 'drivers'}" %>'><a href="/drivers">司机</a></li>
+                    <li class='<%="#{'active' if controller_name == 'instalers'}" %>'><a href="/instalers">安装工人</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

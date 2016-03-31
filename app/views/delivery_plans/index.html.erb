@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Delivery Plans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Produce task ids</th>
+      <th>Number</th>
+      <th>Fin type</th>
+      <th>Agency fund</th>
+      <th>Delivery date</th>
+      <th>Specify logistic</th>
+      <th>Logistic provider</th>
+      <th>Logistic code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @delivery_plans.each do |delivery_plan| %>
+      <tr>
+        <td><%= delivery_plan.order %></td>
+        <td><%= delivery_plan.produce_task_ids %></td>
+        <td><%= delivery_plan.number %></td>
+        <td><%= delivery_plan.fin_type %></td>
+        <td><%= delivery_plan.agency_fund %></td>
+        <td><%= delivery_plan.delivery_date %></td>
+        <td><%= delivery_plan.specify_logistic %></td>
+        <td><%= delivery_plan.logistic_provider %></td>
+        <td><%= delivery_plan.logistic_code %></td>
+        <td><%= link_to 'Show', delivery_plan %></td>
+        <td><%= link_to 'Edit', edit_delivery_plan_path(delivery_plan) %></td>
+        <td><%= link_to 'Destroy', delivery_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Delivery plan', new_delivery_plan_path %>

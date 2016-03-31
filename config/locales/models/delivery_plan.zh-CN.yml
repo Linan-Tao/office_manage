@@ -1,0 +1,20 @@
+---
+zh-CN:
+  active_record:
+    models:
+      delivery_plan: Delivery plan
+    attributes:
+      delivery_plan:
+        order: Order
+        produce_task_ids: Produce task ids
+        number: Number
+        fin_type: Fin type
+        agency_fund: Agency fund
+        delivery_date: Delivery date
+        specify_logistic: Specify logistic
+        logistic_provider: Logistic provider
+        logistic_code: Logistic code
+    errors:
+      delivery_plan: 
+  helpers:
+    delivery_plan: 

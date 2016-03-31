@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @delivery_plan.order %>
+</p>
+
+<p>
+  <strong>Produce task ids:</strong>
+  <%= @delivery_plan.produce_task_ids %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @delivery_plan.number %>
+</p>
+
+<p>
+  <strong>Fin type:</strong>
+  <%= @delivery_plan.fin_type %>
+</p>
+
+<p>
+  <strong>Agency fund:</strong>
+  <%= @delivery_plan.agency_fund %>
+</p>
+
+<p>
+  <strong>Delivery date:</strong>
+  <%= @delivery_plan.delivery_date %>
+</p>
+
+<p>
+  <strong>Specify logistic:</strong>
+  <%= @delivery_plan.specify_logistic %>
+</p>
+
+<p>
+  <strong>Logistic provider:</strong>
+  <%= @delivery_plan.logistic_provider %>
+</p>
+
+<p>
+  <strong>Logistic code:</strong>
+  <%= @delivery_plan.logistic_code %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_plan_path(@delivery_plan) %> |
+<%= link_to 'Back', delivery_plans_path %>

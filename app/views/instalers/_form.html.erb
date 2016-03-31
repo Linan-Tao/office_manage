@@ -1,0 +1,18 @@
+<%= simple_form_for(@instaler) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :install_type %>
+    <%= f.input :phone %>
+    <%= f.input :tech_rank %>
+    <%= f.input :serve_rank %>
+    <%= f.input :price_rank %>
+    <%= f.input :secure_rank %>
+    <%= f.input :credit_rank %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
