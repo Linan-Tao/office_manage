@@ -1,19 +1,19 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       driver: Driver
     attributes:
       driver:
-        name: Name
-        car_type: Car type
-        car_code: Car code
-        phone: Phone
-        serve_rank: Serve rank
-        price_rank: Price rank
-        secure_rank: Secure rank
-        credit_rank: Credit rank
+        name: 姓名
+        car_type: 车型
+        car_code: 车牌号
+        phone: 电话
+        serve_rank: 服务级别
+        price_rank: 价格级别
+        secure_rank: 安全级别
+        credit_rank: 信用级别
     errors:
-      driver: 
+      driver:
   helpers:
-    driver: 
+    driver:

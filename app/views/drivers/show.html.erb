@@ -1,44 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @driver.name %>
-</p>
-
-<p>
-  <strong>Car type:</strong>
-  <%= @driver.car_type %>
-</p>
-
-<p>
-  <strong>Car code:</strong>
-  <%= @driver.car_code %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @driver.phone %>
-</p>
-
-<p>
-  <strong>Serve rank:</strong>
-  <%= @driver.serve_rank %>
-</p>
-
-<p>
-  <strong>Price rank:</strong>
-  <%= @driver.price_rank %>
-</p>
-
-<p>
-  <strong>Secure rank:</strong>
-  <%= @driver.secure_rank %>
-</p>
-
-<p>
-  <strong>Credit rank:</strong>
-  <%= @driver.credit_rank %>
-</p>
-
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
-<%= link_to 'Back', drivers_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  司机 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',drivers_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">姓名</th>
+          <td class="col-xs-4"><%= @driver.name %></td>
+          <th class="col-xs-2 text-center info">电话</th>
+          <td class="col-xs-4"><%= @driver.phone %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">车型</th>
+          <td class="col-xs-4"><%= @driver.car_type %></td>
+          <th class="col-xs-2 text-center info">车牌号</th>
+          <td class="col-xs-4"><%= @driver.car_code %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">服务级别</th>
+          <td class="col-xs-4"><%= @driver.serve_rank %></td>
+          <th class="col-xs-2 text-center info">价格级别</th>
+          <td class="col-xs-4"><%= @driver.price_rank %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">安全级别</th>
+          <td class="col-xs-4"><%= @driver.secure_rank %></td>
+          <th class="col-xs-2 text-center info">信用级别</th>
+          <td class="col-xs-4"><%= @driver.credit_rank %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

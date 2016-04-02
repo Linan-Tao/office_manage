@@ -1,49 +1,44 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Order:</strong>
-  <%= @delivery_plan.order %>
-</p>
-
-<p>
-  <strong>Produce task ids:</strong>
-  <%= @delivery_plan.produce_task_ids %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @delivery_plan.number %>
-</p>
-
-<p>
-  <strong>Fin type:</strong>
-  <%= @delivery_plan.fin_type %>
-</p>
-
-<p>
-  <strong>Agency fund:</strong>
-  <%= @delivery_plan.agency_fund %>
-</p>
-
-<p>
-  <strong>Delivery date:</strong>
-  <%= @delivery_plan.delivery_date %>
-</p>
-
-<p>
-  <strong>Specify logistic:</strong>
-  <%= @delivery_plan.specify_logistic %>
-</p>
-
-<p>
-  <strong>Logistic provider:</strong>
-  <%= @delivery_plan.logistic_provider %>
-</p>
-
-<p>
-  <strong>Logistic code:</strong>
-  <%= @delivery_plan.logistic_code %>
-</p>
-
-<%= link_to 'Edit', edit_delivery_plan_path(@delivery_plan) %> |
-<%= link_to 'Back', delivery_plans_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  出货计划 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',delivery_plans_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">订单号</th>
+          <td class="col-xs-4"><%= @delivery_plan.order.order_code %></td>
+           <th class="col-xs-2 text-center info">生产单号</th>
+          <td class="col-xs-4"><%= @delivery_plan.produce_task_ids %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">总件数</th>
+          <td class="col-xs-4"><%= @delivery_plan.number %></td>
+           <th class="col-xs-2 text-center info">审核状态</th>
+          <td class="col-xs-4"><%= @delivery_plan.fin_type %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">代收货款</th>
+          <td class="col-xs-4"><%= @delivery_plan.agency_fund %></td>
+          <th class="col-xs-2 text-center info">发货日期</th>
+          <td class="col-xs-4"><%= @delivery_plan.delivery_date %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">指定物流</th>
+          <td class="col-xs-4"><%= @delivery_plan.specify_logistic %></td>
+          <th class="col-xs-2 text-center info">实际物流</th>
+          <td class="col-xs-4"><%= @delivery_plan.logistic_provider.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">反馈单号</th>
+          <td class="col-xs-4"><%= @delivery_plan.logistic_code %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

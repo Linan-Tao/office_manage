@@ -1,8 +1,8 @@
-<%= simple_form_for(@delivery_plan) do |f| %>
+<%= simple_form_for(@delivery_plan,url: @delivery_plan.new_record? ? delivery_plans_path : delivery_plan_path(@delivery_plan)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :order %>
+    <%= f.association :order, as: :select%>
     <%= f.input :produce_task_ids %>
     <%= f.input :number %>
     <%= f.input :fin_type %>
@@ -14,6 +14,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
   </div>
 <% end %>

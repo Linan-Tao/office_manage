@@ -3,10 +3,11 @@ class CreateLogisticProviders < ActiveRecord::Migration
   def change
     create_table :logistic_providers do |t|
       t.string :name      # 物流商
-      t.string :director      # 负责任
-      t.string :address      # 地址
       t.string :phone      # 电话
+      t.string :address      # 地址
       t.string :qq      # qq
+      t.string :director      # 负责人
+      t.string :director_phone # 负责人电话
       t.string :delivery_way      # 发货方式
       t.integer :arrival_cycle      # 到货周期
       t.integer :serve_rank      # 服务级别
