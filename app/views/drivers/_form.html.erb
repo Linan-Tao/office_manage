@@ -1,4 +1,4 @@
-<%= simple_form_for(@driver) do |f| %>
+<%=simple_form_for(@driver,url: @driver.new_record? ? drivers_path : driver_path(@driver)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -13,6 +13,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
   </div>
 <% end %>

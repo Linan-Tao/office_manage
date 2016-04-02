@@ -1,41 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Drivers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Car type</th>
-      <th>Car code</th>
-      <th>Phone</th>
-      <th>Serve rank</th>
-      <th>Price rank</th>
-      <th>Secure rank</th>
-      <th>Credit rank</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @drivers.each do |driver| %>
-      <tr>
-        <td><%= driver.name %></td>
-        <td><%= driver.car_type %></td>
-        <td><%= driver.car_code %></td>
-        <td><%= driver.phone %></td>
-        <td><%= driver.serve_rank %></td>
-        <td><%= driver.price_rank %></td>
-        <td><%= driver.secure_rank %></td>
-        <td><%= driver.credit_rank %></td>
-        <td><%= link_to 'Show', driver %></td>
-        <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
-        <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Driver', new_driver_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 司机 <small>列表</small>
+  <span class="pull-right">
+    <%= link_to '添加', new_driver_path, class: 'btn btn-lg btn-info' %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered text-center">
+      <thead>
+        <tr class="info">
+          <th class="text-center">姓名</th>
+          <th class="text-center">电话</th>
+          <th class="text-center">车型</th>
+          <th class="text-center">车牌号</th>
+          <th class="text-center">服务级别</th>
+          <th class="text-center">价格级别</th>
+          <th class="text-center">安全级别</th>
+          <th class="text-center">信用级别</th>
+          <th class="text-center" colspan="3">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @drivers.each do |driver| %>
+        <tr>
+          <td><%= driver.name %></td>
+          <td><%= driver.phone %></td>
+          <td><%= driver.car_type %></td>
+          <td><%= driver.car_code %></td>
+          <td><%= driver.serve_rank %></td>
+          <td><%= driver.price_rank %></td>
+          <td><%= driver.secure_rank %></td>
+          <td><%= driver.credit_rank %></td>
+          <td><%= link_to driver, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
+            <%= link_to edit_driver_path(driver), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
+            <%= link_to driver, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

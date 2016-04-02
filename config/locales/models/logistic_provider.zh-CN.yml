@@ -1,22 +1,23 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       logistic_provider: Logistic provider
     attributes:
       logistic_provider:
-        name: Name
-        director: Director
-        address: Address
-        phone: Phone
-        qq: Qq
-        delivery_way: Delivery way
-        arrival_cycle: Arrival cycle
-        serve_rank: Serve rank
-        price_rank: Price rank
-        secure_rank: Secure rank
-        credit_rank: Credit rank
+        name: 物流商
+        phone: 电话
+        address: 地址
+        qq: QQ
+        director: 负责人
+        director_phone: 负责人电话
+        delivery_way: 发货方式
+        arrival_cycle: 到货周期
+        serve_rank: 服务级别
+        price_rank: 价格级别
+        secure_rank: 安全级别
+        credit_rank: 信用级别
     errors:
-      logistic_provider: 
+      logistic_provider:
   helpers:
-    logistic_provider: 
+    logistic_provider:

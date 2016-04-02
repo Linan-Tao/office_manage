@@ -1,20 +1,20 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       delivery_plan: Delivery plan
     attributes:
       delivery_plan:
-        order: Order
-        produce_task_ids: Produce task ids
-        number: Number
-        fin_type: Fin type
-        agency_fund: Agency fund
-        delivery_date: Delivery date
-        specify_logistic: Specify logistic
-        logistic_provider: Logistic provider
-        logistic_code: Logistic code
+        order: 订单号
+        produce_task_ids: 生产单号
+        number: 总件数
+        fin_type: 审核状态
+        agency_fund: 代收货款
+        delivery_date: 发货日期
+        specify_logistic: 指定物流
+        logistic_provider: 实际物流
+        logistic_code: 反馈单号
     errors:
-      delivery_plan: 
+      delivery_plan:
   helpers:
-    delivery_plan: 
+    delivery_plan:

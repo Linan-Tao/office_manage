@@ -1,43 +1,47 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Delivery Plans</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Order</th>
-      <th>Produce task ids</th>
-      <th>Number</th>
-      <th>Fin type</th>
-      <th>Agency fund</th>
-      <th>Delivery date</th>
-      <th>Specify logistic</th>
-      <th>Logistic provider</th>
-      <th>Logistic code</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @delivery_plans.each do |delivery_plan| %>
-      <tr>
-        <td><%= delivery_plan.order %></td>
-        <td><%= delivery_plan.produce_task_ids %></td>
-        <td><%= delivery_plan.number %></td>
-        <td><%= delivery_plan.fin_type %></td>
-        <td><%= delivery_plan.agency_fund %></td>
-        <td><%= delivery_plan.delivery_date %></td>
-        <td><%= delivery_plan.specify_logistic %></td>
-        <td><%= delivery_plan.logistic_provider %></td>
-        <td><%= delivery_plan.logistic_code %></td>
-        <td><%= link_to 'Show', delivery_plan %></td>
-        <td><%= link_to 'Edit', edit_delivery_plan_path(delivery_plan) %></td>
-        <td><%= link_to 'Destroy', delivery_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Delivery plan', new_delivery_plan_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 出货计划 <small>列表</small>
+  <span class="pull-right">
+    <%= link_to '添加', new_delivery_plan_path, class: 'btn btn-lg btn-info' %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered text-center">
+      <thead>
+        <tr class="info">
+          <th class="text-center">订单号</th>
+          <th class="text-center">生产单号</th>
+          <th class="text-center">总件数</th>
+          <th class="text-center">审核状态</th>
+          <th class="text-center">代收货款</th>
+          <th class="text-center">发货日期</th>
+          <th class="text-center">指定物流</th>
+          <th class="text-center">实际物流</th>
+          <th class="text-center">反馈单号</th>
+          <th class="text-center" colspan="3">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @delivery_plans.each do |delivery_plan| %>
+        <tr>
+          <td><%= delivery_plan.order.order_code %></td>
+          <td><%= delivery_plan.produce_task_ids %></td>
+          <td><%= delivery_plan.number %></td>
+          <td><%= delivery_plan.fin_type %></td>
+          <td><%= delivery_plan.agency_fund %></td>
+          <td><%= delivery_plan.delivery_date %></td>
+          <td><%= delivery_plan.specify_logistic %></td>
+          <td><%= delivery_plan.logistic_provider.name %></td>
+          <td><%= delivery_plan.logistic_code %></td>
+          <td><%= link_to delivery_plan, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
+            <%= link_to edit_delivery_plan_path(delivery_plan), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
+            <%= link_to delivery_plan, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

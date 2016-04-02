@@ -1,44 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @instaler.name %>
-</p>
-
-<p>
-  <strong>Install type:</strong>
-  <%= @instaler.install_type %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @instaler.phone %>
-</p>
-
-<p>
-  <strong>Tech rank:</strong>
-  <%= @instaler.tech_rank %>
-</p>
-
-<p>
-  <strong>Serve rank:</strong>
-  <%= @instaler.serve_rank %>
-</p>
-
-<p>
-  <strong>Price rank:</strong>
-  <%= @instaler.price_rank %>
-</p>
-
-<p>
-  <strong>Secure rank:</strong>
-  <%= @instaler.secure_rank %>
-</p>
-
-<p>
-  <strong>Credit rank:</strong>
-  <%= @instaler.credit_rank %>
-</p>
-
-<%= link_to 'Edit', edit_instaler_path(@instaler) %> |
-<%= link_to 'Back', instalers_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  安装工人 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',instalers_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">姓名</th>
+          <td class="col-xs-4"><%= @instaler.name %></td>
+           <th class="col-xs-2 text-center info">电话</th>
+          <td class="col-xs-4"><%= @instaler.phone %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">安装类型</th>
+          <td class="col-xs-4"><%= @instaler.install_type %></td>
+          <th class="col-xs-2 text-center info">技术级别</th>
+          <td class="col-xs-4"><%= @instaler.tech_rank %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">服务级别</th>
+          <td class="col-xs-4"><%= @instaler.serve_rank %></td>
+          <th class="col-xs-2 text-center info">价格级别</th>
+          <td class="col-xs-4"><%= @instaler.price_rank %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">安全级别</th>
+          <td class="col-xs-4"><%= @instaler.secure_rank %></td>
+          <th class="col-xs-2 text-center info">信用级别</th>
+          <td class="col-xs-4"><%= @instaler.credit_rank %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

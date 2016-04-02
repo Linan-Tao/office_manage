@@ -1,59 +1,52 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @logistic_provider.name %>
-</p>
-
-<p>
-  <strong>Director:</strong>
-  <%= @logistic_provider.director %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @logistic_provider.address %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @logistic_provider.phone %>
-</p>
-
-<p>
-  <strong>Qq:</strong>
-  <%= @logistic_provider.qq %>
-</p>
-
-<p>
-  <strong>Delivery way:</strong>
-  <%= @logistic_provider.delivery_way %>
-</p>
-
-<p>
-  <strong>Arrival cycle:</strong>
-  <%= @logistic_provider.arrival_cycle %>
-</p>
-
-<p>
-  <strong>Serve rank:</strong>
-  <%= @logistic_provider.serve_rank %>
-</p>
-
-<p>
-  <strong>Price rank:</strong>
-  <%= @logistic_provider.price_rank %>
-</p>
-
-<p>
-  <strong>Secure rank:</strong>
-  <%= @logistic_provider.secure_rank %>
-</p>
-
-<p>
-  <strong>Credit rank:</strong>
-  <%= @logistic_provider.credit_rank %>
-</p>
-
-<%= link_to 'Edit', edit_logistic_provider_path(@logistic_provider) %> |
-<%= link_to 'Back', logistic_providers_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  物流商 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',logistic_providers_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">物流商</th>
+          <td class="col-xs-4"><%= @logistic_provider.name %></td>
+           <th class="col-xs-2 text-center info">电话</th>
+          <td class="col-xs-4"><%= @logistic_provider.phone %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">地址</th>
+          <td class="col-xs-4"><%= @logistic_provider.address %></td>
+           <th class="col-xs-2 text-center info">QQ</th>
+          <td class="col-xs-4"><%= @logistic_provider.qq %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">负责人</th>
+          <td class="col-xs-4"><%= @logistic_provider.director %></td>
+          <th class="col-xs-2 text-center info">负责人电话</th>
+          <td class="col-xs-4"><%= @logistic_provider.director_phone %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">发货方式</th>
+          <td class="col-xs-4"><%= @logistic_provider.delivery_way %></td>
+          <th class="col-xs-2 text-center info">到货周期</th>
+          <td class="col-xs-4"><%= @logistic_provider.arrival_cycle %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">服务级别</th>
+          <td class="col-xs-4"><%= @logistic_provider.serve_rank %></td>
+          <th class="col-xs-2 text-center info">价格级别</th>
+          <td class="col-xs-4"><%= @logistic_provider.price_rank %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">安全级别</th>
+          <td class="col-xs-4"><%= @logistic_provider.secure_rank %></td>
+          <th class="col-xs-2 text-center info">信用级别</th>
+          <td class="col-xs-4"><%= @logistic_provider.credit_rank %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

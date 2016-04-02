@@ -1,19 +1,19 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       instaler: Instaler
     attributes:
       instaler:
-        name: Name
-        install_type: Install type
-        phone: Phone
-        tech_rank: Tech rank
-        serve_rank: Serve rank
-        price_rank: Price rank
-        secure_rank: Secure rank
-        credit_rank: Credit rank
+        name: 姓名
+        install_type: 安装类型
+        phone: 电话
+        tech_rank: 技术级别
+        serve_rank: 服务级别
+        price_rank: 价格级别
+        secure_rank: 安全级别
+        credit_rank: 信用级别
     errors:
-      instaler: 
+      instaler:
   helpers:
-    instaler: 
+    instaler:

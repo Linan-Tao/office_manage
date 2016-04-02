@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20160331074626) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "assets", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.decimal  "total",                    precision: 8, scale: 2
+    t.decimal  "remain_value",             precision: 8, scale: 2
+    t.datetime "buy_date"
+    t.string   "note",         limit: 255
+    t.integer  "number",       limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
     t.string  "name",        limit: 255
@@ -338,14 +349,14 @@ ActiveRecord::Schema.define(version: 20160331074626) do
     t.integer  "order_type",    limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "employee",      limit: 255
     t.datetime "offer_time"
     t.datetime "check_time"
     t.datetime "verify_time"
     t.datetime "require_time"
     t.datetime "send_time"
-    t.string   "employee",      limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
   end
 
   add_index "orders", ["work_id"], name: "index_orders_on_work_id", using: :btree
@@ -445,12 +456,12 @@ ActiveRecord::Schema.define(version: 20160331074626) do
     t.decimal  "actual_pay",                  precision: 8, scale: 2
     t.decimal  "discount",                    precision: 8, scale: 2
     t.integer  "pay_type",        limit: 4
-    t.datetime "pay_time"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "user_id",         limit: 4
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "pay_time"
     t.string   "checker",         limit: 255
-    t.integer  "check_status",    limit: 4,                           default: 0
+    t.integer  "check_status",    limit: 4
     t.datetime "check_date"
     t.integer  "supplier_id",     limit: 4
     t.integer  "produce_task_id", limit: 4

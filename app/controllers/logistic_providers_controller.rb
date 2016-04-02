@@ -69,6 +69,7 @@ class LogisticProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def logistic_provider_params
-      params.require(:logistic_provider).permit(:name, :director, :address, :phone, :qq, :delivery_way, :arrival_cycle, :serve_rank, :price_rank, :secure_rank, :credit_rank)
+      params.require(:logistic_provider).permit(:name, :phone, :address, :qq, :director, :director_phone, :delivery_way,
+                                                                             :arrival_cycle, :serve_rank, :price_rank, :secure_rank, :credit_rank)
     end
 end
