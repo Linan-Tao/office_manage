@@ -45,7 +45,7 @@
           <td><%= order_bill.total %></td>
           <td><%= order_bill.paid %></td>
           <td><%= order_bill.left %></td>
-          <td><%= order_bill.pay_date %></td>
+          <td><%= order_bill.pay_date.localtime.to_date %></td>
           <td><%= order_bill.pay_account %></td>
           <td><%= order_bill.directive %></td>
           <td><%= order_bill.user.name %></td>

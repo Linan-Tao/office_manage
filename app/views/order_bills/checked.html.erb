@@ -22,7 +22,7 @@
           <th class="text-center">应收款</th>
           <th class="text-center">实收款</th>
           <th class="text-center">报价时间</th>
-          <th class="text-center">账单回传时间</th>
+          <th class="text-center">审核时间</th>
           <th class="text-center">客户单号</th>
           <th class="text-center" colspan="3">操作</th>
         </tr>
@@ -30,11 +30,11 @@
       <tbody>
         <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.order_code, order_path(order) %></td>
+          <td><%= link_to order.order_code, order_offers_path(order) %></td>
           <td><%= order.offers.map(&:total).sum %></td>
           <td><%= order.order_bills.map(&:paid).sum %></td>
-          <td><%= order.try(:offer_time) %></td>
-          <td><%= order.try(:verify_time) %></td>
+          <td><%= order.try(:offer_time).localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= order.try(:check_time).localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= order.customer_code %></td>
           <td>
             <%= link_to '添加到款', new_order_order_bill_path(order), class: 'btn btn-xs btn-info'%>

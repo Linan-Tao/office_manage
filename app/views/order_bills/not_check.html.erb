@@ -30,11 +30,11 @@
       <tbody>
         <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.order_code, order_path(order) %></td>
+          <td><%= link_to order.order_code, order_offers_path(order) %></td>
           <td><%= order.offers.map(&:total).sum %></td>
           <td><%= order.order_bills.map(&:paid).sum %></td>
-          <td><%= order.try(:offer_time) %></td>
-          <td><%= order.try(:verify_time) %></td>
+          <td><%= order.try(:offer_time).localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= order.try(:verify_time).localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= order.customer_code %></td>
           <td>
             <%= link_to '添加到款', new_order_order_bill_path(order), class: 'btn btn-xs btn-info'%>
