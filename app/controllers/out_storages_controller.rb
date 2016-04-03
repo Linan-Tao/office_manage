@@ -5,6 +5,8 @@ class OutStoragesController < ApplicationController
   # GET /out_storages.json
   def index
     @out_storages = OutStorage.all
+    # 显示已到货的生产任务
+    @produce_tasks = ProduceTask.where(work_id: Work.find_by(symbol_name: "arrived"))
   end
 
   # GET /out_storages/1
@@ -15,6 +17,11 @@ class OutStoragesController < ApplicationController
   # GET /out_storages/new
   def new
     @out_storage = OutStorage.new
+    @produce_task = ProduceTask.find(params[:produce_task_id])
+    @out_storage.produce_task_id = @produce_task.id
+    @out_storage.item_id = @produce_task.item_id
+    @out_storage.item_type = @produce_task.item_type
+    @out_storage.number = @produce_task.number
   end
 
   # GET /out_storages/1/edit
@@ -25,7 +32,11 @@ class OutStoragesController < ApplicationController
   # POST /out_storages.json
   def create
     @out_storage = OutStorage.new(out_storage_params)
-
+    @produce_task = ProduceTask.find(params[:out_storage][:produce_task_id])
+    @out_storage.produce_task_id = @produce_task.id
+    @out_storage.item_id = @produce_task.item_id
+    @out_storage.item_type = @produce_task.item_type
+    @out_storage.number = @produce_task.number
     respond_to do |format|
       if @out_storage.save
         format.html { redirect_to @out_storage, notice: 'Out storage was successfully created.' }

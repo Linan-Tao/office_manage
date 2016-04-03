@@ -7,11 +7,10 @@
       <label class="string optional control-label" for="user_id">领料人</label><br/>
       <input type="hidden" id="remoteOutUser" name='out_storage[:out_user]' data-id="<%=@out_storage.out_user %>" data-name="<%=@out_storage.out_user if @out_storage.out_user.present? %>"/>
     </div>
-  <%= f.association :produce_task, label_method: :id, value_method: :id, class: 'form-control' %>
-  <%= f.input :item_id %>
-  <%= f.input :item_type %>
-  <%= f.input :number %>
-  <%= f.association :user %>
+  <%= f.input :produce_task_id, readonly: true %>
+  <%= f.input :item_name, readonly: true %>
+  <%= f.input :item_category, readonly: true %>
+  <%= f.input :number, readonly: true %>
 </div>
 <div class="form-actions">
   <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>

@@ -32,6 +32,8 @@ class ProduceTask < ActiveRecord::Base
     if available_number >= self.number
       self.item.applied_number = self.item.applied_number.to_i + self.number.to_i
       self.item.save!
+      self.work_id = Work.find_by(symbol_name: "arrived").id
+      self.save!
     else
       purchase_number = self.number - available_number
       self.item.applied_number = self.item.applied_number.to_i + available_number

@@ -5,6 +5,8 @@ class ItemStoragesController < ApplicationController
   # GET /item_storages.json
   def index
     @item_storages = ItemStorage.all
+    # 显示还没有到货完全的采购单号
+    @purchases = Purchase.where(check_status: Purchase.check_statuses[:checked]).where("number > arrival_number")
   end
 
   # GET /item_storages/1
@@ -15,6 +17,11 @@ class ItemStoragesController < ApplicationController
   # GET /item_storages/new
   def new
     @item_storage = ItemStorage.new
+    @purchase = Purchase.find(params[:purchase_id])
+    @item_storage.purchase_id = @purchase.id
+    @item_storage.item_id = @purchase.item_id
+    @item_storage.item_type = @purchase.item_type
+    @item_storage.supplier_id = @purchase.supplier_id
   end
 
   # GET /item_storages/1/edit
@@ -25,10 +32,14 @@ class ItemStoragesController < ApplicationController
   # POST /item_storages.json
   def create
     @item_storage = ItemStorage.new(item_storage_params)
-
+    @purchase = Purchase.find(params[:item_storage][:purchase_id])
+    @item_storage.purchase_id = @purchase.id
+    @item_storage.item_id = @purchase.item_id
+    @item_storage.item_type = @purchase.item_type
+    @item_storage.supplier_id = @purchase.supplier_id    
     respond_to do |format|
       if @item_storage.save
-        format.html { redirect_to @item_storage, notice: 'Item storage was successfully created.' }
+        format.html { redirect_to item_storages_url, notice: 'Item storage was successfully created.' }
         format.json { render :show, status: :created, location: @item_storage }
       else
         format.html { render :new }
@@ -42,7 +53,7 @@ class ItemStoragesController < ApplicationController
   def update
     respond_to do |format|
       if @item_storage.update(item_storage_params)
-        format.html { redirect_to @item_storage, notice: 'Item storage was successfully updated.' }
+        format.html { redirect_to item_storages_url, notice: 'Item storage was successfully updated.' }
         format.json { render :show, status: :ok, location: @item_storage }
       else
         format.html { render :edit }
@@ -69,6 +80,6 @@ class ItemStoragesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_storage_params
-      params.require(:item_storage).permit(:storage_date, :receiver, :purchase, :item_id, :item_type, :brand, :number, :supplier_id)
+      params.require(:item_storage).permit(:storage_date, :receiver, :purchase, :item_id, :item_type, :brand, :number, :supplier_id,:purchase_id, :item_option_id, :item_category_id)
     end
 end
