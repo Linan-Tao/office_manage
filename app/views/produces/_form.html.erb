@@ -1,7 +1,7 @@
 <%= simple_form_for(@produce,url: @produce.new_record? ? produces_path : produce_path(@produce)) do |f| %>
 <%= f.error_notification %>
 <div class="form-inputs">
-  <%= f.association :produce_task %>
+  <%= f.association :produce_task, label_method: :id, value_method: :id, class: 'form-control'  %>
   <%= f.input :start_time %>
   <%= f.input :end_time %>
   <%= f.association :work %>
