@@ -44,11 +44,8 @@
                 <%=link_to purchase_path(pur), class: 'btn btn-xs btn-success' do %>
                   <i class="fa fa-check"></i>
                 <%end%>
-               
-                  <%= form_for pur, {class: 'form-inline'} do |f|%>
-                    <input type="hidden" name="purchase[check_status]" value="checked">
-                    <button class="btn btn-xs btn-warning">审核通过</button>
-                  <%end%>
+                <%= link_to '审核通过', checked_purchase_path(pur), class: "btn btn-xs btn-success" %>
+                <%= link_to '审核不通过', check_failed_purchase_path(pur), class: "btn btn-xs btn-warning" %>
                 </td>
               </tr>
             <%end%>

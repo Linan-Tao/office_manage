@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <th class="col-xs-2 text-center info">领料部门</th>
-          <td class="col-xs-4"><%= @out_storage.department.name %></td>
+          <td class="col-xs-4"><%= @out_storage.department.try(:name) %></td>
           <th class="col-xs-2 text-center info">领料人</th>
           <td class="col-xs-4"><%= @out_storage.out_user %></td>
         </tr>
@@ -40,7 +40,7 @@
           <th class="col-xs-2 text-center info">数量</th>
           <td class="col-xs-4"><%= @out_storage.number %></td>
           <th class="col-xs-2 text-center info">登记人</th>
-          <td class="col-xs-4"><%= @out_storage.user.name %></td>
+          <td class="col-xs-4"><%= @out_storage.user.try(:name) %></td>
         </tr>
       </tbody>
     </table>

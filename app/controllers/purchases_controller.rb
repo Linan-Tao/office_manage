@@ -66,6 +66,9 @@ class PurchasesController < ApplicationController
 
   def checked
     @purchase.checked!
+    # 财务审核通过以后该生产单工序为采购
+    @purchase.produce_task.work_id = Work.find_by(symbol_name: "purchased").id
+    @purchase.produce_task.save!
     redirect_to purchases_url, notice: '审核通过'
   end
 
