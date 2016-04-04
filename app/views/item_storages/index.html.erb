@@ -84,7 +84,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @item_storages.each do |item_storage|%>
+        <% @item_storages.order(:purchase_id).each do |item_storage|%>
         <tr>
           <td><%= item_storage.storage_date.localtime.strftime("%Y-%m-%d") %></td>
         <td><%= item_storage.receiver %></td>

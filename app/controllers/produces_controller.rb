@@ -5,6 +5,8 @@ class ProducesController < ApplicationController
   # GET /produces.json
   def index
     @produces = Produce.all
+    # 生产任务按工序分类
+    @produce_tasks = ProduceTask.joins(:work).where("works.sequence in (9, 10, 11, 12, 13, 14)").order(:work_id).group_by(&:work_id)
   end
 
   # GET /produces/1
@@ -15,6 +17,18 @@ class ProducesController < ApplicationController
   # GET /produces/new
   def new
     @produce = Produce.new
+    @produce_task = ProduceTask.find(params[:produce_task_id])
+    work = Work.find(@produce_task.work_id)
+    next_work = work.next_seq
+    @produce.produce_task_id = @produce_task.id
+    @produce.start_time = @produce_task.updated_at
+    @produce.end_time = Time.now()
+    @produce.work_id = work.id
+    @produce.save!
+    @produce_task.work_id = next_work.id
+    @produce_task.save!
+
+    redirect_to produces_path, notice: 'Produce was successfully created.' 
   end
 
   # GET /produces/1/edit

@@ -31,7 +31,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+        format.html { redirect_to purchases_url, notice: 'Purchase was successfully created.' }
         format.json { render :show, status: :created, location: @purchase }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+        format.html { redirect_to purchases_url, notice: 'Purchase was successfully updated.' }
         format.json { render :show, status: :ok, location: @purchase }
       else
         format.html { render :edit }
@@ -69,12 +69,12 @@ class PurchasesController < ApplicationController
     # 财务审核通过以后该生产单工序为采购
     @purchase.produce_task.work_id = Work.find_by(symbol_name: "purchased").id
     @purchase.produce_task.save!
-    redirect_to purchases_url, notice: '审核通过'
+    redirect_to not_check_purchases_url, notice: '审核通过'
   end
 
   def check_failed
     @purchase.check_failed!
-    redirect_to purchases_url, notice: "审核不通过"
+    redirect_to not_check_purchases_url, notice: "审核不通过"
   end
 
   private

@@ -61,7 +61,7 @@ class ItemStorage < ActiveRecord::Base
 
   def modify_purchase_arrival_number
   	purchase = Purchase.find(self.purchase_id)
-  	purchase.arrival_number = purchase.arrival_number + self.number
+  	purchase.arrival_number = purchase.arrival_number + self.number.to_i
   	purchase.save!
   	# 完全到货后该订单所属的生产单可以领料生产
   	if purchase.arrival_number >= purchase.number

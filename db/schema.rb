@@ -43,17 +43,6 @@ ActiveRecord::Schema.define(version: 20160331074626) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "assets", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.decimal  "total",                    precision: 8, scale: 2
-    t.decimal  "remain_value",             precision: 8, scale: 2
-    t.datetime "buy_date"
-    t.string   "note",         limit: 255
-    t.integer  "number",       limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-  end
-
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
     t.string  "name",        limit: 255
@@ -183,19 +172,20 @@ ActiveRecord::Schema.define(version: 20160331074626) do
   add_index "item_storages", ["supplier_id"], name: "index_item_storages_on_supplier_id", using: :btree
 
   create_table "logistic_providers", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "director",      limit: 255
-    t.string   "address",       limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "qq",            limit: 255
-    t.string   "delivery_way",  limit: 255
-    t.integer  "arrival_cycle", limit: 4
-    t.integer  "serve_rank",    limit: 4
-    t.integer  "price_rank",    limit: 4
-    t.integer  "secure_rank",   limit: 4
-    t.integer  "credit_rank",   limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",           limit: 255
+    t.string   "phone",          limit: 255
+    t.string   "address",        limit: 255
+    t.string   "qq",             limit: 255
+    t.string   "director",       limit: 255
+    t.string   "director_phone", limit: 255
+    t.string   "delivery_way",   limit: 255
+    t.integer  "arrival_cycle",  limit: 4
+    t.integer  "serve_rank",     limit: 4
+    t.integer  "price_rank",     limit: 4
+    t.integer  "secure_rank",    limit: 4
+    t.integer  "credit_rank",    limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "material_categories", force: :cascade do |t|
@@ -349,14 +339,14 @@ ActiveRecord::Schema.define(version: 20160331074626) do
     t.integer  "order_type",    limit: 4
     t.string   "patch_origin",  limit: 255
     t.integer  "work_id",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "employee",      limit: 255
     t.datetime "offer_time"
     t.datetime "check_time"
     t.datetime "verify_time"
     t.datetime "require_time"
     t.datetime "send_time"
+    t.string   "employee",      limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "orders", ["work_id"], name: "index_orders_on_work_id", using: :btree
@@ -446,22 +436,22 @@ ActiveRecord::Schema.define(version: 20160331074626) do
   create_table "purchases", force: :cascade do |t|
     t.integer  "item_id",         limit: 4
     t.string   "item_type",       limit: 255
-    t.string   "number",          limit: 255
+    t.integer  "number",          limit: 4,                           default: 0
     t.string   "unit",            limit: 255
     t.string   "note",            limit: 255
     t.integer  "way",             limit: 4
-    t.integer  "arrival_number",  limit: 4
+    t.integer  "arrival_number",  limit: 4,                           default: 0
     t.decimal  "price",                       precision: 8, scale: 2
     t.decimal  "payable",                     precision: 8, scale: 2
     t.decimal  "actual_pay",                  precision: 8, scale: 2
     t.decimal  "discount",                    precision: 8, scale: 2
     t.integer  "pay_type",        limit: 4
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.integer  "user_id",         limit: 4
     t.datetime "pay_time"
+    t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
     t.string   "checker",         limit: 255
-    t.integer  "check_status",    limit: 4
+    t.integer  "check_status",    limit: 4,                           default: 0
     t.datetime "check_date"
     t.integer  "supplier_id",     limit: 4
     t.integer  "produce_task_id", limit: 4
