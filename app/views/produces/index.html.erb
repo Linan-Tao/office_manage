@@ -6,11 +6,13 @@
   </h2>
   <hr />
 </div>
-<div class="awidget full-width">
+
+<% @produce_tasks.each_pair do |work_id, produce_tasks|%>
+  <div class="awidget full-width">
   <div class="awidget-head">
     <div class="row">
       <div class="col-xs-12 col-sm-12">
-        <h3>生产管理列表</h3>
+        <h3><%= Work.find(work_id).name%>&nbsp;&nbsp;列表</h3>
       </div>
     </div>
   </div>
@@ -18,23 +20,24 @@
     <table class="table table-hover table-striped table-bordered text-center">
       <thead>
         <tr class="info">
-          <th class="col-xs-2 text-center">生产任务</th>
-          <th class="col-xs-3 text-center">开始时间</th>
-          <th class="col-xs-3 text-center">完成时间</th>
-          <th class="col-xs-2 text-center">工序名称</th>
+          <th class="col-xs-2 text-center">生产单号</th>
+          <th class="col-xs-2 text-center">名称</th>
+          <th class="col-xs-1 text-center">型号</th>
+          <th class="text-center">面积</th>
+          <th class="text-center">数量</th>
           <th class="col-xs-2 text-center" colspan="3">操作</th>
         </tr>
       </thead>
       <tbody>
-        <% @produces.each do |produce| %>
+        <% produce_tasks.each do |pt| %>
         <tr>
-          <td><%= produce.produce_task.order_id %></td>
-        <td><%= produce.start_time %></td>
-        <td><%= produce.end_time %></td>
-        <td><%= produce.work %></td>
-          <td><%= link_to produce, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
-            <%= link_to edit_produce_path(produce), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
-            <%= link_to produce, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
+          <td><%= pt.id %></td>
+          <td><%= pt.item_name %></td>
+          <td><%= pt.item_category%></td>
+          <td><%= pt.area %></td>
+          <td><%= pt.number %></td>
+          <td>
+            <%= link_to "完成"+Work.find(work_id).name, new_produce_path(produce_task_id: pt.id), class: "btn btn-xs btn-success"%>
           </td>
         </tr>
         <% end %>
@@ -42,4 +45,8 @@
     </table>
   </div>
 </div>
+
+
+<%end%>
+
 <br>

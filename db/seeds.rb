@@ -8,3 +8,8 @@
 user = CreateAdminService.new.call
 user.save!
 puts 'CREATED ADMIN USER: ' << user.email
+
+['拉篮', '滑轨', '角线'].each do |pc|
+	PartCategory.create(name: pc)	
+end
+
