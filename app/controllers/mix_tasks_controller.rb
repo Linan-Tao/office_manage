@@ -37,12 +37,12 @@ class MixTasksController < ApplicationController
     @mix_task.file_path = params[:file_path]
     respond_to do |format|
       if @mix_task.save
-        ProduceTask.where(id: params[:produce_tasks][:id]).each do |pt| 
+        ProduceTask.where(id: params[:produce_tasks][:id]).each do |pt|
           pt.mix_task_id = @mix_task.id
           pt.mix_status = ProduceTask.mix_statuses[:mixed]
           pt.save
         end
-        format.html { redirect_to @mix_task, notice: 'Mix task was successfully created.' }
+        format.html { redirect_to @mix_task, notice: '混单创建成功！' }
         format.json { render :show, status: :created, location: @mix_task }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class MixTasksController < ApplicationController
   def update
     respond_to do |format|
       if @mix_task.update(mix_task_params)
-        format.html { redirect_to @mix_task, notice: 'Mix task was successfully updated.' }
+        format.html { redirect_to @mix_task, notice: '混单更新成功！' }
         format.json { render :show, status: :ok, location: @mix_task }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class MixTasksController < ApplicationController
   def destroy
     @mix_task.destroy
     respond_to do |format|
-      format.html { redirect_to mix_tasks_url, notice: 'Mix task was successfully destroyed.' }
+      format.html { redirect_to mix_tasks_url, notice: '混单已删除。' }
       format.json { head :no_content }
     end
   end

@@ -28,7 +28,7 @@ class LogisticProvidersController < ApplicationController
 
     respond_to do |format|
       if @logistic_provider.save
-        format.html { redirect_to @logistic_provider, notice: 'Logistic provider was successfully created.' }
+        format.html { redirect_to @logistic_provider, notice: '物流商创建成功！' }
         format.json { render :show, status: :created, location: @logistic_provider }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LogisticProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @logistic_provider.update(logistic_provider_params)
-        format.html { redirect_to @logistic_provider, notice: 'Logistic provider was successfully updated.' }
+        format.html { redirect_to @logistic_provider, notice: '物流商更新成功！' }
         format.json { render :show, status: :ok, location: @logistic_provider }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LogisticProvidersController < ApplicationController
   def destroy
     @logistic_provider.destroy
     respond_to do |format|
-      format.html { redirect_to logistic_providers_url, notice: 'Logistic provider was successfully destroyed.' }
+      format.html { redirect_to logistic_providers_url, notice: '物流商已删除' }
       format.json { head :no_content }
     end
   end

@@ -28,7 +28,7 @@ class OrderPartsController < ApplicationController
 
     respond_to do |format|
       if @order_part.save
-        format.html { redirect_to @order_part, notice: 'Order part was successfully created.' }
+        format.html { redirect_to @order_part, notice: '配件信息创建成功！' }
         format.json { render :show, status: :created, location: @order_part }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class OrderPartsController < ApplicationController
   def update
     respond_to do |format|
       if @order_part.update(order_part_params)
-        format.html { redirect_to @order_part, notice: 'Order part was successfully updated.' }
+        format.html { redirect_to @order_part, notice: '配件信息更新成功！' }
         format.json { render :show, status: :ok, location: @order_part }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class OrderPartsController < ApplicationController
   def destroy
     @order_part.destroy
     respond_to do |format|
-      format.html { redirect_to order_parts_url, notice: 'Order part was successfully destroyed.' }
+      format.html { redirect_to order_parts_url, notice: '配件信息已删除。' }
       format.json { head :no_content }
     end
   end

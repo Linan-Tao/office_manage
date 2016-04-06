@@ -28,7 +28,7 @@ class FlowBillsController < ApplicationController
 
     respond_to do |format|
       if @flow_bill.save
-        format.html { redirect_to @flow_bill, notice: 'Flow bill was successfully created.' }
+        format.html { redirect_to @flow_bill, notice: '流水账创建成功！' }
         format.json { render :show, status: :created, location: @flow_bill }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FlowBillsController < ApplicationController
   def update
     respond_to do |format|
       if @flow_bill.update(flow_bill_params)
-        format.html { redirect_to @flow_bill, notice: 'Flow bill was successfully updated.' }
+        format.html { redirect_to @flow_bill, notice: '流水账更新成功！' }
         format.json { render :show, status: :ok, location: @flow_bill }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class FlowBillsController < ApplicationController
   def destroy
     @flow_bill.destroy
     respond_to do |format|
-      format.html { redirect_to flow_bills_url, notice: 'Flow bill was successfully destroyed.' }
+      format.html { redirect_to flow_bills_url, notice: '流水账已删除。' }
       format.json { head :no_content }
     end
   end

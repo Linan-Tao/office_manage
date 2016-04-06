@@ -36,10 +36,10 @@ class ItemStoragesController < ApplicationController
     @item_storage.purchase_id = @purchase.id
     @item_storage.item_id = @purchase.item_id
     @item_storage.item_type = @purchase.item_type
-    @item_storage.supplier_id = @purchase.supplier_id    
+    @item_storage.supplier_id = @purchase.supplier_id
     respond_to do |format|
       if @item_storage.save
-        format.html { redirect_to item_storages_url, notice: 'Item storage was successfully created.' }
+        format.html { redirect_to item_storages_url, notice: '入库记录创建成功！' }
         format.json { render :show, status: :created, location: @item_storage }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class ItemStoragesController < ApplicationController
   def update
     respond_to do |format|
       if @item_storage.update(item_storage_params)
-        format.html { redirect_to item_storages_url, notice: 'Item storage was successfully updated.' }
+        format.html { redirect_to item_storages_url, notice: '入库记录更新成功！' }
         format.json { render :show, status: :ok, location: @item_storage }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class ItemStoragesController < ApplicationController
   def destroy
     @item_storage.destroy
     respond_to do |format|
-      format.html { redirect_to item_storages_url, notice: 'Item storage was successfully destroyed.' }
+      format.html { redirect_to item_storages_url, notice: '入库记录已删除。' }
       format.json { head :no_content }
     end
   end

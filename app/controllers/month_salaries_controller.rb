@@ -28,7 +28,7 @@ class MonthSalariesController < ApplicationController
 
     respond_to do |format|
       if @month_salary.save
-        format.html { redirect_to @month_salary, notice: 'Month salary was successfully created.' }
+        format.html { redirect_to @month_salary, notice: '工资记录创建成功！' }
         format.json { render :show, status: :created, location: @month_salary }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MonthSalariesController < ApplicationController
   def update
     respond_to do |format|
       if @month_salary.update(month_salary_params)
-        format.html { redirect_to @month_salary, notice: 'Month salary was successfully updated.' }
+        format.html { redirect_to @month_salary, notice: '工资记录更新成功！' }
         format.json { render :show, status: :ok, location: @month_salary }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MonthSalariesController < ApplicationController
   def destroy
     @month_salary.destroy
     respond_to do |format|
-      format.html { redirect_to month_salaries_url, notice: 'Month salary was successfully destroyed.' }
+      format.html { redirect_to month_salaries_url, notice: '工资记录已删除。' }
       format.json { head :no_content }
     end
   end

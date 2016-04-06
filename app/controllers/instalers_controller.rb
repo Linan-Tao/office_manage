@@ -28,7 +28,7 @@ class InstalersController < ApplicationController
 
     respond_to do |format|
       if @instaler.save
-        format.html { redirect_to @instaler, notice: 'Instaler was successfully created.' }
+        format.html { redirect_to @instaler, notice: '安装工人创建成功！' }
         format.json { render :show, status: :created, location: @instaler }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class InstalersController < ApplicationController
   def update
     respond_to do |format|
       if @instaler.update(instaler_params)
-        format.html { redirect_to @instaler, notice: 'Instaler was successfully updated.' }
+        format.html { redirect_to @instaler, notice: '安装工人更新成功！' }
         format.json { render :show, status: :ok, location: @instaler }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class InstalersController < ApplicationController
   def destroy
     @instaler.destroy
     respond_to do |format|
-      format.html { redirect_to instalers_url, notice: 'Instaler was successfully destroyed.' }
+      format.html { redirect_to instalers_url, notice: '安装工人已删除。' }
       format.json { head :no_content }
     end
   end

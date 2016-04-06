@@ -58,7 +58,7 @@ class ProduceTasksController < ApplicationController
     end
 
     if OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where(state: 0).any?
-      redirect_to new_produce_task_path(), notice: '创建成功，请继续创建'
+      redirect_to new_produce_task_path(), notice: '生产任务创建成功！'
     else
       create_part_produce_tasks
       # 下单成功
@@ -76,7 +76,7 @@ class ProduceTasksController < ApplicationController
   def update
     respond_to do |format|
       if @produce_task.update(produce_task_params)
-        format.html { redirect_to @produce_task, notice: 'Produce task was successfully updated.' }
+        format.html { redirect_to @produce_task, notice: '生产任务更新成功！' }
         format.json { render :show, status: :ok, location: @produce_task }
       else
         format.html { render :edit }
@@ -104,7 +104,7 @@ class ProduceTasksController < ApplicationController
 
     @produce_task.destroy
     respond_to do |format|
-      format.html { redirect_to produce_tasks_url, notice: '该生产任务已删除，请重新创建' }
+      format.html { redirect_to produce_tasks_url, notice: '生产任务已删除。' }
       format.json { head :no_content }
     end
   end

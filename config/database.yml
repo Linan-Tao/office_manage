@@ -7,12 +7,12 @@ base: &base
   reconnect: false
   wait_timeout: 600
   pool: 25
-  host: localhost
-  username: root
   strict: false
-  password:  '123abc..'
-  host: 127.0.0.1
+  host: localhost
   port: 3306
+  # 部署环境需要修改此账号密码
+  username: root
+  password:  '123abc..'
 
 development:
   <<: *base
