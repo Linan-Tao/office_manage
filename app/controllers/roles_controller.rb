@@ -39,10 +39,10 @@ class RolesController < ApplicationController
   def update
     if @role.editable?
       if @role.update(role_params) && set_roles_permissions(@role, params[:roles_permissions])
-        flash[:notice] = '修改成功'
+        flash[:notice] = '角色修改成功！'
       end
     else
-      flash[:alert] = '不可修改'
+      flash[:alert] = '修改失败！'
     end
     render :edit
   end
@@ -52,9 +52,9 @@ class RolesController < ApplicationController
   def destroy
     msg = if @role.editable?
             @role.destroy
-            { notice: '删除成功' }
+            { notice: '角色已删除。' }
           else
-            { alert: '不可删除' }
+            { alert: '删除失败！' }
           end
     redirect_to roles_url, msg
   end

@@ -28,7 +28,7 @@ class ApplicationFundsController < ApplicationController
 
     respond_to do |format|
       if @application_fund.save
-        format.html { redirect_to @application_fund, notice: 'Application fund was successfully created.' }
+        format.html { redirect_to @application_fund, notice: '资金科目创建成功！' }
         format.json { render :show, status: :created, location: @application_fund }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ApplicationFundsController < ApplicationController
   def update
     respond_to do |format|
       if @application_fund.update(application_fund_params)
-        format.html { redirect_to @application_fund, notice: 'Application fund was successfully updated.' }
+        format.html { redirect_to @application_fund, notice: '资金科目更新成功！' }
         format.json { render :show, status: :ok, location: @application_fund }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ApplicationFundsController < ApplicationController
   def destroy
     @application_fund.destroy
     respond_to do |format|
-      format.html { redirect_to application_funds_url, notice: 'Application fund was successfully destroyed.' }
+      format.html { redirect_to application_funds_url, notice: '资金科目已删除。' }
       format.json { head :no_content }
     end
   end

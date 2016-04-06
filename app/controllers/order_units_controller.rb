@@ -29,7 +29,7 @@ class OrderUnitsController < ApplicationController
 
     respond_to do |format|
       if @order_unit.save
-        format.html { redirect_to @order_unit, notice: 'Order unit was successfully created.' }
+        format.html { redirect_to @order_unit, notice: '部件信息创建成功！' }
         format.json { render :show, status: :created, location: @order_unit }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class OrderUnitsController < ApplicationController
   def update
     respond_to do |format|
       if @order_unit.update(order_unit_params)
-        format.html { redirect_to @order_unit, notice: 'Order unit was successfully updated.' }
+        format.html { redirect_to @order_unit, notice: '部件信息更新成功！' }
         format.json { render :show, status: :ok, location: @order_unit }
       else
         format.html { render :edit }
@@ -55,7 +55,7 @@ class OrderUnitsController < ApplicationController
   # 导入文件，或手工输入
   def import
     # 有上传文件时
-    
+
     if params[:file].original_filename !~ /.csv$/
       return redirect_to order_path(@order), notice: '文件格式不正确！'
     else
@@ -69,7 +69,7 @@ class OrderUnitsController < ApplicationController
   def destroy
     @order_unit.destroy
     respond_to do |format|
-      format.html { redirect_to order_units_url, notice: 'Order unit was successfully destroyed.' }
+      format.html { redirect_to order_units_url, notice: '部件信息已删除。' }
       format.json { head :no_content }
     end
   end

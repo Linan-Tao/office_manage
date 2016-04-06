@@ -14,7 +14,6 @@
         <tr class="info">
           <th class="text-center">名称</th>
           <th class="text-center">电话</th>
-          <th class="text-center">账户</th>
           <th class="text-center">地址</th>
           <th class="text-center">备注</th>
           <th class="text-center" colspan="3">操作</th>
@@ -23,12 +22,11 @@
       <tbody>
         <% @suppliers.each do |supplier| %>
         <tr>
-          <td><%= supplier.name %></td>
+          <td><%= link_to supplier.name, supplier, class: 'detail-link' %></td>
           <td><%= supplier.mobile %></td>
-          <td><%= supplier.bank_account %></td>
           <td><%= supplier.address %></td>
           <td><%= supplier.note %></td>
-          <td><%= link_to supplier, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><%end%>
+          <td>
           <%= link_to edit_supplier_path(supplier), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><%end%>
           <%= link_to supplier, method: :delete, data: { confirm: '确定删除？' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><%end%>
         </tr>

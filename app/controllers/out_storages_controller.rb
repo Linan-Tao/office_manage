@@ -39,7 +39,7 @@ class OutStoragesController < ApplicationController
     @out_storage.number = @produce_task.number
     respond_to do |format|
       if @out_storage.save
-        format.html { redirect_to @out_storage, notice: 'Out storage was successfully created.' }
+        format.html { redirect_to @out_storage, notice: '出库记录创建成功！' }
         format.json { render :show, status: :created, location: @out_storage }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class OutStoragesController < ApplicationController
   def update
     respond_to do |format|
       if @out_storage.update(out_storage_params)
-        format.html { redirect_to @out_storage, notice: 'Out storage was successfully updated.' }
+        format.html { redirect_to @out_storage, notice: '出库记录更新成功！' }
         format.json { render :show, status: :ok, location: @out_storage }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class OutStoragesController < ApplicationController
   def destroy
     @out_storage.destroy
     respond_to do |format|
-      format.html { redirect_to out_storages_url, notice: 'Out storage was successfully destroyed.' }
+      format.html { redirect_to out_storages_url, notice: '出库记录已删除。' }
       format.json { head :no_content }
     end
   end

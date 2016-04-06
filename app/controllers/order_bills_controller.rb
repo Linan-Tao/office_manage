@@ -34,7 +34,7 @@ class OrderBillsController < ApplicationController
     @order_bill.total = @order.offers.map(&:total).sum
     respond_to do |format|
       if @order_bill.save
-        format.html { redirect_to order_order_bills_path(@order), notice: 'Order bill was successfully created.' }
+        format.html { redirect_to order_order_bills_path(@order), notice: '订单到款创建成功！' }
         format.json { render :show, status: :created, location: @order_bill }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class OrderBillsController < ApplicationController
   def update
     respond_to do |format|
       if @order_bill.update(order_bill_params)
-        format.html { redirect_to @order_bill, notice: 'Order bill was successfully updated.' }
+        format.html { redirect_to @order_bill, notice: '订单到款更新成功！' }
         format.json { render :show, status: :ok, location: @order_bill }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class OrderBillsController < ApplicationController
   def destroy
     @order_bill.destroy
     respond_to do |format|
-      format.html { redirect_to order_bills_url, notice: 'Order bill was successfully destroyed.' }
+      format.html { redirect_to order_bills_url, notice: '订单到款已删除。' }
       format.json { head :no_content }
     end
   end

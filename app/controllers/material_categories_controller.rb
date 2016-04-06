@@ -28,7 +28,7 @@ class MaterialCategoriesController < ApplicationController
 
     respond_to do |format|
       if @material_category.save
-        format.html { redirect_to @material_category, notice: 'Material category was successfully created.' }
+        format.html { redirect_to @material_category, notice: '板料种类创建成功！' }
         format.json { render :show, status: :created, location: @material_category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MaterialCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @material_category.update(material_category_params)
-        format.html { redirect_to @material_category, notice: 'Material category was successfully updated.' }
+        format.html { redirect_to @material_category, notice: '板料种类更新成功！' }
         format.json { render :show, status: :ok, location: @material_category }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MaterialCategoriesController < ApplicationController
   def destroy
     @material_category.destroy
     respond_to do |format|
-      format.html { redirect_to material_categories_url, notice: 'Material category was successfully destroyed.' }
+      format.html { redirect_to material_categories_url, notice: '板料种类已删除。' }
       format.json { head :no_content }
     end
   end

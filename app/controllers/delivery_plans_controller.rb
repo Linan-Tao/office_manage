@@ -28,7 +28,7 @@ class DeliveryPlansController < ApplicationController
 
     respond_to do |format|
       if @delivery_plan.save
-        format.html { redirect_to @delivery_plan, notice: 'Delivery plan was successfully created.' }
+        format.html { redirect_to @delivery_plan, notice: '出货计划创建成功！' }
         format.json { render :show, status: :created, location: @delivery_plan }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DeliveryPlansController < ApplicationController
   def update
     respond_to do |format|
       if @delivery_plan.update(delivery_plan_params)
-        format.html { redirect_to @delivery_plan, notice: 'Delivery plan was successfully updated.' }
+        format.html { redirect_to @delivery_plan, notice: '出货计划更新成功！' }
         format.json { render :show, status: :ok, location: @delivery_plan }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DeliveryPlansController < ApplicationController
   def destroy
     @delivery_plan.destroy
     respond_to do |format|
-      format.html { redirect_to delivery_plans_url, notice: 'Delivery plan was successfully destroyed.' }
+      format.html { redirect_to delivery_plans_url, notice: '出货计划已删除。' }
       format.json { head :no_content }
     end
   end

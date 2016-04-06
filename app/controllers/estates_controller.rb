@@ -28,7 +28,7 @@ class EstatesController < ApplicationController
 
     respond_to do |format|
       if @estate.save
-        format.html { redirect_to @estate, notice: 'Estate was successfully created.' }
+        format.html { redirect_to @estate, notice: '固定资产创建成功！' }
         format.json { render :show, status: :created, location: @estate }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class EstatesController < ApplicationController
   def update
     respond_to do |format|
       if @estate.update(estate_params)
-        format.html { redirect_to @estate, notice: 'Estate was successfully updated.' }
+        format.html { redirect_to @estate, notice: '固定资产更新成功！' }
         format.json { render :show, status: :ok, location: @estate }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EstatesController < ApplicationController
   def destroy
     @estate.destroy
     respond_to do |format|
-      format.html { redirect_to estates_url, notice: 'Estate was successfully destroyed.' }
+      format.html { redirect_to estates_url, notice: '固定资产已删除。' }
       format.json { head :no_content }
     end
   end

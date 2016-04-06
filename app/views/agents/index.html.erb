@@ -1,5 +1,5 @@
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 代理商管理 <small>列表</small>
+  <h2><i class="fa fa-desktop color"></i> 代理商管理 <small>管理</small>
   <span class="pull-right">
     <%= link_to '添加', new_agent_path, class: 'btn btn-lg btn-info' %>
   </span>
@@ -21,10 +21,10 @@
       <tbody>
         <% @agents.each do |agent| %>
         <tr>
-          <td><%= agent.code %></td>
+          <td><%= link_to agent.code, agent, class: 'detail-link' %></td>
           <td><%= agent.name %></td>
           <td><%= agent.mobile %></td>
-          <td><%= link_to agent, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><%end%>
+          <td>
           <%= link_to  edit_agent_path(agent), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><%end%>
           <%= link_to agent, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><%end%>
           </td>

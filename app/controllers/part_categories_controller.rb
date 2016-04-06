@@ -28,7 +28,7 @@ class PartCategoriesController < ApplicationController
 
     respond_to do |format|
       if @part_category.save
-        format.html { redirect_to part_categories_path, notice: '配件种类创建成功！' }
+        format.html { redirect_to part_categories_path, notice: '部件种类创建成功！' }
         format.json { render :show, status: :created, location: @part_category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PartCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @part_category.update(part_category_params)
-        format.html { redirect_to part_categories_path, notice: '配件种类更新成功！' }
+        format.html { redirect_to part_categories_path, notice: '部件种类更新成功！' }
         format.json { render :show, status: :ok, location: @part_category }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PartCategoriesController < ApplicationController
   def destroy
     @part_category.destroy
     respond_to do |format|
-      format.html { redirect_to part_categories_path, notice: '配件种类删除成功！' }
+      format.html { redirect_to part_categories_path, notice: '部件种类已删除。' }
       format.json { head :no_content }
     end
   end

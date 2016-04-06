@@ -28,7 +28,7 @@ class StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to @staff, notice: 'Staff was successfully created.' }
+        format.html { redirect_to @staff, notice: '员工信息创建成功！' }
         format.json { render :show, status: :created, location: @staff }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class StaffsController < ApplicationController
   def update
     respond_to do |format|
       if @staff.update(staff_params)
-        format.html { redirect_to @staff, notice: 'Staff was successfully updated.' }
+        format.html { redirect_to @staff, notice: '员工信息更新成功！' }
         format.json { render :show, status: :ok, location: @staff }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class StaffsController < ApplicationController
   def destroy
     @staff.destroy
     respond_to do |format|
-      format.html { redirect_to staffs_url, notice: 'Staff was successfully destroyed.' }
+      format.html { redirect_to staffs_url, notice: '员工信息已删除。' }
       format.json { head :no_content }
     end
   end

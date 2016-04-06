@@ -37,7 +37,7 @@ class PartsController < ApplicationController
 
     respond_to do |format|
       if @part.save
-        format.html { redirect_to parts_path, notice: '部件创建成功' }
+        format.html { redirect_to parts_path, notice: '部件创建成功！' }
         format.json { render :show, status: :created, location: @part }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class PartsController < ApplicationController
   def update
     respond_to do |format|
       if @part.update(part_params)
-        format.html { redirect_to parts_path, notice: '修改成功' }
+        format.html { redirect_to parts_path, notice: '部件更新成功！' }
         format.json { render :show, status: :ok, location: @part }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class PartsController < ApplicationController
   def destroy
     @part.destroy
     respond_to do |format|
-      format.html { redirect_to parts_url, notice: '删除成功' }
+      format.html { redirect_to parts_url, notice: '部件已删除。' }
       format.json { head :no_content }
     end
   end
