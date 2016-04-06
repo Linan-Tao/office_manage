@@ -15,18 +15,18 @@
             <h3>所有部门
             </h3>
          </div>
-      </div>   
+      </div>
    </div>
    <div class="awidget-body">
-      <table class="table table-hover table-bordered ">
+      <table class="table table-hover table-striped table-bordered text-center">
        <thead>
-         <tr>
-           <th>部门ID</th>
-           <th>名称</th>
-           <th>部门经理</th>
-           <th>部门人数</th>
-           <th>部门职能</th>
-           <th>处理</th>
+         <tr class="info">
+           <th class="text-center">部门ID</th>
+           <th class="text-center">名称</th>
+           <th class="text-center">部门经理</th>
+           <th class="text-center">部门人数</th>
+           <th class="text-center">部门职能</th>
+           <th class="text-center">操作</th>
          </tr>
        </thead>
        <tbody>
@@ -36,7 +36,7 @@
              <td><%= department.name %></td>
              <td><%= link_to department.manager.try(:name), user_path(department.manager) if department.manager %></td>
              <td><%= department.number %></td>
-             <td><%= department.desc.truncate(20)  %></td>
+             <td><%= department.desc.truncate(20)  if department.desc %></td>
              <td>
                 <%= link_to  edit_department_path(department),  class: 'btn btn-xs btn-warning' do %>
                     <i class="fa fa-pencil"></i>
@@ -46,7 +46,7 @@
                 <% end %>
              </td>
            </tr>
-         <% end %>                              
+         <% end %>
 
        </tbody>
      </table>
