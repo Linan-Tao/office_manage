@@ -1,4 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  员工管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回',users_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+      <tr>
+          <th class="col-xs-2 text-center info">姓名</th>
+          <td class="col-xs-4"><%= @user.name %></td>
+          <th class="col-xs-2 text-center info">性别</th>
+          <td class="col-xs-4"><%= @user.gender %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">状态</th>
+          <td class="col-xs-4"><%= @user.status %></td>
+          <th class="col-xs-2 text-center info">部门</th>
+          <td class="col-xs-4"><%= @user.department_id %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">邮箱</th>
+          <td class="col-xs-4"><%= @user.email %></td>
+          <th class="col-xs-2 text-center info">登陆次数</th>
+          <td class="col-xs-4"><%= @user.sign_in_count %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">当前登陆时间  </th>
+          <td class="col-xs-4"><%= @user.current_sign_in_at %></td>
+          <th class="col-xs-2 text-center info">当前登陆IP</th>
+          <td class="col-xs-4"><%= @user.current_sign_in_ip %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">上次登陆时间</th>
+          <td class="col-xs-4"><%= @user.last_sign_in_at %></td>
+          <th class="col-xs-2 text-center info">上次登陆IP</th>
+          <td class="col-xs-4"><%= @user.last_sign_in_ip %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

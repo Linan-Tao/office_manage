@@ -11,30 +11,26 @@
         </ul>
       </div>
     <% end %>
-
     <div class="form-group">
-      <label class="col-md-4 control-label">角色名</label>
+      <%= f.label '角色名', class: "col-md-2 control-label" %>
       <div class="col-md-4">
         <%= f.text_field :name, class: "form-control" %>
       </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label '英文名称', class: "col-md-4 control-label" %>
+      <%= f.label '英文名称', class: "col-md-2 control-label" %>
       <div class="col-md-4">
         <%= f.text_field :key, class: "form-control" %>
       </div>
     </div>
     <table class="table">
-			<%Role.permissions.each_pair do |k, v| %>
-			  <tr>
-			    <td><%= v[:name] %></td>
-			    <% v[:actions].each_pair do |kk, vv| %>
-			      <td><%= kk %><input type="checkbox" value="<%= Array(vv).join(',') %>" <%= 'checked' if Array(vv).find{ |vvv| @role.permission?(k, vvv) } %> name="roles_permissions[<%=k%>][]"></td>
-			    <% end %>
-			  </tr>
-			<% end %>
-		</table>
+      <% Role.permissions.each_pair do |k, v| %>
+      <tr>
+        <td><%= v[:name] %></td>
+        <% v[:actions].each_pair do |kk, vv| %>
+        <td><%= kk %><input type="checkbox" value="<%= Array(vv).join(',') %>" <%= 'checked' if Array(vv).find{ |vvv| @role.permission?(k, vvv) } %> name="roles_permissions[<%=k%>][]"></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </table>
     <div class="form-group">
       <label class="col-md-4 control-label"></label>
       <div class="col-md-4">
