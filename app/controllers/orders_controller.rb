@@ -52,6 +52,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    binding.pry
     if params[:order][:type] == "offer"
       message = import_offers(params)
       return redirect_to @order, notice: message
@@ -93,7 +94,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_code, :agent_id, :order_type, :require_time,
+      params.require(:order).permit(:order_code, :agent_id, :order_type, :require_time, :work_id,
                                                               order_units_attributes: [:id, :unit_name, :name, :lenght, :width, :thick,
                                                               :number, :size, :color, :edge, :texture, :note, :_destroy],
                                                               order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])

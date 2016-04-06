@@ -1,12 +1,16 @@
 <%= simple_form_for(@user, url: @user.new_record? ? users_path : user_path(@user)) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :email, disabled: true, hint: '邮件账户不能更改！' %>
+  <% if @user.email.present? %>
+  <%= f.input :email, label: '邮箱', disabled: true, hint: '邮件账户不能更改！' %>
+  <% else %>
+  <%= f.input :email, label: '邮箱' %>
+  <% end %>
 
   <%= f.input :name %>
-  <%= f.association :department, :include_blank => true %>
-  <%= f.input :gender, collection: [['男', 0] ,['女', 1]], as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
-  <%= f.input :status, collection: User.status, as: :radio_buttons, item_wrapper_class: 'radio-inline'%>
-  <%= f.association :roles, as: :check_boxes%>
+  <%= f.association :department, label: '部门', :include_blank => true %>
+  <%= f.input :gender, label: '性别', collection: [['男', 0] ,['女', 1]], as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
+  <%= f.input :status, label: '状态', collection: User.status, as: :radio_buttons, item_wrapper_class: 'radio-inline'%>
+  <%= f.association :roles, label: '角色', as: :check_boxes%>
 
 
   <div class="form-actions">
