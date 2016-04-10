@@ -60,13 +60,16 @@ module OrdersHelper
       if offers_params[:order] && offers_params[:order][:offers_attributes]
         offers_params[:order][:offers_attributes].values.each do |offer|
           next unless offer[:_destroy] == "false"
-          material = Material.find_or_create_by(material_category_id: offer[:material_category_id], material_type_id: offer[:material_type_id])
+          material = Material.find_by(ply: offer[:ply], texture: offer[:texture], face: offer[:face], color: offer[:color])
+          return '生成报价单错误！未查到物料信息，请联系管理员！' unless material
           offer_m = order.offers.find_or_create_by(item_id: material.id, item_type: material.class)
-          offer_m.price = material.price.to_f
+          offer_m.price = material.sell.to_f
           offer_m.number = offer[:number].to_f
           offer_m.total = offer_m.price * offer_m.number
-          offer_m.item_name = material.material_category.name
-          offer_m.category = material.material_type.name
+          mc_ids = [material.ply, material.texture, material.face, material.color]
+          offer_m.item_name = MaterialCategory.where(id: mc_ids).map(&:name).join("-")
+          # 删除 material_type
+          #offer_m.category = material.material_type.name
           offer_m.save
         end
       end
@@ -75,7 +78,7 @@ module OrdersHelper
         part = order_part.part
         offer_p = order.offers.find_or_create_by(item_id: part.id, item_type: part.class)
         offer_p.number = order_part.number.to_i
-        offer_p.price = part.price.to_f
+        offer_p.price = part.sell.to_f
         offer_p.total = offer_p.price * offer_p.number
         offer_p.item_name = part.name
         offer_p.category = part.part_category.name

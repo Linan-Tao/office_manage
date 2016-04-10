@@ -21,6 +21,7 @@
             <td>配件种类</td>
             <td>配件名称</td>
             <td>数量</td>
+            <td>单价</td>
             <td>备注</td>
           </tr>
         </thead>
@@ -30,6 +31,7 @@
             <td><%= part.part.part_category.name%></td>
             <td><%= part.part.name%></td>
             <td><%= part.number%></td>
+            <td><%= part.part.sell %></td>
             <td><%= part.note%></td>
           </tr>
           <% end %>

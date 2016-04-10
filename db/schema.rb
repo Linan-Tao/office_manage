@@ -189,32 +189,28 @@ ActiveRecord::Schema.define(version: 20160410061005) do
   end
 
   create_table "material_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "material_types", force: :cascade do |t|
+    t.integer  "oftype",     limit: 4
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   create_table "materials", force: :cascade do |t|
-    t.integer  "material_category_id", limit: 4
-    t.integer  "material_type_id",     limit: 4
-    t.integer  "number",               limit: 4
-    t.decimal  "price",                            precision: 9, scale: 6
-    t.string   "code",                 limit: 255
-    t.string   "unit",                 limit: 255
-    t.integer  "supplier_id",          limit: 4
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
-    t.integer  "applied_number",       limit: 4
+    t.integer  "ply",            limit: 4
+    t.integer  "texture",        limit: 4
+    t.integer  "face",           limit: 4
+    t.integer  "color",          limit: 4
+    t.integer  "number",         limit: 4
+    t.decimal  "buy",                        precision: 9, scale: 6
+    t.decimal  "sell",                       precision: 9, scale: 6
+    t.string   "code",           limit: 255
+    t.string   "unit",           limit: 255
+    t.integer  "supplier_id",    limit: 4
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "applied_number", limit: 4
   end
 
-  add_index "materials", ["material_category_id"], name: "index_materials_on_material_category_id", using: :btree
-  add_index "materials", ["material_type_id"], name: "index_materials_on_material_type_id", using: :btree
   add_index "materials", ["supplier_id"], name: "index_materials_on_supplier_id", using: :btree
 
   create_table "mix_tasks", force: :cascade do |t|
@@ -347,15 +343,15 @@ ActiveRecord::Schema.define(version: 20160410061005) do
     t.string   "server_code",    limit: 255
     t.integer  "order_type",     limit: 4
     t.string   "patch_origin",   limit: 255
-    t.integer  "work_id",        limit: 4
+    t.integer  "work_id",        limit: 4,   default: 1
     t.datetime "offer_time"
     t.datetime "check_time"
     t.datetime "verify_time"
     t.datetime "require_time"
     t.datetime "send_time"
     t.string   "employee",       limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "order_union_id", limit: 4
     t.integer  "number",         limit: 4
   end
@@ -390,7 +386,8 @@ ActiveRecord::Schema.define(version: 20160410061005) do
   create_table "parts", force: :cascade do |t|
     t.integer  "part_category_id", limit: 4
     t.string   "name",             limit: 255
-    t.decimal  "price",                        precision: 8, scale: 2
+    t.decimal  "buy",                          precision: 8, scale: 2
+    t.decimal  "sell",                         precision: 8, scale: 2
     t.integer  "number",           limit: 4
     t.string   "brand",            limit: 255
     t.integer  "supplier_id",      limit: 4
@@ -571,8 +568,6 @@ ActiveRecord::Schema.define(version: 20160410061005) do
   add_foreign_key "flow_bills", "application_funds"
   add_foreign_key "item_storages", "purchases"
   add_foreign_key "item_storages", "suppliers"
-  add_foreign_key "materials", "material_categories"
-  add_foreign_key "materials", "material_types"
   add_foreign_key "materials", "suppliers"
   add_foreign_key "month_salaries", "users"
   add_foreign_key "offers", "orders"

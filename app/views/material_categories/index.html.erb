@@ -11,13 +11,15 @@
     <table class="table table-hover table-striped table-bordered  text-center">
       <thead>
         <tr class="info">
-          <th class="col-xs-6  text-center">名称</th>
-          <th class="col-xs-6  text-center" colspan="3">操作</th>
+          <th class="text-center">类型</th>
+          <th class="text-center">名称</th>
+          <th class="text-center" colspan="3">操作</th>
         </tr>
       </thead>
       <tbody>
         <% @material_categories.each do |material_category| %>
         <tr>
+          <td><%= material_category.oftype_name %></td>
           <td><%= material_category.name %></td>
           <td><%= link_to edit_material_category_path(material_category), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
             <%= link_to material_category, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>

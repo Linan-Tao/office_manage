@@ -6,7 +6,6 @@ class MaterialsController < ApplicationController
   def index
     @materials = Material.all
     @materials = @materials.where(material_category_id: params[:material_category]) if params[:material_category].present?
-    @materials = @materials.where(material_type_id: params[:material_type]) if params[:material_type].present?
   end
 
   # GET /materials/1
@@ -70,6 +69,6 @@ class MaterialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:material_category_id, :material_type_id, :number, :price, :code, :unit, :supplier_id)
+      params.require(:material).permit(:ply, :texture, :face, :color, :number, :buy, :sell, :code, :unit, :supplier_id)
     end
 end

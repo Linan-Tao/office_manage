@@ -20,13 +20,12 @@ class OrdersController < ApplicationController
     @part_categories = PartCategory.all
     @order_parts = @order.order_parts
     @material_categories = MaterialCategory.all
-    @material_types = MaterialType.all
     @order_offers = @order.offers
   end
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = Order.new(order_code: Time.new.strftime('%Y%m%d%H%M%S'))
   end
 
   # GET /orders/1/edit

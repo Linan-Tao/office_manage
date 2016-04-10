@@ -16,9 +16,6 @@
               <%= select_tag :material_category, options_from_collection_for_select(MaterialCategory.all, "id", "name", params[:material_category]), prompt: '所有种类', class: 'form-control' %>
             </div>
             <div class="input-group">
-              <%= select_tag :material_type, options_from_collection_for_select(MaterialType.all, "id", "name", params[:material_type]), prompt: '所有类型', class: 'form-control' %>
-            </div>
-            <div class="input-group">
               <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入Email/登录名称...' %>
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-primary">查询</button>
@@ -33,27 +30,31 @@
     <table class="table table-hover table-striped table-bordered text-center">
       <thead>
         <tr class="info">
-          <th class="col-xs-2 text-center">板料种类</th>
-          <th class="text-center">板料类型</th>
-          <th class="col-xs-2 text-center">编码</th>
-          <th class="text-center">价格</th>
+          <th class="text-center">编码</th>
+          <th class="text-center">厚度</th>
+          <th class="text-center">材质</th>
+          <th class="text-center">表面</th>
+          <th class="text-center">颜色</th>
+          <th class="text-center">售价</th>
+          <th class="text-center">单位</th>
           <th class="text-center">库存</th>
-          <th class="text-center">价格</th>
-          <th class="col-xs-1 text-center">供应商</th>
-          <th class="col-xs-2 text-center" colspan="3">操作</th>
+          <th class="text-center">供应商</th>
+          <th class="text-center" colspan="3">操作</th>
         </tr>
       </thead>
       <tbody>
         <% @materials.each do |material| %>
         <tr>
-          <td><%= material.material_category.name %></td>
-          <td><%= material.material_type.name %></td>
-          <td><%= material.code %></td>
-          <td><%= material.price %></td>
-          <td><%= material.number %></td>
+          <td><%= link_to material.code, material, class: 'detail-link' %></td>
+          <td><%= MaterialCategory.find(material.ply).name %></td>
+          <td><%= MaterialCategory.find(material.texture).name %></td>
+          <td><%= MaterialCategory.find(material.face).name %></td>
+          <td><%= MaterialCategory.find(material.color).name %></td>
+          <td><%= material.sell %></td>
           <td><%= material.unit %></td>
+          <td><%= material.number %></td>
           <td><%= material.supplier.try(:name) %></td>
-          <td><%= link_to material, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
+          <td>
             <%= link_to edit_material_path(material), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
             <%= link_to material, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
           </td>

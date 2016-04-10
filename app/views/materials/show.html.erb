@@ -1,7 +1,7 @@
 <div class="page-title">
   <h2><i class="fa fa-desktop color"></i>  板料管理 <small>详细</small>
   <span class="pull-right">
-    <%= link_to('返回',materials_path, class: 'btn btn-lg btn-default') %>
+    <%= link_to('返回', :back, class: 'btn btn-lg btn-default') %>
   </span>
   </h2>
   <hr />
@@ -18,28 +18,36 @@
     <table class="table table-hover table-striped table-bordered">
       <tbody>
         <tr>
-          <th class="col-xs-2 text-center info">板料种类</th>
-          <td class="col-xs-10"><%= @material.material_category.name %></td>
-        </tr>
-        <tr>
-          <th class="col-xs-2 text-center info">板料类型</th>
-          <td class="col-xs-10"><%= @material.material_type.name %></td>
-        </tr>
-        <tr>
           <th class="col-xs-2 text-center info">编码</th>
           <td class="col-xs-10"><%= @material.code %></td>
         </tr>
         <tr>
-          <th class="col-xs-2 text-center info">价格</th>
-          <td class="col-xs-10"><%= @material.price %></td>
+          <th class="col-xs-2 text-center info">厚度</th>
+          <td class="col-xs-10"><%= MaterialCategory.find(@material.ply).name %></td>
         </tr>
         <tr>
-          <th class="col-xs-2 text-center info">数量</th>
-          <td class="col-xs-10"><%= @material.number %></td>
+          <th class="col-xs-2 text-center info">材质</th>
+          <td class="col-xs-10"><%= MaterialCategory.find(@material.texture).name %></td>
         </tr>
         <tr>
-          <th class="col-xs-2 text-center info">unit</th>
+          <th class="col-xs-2 text-center info">表面</th>
+          <td class="col-xs-10"><%= MaterialCategory.find(@material.face).name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">颜色</th>
+          <td class="col-xs-10"><%= MaterialCategory.find(@material.color).name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">售价</th>
+          <td class="col-xs-10"><%= @material.sell %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">单位</th>
           <td class="col-xs-10"><%= @material.unit %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">库存</th>
+          <td class="col-xs-10"><%= @material.number %></td>
         </tr>
         <tr>
           <th class="col-xs-2 text-center info">供应商</th>

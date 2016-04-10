@@ -96,15 +96,6 @@ Role.register_permission class: 'MaterialCategoriesController',
     '删除' => [:destroy],
     '详细' => [:show]
 }
-Role.register_permission class: 'MaterialTypesController',
-  name: '板料类型',
-  actions: {
-    '列表' => :index,
-    '新建' => [:new, :create],
-    '修改' => [:edit, :update],
-    '删除' => [:destroy],
-    '详细' => [:show]
-}
 Role.register_permission class: 'MaterialsController',
   name: '板料',
   actions: {

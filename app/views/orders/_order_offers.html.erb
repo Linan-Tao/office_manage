@@ -67,18 +67,26 @@
 
                <table class="table" id="tasks">
                   <tr>
-                     <td>计价项目</td>
-                     <td>类别</td>
+                     <td>厚度</td>
+                     <td>材质</td>
+                     <td>表面</td>
+                     <td>颜色</td>
                      <td>面积</td>
                      <td>操作</td>
                   </tr>
                   <%= f.fields_for :offers, :wrapper => false do |offer_form| %>
                   <tr class="fields">
                     <td>
-                      <%= offer_form.select(:material_category_id, options_for_select(@material_categories.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+                      <%= offer_form.select(:ply, options_for_select(@material_categories.where(oftype: 0).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
                     </td>
                     <td>
-                     <%= offer_form.select(:material_type_id, options_for_select(@material_types.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+                      <%= offer_form.select(:texture, options_for_select(@material_categories.where(oftype: 1).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+                    </td>
+                    <td>
+                      <%= offer_form.select(:face, options_for_select(@material_categories.where(oftype: 2).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+                    </td>
+                    <td>
+                      <%= offer_form.select(:color, options_for_select(@material_categories.where(oftype: 3).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
                     </td>
                     <td>
                       <%= offer_form.number_field :number,:step => 'any', class: 'form-control', style: 'width: 60px;'%>
@@ -114,8 +122,8 @@
                   <tr>
                      <td><%= order_part.part.name%></td>
                      <td><%= order_part.number%></td>
-                     <td><%= order_part.part.price%></td>
-                     <td><%= order_part.number * order_part.part.price.to_f%></td>
+                     <td><%= order_part.part.sell%></td>
+                     <td><%= order_part.number * order_part.part.sell.to_f %></td>
                      <td><%= order_part.part.part_category.name%></td>
                   </tr>
                <%end%>

@@ -12,16 +12,12 @@
   <div class="awidget full-width">
      <div class="awidget-head">
         <div class="row">
-          <div class="col-lg-3">
-            订单号
-          </div>
-          <div class="col-lg-3">
+          <div class="col-md-6 col-sm-6">
+            订单号：
             <%= order_union.code%>
           </div>
-          <div class="col-lg-3">
-            客户
-          </div>
-          <div class="col-lg-3">
+          <div class="col-md-6 col-sm-6">
+            客户：
             <%= order_union.agent.name%>
           </div>
         </div>
@@ -31,6 +27,7 @@
             <thead>
               <tr class="info">
                 <td>子订单号</td>
+                <td>子订单类型</td>
                 <td>子订单状态</td>
                 <td>操作</td>
               </tr>
@@ -39,6 +36,7 @@
               <% order_union.orders.each do |order|%>
                 <tr>
                   <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
+                  <td><%= order.order_type_name %></td>
                   <td><% if order.work.try(:sequence).to_i > 2 %><!-- 工序值 -->
                   <%= link_to order.work.name, order_offers_path(order), class:'detail-link'  %>
                   <% else %>
