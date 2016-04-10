@@ -1,0 +1,47 @@
+
+<%= nested_form_for @order_union do |f| %>
+    <%= f.label "客户"%>
+    <%= f.select :agent_id, Agent.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+
+    <hr/>
+    <div>
+      <table class="table" id="orders">
+        <tr>
+          <th>产品</th>
+          <th>数量</th>
+          <th>类型</th>
+          <th>发货时间（要求发货时间需在十天以后）</th>
+          <th>操作</th>
+        </tr>
+        <%= f.fields_for :orders, :wrapper => false do |order_form| %>
+        <tr class="fields">
+          <td>
+            <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+          </td>
+          <td>
+            <%= order_form.number_field :number, class: "control"%>
+          </td>
+          <td>
+            <% Order.order_type.each do |ot|%>
+            <%= order_form.radio_button :order_type, "#{ot[1]}", class: 'form-control'%><%=ot[0]%>
+            <%end%>
+          </td>
+          <td>
+            <div class="field">
+              <%= order_form.date_select :require_time,  default: 10.days.from_now, require_time: [:year, :month, :day]%>
+            </div>
+          </td>
+          <td>
+            <%= order_form.link_to_remove "删除", class: 'btn btn-info' %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <p><%= f.link_to_add "添加", :orders, :data => { :target => "#orders" }, class: 'btn btn-info' %></p>
+    </div>
+      
+    <div class="pull-right">
+      <%= submit_tag "保存", class: 'btn btn-info'%>
+    </div>  
+    
+<% end%>

@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :products # 一个订单包含多个产品
-  validates_presence_of :order_code
+  belongs_to :order_union
+  
   has_many :order_units, dependent: :destroy
   has_many :order_parts, dependent: :destroy
   has_many :order_bills, dependent: :destroy
@@ -8,6 +9,18 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :offers, :order_units, :order_parts, :allow_destroy => true
   belongs_to :work
   belongs_to :agent
+
+  before_create :generate_order_code
+
+  # 发货时间需在十天以后
+  validate :validate_require_time
+
+  def generate_order_code
+    begin
+      orders_count = self.order_union.orders.count
+      self.order_code = self.order_union.code + "-" + (orders_count+1).to_s
+    end while self.class.exists?(:order_code => order_code)
+  end
 
   enum order_type: {
     normal: 0,      #正常单
@@ -62,6 +75,13 @@ class Order < ActiveRecord::Base
   def open!
     self.work_id = Work.find_by(symbol_name: "open").id
     self.save!
+  end
+
+  def validate_require_time
+    (Time.now.to_i - updated_at.to_i)/86400 <= 3
+    if (self.require_time.to_i - Time.now.to_i)/(10*24*60*60) <= 10
+      self.errors.add(:require_time, '发货时间需在十天以后')
+    end
   end
 
 end
