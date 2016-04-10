@@ -5,6 +5,7 @@ zh-CN:
       material_category: Material category
     attributes:
       material_category:
+        oftype: 类型
         name: 名称
     errors:
       material_category:
