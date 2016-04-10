@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    binding.pry
     if params[:order][:type] == "offer"
       message = import_offers(params)
       return redirect_to @order, notice: message

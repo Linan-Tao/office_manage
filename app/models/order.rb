@@ -12,6 +12,9 @@ class Order < ActiveRecord::Base
 
   before_create :generate_order_code
 
+  # 发货时间需在十天以后
+  validate :validate_require_time
+
   def generate_order_code
     begin
       orders_count = self.order_union.orders.count
@@ -72,6 +75,13 @@ class Order < ActiveRecord::Base
   def open!
     self.work_id = Work.find_by(symbol_name: "open").id
     self.save!
+  end
+
+  def validate_require_time
+    (Time.now.to_i - updated_at.to_i)/86400 <= 3
+    if (self.require_time.to_i - Time.now.to_i)/(10*24*60*60) <= 10
+      self.errors.add(:require_time, '发货时间需在十天以后')
+    end
   end
 
 end
