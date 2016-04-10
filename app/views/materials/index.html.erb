@@ -45,7 +45,7 @@
       <tbody>
         <% @materials.each do |material| %>
         <tr>
-          <td><%= link_to material.code, material %></td>
+          <td><%= link_to material.code, material, class: 'detail-link' %></td>
           <td><%= MaterialCategory.find(material.ply).name %></td>
           <td><%= MaterialCategory.find(material.texture).name %></td>
           <td><%= MaterialCategory.find(material.face).name %></td>
@@ -54,7 +54,7 @@
           <td><%= material.unit %></td>
           <td><%= material.number %></td>
           <td><%= material.supplier.try(:name) %></td>
-          <td><%= link_to material, class: 'btn btn-xs btn-success' do %><i class="fa fa-eye"></i><% end %>
+          <td>
             <%= link_to edit_material_path(material), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
             <%= link_to material, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>
           </td>

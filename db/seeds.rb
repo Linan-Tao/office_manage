@@ -28,15 +28,15 @@ PartCategory.create(id: 3, name:'角线')
 puts 'CREATED PartCategory SUCCESS! '
 
 # 创建 部件 初始化数据
-Part.create(id: 1, part_category_id: 1, name: '100侧拉篮', price: 100.00, number: 100, brand: '耐用牌', supplier_id: 1)
-Part.create(id: 2, part_category_id: 1, name: '200侧拉篮', price: 200.00, number: 50, brand: '坚固牌', supplier_id: 1)
-Part.create(id: 3, part_category_id: 1, name: '400侧拉篮', price: 300.00, number: 10, brand: '无敌牌', supplier_id: 3)
-Part.create(id: 4, part_category_id: 2, name: '铜质滑轨', price: 100.00, number: 50, brand: '耐用牌', supplier_id: 1)
-Part.create(id: 5, part_category_id: 2, name: '铁质滑轨', price: 100.00, number: 50, brand: '坚固牌', supplier_id: 2)
-Part.create(id: 6, part_category_id: 2, name: '钢质滑轨', price: 100.00, number: 10, brand: '无敌牌', supplier_id: 3)
-Part.create(id: 7, part_category_id: 3, name: '普通角线', price: 100.00, number: 100, brand: '耐用牌', supplier_id: 1)
-Part.create(id: 8, part_category_id: 3, name: '高级角线', price: 200.00, number: 50, brand: '坚固牌', supplier_id: 2)
-Part.create(id: 9, part_category_id: 3, name: '特制角线', price: 500.00, number: 10, brand: '无敌牌', supplier_id: 3)
+Part.create(id: 1, part_category_id: 1, name: '100侧拉篮', buy: 100.00, sell: 110.00, number: 100, brand: '耐用牌', supplier_id: 1)
+Part.create(id: 2, part_category_id: 1, name: '200侧拉篮', buy: 200.00, sell: 210.00, number: 50, brand: '坚固牌', supplier_id: 1)
+Part.create(id: 3, part_category_id: 1, name: '400侧拉篮', buy: 300.00, sell: 310.00, number: 10, brand: '无敌牌', supplier_id: 3)
+Part.create(id: 4, part_category_id: 2, name: '铜质滑轨', buy: 100.00, sell: 110.00, number: 50, brand: '耐用牌', supplier_id: 1)
+Part.create(id: 5, part_category_id: 2, name: '铁质滑轨', buy: 200.00, sell: 210.00, number: 50, brand: '坚固牌', supplier_id: 2)
+Part.create(id: 6, part_category_id: 2, name: '钢质滑轨', buy: 300.00, sell: 310.00, number: 10, brand: '无敌牌', supplier_id: 3)
+Part.create(id: 7, part_category_id: 3, name: '普通角线', buy: 100.00, sell: 110.00, number: 100, brand: '耐用牌', supplier_id: 1)
+Part.create(id: 8, part_category_id: 3, name: '高级角线', buy: 200.00, sell: 210.00, number: 50, brand: '坚固牌', supplier_id: 2)
+Part.create(id: 9, part_category_id: 3, name: '特制角线', buy: 500.00, sell: 510.00, number: 10, brand: '无敌牌', supplier_id: 3)
 puts 'CREATED Part SUCCESS! '
 
 # 创建 部门 初始化数据

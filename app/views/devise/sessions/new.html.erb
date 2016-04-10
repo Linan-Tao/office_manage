@@ -1,57 +1,49 @@
-
 <div class="row">
-   <div class="col-md-12">
-      <div class="awidget login-reg">
-         <div class="awidget-head">
-         
-         </div>
-         <div class="awidget-body">
-            <!-- Page title -->
-            <div class="page-title text-center">
-               <h2><a href="#">登录</a></h2>
-               <hr />
+  <div class="col-md-12">
+    <div class="awidget login-reg">
+      <div class="awidget-body">
+        <!-- Page title -->
+        <div class="page-title text-center">
+          <h2><a href="#">登录</a></h2>
+          <hr />
+        </div>
+        <!-- Page title -->
+        <br />
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :role => 'form', :class => "form-horizontal"}) do |f| %>
+        <div class="form-group">
+          <label for="inputEmail1" class="col-lg-2 control-label">邮箱</label>
+          <div class="col-lg-8">
+            <input type="email" class="form-control" id="user_email" name="user[email]" autofocus="autofocus" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword1" class="col-lg-2 control-label">密码</label>
+          <div class="col-lg-8">
+            <input type="password" class="form-control" id="user_password" name="user[password]" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-8">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me"> 记住我
+              </label>
             </div>
-            <!-- Page title -->
-            
-            <br />
-            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :role => 'form', :class => "form-horizontal"}) do |f| %>
-              <div class="form-group">
-                <label for="inputEmail1" class="col-lg-2 control-label">邮箱</label>
-                <div class="col-lg-8">
-                  <input type="email" class="form-control" id="user_email" name="user[email]" autofocus="autofocus" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputPassword1" class="col-lg-2 control-label">密码</label>
-                <div class="col-lg-8">
-                  <input type="password" class="form-control" id="user_password" name="user[password]" placeholder="Password">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-8">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me"> 记住我
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-4">
-                  <button type="submit" class="btn btn-info">登录</button>
-                  <button type="reset" class="btn btn-default">重置</button>
-                </div>
-                <div class="col-lg-offset-2 col-lg-4">
-                  <%= render "devise/shared/links" %>
-                </div>
-              </div>
-            </form>
-            <%end%>
-         </div>
-      </div>
-   </div>
+          </div>
+        </div>
+        <hr />
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-4">
+            <button type="submit" class="btn btn-info">登录</button>
+            <button type="reset" class="btn btn-default">重置</button>
+          </div>
+          <div class="col-lg-offset-2 col-lg-4">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </form>
+      <%end%>
+    </div>
+  </div>
 </div>
-
-
-
+</div>

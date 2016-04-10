@@ -43,7 +43,7 @@ class ProduceTask < ActiveRecord::Base
       pur.item_id = self.item_id
       pur.item_type = self.item_type
       pur.number = purchase_number
-      pur.price  = self.item.price
+      pur.price  = self.item.buy
       pur.payable = pur.number.to_i * pur.price.to_f
       pur.check_status = 0
       pur.save!
