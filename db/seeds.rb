@@ -45,3 +45,14 @@ Department.create(id: 2, name: '仓储部')
 Department.create(id: 3, name: '工艺部')
 Department.create(id: 4, name: '后勤部')
 puts 'CREATED Department SUCCESS! '
+
+# 创建 板料种类 初始化数据
+MaterialCategory.create(id: 1, oftype: 0, name:'15mm')
+MaterialCategory.create(id: 2, oftype: 0, name:'18mm')
+MaterialCategory.create(id: 3, oftype: 1, name:'颗粒板')
+MaterialCategory.create(id: 4, oftype: 1, name:'密度板')
+MaterialCategory.create(id: 5, oftype: 2, name:'光面')
+MaterialCategory.create(id: 6, oftype: 2, name:'麻面')
+MaterialCategory.create(id: 7, oftype: 3, name:'国色天香')
+MaterialCategory.create(id: 8, oftype: 3, name:'一帘幽梦')
+puts 'CREATED MaterialCategory SUCCESS! '

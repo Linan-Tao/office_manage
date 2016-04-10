@@ -78,7 +78,7 @@
                       <%= offer_form.select(:material_category_id, options_for_select(@material_categories.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
                     </td>
                     <td>
-                     <%= offer_form.select(:material_type_id, options_for_select(@material_types.map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+
                     </td>
                     <td>
                       <%= offer_form.number_field :number,:step => 'any', class: 'form-control', style: 'width: 60px;'%>

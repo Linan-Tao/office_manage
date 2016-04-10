@@ -5,12 +5,15 @@ zh-CN:
       material: Material
     attributes:
       material:
-        material_category: 板料种类
-        material_type: 板料类型
-        number: 数量
-        price: 价格
+        ply: 厚度
+        texture: 材质
+        face: 表面
+        color: 颜色
+        number: 库存
+        buy: 进价
+        sell: 售价
         code: 编码
-        unit: Unit
+        unit: 单位
         supplier: 供应商
     errors:
       material:

@@ -66,7 +66,8 @@ module OrdersHelper
           offer_m.number = offer[:number].to_f
           offer_m.total = offer_m.price * offer_m.number
           offer_m.item_name = material.material_category.name
-          offer_m.category = material.material_type.name
+          # 删除 material_type
+          #offer_m.category = material.material_type.name
           offer_m.save
         end
       end
