@@ -39,6 +39,7 @@
                 <th class="text-center">注册日期</th>
                 <th class="text-center">所属部门</th>
                 <th class="text-center">角色</th>
+                <th class="text-center">激活</th>
                 <th class="text-center">操作</th>
               </tr>
             </thead>
@@ -54,6 +55,13 @@
                 </td>
                 <td>
                   <%= user.roles.map(&:name).join(',')%>
+                </td>
+                <td>
+                  <% if user.approved %>
+                    已激活
+                  <% else %>
+                    <%= link_to '激活', approved_user_path(user), class: 'btn btn-xs btn-info'%>
+                  <% end %>
                 </td>
                 <td>
                   <% unless user.role?("administrator") %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331074626) do
+ActiveRecord::Schema.define(version: 20160410061005) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -297,6 +297,15 @@ ActiveRecord::Schema.define(version: 20160331074626) do
   add_index "order_parts", ["part_id"], name: "index_order_parts_on_part_id", using: :btree
   add_index "order_parts", ["produce_task_id"], name: "index_order_parts_on_produce_task_id", using: :btree
 
+  create_table "order_unions", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.integer  "agent_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "order_unions", ["agent_id"], name: "index_order_unions_on_agent_id", using: :btree
+
   create_table "order_units", force: :cascade do |t|
     t.integer  "order_id",         limit: 4
     t.string   "code",             limit: 255
@@ -331,24 +340,27 @@ ActiveRecord::Schema.define(version: 20160331074626) do
   add_index "order_units", ["produce_task_id"], name: "index_order_units_on_produce_task_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_code",    limit: 255
-    t.integer  "product_id",    limit: 4
-    t.string   "customer_code", limit: 255
-    t.integer  "agent_id",      limit: 4
-    t.string   "server_code",   limit: 255
-    t.integer  "order_type",    limit: 4
-    t.string   "patch_origin",  limit: 255
-    t.integer  "work_id",       limit: 4
+    t.string   "order_code",     limit: 255
+    t.integer  "product_id",     limit: 4
+    t.string   "customer_code",  limit: 255
+    t.integer  "agent_id",       limit: 4
+    t.string   "server_code",    limit: 255
+    t.integer  "order_type",     limit: 4
+    t.string   "patch_origin",   limit: 255
+    t.integer  "work_id",        limit: 4
     t.datetime "offer_time"
     t.datetime "check_time"
     t.datetime "verify_time"
     t.datetime "require_time"
     t.datetime "send_time"
-    t.string   "employee",      limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "employee",       limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "order_union_id", limit: 4
+    t.integer  "number",         limit: 4
   end
 
+  add_index "orders", ["order_union_id"], name: "index_orders_on_order_union_id", using: :btree
   add_index "orders", ["work_id"], name: "index_orders_on_work_id", using: :btree
 
   create_table "out_storages", force: :cascade do |t|
@@ -519,22 +531,23 @@ ActiveRecord::Schema.define(version: 20160331074626) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.string   "name",                   limit: 255
     t.integer  "gender",                 limit: 4
     t.integer  "status",                 limit: 4
     t.integer  "department_id",          limit: 4
+    t.boolean  "approved",                           default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -569,8 +582,10 @@ ActiveRecord::Schema.define(version: 20160331074626) do
   add_foreign_key "order_parts", "orders"
   add_foreign_key "order_parts", "parts"
   add_foreign_key "order_parts", "produce_tasks"
+  add_foreign_key "order_unions", "agents"
   add_foreign_key "order_units", "orders"
   add_foreign_key "order_units", "produce_tasks"
+  add_foreign_key "orders", "order_unions"
   add_foreign_key "orders", "works"
   add_foreign_key "out_storages", "departments"
   add_foreign_key "out_storages", "produce_tasks"

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :change_role]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :change_role, :approved]
 
   # GET /users
   # GET /users.json
@@ -68,6 +68,13 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: '用户已删除。' }
       format.json { head :no_content }
     end
+  end
+
+
+  def approved
+    @user.approved = true
+    @user.save!
+    redirect_to users_path, notice: '激活成功！' 
   end
 
 

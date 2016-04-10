@@ -58,7 +58,7 @@
                     <li class='<%="#{'active' if controller_name == 'out_storages'}" %>'><a href="/out_storages">领料出库</a></li>
                 </ul>
             </li>
-            <li class='<%="#{'current' if controller_name == 'orders'}" %>'><a href="/orders"><i class="fa fa-th"></i> 订单</a></li>
+            <li class='<%="#{'current' if controller_name == 'orders'}" %>'><a href="/order_unions"><i class="fa fa-th"></i> 订单</a></li>
             <li class="has_submenu <%= 'current open' if ['produce_tasks'].include?(controller_name) %>">
                  <a href="#">
                     <i class="fa fa-sitemap"></i> 生产任务

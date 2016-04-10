@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @order_union.code %>
+</p>
+
+<p>
+  <strong>Agent:</strong>
+  <%= @order_union.agent %>
+</p>
+
+<%= link_to 'Edit', edit_order_union_path(@order_union) %> |
+<%= link_to 'Back', order_unions_path %>

@@ -1,0 +1,13 @@
+---
+zh-CN:
+  active_record:
+    models:
+      order_union: Order union
+    attributes:
+      order_union:
+        code: Code
+        agent: Agent
+    errors:
+      order_union: 
+  helpers:
+    order_union: 

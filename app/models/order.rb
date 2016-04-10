@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :products # 一个订单包含多个产品
-  validates_presence_of :order_code
+  belongs_to :order_union
+  
   has_many :order_units, dependent: :destroy
   has_many :order_parts, dependent: :destroy
   has_many :order_bills, dependent: :destroy
@@ -8,6 +9,15 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :offers, :order_units, :order_parts, :allow_destroy => true
   belongs_to :work
   belongs_to :agent
+
+  before_create :generate_order_code
+
+  def generate_order_code
+    begin
+      orders_count = self.order_union.orders.count
+      self.order_code = self.order_union.code + "-" + (orders_count+1).to_s
+    end while self.class.exists?(:order_code => order_code)
+  end
 
   enum order_type: {
     normal: 0,      #正常单
