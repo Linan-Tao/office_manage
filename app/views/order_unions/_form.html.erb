@@ -1,44 +1,47 @@
-
 <%= nested_form_for @order_union do |f| %>
-    <%= f.label "客户"%>
-    <%= f.select :agent_id, Agent.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+  <%= f.label "客户"%>
+  <%= f.select :agent_id, Agent.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+  </div>
+</div>
 
-    <hr/>
-    <div>
-      <table class="table" id="orders">
-        <tr>
-          <th>产品</th>
-          <th>数量</th>
-          <th>类型</th>
-          <th>操作</th>
-        </tr>
-        <%= f.fields_for :orders, :wrapper => false do |order_form| %>
-        <tr class="fields">
-          <td>
-            <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
-          </td>
-          <td>
-            <%= order_form.number_field :number, class: "control"%>
-          </td>
-          <td>
-            <% Order.order_type.each do |ot|%>
-            <%= order_form.radio_button :order_type, "#{ot[1]}", class: 'form-control'%><%=ot[0]%>
-            <%end%>
-          </td>
-          <td>
-            
-          </td>
-          <td>
-            <%= order_form.link_to_remove "删除", class: 'btn btn-info' %>
-          </td>
-        </tr>
-        <% end %>
-      </table>
+<div>
+  <table class="table table-hover table-striped table-bordered text-center" id="orders">
+    <tr class="info">
+      <th class="col-md-4 col-sm-4 text-center">产品</th>
+      <th class="col-md-2 col-sm-2 text-center">数量</th>
+      <th class="col-md-2 col-sm-2 text-center">类型</th>
+      <th class="col-md-3 col-sm-3 text-center">操作</th>
+    </tr>
+    <%= f.fields_for :orders, :wrapper => false do |order_form| %>
+    <tr class="fields text-center">
+      <td>
+        <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+      </td>
+      <td>
+        <%= order_form.number_field :number, class: "control"%>
+      </td>
+      <td>
+        <%= order_form.select :order_type, Order.order_type, class: 'form-control'%>
+      </td>
+      <td>
+        <%= order_form.link_to_remove "删除", class: 'btn btn-info' %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="pull-left">
       <p><%= f.link_to_add "添加", :orders, :data => { :target => "#orders" }, class: 'btn btn-info' %></p>
     </div>
-      
     <div class="pull-right">
       <%= submit_tag "保存", class: 'btn btn-info'%>
-    </div>  
-    
+    </div>
+  </div>
+</div>
+
 <% end%>
