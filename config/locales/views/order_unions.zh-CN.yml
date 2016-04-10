@@ -1,0 +1,20 @@
+---
+zh-CN:
+  order_unions:
+    index:
+      title: Order unions
+    show:
+      title: Order union
+    edit:
+      title: Editing Order union
+    new:
+      title: New Order union
+  flash:
+    order_unions:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :order_unions
   resources :delivery_plans
   resources :instalers
   resources :drivers
@@ -61,7 +62,11 @@ Rails.application.routes.draw do
   resources :part_categories
   resources :departments
   devise_for :users
-  resources :users
+  resources :users do
+    member do
+      get :approved
+    end
+  end
   resources :roles
   root to: 'visitors#index'
 end
