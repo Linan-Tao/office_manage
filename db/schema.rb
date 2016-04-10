@@ -386,7 +386,8 @@ ActiveRecord::Schema.define(version: 20160410061005) do
   create_table "parts", force: :cascade do |t|
     t.integer  "part_category_id", limit: 4
     t.string   "name",             limit: 255
-    t.decimal  "price",                        precision: 8, scale: 2
+    t.decimal  "buy",                          precision: 8, scale: 2
+    t.decimal  "sell",                         precision: 8, scale: 2
     t.integer  "number",           limit: 4
     t.string   "brand",            limit: 255
     t.integer  "supplier_id",      limit: 4

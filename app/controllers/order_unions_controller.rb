@@ -28,7 +28,7 @@ class OrderUnionsController < ApplicationController
 
     respond_to do |format|
       if @order_union.save
-        format.html { redirect_to @order_union, notice: 'Order union was successfully created.' }
+        format.html { redirect_to order_unions_path, notice: '订单创建成功！' }
         format.json { render :show, status: :created, location: @order_union }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class OrderUnionsController < ApplicationController
   def update
     respond_to do |format|
       if @order_union.update(order_union_params)
-        format.html { redirect_to @order_union, notice: 'Order union was successfully updated.' }
+        format.html { redirect_to @order_union, notice: '订单编辑成功！' }
         format.json { render :show, status: :ok, location: @order_union }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class OrderUnionsController < ApplicationController
   def destroy
     @order_union.destroy
     respond_to do |format|
-      format.html { redirect_to order_unions_url, notice: 'Order union was successfully destroyed.' }
+      format.html { redirect_to order_unions_url, notice: '订单已删除。' }
       format.json { head :no_content }
     end
   end

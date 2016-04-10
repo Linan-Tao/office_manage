@@ -1,7 +1,10 @@
 <%= simple_form_for(@part, url: @part.new_record? ? parts_path : part_path(@part)) do |f| %>
-  <%= f.association :part_category, :include_blank => true%>
   <%= f.input :name %>
-  <%= f.input :price%>
+  <%= f.association :part_category, :include_blank => true%>
+  <% if current_user.name == 'admin' %>
+  <%= f.input :buy %>
+  <% end %>
+  <%= f.input :sell %>
   <%= f.input :number %>
   <%= f.input :brand %>
   <%= f.association :supplier%>

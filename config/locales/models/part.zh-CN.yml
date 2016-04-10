@@ -8,10 +8,11 @@ zh-CN:
         name: 名称
         number: 库存
         brand: 品牌
-        price: 价格
-        part_category: 部件种类
+        buy: 进价
+        sell: 售价
+        part_category: 种类
         supplier: 供应商
     errors:
-      part: 
+      part:
   helpers:
-    part: 
+    part:

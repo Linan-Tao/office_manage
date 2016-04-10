@@ -1,7 +1,6 @@
 <%= simple_form_for(@material,url: @material.new_record? ? materials_path : material_path(@material)) do |f| %>
 <%= f.error_notification %>
 <div class="form-inputs">
-  <%= f.input :code %>
   <%= f.label '板料属性' %>
   <div class="form-group">
   <%= f.select :ply, MaterialCategory.where(oftype: 0).map { |mc| [mc.name, mc.id]} %>
