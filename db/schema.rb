@@ -343,15 +343,15 @@ ActiveRecord::Schema.define(version: 20160410061005) do
     t.string   "server_code",    limit: 255
     t.integer  "order_type",     limit: 4
     t.string   "patch_origin",   limit: 255
-    t.integer  "work_id",        limit: 4
+    t.integer  "work_id",        limit: 4,   default: 1
     t.datetime "offer_time"
     t.datetime "check_time"
     t.datetime "verify_time"
     t.datetime "require_time"
     t.datetime "send_time"
     t.string   "employee",       limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "order_union_id", limit: 4
     t.integer  "number",         limit: 4
   end
