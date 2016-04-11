@@ -3,6 +3,13 @@ class Agent < ActiveRecord::Base
   belongs_to :city
   belongs_to :district
   validates_presence_of :name, :mobile
+  before_create :generate_code
+
+  def generate_code
+    begin
+      self.code = SecureRandom.hex(4)
+    end while self.class.exists?(:code => code)
+  end
 
 
   #下单条件：1.全款 2.定金 3.直接

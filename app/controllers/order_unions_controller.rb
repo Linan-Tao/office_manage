@@ -15,6 +15,7 @@ class OrderUnionsController < ApplicationController
   # GET /order_unions/new
   def new
     @order_union = OrderUnion.new
+    @agent = Agent.new
   end
 
   # GET /order_unions/1/edit
