@@ -1,4 +1,4 @@
-<%= nested_form_for @order_union do |f| %>
+<%= nested_form_for @order_union, html: { multipart: true } do |f| %>
 <div class="row">
   <div class="col-md-12 col-sm-12">
   <%= f.label "客户"%>
@@ -12,11 +12,12 @@
     <div>
       <table class="table table-hover table-striped table-bordered text-center" id="orders">
         <tr  class="info">
-          <th class="col-md-2 col-sm-2 text-center">产品</th>
-          <th class="col-md-2 col-sm-2 text-center">数量</th>
-          <th class="col-md-2 col-sm-2 text-center">类型</th>
-          <th class="col-md-4 col-sm-4 text-center">发货时间(十天后)</th>
-          <th class="col-md-2 col-sm-2 text-center">操作</th>
+          <th class="col-md-1 col-sm-1 text-center">产品</th>
+          <th class="col-md-1 col-sm-1 text-center">数量</th>
+          <th class="col-md-1 col-sm-1 text-center">类型</th>
+          <th class="col-md-3 col-sm-4 text-center">发货时间(十天后)</th>
+          <th class="col-md-3 col-sm-2 text-center">上传图纸</th>
+          <th class="col-md-1 col-sm-1 text-center">操作</th>
         </tr>
         <%= f.fields_for :orders, :wrapper => false do |order_form| %>
         <tr class="fields">
@@ -24,7 +25,7 @@
             <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
           </td>
           <td>
-            <%= order_form.number_field :number, class: "control", min: 1, style: 'width:50%;' %>
+            <%= order_form.number_field :number, class: "control", min: 1, style: 'width:70%;' %>
           </td>
           <td>
              <%= order_form.select :order_type, Order.order_type, class: 'form-control'%>
@@ -35,7 +36,10 @@
             </div>
           </td>
           <td>
-            <%= order_form.link_to_remove "删除", class: 'btn btn-info' %>
+            <%= order_form.file_field :file, style: 'width:70%;' %>
+          </td>
+          <td>
+            <%= order_form.link_to_remove "删除", class: 'btn btn-info btn-xs' %>
           </td>
         </tr>
         <% end %>

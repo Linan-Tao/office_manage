@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  has_many :products # 一个订单包含多个产品
+  belongs_to :product # 一个订单包含多个产品
   belongs_to :order_union
   
   has_many :order_units, dependent: :destroy
@@ -12,6 +12,12 @@ class Order < ActiveRecord::Base
 
   before_create :generate_order_code
 
+  has_attached_file :file,
+                    :url => "/files/:id/:style.:extension",
+                    :path => ":rails_root/public/files/:id/:style.:extension"
+
+  validates_attachment_content_type :file, content_type: /\A.*\Z/
+
   # 发货时间需在十天以后
   validate :validate_require_time
 
@@ -19,6 +25,7 @@ class Order < ActiveRecord::Base
     begin
       orders_count = self.order_union.orders.count
       self.order_code = self.order_union.code + "-" + (orders_count+1).to_s
+      self.work_id = 1
     end while self.class.exists?(:order_code => order_code)
   end
 
@@ -79,7 +86,7 @@ class Order < ActiveRecord::Base
 
   def validate_require_time
     (Time.now.to_i - updated_at.to_i)/86400 <= 3
-    if (self.require_time.to_i - Time.now.to_i)/(10*24*60*60) <= 10
+    if (Date.parse(self.require_time.to_s) - Date.parse(Time.now.to_s)).to_i < 10
       self.errors.add(:require_time, '发货时间需在十天以后')
     end
   end

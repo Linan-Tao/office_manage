@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all.order("updated_at DESC")
+    @orders = Order.where(is_delete: false).order("updated_at DESC")
     @orders = @orders.where("order_code LIKE '%#{params[:term]}%'")  if params[:term].present?
     @orders = @orders.where(work_id: params[:work_id]) if params[:work_id].present?
     respond_to do |format|
@@ -84,6 +84,15 @@ class OrdersController < ApplicationController
     redirect_to order_bills_checked_path, notice: "订单审核通过，可下单"
   end
 
+  def download
+    order = Order.find(params[:id])
+    send_file order.file.path,
+                :filename => order.file_file_name,
+                :type => order.file_content_type,
+                :disposition => 'attachment'
+    flash[:notice] = "Your file has been downloaded"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -92,7 +101,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_code, :agent_id, :order_type, :require_time, :work_id,
+      params.require(:order).permit(:order_code, :agent_id, :order_type, :require_time, :work_id,:is_delete,
                                                               order_units_attributes: [:id, :unit_name, :name, :lenght, :width, :thick,
                                                               :number, :size, :color, :edge, :texture, :note, :_destroy],
                                                               order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])
