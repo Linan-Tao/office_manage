@@ -3,6 +3,7 @@
   <div class="col-md-12 col-sm-12">
   <%= f.label "客户"%>
   <%= f.select :agent_id, Agent.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createAgentModal">添加</button>
   </div>
 </div>
 
@@ -50,5 +51,32 @@
     </div>
   </div>
 </div>
-
 <% end%>
+
+<!-- Modal -->
+<div class="modal fade" id="createAgentModal" tabindex="-1" role="dialog" aria-labelledby="createAgentModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">代理商  <small>添加</small></h4>
+      </div>
+
+      <div class="modal-body">
+        <%= simple_form_for @agent do |f| %>
+        <%= f.input :name, input_html:{placeholder:'代理商名称'} %>
+        <%= f.input :mobile, input_html:{placeholder:'代理商电话'} %>
+        <%= f.input :address, input_html:{placeholder:'代理商地址'} %>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="pull-right">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <%= f.submit value:'保存', class: 'btn btn-info'  %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
