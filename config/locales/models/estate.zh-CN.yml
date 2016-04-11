@@ -1,0 +1,17 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      estate: Estate
+    attributes:
+      estate:
+        name: 名称
+        total: 金额
+        remain_value: 折旧后金额
+        buy_date: 购买日期
+        note: 备注
+        number: 数量
+    errors:
+      estate:
+  helpers:
+    estate:

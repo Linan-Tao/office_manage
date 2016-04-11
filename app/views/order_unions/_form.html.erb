@@ -7,41 +7,15 @@
 </div>
 
 <div>
-  <table class="table table-hover table-striped table-bordered text-center" id="orders">
-    <tr class="info">
-      <th class="col-md-4 col-sm-4 text-center">产品</th>
-      <th class="col-md-2 col-sm-2 text-center">数量</th>
-      <th class="col-md-2 col-sm-2 text-center">类型</th>
-      <th class="col-md-3 col-sm-3 text-center">操作</th>
-    </tr>
-    <%= f.fields_for :orders, :wrapper => false do |order_form| %>
-    <tr class="fields text-center">
-      <td>
-        <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
-      </td>
-      <td>
-        <%= order_form.number_field :number, class: "control"%>
-      </td>
-      <td>
-        <%= order_form.select :order_type, Order.order_type, class: 'form-control'%>
-      </td>
-      <td>
-        <%= order_form.link_to_remove "删除", class: 'btn btn-info' %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
-
-
     <hr/>
     <div>
-      <table class="table" id="orders">
-        <tr>
-          <th>产品</th>
-          <th>数量</th>
-          <th>类型</th>
-          <th>发货时间（要求发货时间需在十天以后）</th>
-          <th>操作</th>
+      <table class="table table-hover table-striped table-bordered text-center" id="orders">
+        <tr  class="info">
+          <th class="col-md-2 col-sm-2 text-center">产品</th>
+          <th class="col-md-2 col-sm-2 text-center">数量</th>
+          <th class="col-md-2 col-sm-2 text-center">类型</th>
+          <th class="col-md-4 col-sm-4 text-center">发货时间(十天后)</th>
+          <th class="col-md-2 col-sm-2 text-center">操作</th>
         </tr>
         <%= f.fields_for :orders, :wrapper => false do |order_form| %>
         <tr class="fields">
@@ -49,12 +23,10 @@
             <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
           </td>
           <td>
-            <%= order_form.number_field :number, class: "control"%>
+            <%= order_form.number_field :number, class: "control", min: 1, style: 'width:50%;' %>
           </td>
           <td>
-            <% Order.order_type.each do |ot|%>
-            <%= order_form.radio_button :order_type, "#{ot[1]}", class: 'form-control'%><%=ot[0]%>
-            <%end%>
+             <%= order_form.select :order_type, Order.order_type, class: 'form-control'%>
           </td>
           <td>
             <div class="field">

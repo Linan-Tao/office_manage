@@ -1,0 +1,20 @@
+---
+zh-CN:
+  estates:
+    index:
+      title: Estates
+    show:
+      title: Estate
+    edit:
+      title: Editing Estate
+    new:
+      title: New Estate
+  flash:
+    estates:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
