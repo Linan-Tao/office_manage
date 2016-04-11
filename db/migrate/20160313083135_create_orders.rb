@@ -9,7 +9,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :server_code # 客服终端编号
       t.integer :order_type # 订单类型： 1正常单，2补单，3加急单，4批量单
       t.string :patch_origin # 补单原单号
-      t.references :work, index: true, foreign_key: true, default: 1 #工序名称
+      t.references :work, index: true, foreign_key: true#工序名称
       t.datetime :offer_time # 分解报价时间
       t.datetime :check_time # 到款审核时间
       t.datetime :verify_time # 账单回传时间

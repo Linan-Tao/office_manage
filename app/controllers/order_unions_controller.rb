@@ -4,7 +4,7 @@ class OrderUnionsController < ApplicationController
   # GET /order_unions
   # GET /order_unions.json
   def index
-    @order_unions = OrderUnion.all
+    @orders = Order.where(is_delete: false).order(created_at: :desc).order(order_union_id: :desc)
   end
 
   # GET /order_unions/1
@@ -69,6 +69,6 @@ class OrderUnionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_union_params
-      params.require(:order_union).permit(:code, :agent_id, orders_attributes: [:id, :number, :product_id, :require_time, :order_type, :_destroy])
+      params.require(:order_union).permit(:code, :agent_id, orders_attributes: [:id, :number, :product_id, :require_time, :order_type, :file, :_destroy])
     end
 end

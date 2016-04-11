@@ -68,7 +68,7 @@ class OrderBillsController < ApplicationController
   end
 
   def not_check
-    @orders = Order.where("work_id in (?)", Work.where(symbol_name: ['offered', 'waiting_bill']).map(&:id).join(','))
+    @orders = Order.where("orders.is_delete = false").where("work_id in (?)", Work.where(symbol_name: ['offered', 'waiting_bill']).map(&:id).join(','))
   end
 
   def checked

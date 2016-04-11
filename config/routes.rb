@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     resources :order_bills
     member do 
       get :open_order
+      get :download
     end
   end
   get "order_bills/not_check"

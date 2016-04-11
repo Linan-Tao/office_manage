@@ -7,7 +7,7 @@ class OrderUnion < ActiveRecord::Base
 
   def generate_code
   	begin
-      self.code = Time.new.strftime('%Y%m%d') + SecureRandom.hex(3)
+      self.code = Time.new.strftime('%Y%m%d') +'-'+ SecureRandom.hex(2)
     end while self.class.exists?(:code => code)
   end
 

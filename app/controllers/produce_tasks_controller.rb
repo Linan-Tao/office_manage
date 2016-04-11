@@ -17,7 +17,7 @@ class ProduceTasksController < ApplicationController
   def new
     @produce_task = ProduceTask.new
     # 财务审核通过方可下单
-    @order_units = OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where(state: 0)
+    @order_units = OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where("orders.is_delete = false").where(state: 0)
   end
 
   # GET /produce_tasks/1/edit
@@ -57,7 +57,7 @@ class ProduceTasksController < ApplicationController
       unit.save!
     end
 
-    if OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where(state: 0).any?
+    if OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where("orders.is_delete = false").where(state: 0).any?
       redirect_to new_produce_task_path(), notice: '生产任务创建成功！'
     else
       create_part_produce_tasks
