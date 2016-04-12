@@ -3,6 +3,7 @@
   	<%= f.input :agent, input_html: { value: @order.order_union.agent.name }, readonly: true %>
   	<%= f.input :order_type, collection: Order.order_type, as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
   	<%= f.input :require_time%>
+    <%= f.input :file, as: :file%>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交'  %>
   </div>

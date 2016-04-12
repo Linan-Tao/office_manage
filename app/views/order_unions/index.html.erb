@@ -22,6 +22,7 @@
           <td>补单原单号</td>
           <td>文件图纸</td>
           <td>订单进度</td>
+          <td>修改</td>
           <td>删除</td>
         </tr>
       </thead>   
@@ -36,8 +37,13 @@
           <td><%= order.server_code%></td>
           <td><%= order.order_type_name%></td>
           <td><%= order.patch_origin%></td>
-          <td><%= link_to '下载', download_order_path(order) %></td>
+          <td>
+            <%if order.file_file_name%>
+            <%= link_to '下载', download_order_path(order) %>
+            <%end%>
+          </td>
           <td><%= order.work.try(:name)%></td>
+          <td><%= link_to '修改', edit_order_path(order), class: 'btn btn-xs btn-info'%></td>
           <td>
             <%= form_for order, {class: 'form-inline'} do |f|%>
               <input type="hidden" name="order[is_delete]" value="true">
