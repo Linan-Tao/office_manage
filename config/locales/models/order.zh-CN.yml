@@ -10,6 +10,7 @@ zh-CN:
         order_type: 订单类型
         require_time: 要求发货时间
         agent: 客户
+        file: 图纸
     errors:
       order:
   helpers:

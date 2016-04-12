@@ -21,6 +21,10 @@
               <% end %>
               &nbsp;&nbsp;&nbsp;&nbsp;
                 下单客户：<%=link_to @order.order_union.agent.name, agent_path(@order.order_union.agent)%>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <%if @order.file_file_name%>
+                    <%= link_to '下载图纸', download_order_path(@order), class: 'btn btn-info btn-xs' %>
+                <%end%>
           </p>
         </div>
         <% if @order.separated? %>
