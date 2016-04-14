@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :order_unions
+  resources :order_unions do
+    resources :offers
+  end
   resources :delivery_plans
   resources :instalers
   resources :drivers
@@ -45,7 +47,6 @@ Rails.application.routes.draw do
         post :batch_create
       end
     end
-    resources :offers
     resources :order_bills
     member do 
       get :open_order

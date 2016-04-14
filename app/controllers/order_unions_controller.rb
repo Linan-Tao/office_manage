@@ -1,15 +1,20 @@
 class OrderUnionsController < ApplicationController
   before_action :set_order_union, only: [:show, :edit, :update, :destroy]
-
+  include OrdersHelper
   # GET /order_unions
   # GET /order_unions.json
   def index
-    @orders = Order.where(is_delete: false).order(created_at: :desc).order(order_union_id: :desc)
+    @order_unions = OrderUnion.all.order(created_at: :desc)
   end
 
   # GET /order_unions/1
   # GET /order_unions/1.json
   def show
+    @order_offers = @order_union.offers
+    @order_units = @order_union.orders.map(&:order_units).flatten
+    @part_categories = PartCategory.all
+    @order_parts = @order_union.orders.map(&:order_parts).flatten
+    @material_categories = MaterialCategory.all
   end
 
   # GET /order_unions/new
@@ -20,12 +25,12 @@ class OrderUnionsController < ApplicationController
 
   # GET /order_unions/1/edit
   def edit
+    @agent = @order_union.agent
   end
 
   # POST /order_unions
   # POST /order_unions.json
   def create
-    @order_union = OrderUnion.new(order_union_params)
 
     respond_to do |format|
       if @order_union.save
@@ -41,6 +46,11 @@ class OrderUnionsController < ApplicationController
   # PATCH/PUT /order_unions/1
   # PATCH/PUT /order_unions/1.json
   def update
+    @order_union = OrderUnion.find(params[:id])
+    if params[:order_union][:type] == "offer"
+      message = import_offers(params)
+      return redirect_to order_union_path(@order_union), notice: message
+    end
     respond_to do |format|
       if @order_union.update(order_union_params)
         format.html { redirect_to @order_union, notice: '订单编辑成功！' }
