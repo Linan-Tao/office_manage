@@ -31,7 +31,7 @@ class OrderUnionsController < ApplicationController
   # POST /order_unions
   # POST /order_unions.json
   def create
-
+    @order_union = OrderUnion.new(order_union_params)
     respond_to do |format|
       if @order_union.save
         format.html { redirect_to order_unions_path, notice: '订单创建成功！' }
