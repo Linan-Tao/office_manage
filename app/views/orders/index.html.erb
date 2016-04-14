@@ -30,37 +30,50 @@
     </div>
    </div>
    <div class="awidget-body">
-      <table class="table table-hover table-striped table-bordered text-center">
+      <table class="table table-hover table-striped table-bordered table-condensed text-center">
           <thead>
             <tr class="info">
-              <td>订单号</td>
-              <td>订单状态</td>
-              <td>操作</td>
+              <td>接单时间</td>
+              <td>产品内容</td>
+              <td>客户单号</td>
+              <td>订单编号</td>
+              <td>经销商</td>
+              <td>终端名称</td>
+              <td>订单类别</td>
+              <td>补单原单号</td>
+              <td>文件图纸</td>
+              <td>订单进度</td>
+              <td>修改</td>
+              <td>删除</td>
             </tr>
-          </thead>
+          </thead>   
           <tbody>
             <% @orders.each do |order|%>
-              <tr>
-                <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
-                <td><% if order.work.sequence > 2 %><!-- 工序值 -->
-                <%= link_to order.work.name, order_offers_path(order), class:'detail-link'  %>
-                <% else %>
-                <%= order.work.name %>
-                <% end %></td>
-               <td>
-                  <% if order.checked? %>
-                  <%= link_to '创建生产任务单',new_produce_task_path(order_id: order.id), class: 'btn btn-xs btn-info'%>
-                  <% end %>
-                  <%= link_to  edit_order_path(order),  class: 'btn btn-xs btn-warning' do %>
-                      <i class="fa fa-pencil"></i>
-                   <% end %>
-                  <%= link_to  order_path(order), data: {:confirm => '确定要删除吗?'}, :method => :delete, class: 'btn btn-xs btn-danger' do %>
-                    <i class="fa fa-times"></i>
-                  <% end %>
-               </td>
-              </tr>
-            <% end %>
-          </tbody>
+            <tr>
+              <td><%= order.created_at.localtime.strftime("%y-%m-%d")%></td>
+              <td><%= order.product.name%></td>
+              <td><%= order.order_union.code %></td>
+              <td><%= link_to order.order_code, order_path(order) %></td>
+              <td><%= order.order_union.agent.try(:name) %></td>
+              <td><%= order.server_code%></td>
+              <td><%= order.order_type_name%></td>
+              <td><%= order.patch_origin%></td>
+              <td>
+                <%if order.file_file_name%>
+                <%= link_to '下载', download_order_path(order) %>
+                <%end%>
+              </td>
+              <td><%= order.work.try(:name)%></td>
+              <td><%= link_to '修改', edit_order_path(order), class: 'btn btn-xs btn-info'%></td>
+              <td>
+                <%= form_for order, {class: 'form-inline'} do |f|%>
+                  <input type="hidden" name="order[is_delete]" value="true">
+                  <button class="btn btn-xs btn-warning">删除</button>
+                <%end%>
+              </td>
+            </tr>
+            <%end%>
+          </toby>
       </table>
    </div>
 </div>

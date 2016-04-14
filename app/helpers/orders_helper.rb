@@ -39,7 +39,7 @@ module OrdersHelper
 # {"utf8"=>"✓",
 #  "_method"=>"patch",
 #  "authenticity_token"=>"5ak41PEtRCnZhC0MgD5y+7XIuVUElBaVmTfonZQEkq13qbH1EBL3jbxOq7O45luH8zLQaJWPQ9kn12pVNTr8vg==",
-#  "order"=>
+#  "order_union"=>
 #   {"type"=>"offer",
 #    "offers_attributes"=>
 #     {"1458391474448"=>{"material_category_id"=>"1", "material_type_id"=>"1", "number"=>"1", "_destroy"=>"false"},
@@ -54,15 +54,15 @@ module OrdersHelper
 #  "id"=>"1"}
 # 创建报价单
   def import_offers(offers_params)
-    order = Order.find(offers_params[:id])
+    order_union = OrderUnion.find(offers_params[:id])
     ActiveRecord::Base.transaction do
       # 板料
-      if offers_params[:order] && offers_params[:order][:offers_attributes]
-        offers_params[:order][:offers_attributes].values.each do |offer|
+      if offers_params[:order_union] && offers_params[:order_union][:offers_attributes]
+        offers_params[:order_union][:offers_attributes].values.each do |offer|
           next unless offer[:_destroy] == "false"
           material = Material.find_by(ply: offer[:ply], texture: offer[:texture], face: offer[:face], color: offer[:color])
           return '生成报价单错误！未查到物料信息，请联系管理员！' unless material
-          offer_m = order.offers.find_or_create_by(item_id: material.id, item_type: material.class)
+          offer_m = order_union.offers.find_or_create_by(item_id: material.id, item_type: material.class)
           offer_m.price = material.sell.to_f
           offer_m.number = offer[:number].to_f
           offer_m.total = offer_m.price * offer_m.number
@@ -74,10 +74,10 @@ module OrdersHelper
         end
       end
       # 配件
-      order.order_parts.each do |order_part|
+      order_union.orders.map(&:order_parts).flatten.each do |order_part|
         part = order_part.part
-        offer_p = order.offers.find_or_create_by(item_id: part.id, item_type: part.class)
-        offer_p.number = order_part.number.to_i
+        offer_p = order_union.offers.find_or_create_by(item_id: part.id, item_type: part.class)
+        offer_p.number = offer_p.number.to_i + order_part.number.to_i
         offer_p.price = part.sell.to_f
         offer_p.total = offer_p.price * offer_p.number
         offer_p.item_name = part.name
@@ -86,16 +86,18 @@ module OrdersHelper
       end
       # 人工费
       if offers_params[:item].present? &&  offers_params[:item_price].present?
-        offer_r = order.offers.new
+        offer_r = order_union.offers.new
         offer_r.item_name = offers_params[:item]
         offer_r.price = offers_params[:item_price].to_f
         offer_r.number = offers_params[:item_number].to_i
         offer_r.total = offer_r.price * offer_r.number
         offer_r.save
       end
-      order.offered!
-      order.offer_time = Time.now()
-      order.save!
+      order_union.orders.each do |order|
+        order.offered!
+        order.offer_time = Time.now()
+        order.save!
+      end
       return "报价单创建成功"
     end
   end

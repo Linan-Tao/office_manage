@@ -2,7 +2,7 @@ class CreateOffers < ActiveRecord::Migration
   #报价单
   def change
     create_table :offers do |t|
-      t.references :order, index: true, foreign_key: true
+      t.references :order_union, index: true, foreign_key: true
       t.string :item_name #计价项目
       t.integer :item_id, index: true # 计价物料／配件id，用polymorphic方式
       t.string :item_type # 计价物料／配件

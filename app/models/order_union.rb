@@ -1,8 +1,9 @@
 class OrderUnion < ActiveRecord::Base
   belongs_to :agent
   has_many :orders
+  has_many :offers, dependent: :destroy
 
-  accepts_nested_attributes_for :orders, :allow_destroy => true
+  accepts_nested_attributes_for :orders, :offers, :allow_destroy => true
   before_create :generate_code
 
   def generate_code

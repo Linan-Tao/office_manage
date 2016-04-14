@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.where(is_delete: false).order("updated_at DESC")
+    @orders = Order.where(is_delete: false).order(created_at: :desc)
     @orders = @orders.where("order_code LIKE '%#{params[:term]}%'")  if params[:term].present?
     @orders = @orders.where(work_id: params[:work_id]) if params[:work_id].present?
     respond_to do |format|
@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
     @part_categories = PartCategory.all
     @order_parts = @order.order_parts
     @material_categories = MaterialCategory.all
-    @order_offers = @order.offers
   end
 
   # GET /orders/new
@@ -51,10 +50,6 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    if params[:order][:type] == "offer"
-      message = import_offers(params)
-      return redirect_to @order, notice: message
-    end
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: '订单更新成功！' }

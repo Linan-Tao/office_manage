@@ -14,11 +14,8 @@
         <div class="col-md-8 col-sm-8">
           <p>订单号：<%= @order.order_code%>&nbsp;&nbsp;&nbsp;&nbsp;
                 订单状态：
-              <% if @order.work.sequence > 2 %>
-                <%= link_to @order.work.name, order_offers_path(@order),class:'detail-link'%>
-              <% else %>
                 <%= @order.work.name %>
-              <% end %>
+    
               &nbsp;&nbsp;&nbsp;&nbsp;
                 下单客户：<%=link_to @order.order_union.agent.name, agent_path(@order.order_union.agent)%>
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -28,11 +25,6 @@
           </p>
         </div>
         <% if @order.separated? %>
-        <div class="pull-right">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#offer">
-            生成报价单
-            </button>
-        </div>
         <% elsif @order.not_separate? %>
         <div class="pull-right">
               <%= form_for @order, class:'' do |f| %>
@@ -67,4 +59,3 @@
 </div>
 <%= render 'order_units'%>
 <%= render 'order_parts'%>
-<%= render 'order_offers'%>
