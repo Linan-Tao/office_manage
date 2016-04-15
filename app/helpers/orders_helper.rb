@@ -1,14 +1,15 @@
 module OrdersHelper
 	# 导入拆单文件
-	def import_order_units(file, order_code)
+  def import_order_units(file, order_code)
     table = CSV.read(file.path, {:headers => true, :encoding => 'GB18030:UTF-8'})
     headers = table.headers[0..15].map(&:strip)
-    if headers == ["部件名称", "板材", "长", "宽", "厚", "数量", "裁切尺寸", "柜体名称", "订单号", "订货商", "终端信息", "封边", "纹理", "备注", "条码", "流水号"]
+    if headers == ["部件名称", "板材", "长", "宽", "厚", "数量", "裁切尺寸", "柜体名称", "订单号", "订货商", "终端信息", "封边", "纹理", "备注", "条码"]
       order = Order.find_by(order_code: order_code)
       # 拆单文件中的订单号
       order_units_order_code = table.map{|r| r[8]}.uniq.join(',')
       if order &&  order_units_order_code == order_code
         ActiveRecord::Base.transaction do
+          OrderUnit.where(order_id: order.id).destroy_all
           table.each do |row|
             record = OrderUnit.new(
                 :order_id   => order.id,

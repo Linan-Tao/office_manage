@@ -11,51 +11,42 @@
   <div class="awidget-head">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <div class="col-md-8 col-sm-8">
-          <p>订单号：<%= @order.order_code%>&nbsp;&nbsp;&nbsp;&nbsp;
-                订单状态：
-                <%= @order.work.name %>
-    
-              &nbsp;&nbsp;&nbsp;&nbsp;
-                下单客户：<%=link_to @order.order_union.agent.name, agent_path(@order.order_union.agent)%>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <%if @order.file_file_name%>
-                    <%= link_to '下载图纸', download_order_path(@order), class: 'btn btn-info btn-xs' %>
-                <%end%>
-          </p>
+        <div class="pull-left">
+          订单号：<code id="orderCode"><%= @order.order_code%></code>&nbsp;&nbsp;&nbsp;&nbsp;
+          订单状态：<%= @order.work.name %>&nbsp;&nbsp;&nbsp;&nbsp;
+          下单客户：<%=link_to @order.order_union.agent.name, agent_path(@order.order_union.agent)%>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%if @order.file_file_name%>
+              <%= link_to '下载图纸', download_order_path(@order), class: 'btn btn-info btn-xs' %>
+          <%end%>
         </div>
-        <% if @order.separated? %>
-        <% elsif @order.not_separate? %>
         <div class="pull-right">
+          <% if @order.separated? %>
+          已拆单
+          <% elsif @order.not_separate? %>
               <%= form_for @order, class:'' do |f| %>
               <%= f.hidden_field :work_id, value: 2 %>
               <%= f.submit '完成拆单', data: {:confirm => '确定提交拆单信息?'}, class:'btn btn-info' %>
               <% end %>
+          <% else %>
+          其他
+          <% end %>
         </div>
-        <% else %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <% if @order.not_separate?%>
-  <div class="awidget-body">
-    <%= form_tag import_order_order_units_path(@order), multipart: true, class: 'form-inline' do %>
-    <div class="row">
-      <div class="col-xs-3 col-sm-3">
-        <%= file_field_tag :file, required: true, accept: 'csv'%>
-      </div>
-      <div class="col-xs-6 col-sm-6">
-        <%= submit_tag "导入拆单文件", class: 'btn btn-info btn-xs'%>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <p>请导入csv文件，表头为部件名称,板材,长,宽,厚,数量,裁切尺寸,柜体名称,订单号,订货商,终端信息,封边,纹理,备注,条码,流水号</p>
+      <div class="col-md-12 col-sm-12">
+      <%= form_tag import_order_order_units_path(@order), multipart: true, class: 'form-inline' do %>
+        <div class="pull-left">
+            <%= file_field_tag :file, required: true, accept: 'csv', class: 'btn btn-info btn-xs' %>
+        </div>
+        <div class="pull-right">
+          <%= submit_tag "导入CSV文件", class: 'btn btn-info btn-xs' %>
+          <%= link_to '打开拆单软件', "#", class: 'btn btn-info btn-xs', id: 'openOutExcel' %>
+        </div>
+      <% end %>
       </div>
     </div>
-    <% end %>
   </div>
-  <% end %>
 </div>
 <%= render 'order_units'%>
 <%= render 'order_parts'%>

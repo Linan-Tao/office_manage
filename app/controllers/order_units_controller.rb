@@ -55,7 +55,6 @@ class OrderUnitsController < ApplicationController
   # 导入文件，或手工输入
   def import
     # 有上传文件时
-
     if params[:file].original_filename !~ /.csv$/
       return redirect_to order_path(@order), notice: '文件格式不正确！'
     else

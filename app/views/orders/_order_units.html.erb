@@ -15,19 +15,19 @@
    </div>
    <div class="awidget-body">
       <div class="table-responsive" style="height: 300px;">
-         <table class="table table-border">
-            <thead>
+         <table class="table table-border table-condensed">
+            <thead class="fixed">
                <tr>
                   <td>部件名称</td>
                   <td>板料</td>
+                  <td>颜色</td>
+                  <td>纹理</td>
+                  <td>封边</td>
                   <td>长</td>
                   <td>宽</td>
                   <td>厚</td>
                   <td>数量</td>
                   <td>剪裁尺寸</td>
-                  <td>颜色</td>
-                  <td>封边</td>
-                  <td>纹理</td>
                   <td>备注</td>
                </tr>
             </thead>
@@ -36,14 +36,14 @@
                <tr>
                   <td><%= unit.unit_name%></td>
                   <td><%= unit.name%></td>
+                  <td><%= unit.color%></td>
+                  <td><%= unit.edge%></td>
+                  <td><%= unit.texture%></td>
                   <td><%= unit.lenght%></td>
                   <td><%= unit.width%></td>
                   <td><%= unit.thick%></td>
                   <td><%= unit.number%></td>
                   <td><%= unit.size%></td>
-                  <td><%= unit.color%></td>
-                  <td><%= unit.edge%></td>
-                  <td><%= unit.texture%></td>
                   <td><%= unit.note%></td>
                </tr>
                <% end %>
@@ -62,7 +62,7 @@
             <h4 class="modal-title" id="myModalLabel">订单：<%= @order.order_code %> <small>部件</small></h4>
          </div>
          <div class="modal-body">
-            <table class="table" id="units">
+            <table class="table table-condensed" id="units">
                <tr>
                   <td>部件名称</td>
                   <td>板料</td>
@@ -81,37 +81,37 @@
                <tr class="fields">
 
                   <td>
-                     <%= unit_form.text_field(:unit_name, class: 'form-control') %>
+                     <%= unit_form.text_field(:unit_name, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:name, class: 'form-control') %>
+                     <%= unit_form.text_field(:name, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:lenght, class: 'form-control') %>
+                     <%= unit_form.text_field(:lenght, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:width, class: 'form-control') %>
+                     <%= unit_form.text_field(:width, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:thick, class: 'form-control') %>
+                     <%= unit_form.text_field(:thick, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:number, class: 'form-control') %>
+                     <%= unit_form.text_field(:number, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:size, class: 'form-control') %>
+                     <%= unit_form.text_field(:size, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:color, class: 'form-control') %>
+                     <%= unit_form.text_field(:color, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:edge, class: 'form-control') %>
+                     <%= unit_form.text_field(:edge, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:texture, class: 'form-control') %>
+                     <%= unit_form.text_field(:texture, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:note, class: 'form-control') %>
+                     <%= unit_form.text_field(:note, class: 'form-control input-sm') %>
                   </td>
                   <td>
                      <%= unit_form.link_to_remove "删除", class: 'btn btn-info' %>
@@ -119,7 +119,7 @@
                </tr>
                <% end %>
             </table>
-            <p><%= f.link_to_add "添加", :order_units, :data => { :target => "#units" }, class: 'btn btn-info' %></p>
+            <p><%= f.link_to_add "添加部件", :order_units, :data => { :target => "#units" }, class: 'btn btn-info' %></p>
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

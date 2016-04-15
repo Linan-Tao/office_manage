@@ -1,7 +1,7 @@
 <div class="page-title">
   <h2><i class="fa fa-desktop color"></i> 客户订单&nbsp;&nbsp;
   <span class="pull-right">
-    <%= link_to '返回',  :back, class: 'btn btn-lg btn-info' %>
+    <%= link_to '返回',  order_unions_path, class: 'btn btn-lg btn-info' %>
   </span>
   </h2>
   <hr />
@@ -11,17 +11,15 @@
   <div class="awidget-head">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <div class="col-md-8 col-sm-8">
-          <p>客户单号：<%= @order_union.code%>&nbsp;&nbsp;&nbsp;&nbsp;
-              下单客户：<%=link_to @order_union.agent.name, agent_path(@order_union.agent)%>
-          </p>
+        <div class="pull-left">
+          客户单号：<%= link_to @order_union.code, order_unions_path, class: 'detail-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          下单客户：<%=link_to @order_union.agent.name, agent_path(@order_union.agent)%>
         </div>
-        <div class="col-md-4 col-md-4">
+        <div class="pull-right">
           <% if @order_union.orders.map{|o| o.separated?}.uniq.join(',') == "true" %>
-
-              <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#offer">
-              生成报价单
-              </button>
+              <button type="button" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#offer">生成报价单</button>
+          <% else %>
+              <button type="button" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#offer" disabled="true">生成报价单</button>
           <% end %>
         </div>
       </div>
@@ -29,8 +27,8 @@
   </div>
 
   <div class="awidget-body">
-    <table class="table">
-      <tr>
+    <table class="table table-hover table-striped table-bordered table-condensed text-center">
+      <tr class="info">
         <td>订单号</td>
         <td>产品</td>
         <td>订单类型</td>
@@ -39,7 +37,7 @@
       </tr>
       <% @order_union.orders.each do |order|%>
         <tr>
-          <td><%= link_to order.order_code, order_path(order)%></td>
+          <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
           <td><%= order.product.name%></td>
           <td><%= order.order_type_name %></td>
           <td><%= order.require_time.localtime.strftime("%y-%m-%d")%></td>

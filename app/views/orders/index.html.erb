@@ -1,8 +1,8 @@
 <!-- Page title -->
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 订单管理
+  <h2><i class="fa fa-desktop color"></i> 订单管理 <small>列表</small>
     <span class="pull-right">
-      <%= link_to '添加', new_order_path, class: 'btn btn-lg btn-info' %>
+      <%= link_to '添加', new_order_union_path, class: 'btn btn-lg btn-info' %>
     </span>
   </h2>
   <hr />
@@ -33,10 +33,9 @@
       <table class="table table-hover table-striped table-bordered table-condensed text-center">
           <thead>
             <tr class="info">
+              <td>订单编号</td>
               <td>接单时间</td>
               <td>产品内容</td>
-              <td>客户单号</td>
-              <td>订单编号</td>
               <td>经销商</td>
               <td>终端名称</td>
               <td>订单类别</td>
@@ -46,21 +45,22 @@
               <td>修改</td>
               <td>删除</td>
             </tr>
-          </thead>   
+          </thead>
           <tbody>
             <% @orders.each do |order|%>
             <tr>
-              <td><%= order.created_at.localtime.strftime("%y-%m-%d")%></td>
+              <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
+              <td><%= order.created_at.localtime.strftime("%Y-%m-%d")%></td>
               <td><%= order.product.name%></td>
-              <td><%= order.order_union.code %></td>
-              <td><%= link_to order.order_code, order_path(order) %></td>
               <td><%= order.order_union.agent.try(:name) %></td>
               <td><%= order.server_code%></td>
-              <td><%= order.order_type_name%></td>
+              <td><%= order.order_type_name %></td>
               <td><%= order.patch_origin%></td>
               <td>
                 <%if order.file_file_name%>
                 <%= link_to '下载', download_order_path(order) %>
+                <%else%>
+                <%= link_to '上传', '#', class: 'uploadOrderGraph detail-link' %>
                 <%end%>
               </td>
               <td><%= order.work.try(:name)%></td>

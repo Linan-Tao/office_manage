@@ -1,6 +1,6 @@
 <!-- Page title -->
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 订单管理
+  <h2><i class="fa fa-desktop color"></i> 客户订单
     <span class="pull-right">
       <%= link_to '添加', new_order_union_path, class: 'btn btn-lg btn-info' %>
     </span>
@@ -12,22 +12,21 @@
   <table class="table table-hover table-striped table-bordered table-condensed text-center">
       <thead>
         <tr class="info">
-          <td>接单时间</td>
           <td>客户单号</td>
+          <td>接单时间</td>
           <td>经销商</td>
           <td>修改</td>
           <td>删除</td>
         </tr>
-      </thead>   
+      </thead>
       <tbody>
         <% @order_unions.each do |order_union|%>
         <tr>
-          <td><%= order_union.created_at.localtime.strftime("%y-%m-%d")%></td>
-          <td><%= link_to order_union.code, order_union_path(order_union) %></td>
+          <td><%= link_to order_union.code, order_union_path(order_union), class: 'detail-link' %></td>
+          <td><%= order_union.created_at.localtime.strftime("%Y-%m-%d")%></td>
           <td><%= order_union.agent.try(:name) %></td>
           <td><%= link_to '修改', edit_order_union_path(order_union), class: 'btn btn-xs btn-info'%></td>
           <td>
-            
           </td>
         </tr>
         <%end%>

@@ -188,14 +188,13 @@ strong{
 }
 
 .header .logo h1 a{
-   color:#fff;
    font-family: 'Open Sans Condensed', sans-serif;
-}
-
-.header .logo h1 a:hover{
-   color:#fff;
-   text-decoration:none;
-   border:0px;
+   &:hover{
+      color: #fff;
+      background-color:#16CBE6 !important;
+      text-decoration:none;
+      border:0px;
+   };
 }
 
 .header .form{
@@ -226,11 +225,15 @@ strong{
 }
 
 .header .navbar .nav > li > a{
-   color:#fff !important;
+   color:#666 !important;
    font-size:13px !important;
    border-bottom:0px !important;
    margin-top:7px !important;
    font-weight:bold;
+}
+
+.header .navbar .nav > li > a:hover{
+   color:#fff !important;
 }
 
 .header .navbar-nav>.open>a,.header  .navbar-nav>.open>a:hover,.header  .navbar-nav>.open>a:focus {

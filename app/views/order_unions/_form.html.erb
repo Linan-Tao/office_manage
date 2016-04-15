@@ -3,7 +3,7 @@
   <div class="col-md-12 col-sm-12">
   <%= f.label "客户"%>
   <%= f.select :agent_id, Agent.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
-  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createAgentModal">添加</button>
+  <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#createAgentModal">添加客户</button>
   </div>
 </div>
 
@@ -48,7 +48,7 @@
 <div class="row">
   <div class="col-md-12 col-sm-12">
     <div class="pull-left">
-      <p><%= f.link_to_add "添加", :orders, :data => { :target => "#orders" }, class: 'btn btn-info' %></p>
+      <p><%= f.link_to_add "添加子订单", :orders, :data => { :target => "#orders" }, class: 'btn btn-info' %></p>
     </div>
     <div class="pull-right">
       <%= submit_tag "保存", class: 'btn btn-info'%>
