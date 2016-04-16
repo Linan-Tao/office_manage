@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :produces
 
   resources :produce_tasks do
-    collection do 
+    collection do
       get :not_open
     end
   end
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
       end
     end
     resources :order_bills
-    member do 
+    member do
       get :open_order
       get :download
     end
