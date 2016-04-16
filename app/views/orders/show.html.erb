@@ -1,8 +1,8 @@
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 订单管理&nbsp;&nbsp;
+  <h2><i class="fa fa-desktop color"></i> 订单管理 <small>详细</small>
   <small><%= @order.order_type_name%></small>&nbsp;&nbsp;<small>发货时间：<%=@order.require_time.try(:to_date)%></small>
   <span class="pull-right">
-    <%= link_to '返回',  :back, class: 'btn btn-lg btn-info' %>
+    <%= link_to '返回',  order_unions_path, class: 'btn btn-lg btn-info' %>
   </span>
   </h2>
   <hr />

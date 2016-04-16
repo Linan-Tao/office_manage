@@ -10,21 +10,37 @@
 }
 
 .detail-link{
-  // color: #16cbe6 !important;
+  color: #3296E7;
   &:hover{
     text-decoration: none !important;
-    background-color: #F9F9F9;
-  }
-  &:visited{
-    color: #3296E7;
+    background: transparent;
   }
 }
 
-code{
+code {
   background: #DADADA;
 }
 
 /* 必填字段*标记为红色 */
 label.required abbr{
   color: red;
+}
+
+.modal .modal-dialog{
+  & .modal-body {
+    padding-bottom: 5px;
+    & table{
+      margin-bottom: 10px;
+    }
+  }
+  & .modal-footer{
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+.field.date-selector{
+  margin:0px;
+  padding:0px;
 }

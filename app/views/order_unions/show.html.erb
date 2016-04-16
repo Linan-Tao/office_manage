@@ -1,5 +1,5 @@
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 客户订单&nbsp;&nbsp;
+  <h2><i class="fa fa-desktop color"></i> 客户订单 <small>详细</small>
   <span class="pull-right">
     <%= link_to '返回',  order_unions_path, class: 'btn btn-lg btn-info' %>
   </span>
@@ -13,7 +13,8 @@
       <div class="col-md-12 col-sm-12">
         <div class="pull-left">
           客户单号：<%= link_to @order_union.code, order_unions_path, class: 'detail-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
-          下单客户：<%=link_to @order_union.agent.name, agent_path(@order_union.agent)%>
+          下单客户：<%=link_to @order_union.agent.name, agent_path(@order_union.agent), class: 'detail-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          状态：<span class='detail-link'><%= @order_union.status_name %></span>
         </div>
         <div class="pull-right">
           <% if @order_union.orders.map{|o| o.separated?}.uniq.join(',') == "true" %>
@@ -29,8 +30,9 @@
   <div class="awidget-body">
     <table class="table table-hover table-striped table-bordered table-condensed text-center">
       <tr class="info">
-        <td>订单号</td>
+        <td>子订单号</td>
         <td>产品</td>
+        <td>数量</td>
         <td>订单类型</td>
         <td>发货时间</td>
         <td>订单状态</td>
@@ -39,8 +41,9 @@
         <tr>
           <td><%= link_to order.order_code, order_path(order), class: 'detail-link' %></td>
           <td><%= order.product.name%></td>
+          <td><%= order.number %></td>
           <td><%= order.order_type_name %></td>
-          <td><%= order.require_time.localtime.strftime("%y-%m-%d")%></td>
+          <td><%= order.require_time.localtime.strftime("%Y-%m-%d")%></td>
           <td><%= order.work.try(:name)%></td>
         </tr>
       <% end %>

@@ -16,6 +16,9 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :require_time # 要求发货时间
       t.datetime :send_time # 实际发货时间
       t.string :employee # 接单员
+      t.references :order_union, index: true, foreign_key: true
+      t.integer :number # 数量
+      t.boolean :is_delete, default: false # 标记删除
       t.timestamps null: false
     end
   end

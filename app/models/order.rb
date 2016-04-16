@@ -1,11 +1,11 @@
 class Order < ActiveRecord::Base
   belongs_to :product # 一个订单包含多个产品
   belongs_to :order_union
-  
+
   has_many :order_units, dependent: :destroy
   has_many :order_parts, dependent: :destroy
   has_many :order_bills, dependent: :destroy
-  
+
   accepts_nested_attributes_for :order_units, :order_parts, :allow_destroy => true
   belongs_to :work
   belongs_to :agent
@@ -85,8 +85,9 @@ class Order < ActiveRecord::Base
   end
 
   def validate_require_time
-    (Time.now.to_i - updated_at.to_i)/86400 <= 3
-    if (Date.parse(self.require_time.to_s) - Date.parse(Time.now.to_s)).to_i < 10
+    # (Time.now.to_i - updated_at.to_i)/86400 <= 3
+    time =  self.created_at || Time.now
+    if (Date.parse(self.require_time.to_s) - Date.parse(time.to_s)).to_i < 10
       self.errors.add(:require_time, '发货时间需在十天以后')
     end
   end

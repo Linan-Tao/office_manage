@@ -29,7 +29,7 @@
       <tbody>
         <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.order_code, order_offers_path(order) %></td>
+          <td><%= link_to order.order_code, order_unions_path(order) %></td>
           <td><%= order.offers.map(&:total).sum %></td>
           <td><%= order.order_bills.map(&:paid).sum %></td>
           <td><%= order.try(:offer_time).localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
