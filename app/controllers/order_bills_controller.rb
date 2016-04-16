@@ -4,8 +4,8 @@ class OrderBillsController < ApplicationController
   # GET /order_bills
   # GET /order_bills.json
   def index
-    @order = Order.find(params[:order_id])
-    @order_bills = @order.order_bills
+    @order_union = OrderUnion.find(params[:order_union_id])
+    @order_bills = @order_union.order_bills
   end
 
   # GET /order_bills/1
@@ -16,9 +16,9 @@ class OrderBillsController < ApplicationController
   # GET /order_bills/new
   def new
     @order_bill = OrderBill.new
-    @order = Order.find(params[:order_id])
-    @order_bill.order_id = @order.id
-    @order_bill.total = @order.offers.map(&:total).sum
+    @order_union = OrderUnion.find(params[:order_union_id])
+    @order_bill.order_union_id = @order_union.id
+    @order_bill.total = @order_union.offers.map(&:total).sum
   end
 
   # GET /order_bills/1/edit
@@ -29,12 +29,12 @@ class OrderBillsController < ApplicationController
   # POST /order_bills.json
   def create
     @order_bill = OrderBill.new(order_bill_params)
-    @order = Order.find(params[:order_id])
-    @order_bill.order_id = @order.id
-    @order_bill.total = @order.offers.map(&:total).sum
+    @order_union = OrderUnion.find(params[:order_union_id])
+    @order_bill.order_union_id = @order_union.id
+    @order_bill.total = @order_union.offers.map(&:total).sum
     respond_to do |format|
       if @order_bill.save
-        format.html { redirect_to order_order_bills_path(@order), notice: '订单到款创建成功！' }
+        format.html { redirect_to order_union_order_bills_path(@order_union), notice: '订单到款创建成功！' }
         format.json { render :show, status: :created, location: @order_bill }
       else
         format.html { render :new }
@@ -68,11 +68,11 @@ class OrderBillsController < ApplicationController
   end
 
   def not_check
-    @orders = Order.where("orders.is_delete = false").where("work_id in (?)", Work.where(symbol_name: ['offered', 'waiting_bill']).map(&:id).join(','))
+    @order_unions = OrderUnion.offered
   end
 
   def checked
-    @orders = Order.checked
+    @order_unions = OrderUnion.checked
   end
 
   private

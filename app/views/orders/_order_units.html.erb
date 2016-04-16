@@ -5,9 +5,12 @@
             <h3>部件信息
             <p class="pull-right">
                <!-- Button trigger modal -->
-               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#orderUnitsModal">
-               编辑
-               </button>
+
+               <% if @order.not_separate? %>
+                    <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#orderUnitsModal">编辑</button>
+                <% else %>
+                    <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#orderUnitsModal" disabled="true">编辑</button>
+                <% end %>
             </p>
             </h3>
          </div>
@@ -20,13 +23,13 @@
                <tr>
                   <th>编号</th>
                   <th>名称</th>
-                  <th>板料</th>
+                  <th>厚度</th>
+                  <th>材质</th>
+                  <th>表面</th>
                   <th>颜色</th>
-                  <th>纹理</th>
                   <th>封边</th>
                   <th>长</th>
                   <th>宽</th>
-                  <th>厚</th>
                   <th>数量</th>
                   <th>剪裁尺寸</th>
                   <th>备注</th>
@@ -37,13 +40,13 @@
                <tr>
                   <td><%= unit.id%></td>
                   <td><%= unit.unit_name%></td>
-                  <td><%= unit.name%></td>
-                  <td><%= unit.color%></td>
+                  <td><%= unit.ply_name%></td>
+                  <td><%= unit.texture_name%></td>
+                  <td><%= unit.face_name%></td>
+                  <td><%= unit.color_name%></td>
                   <td><%= unit.edge%></td>
-                  <td><%= unit.texture%></td>
-                  <td><%= unit.lenght%></td>
+                  <td><%= unit.length%></td>
                   <td><%= unit.width%></td>
-                  <td><%= unit.thick%></td>
                   <td><%= unit.number%></td>
                   <td><%= unit.size%></td>
                   <td><%= unit.note%></td>
@@ -66,18 +69,18 @@
          <div class="modal-body">
             <table class="table table-condensed" id="units">
                <tr>
-                  <td>部件名称</td>
-                  <td>板料</td>
-                  <td>长</td>
-                  <td>宽</td>
-                  <td>厚</td>
-                  <td>数量</td>
-                  <td>剪裁尺寸</td>
-                  <td>颜色</td>
-                  <td>封边</td>
-                  <td>纹理</td>
-                  <td>备注</td>
-                  <td>操作</td>
+                  <th>部件名称</th>
+                  <th>厚度</th>
+                  <th>材质</th>
+                  <th>表面</th>
+                  <th>颜色</th>
+                  <th>长(mm)</th>
+                  <th>宽(mm)</th>
+                  <th>数量</th>
+                  <th>剪裁尺寸</th>
+                  <th>封边</th>
+                  <th>备注</th>
+                  <th>操作</th>
                </tr>
                <%= f.fields_for :order_units, :wrapper => false do |unit_form| %>
                <tr class="fields">
@@ -85,31 +88,31 @@
                      <%= unit_form.text_field(:unit_name, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:name, class: 'form-control input-sm') %>
+                     <%= unit_form.select(:ply, options_for_select(@material_categories.where(oftype: 0).map {|mc| [mc.name,mc.id]}, unit_form.object.ply),{ :class => 'form-control'}) %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:lenght, class: 'form-control input-sm') %>
+                     <%= unit_form.select(:texture, options_for_select(@material_categories.where(oftype: 1).map {|mc| [mc.name,mc.id]}, unit_form.object.texture),{ :class => 'form-control'}) %>
+                  </td>
+                  <td>
+                     <%= unit_form.select(:face, options_for_select(@material_categories.where(oftype: 2).map {|mc| [mc.name,mc.id]}, unit_form.object.face),{ :class => 'form-control'}) %>
+                  </td>
+                  <td>
+                     <%= unit_form.select(:color, options_for_select(@material_categories.where(oftype: 3).map {|mc| [mc.name,mc.id]}, unit_form.object.color),{ :class => 'form-control'}) %>
+                  </td>
+                  <td>
+                     <%= unit_form.text_field(:length, class: 'form-control input-sm') %>
                   </td>
                   <td>
                      <%= unit_form.text_field(:width, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:thick, class: 'form-control input-sm') %>
-                  </td>
-                  <td>
-                     <%= unit_form.text_field(:number, class: 'form-control input-sm') %>
+                     <%= unit_form.number_field(:number, class: 'form-control input-sm', value: 1, min: 1) %>
                   </td>
                   <td>
                      <%= unit_form.text_field(:size, class: 'form-control input-sm') %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:color, class: 'form-control input-sm') %>
-                  </td>
-                  <td>
                      <%= unit_form.text_field(:edge, class: 'form-control input-sm') %>
-                  </td>
-                  <td>
-                     <%= unit_form.text_field(:texture, class: 'form-control input-sm') %>
                   </td>
                   <td>
                      <%= unit_form.text_field(:note, class: 'form-control input-sm') %>

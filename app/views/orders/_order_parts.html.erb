@@ -5,9 +5,12 @@
         <h3>配件信息
         <p class="pull-right">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#orderPartsModal">
-          编辑
-          </button>
+            <% if @order.not_separate? %>
+                    <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#orderPartsModal">编辑</button>
+                <% else %>
+                    <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#orderPartsModal" disabled="true">编辑</button>
+            <% end %>
+
         </p>
         </h3>
       </div>
@@ -67,7 +70,7 @@
               <%= part_form.select :part_id, Part.all.collect { |p| [p.name, p.id] } , class: 'form-control' %>
             </td>
             <td>
-              <%= part_form.number_field :number, in: 1..500, class: 'form-control' %>
+              <%= part_form.number_field :number, value: 1, in: 1..500, class: 'form-control' %>
             </td>
             <td>
               <%= part_form.text_field :note, class: 'form-control'%>

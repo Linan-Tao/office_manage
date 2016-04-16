@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :mould_categories
   resources :order_unions do
     resources :offers
+    resources :order_bills
+    member do
+      get :open
+    end
   end
   resources :delivery_plans
   resources :instalers
@@ -52,9 +56,7 @@ Rails.application.routes.draw do
         post :batch_create
       end
     end
-    resources :order_bills
     member do 
-      get :open_order
       get :download
     end
   end

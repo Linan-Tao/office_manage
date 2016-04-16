@@ -31,7 +31,6 @@
               <td>采购单号</td>
               <td>生产单号</td>
               <td>项目名称</td>
-              <td>项目类别</td>
               <td>数量</td>
               <td>到货数量</td>
               <td>审核状态</td>
@@ -43,8 +42,7 @@
               <tr>
                 <td><%= pur.id %></td>
                 <td><%=pur.produce_task_id %></td>
-                <td><%=pur.item_name %></td>
-                <td><%=pur.item_category%></td>
+                <td><%=pur.item.name %></td>
                 <td><%=pur.number%></td>
                 <td><%=pur.arrival_number%></td>
                 <td><%= pur.check_status_name%></td>
@@ -76,7 +74,6 @@
           <td>入库日期</td>
           <td>收货人</td>
           <td>采购单号</td>
-          <td>类型</td>
           <td>名称</td>
           <td>品牌</td>
           <td>数量</td>
@@ -89,7 +86,6 @@
           <td><%= item_storage.storage_date.localtime.strftime("%Y-%m-%d") %></td>
         <td><%= item_storage.receiver %></td>
         <td><%= item_storage.purchase.try(:id) %></td>
-        <td><%= item_storage.item_category %></td>
         <td><%= item_storage.item_name %></td>
         <td><%= item_storage.brand %></td>
         <td><%= item_storage.number %></td>

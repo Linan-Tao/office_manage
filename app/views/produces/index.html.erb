@@ -12,7 +12,7 @@
   <div class="awidget-head">
     <div class="row">
       <div class="col-xs-12 col-sm-12">
-        <h3><%= Work.find(work_id).name%>&nbsp;&nbsp;列表</h3>
+        <h3>已<%= Work.find(work_id).name%>&nbsp;&nbsp;列表</h3>
       </div>
     </div>
   </div>
@@ -22,7 +22,6 @@
         <tr class="info">
           <th class="col-xs-2 text-center">生产单号</th>
           <th class="col-xs-2 text-center">名称</th>
-          <th class="col-xs-1 text-center">型号</th>
           <th class="text-center">面积</th>
           <th class="text-center">数量</th>
           <th class="col-xs-2 text-center" colspan="3">操作</th>
@@ -32,12 +31,11 @@
         <% produce_tasks.each do |pt| %>
         <tr>
           <td><%= pt.id %></td>
-          <td><%= pt.item_name %></td>
-          <td><%= pt.item_category%></td>
+          <td><%= pt.item.name %></td>
           <td><%= pt.area %></td>
           <td><%= pt.number %></td>
           <td>
-            <%= link_to "完成"+Work.find(work_id).name, new_produce_path(produce_task_id: pt.id), class: "btn btn-xs btn-success"%>
+            <%= link_to "完成"+Work.find(work_id).next_seq.name, new_produce_path(produce_task_id: pt.id), class: "btn btn-xs btn-success"%>
           </td>
         </tr>
         <% end %>

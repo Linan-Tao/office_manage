@@ -44,20 +44,9 @@ class ItemStorage < ActiveRecord::Base
   # end
 
   def item_name
-	 if item_type == "Material"
-	 	 item.material_category.name
-	 elsif item_type == "Part"
 	 	 item.name
-	 end
   end
 
-  def item_category
-  	if item_type == "Material"
-  	  item.material_type.name
-  	elsif item_type == "Part"
-  	  item.part_category.name
-  	end
-  end
 
   def modify_purchase_arrival_number
   	purchase = Purchase.find(self.purchase_id)

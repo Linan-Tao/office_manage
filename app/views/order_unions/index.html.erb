@@ -14,6 +14,7 @@
         <tr class="info">
           <td>客户单号</td>
           <td>接单时间</td>
+          <td>订单状态</td>
           <td>经销商</td>
           <td>修改</td>
           <td>删除</td>
@@ -24,6 +25,7 @@
         <tr>
           <td><%= link_to order_union.code, order_union_path(order_union), class: 'detail-link' %></td>
           <td><%= order_union.created_at.localtime.strftime("%Y-%m-%d")%></td>
+          <td><%= order_union.status_name%></td>
           <td><%= order_union.agent.try(:name) %></td>
           <td><%= link_to '修改', edit_order_union_path(order_union), class: 'btn btn-xs btn-info'%></td>
           <td>

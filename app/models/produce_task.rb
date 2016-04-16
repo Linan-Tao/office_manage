@@ -10,22 +10,6 @@ class ProduceTask < ActiveRecord::Base
 
   after_create :create_purchase
 
-  def item_name
-  	 if item_type == "Material"
-  	 	 item.material_category.name
-  	 elsif item_type == "Part"
-  	 	 item.name
-  	 end
-  end
-
-  def item_category
-  	if item_type == "Material"
-  	  item.material_type.name
-  	elsif item_type == "Part"
-  	  item.part_category.name
-  	end
-  end
-
   def create_purchase
     # 判断仓库里有没有足够的库存，如果有就不需要采购
     available_number = self.item.number.to_i - self.item.applied_number.to_i

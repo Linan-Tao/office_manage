@@ -20,7 +20,6 @@
             <tr class="info">
               <td>生产单号</td>
               <td>项目名称</td>
-              <td>项目类别</td>
               <td>项目数量</td>
               <td>应付款</td>
               <td>单价</td>
@@ -33,8 +32,7 @@
             <% @purchases.each do |pur|%>
               <tr>
                 <td><%=pur.produce_task_id %></td>
-                <td><%=pur.item_name %></td>
-                <td><%=pur.item_category%></td>
+                <td><%=pur.item.name %></td>
                 <td><%=pur.number%></td>
                 <td><%=pur.payable%></td>
                 <td><%=pur.price%></td>

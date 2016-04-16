@@ -16,7 +16,7 @@
           <th class="col-md-1 col-sm-1 text-center">数量</th>
           <th class="col-md-1 col-sm-1 text-center">类型</th>
           <th class="col-md-3 col-sm-3 text-center">发货时间(十天后)</th>
-          <th class="col-md-3 col-sm-3 text-center">上传图纸</th>
+          <th class="col-md-3 col-sm-3 text-center">上传图纸(重复上传图纸会被覆盖)</th>
           <th class="col-md-1 col-sm-1 text-center">操作</th>
         </tr>
         <%= f.fields_for :orders, :wrapper => false do |order_form| %>

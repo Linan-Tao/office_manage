@@ -1,4 +1,4 @@
-<%= simple_form_for(@order_bill, url: @order_bill.new_record? ? order_order_bills_path(@order) : order_order_bill_path(@order,@order_bill)) do |f| %>
+<%= simple_form_for(@order_bill, url: @order_bill.new_record? ? order_union_order_bills_path(@order_union) : order_union_order_bill_path(@order_union,@order_bill)) do |f| %>
 <%= f.error_notification %>
   <%= f.input :total, disabled: true%>
   <%= f.input :paid, required: true %>

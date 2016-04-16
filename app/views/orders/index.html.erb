@@ -58,9 +58,12 @@
               <td><%= order.patch_origin%></td>
               <td>
                 <%if order.file_file_name%>
-                <%= link_to '下载', download_order_path(order) %>
+                <%= link_to '下载', download_order_path(order), class: "btn btn-primary btn-xs" %>
                 <%else%>
-                <%= link_to '上传', '#', class: 'uploadOrderGraph detail-link' %>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#uploadFile_<%=order.id%>">
+                    上传
+                  </button>
                 <%end%>
               </td>
               <td><%= order.work.try(:name)%></td>
@@ -77,3 +80,28 @@
       </table>
    </div>
 </div>
+
+<% @orders.each do |order|%>
+  <% next if order.file_file_name %>
+  <!-- Modal -->
+  <%= simple_form_for order do |f|%>
+    <div class="modal fade" id="uploadFile_<%= order.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><h3>订单号<%=order.order_code%></h3></h4>
+          </div>
+          <div class="modal-body">
+            <%= f.input :file, as: :file%>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <%= f.button :submit, class: 'btn btn-primary', value: '上传'  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

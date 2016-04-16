@@ -1,7 +1,7 @@
 class OrderBill < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :order_union
   belongs_to :user
-  validates_presence_of :order, :total, :pay_date, :pay_account, :user
+  validates_presence_of :order_union, :total, :pay_date, :pay_account, :user
 
   enum directive: {
     open: 0,  # 下单

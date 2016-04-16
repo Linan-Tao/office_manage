@@ -11,9 +11,9 @@ class OrderUnionsController < ApplicationController
   # GET /order_unions/1.json
   def show
     @order_offers = @order_union.offers
-    @order_units = @order_union.orders.map(&:order_units).flatten
+    @order_units = @order_union.orders.where(is_delete: false).map(&:order_units).flatten
     @part_categories = PartCategory.all
-    @order_parts = @order_union.orders.map(&:order_parts).flatten
+    @order_parts = @order_union.orders.where(is_delete: false).map(&:order_parts).flatten
     @material_categories = MaterialCategory.all
   end
 
@@ -49,7 +49,11 @@ class OrderUnionsController < ApplicationController
     @order_union = OrderUnion.find(params[:id])
     if params[:order_union][:type] == "offer"
       message = import_offers(params)
-      return redirect_to order_union_path(@order_union), notice: message
+      if message == "success"
+        return redirect_to order_union_path(@order_union), notice: "报价单创建成功"
+      else
+        return redirect_to order_union_path(@order_union), alert: message
+      end
     end
     respond_to do |format|
       if @order_union.update(order_union_params)
@@ -70,6 +74,17 @@ class OrderUnionsController < ApplicationController
       format.html { redirect_to order_unions_url, notice: '订单已删除。' }
       format.json { head :no_content }
     end
+  end
+
+  def open
+    @order_union = OrderUnion.find(params[:id])
+    @order_union.checked!
+    @order_union.orders.each do |order|
+      order.check_time = Time.now()
+      order.save!
+      order.checked!
+    end
+    redirect_to order_bills_checked_path, notice: "订单审核通过，可下单"
   end
 
   private
