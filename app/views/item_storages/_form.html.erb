@@ -6,11 +6,10 @@
   <%= f.input :purchase_id, readonly: true %>
   
   <%= f.input :item_name, readonly: true %>
-  <%= f.input :item_category, readonly: true %>
 
   <%= f.input :brand %>
   <%= f.input :number %>
-  <%= f.association :supplier, readonly: true %>
+  <%= f.association :supplier %>
 </div>
 <div class="form-actions">
   <%= f.button :submit, value:'提交', class: 'btn btn-lg btn-block btn-primary' %>

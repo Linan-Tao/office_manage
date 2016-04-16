@@ -6,15 +6,16 @@ class CreateOrderUnits < ActiveRecord::Migration
       t.string :code # 编码
       t.string :unit_name #部件名称
       t.string :name # 板料名称
-      t.integer :lenght # 长
-      t.integer :width # 宽
-      t.integer :thick # 高、深、厚
+      t.integer :ply # 厚度
+      t.integer :texture #纹理
+      t.integer :face #表面
+      t.integer :color # 颜色
+      t.integer :length # 长
+      t.integer :width # 宽      
       t.integer :number #数量
       t.string  :size #剪裁尺寸
       t.string :note # 备注
-      t.string :color # 颜色
-      t.string :edge #封边
-      t.string :texture #纹理
+      t.string :edge #封边   
       t.string :terminal #终端信息
       t.integer :out_edge_thick # 看面封边厚
       t.integer :in_edge_thick # 里面封边厚

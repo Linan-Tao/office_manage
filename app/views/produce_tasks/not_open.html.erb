@@ -29,7 +29,7 @@
         <% @orders.each do |order| %>
         <tr>
           <td><%= link_to order.order_code, order_path(order) %></td>
-          <td><%= order.try(:offer_time) %></td>
+          <td><%= order.try(:offer_time).localtime.to_date %></td>
           <td><%= order.customer_code %></td>
           <td>
             <%= link_to '查看', order_path(order), class: 'btn btn-xs btn-success'%>

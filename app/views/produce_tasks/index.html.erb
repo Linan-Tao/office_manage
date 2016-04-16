@@ -19,7 +19,6 @@
         <tr class="info">
           <th class="col-xs-2 text-center">生产单号</th>
           <th class="col-xs-2 text-center">名称</th>
-          <th class="col-xs-1 text-center">型号</th>
           <th class="text-center">面积</th>
           <th class="text-center">数量</th>
           <th class="text-center">工序进度</th>
@@ -30,8 +29,7 @@
         <% @produce_tasks.each do |produce_task| %>
         <tr>
           <td><%= produce_task.id %></td>
-          <td><%= produce_task.item_name %></td>
-          <td><%= produce_task.item_category%></td>
+          <td><%= produce_task.item.name %></td>
           <td><%= produce_task.area %></td>
           <td><%= produce_task.number %></td>
           <td><%= produce_task.work.try(:name) %></td>

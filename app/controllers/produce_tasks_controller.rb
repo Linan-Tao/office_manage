@@ -18,6 +18,7 @@ class ProduceTasksController < ApplicationController
     @produce_task = ProduceTask.new
     # 财务审核通过方可下单
     @order_units = OrderUnit.joins(:order).where("orders.work_id = ?", Work.find_by(symbol_name: "checked").id).where("orders.is_delete = false").where(state: 0)
+    @material_categories = MaterialCategory.all
   end
 
   # GET /produce_tasks/1/edit
@@ -41,7 +42,7 @@ class ProduceTasksController < ApplicationController
       return redirect_to new_produce_task_path(order_id: @order.id), notice: "创建失败，请选择部件!"
     end
     order_units = OrderUnit.where(id: params[:units][:id])
-    material = Material.find_by(material_category_id: params[:material_category_id], material_type_id: params[:material_type_id])
+    material = Material.find_by(ply: params[:ply], texture: params[:texture], face: params[:face], color: params[:color])
     if material.blank?
       return  redirect_to new_produce_task_path(), notice: '创建失败，没有该种物料'
     end

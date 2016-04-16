@@ -99,7 +99,8 @@ module OrdersHelper
         order.offer_time = Time.now()
         order.save!
       end
-      return "报价单创建成功"
+      order_union.offered!
+      return "success"
     end
   end
 end

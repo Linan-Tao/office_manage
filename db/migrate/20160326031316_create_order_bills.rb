@@ -2,7 +2,7 @@ class CreateOrderBills < ActiveRecord::Migration
   def change
     # 订单到款表
     create_table :order_bills do |t|
-      t.references :order, index: true, foreign_key: true
+      t.references :order_union, index: true, foreign_key: true
       t.decimal :total, precision: 8, scale: 2
       t.decimal :paid, precision: 8, scale: 2
       t.decimal :left, precision: 8, scale: 2 #余款

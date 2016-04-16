@@ -10,4 +10,8 @@ class Material < ActiveRecord::Base
       self.code = SecureRandom.hex(3)
     end while self.class.exists?(:code => code)
   end
+
+  def name
+    [MaterialCategory.find(self.ply).name, MaterialCategory.find(self.texture).name,MaterialCategory.find(self.face).name,MaterialCategory.find(self.color).name].join('-')
+  end
 end

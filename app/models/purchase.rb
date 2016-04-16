@@ -24,20 +24,4 @@ class Purchase < ActiveRecord::Base
   def self.check_status
     [['未提交审核', 'not_submit'], ["未审核", "not_check"], ["审核通过","checked"], ["审核失败","check_failed"]]
   end
-
-  def item_name
-  	 if item_type == "Material"
-  	 	 item.material_category.name
-  	 elsif item_type == "Part"
-  	 	 item.name
-  	 end
-  end
-
-  def item_category
-  	if item_type == "Material"
-  	  item.material_type.name
-  	elsif item_type == "Part"
-  	  item.part_category.name
-  	end
-  end
 end

@@ -71,13 +71,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def open_order
-    @order = Order.find(params[:id])
-    @order.checked!
-    @order.check_time = Time.now()
-    @order.save!
-    redirect_to order_bills_checked_path, notice: "订单审核通过，可下单"
-  end
 
   def download
     order = Order.find(params[:id])
@@ -97,8 +90,8 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:order_code, :agent_id, :order_type, :require_time, :work_id,:is_delete,:file,
-                                                              order_units_attributes: [:id, :unit_name, :name, :lenght, :width, :thick,
-                                                              :number, :size, :color, :edge, :texture, :note, :_destroy],
+                                                              order_units_attributes: [:id, :unit_name, :name, :ply, :texture, :face, :color, :length, :width,
+                                                              :number, :size, :edge, :note, :_destroy],
                                                               order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])
     end
 end
