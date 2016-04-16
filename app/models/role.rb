@@ -5,8 +5,8 @@ class Role < ActiveRecord::Base
   has_and_belongs_to_many :users, :join_table => :roles_users
   has_many :roles_permissions
   accepts_nested_attributes_for :roles_permissions, allow_destroy: true
-  validates_presence_of :name
-  validates_presence_of :key
+  validates_presence_of :name, uniqueness: true
+  validates_presence_of :key, uniqueness: true
 
 
   @@permissions = {}
