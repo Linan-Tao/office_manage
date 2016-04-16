@@ -14,7 +14,7 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
-    @rule = Rule.new
+    @rule = Rule.new(code: 'GZDY' + Time.new.strftime('%y%m%d') + SecureRandom.hex(1).upcase)
   end
 
   # GET /rules/1/edit
@@ -69,6 +69,8 @@ class RulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rule_params
-      params.require(:rule).permit(:code, :name)
+      params.require(:rule).permit(:code, :name, :mould_id, :board_id, :craft_id, :part_id,
+                                                      :board_num, :length, :width, :height, :part_size, :part_num,
+                                                      :note, :creator, :status)
     end
 end

@@ -14,7 +14,7 @@ class MouldsController < ApplicationController
 
   # GET /moulds/new
   def new
-    @mould = Mould.new
+    @mould = Mould.new(code: 'MKDY' + Time.new.strftime('%y%m%d') + SecureRandom.hex(1).upcase)
   end
 
   # GET /moulds/1/edit
@@ -69,6 +69,9 @@ class MouldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mould_params
-      params.require(:mould).permit(:code, :name)
+      params.require(:mould).permit(:code, :name, :mould_category_id, :mould_num, :length,
+                                              :width, :height, :stand, :layer, :move, :clothes_rail, :door, :miss_left,
+                                              :miss_right, :miss_birdge, :miss_angle, :corner, :left_division,
+                                              :board_back, :board_stand, :board_top, :board_foot, :note, :creator, :status)
     end
 end

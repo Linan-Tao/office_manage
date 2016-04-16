@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :produces
 
   resources :produce_tasks do
-    collection do 
+    collection do
       get :not_open
     end
   end
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
         post :batch_create
       end
     end
-    member do 
+    member do
       get :download
     end
   end

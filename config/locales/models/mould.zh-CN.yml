@@ -1,13 +1,36 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       mould: Mould
     attributes:
       mould:
-        code: Code
-        name: Name
+        code: 编码
+        name: 名称
+        mould_num: 数量
+        length: 长度
+        width: 宽度
+        height: 高度
+        stand: 中站
+        layer: 层板
+        move: 活隔
+        clothes_rail: 衣杆
+        door: 门板
+        miss_left: 左缺
+        miss_right: 右缺
+        miss_birdge: 梁缺
+        miss_angle: 缺角
+        corner: 转角
+        left_division: 左分割
+        board_back: 背板
+        board_stand: 站板
+        board_top: 顶板
+        board_foot: 底板
+        mould_category: 所属类型
+        note: 备注
+        creator: 创建者
+        status: 状态
     errors:
-      mould: 
+      mould:
   helpers:
-    mould: 
+    mould:
