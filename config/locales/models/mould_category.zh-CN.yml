@@ -1,13 +1,13 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       mould_category: Mould category
     attributes:
       mould_category:
-        code: Code
-        name: Name
+        code: 编码
+        name: 名称
     errors:
-      mould_category: 
+      mould_category:
   helpers:
-    mould_category: 
+    mould_category:

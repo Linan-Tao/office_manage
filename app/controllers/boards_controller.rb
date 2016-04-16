@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/new
   def new
-    @board = Board.new
+    @board = Board.new(code: 'BJDY' + Time.new.strftime('%y%m%d') + SecureRandom.hex(1).upcase)
   end
 
   # GET /boards/1/edit
@@ -69,6 +69,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.require(:board).permit(:code, :name)
+      params.require(:board).permit(:code, :name, :note, :creator, :status)
     end
 end
