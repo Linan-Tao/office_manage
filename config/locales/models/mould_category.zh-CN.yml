@@ -1,0 +1,13 @@
+---
+zh-CN:
+  active_record:
+    models:
+      mould_category: Mould category
+    attributes:
+      mould_category:
+        code: Code
+        name: Name
+    errors:
+      mould_category: 
+  helpers:
+    mould_category: 

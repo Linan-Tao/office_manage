@@ -1,0 +1,13 @@
+---
+zh-CN:
+  active_record:
+    models:
+      board: Board
+    attributes:
+      board:
+        code: Code
+        name: Name
+    errors:
+      board: 
+  helpers:
+    board: 

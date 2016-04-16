@@ -1,0 +1,13 @@
+---
+zh-CN:
+  active_record:
+    models:
+      craft: Craft
+    attributes:
+      craft:
+        code: Code
+        name: Name
+    errors:
+      craft: 
+  helpers:
+    craft: 

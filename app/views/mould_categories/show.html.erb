@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @mould_category.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mould_category.name %>
+</p>
+
+<%= link_to 'Edit', edit_mould_category_path(@mould_category) %> |
+<%= link_to 'Back', mould_categories_path %>

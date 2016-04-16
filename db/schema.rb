@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414120949) do
+ActiveRecord::Schema.define(version: 20160416072919) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20160414120949) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "boards", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "name",       limit: 255
+    t.string   "note",       limit: 255
+    t.string   "creator",    limit: 255
+    t.boolean  "status",                 default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
     t.string  "name",        limit: 255
@@ -57,6 +67,16 @@ ActiveRecord::Schema.define(version: 20160414120949) do
     t.string   "remark",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "crafts", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "name",       limit: 255
+    t.string   "note",       limit: 255
+    t.string   "creator",    limit: 255
+    t.boolean  "status",                 default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "delivery_plans", force: :cascade do |t|
@@ -241,6 +261,48 @@ ActiveRecord::Schema.define(version: 20160414120949) do
   end
 
   add_index "month_salaries", ["user_id"], name: "index_month_salaries_on_user_id", using: :btree
+
+  create_table "mould_categories", force: :cascade do |t|
+    t.string   "code",       limit: 255,                null: false
+    t.string   "name",       limit: 255
+    t.string   "note",       limit: 255
+    t.string   "creator",    limit: 255
+    t.boolean  "status",                 default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  create_table "moulds", force: :cascade do |t|
+    t.string   "code",              limit: 255
+    t.string   "name",              limit: 255
+    t.integer  "mould_num",         limit: 4
+    t.integer  "length",            limit: 4
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
+    t.integer  "stand",             limit: 4
+    t.integer  "layer",             limit: 4
+    t.integer  "move",              limit: 4
+    t.integer  "clothes_rail",      limit: 4
+    t.integer  "door",              limit: 4
+    t.integer  "miss_left",         limit: 4
+    t.integer  "miss_right",        limit: 4
+    t.integer  "miss_birdge",       limit: 4
+    t.integer  "miss_angle",        limit: 4
+    t.integer  "corner",            limit: 4
+    t.integer  "left_division",     limit: 4
+    t.integer  "board_back",        limit: 4
+    t.integer  "board_stand",       limit: 4
+    t.integer  "board_top",         limit: 4
+    t.integer  "board_foot",        limit: 4
+    t.integer  "mould_category_id", limit: 4
+    t.string   "note",              limit: 255
+    t.string   "creator",           limit: 255
+    t.boolean  "status",                        default: true
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "moulds", ["mould_category_id"], name: "index_moulds_on_mould_category_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
     t.integer  "order_union_id", limit: 4
@@ -506,6 +568,31 @@ ActiveRecord::Schema.define(version: 20160414120949) do
   add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
+  create_table "rules", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "name",       limit: 255
+    t.integer  "mould_id",   limit: 4
+    t.integer  "board_id",   limit: 4
+    t.integer  "craft_id",   limit: 4
+    t.integer  "part_id",    limit: 4
+    t.integer  "board_num",  limit: 4
+    t.integer  "length",     limit: 4
+    t.integer  "width",      limit: 4
+    t.integer  "height",     limit: 4
+    t.string   "part_size",  limit: 255
+    t.integer  "part_num",   limit: 4
+    t.string   "note",       limit: 255
+    t.string   "creator",    limit: 255
+    t.boolean  "status",                 default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "rules", ["board_id"], name: "index_rules_on_board_id", using: :btree
+  add_index "rules", ["craft_id"], name: "index_rules_on_craft_id", using: :btree
+  add_index "rules", ["mould_id"], name: "index_rules_on_mould_id", using: :btree
+  add_index "rules", ["part_id"], name: "index_rules_on_part_id", using: :btree
+
   create_table "staffs", force: :cascade do |t|
     t.integer  "user_id",              limit: 4
     t.string   "name",                 limit: 255
@@ -577,6 +664,7 @@ ActiveRecord::Schema.define(version: 20160414120949) do
   add_foreign_key "item_storages", "suppliers"
   add_foreign_key "materials", "suppliers"
   add_foreign_key "month_salaries", "users"
+  add_foreign_key "moulds", "mould_categories"
   add_foreign_key "offers", "order_unions"
   add_foreign_key "offers", "users"
   add_foreign_key "order_bills", "orders"
@@ -599,6 +687,10 @@ ActiveRecord::Schema.define(version: 20160414120949) do
   add_foreign_key "purchases", "produce_tasks"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "users"
+  add_foreign_key "rules", "boards"
+  add_foreign_key "rules", "crafts"
+  add_foreign_key "rules", "moulds"
+  add_foreign_key "rules", "parts"
   add_foreign_key "staffs", "departments"
   add_foreign_key "staffs", "users"
 end

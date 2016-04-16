@@ -1,0 +1,20 @@
+---
+zh-CN:
+  crafts:
+    index:
+      title: Crafts
+    show:
+      title: Craft
+    edit:
+      title: Editing Craft
+    new:
+      title: New Craft
+  flash:
+    crafts:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

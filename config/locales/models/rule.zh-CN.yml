@@ -1,0 +1,13 @@
+---
+zh-CN:
+  active_record:
+    models:
+      rule: Rule
+    attributes:
+      rule:
+        code: Code
+        name: Name
+    errors:
+      rule: 
+  helpers:
+    rule: 

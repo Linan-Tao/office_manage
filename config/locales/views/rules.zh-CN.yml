@@ -1,0 +1,20 @@
+---
+zh-CN:
+  rules:
+    index:
+      title: Rules
+    show:
+      title: Rule
+    edit:
+      title: Editing Rule
+    new:
+      title: New Rule
+  flash:
+    rules:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'
