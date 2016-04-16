@@ -1,14 +1,62 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Code:</strong>
-  <%= @rule.code %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @rule.name %>
-</p>
-
-<%= link_to 'Edit', edit_rule_path(@rule) %> |
-<%= link_to 'Back', rules_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  规则管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回', rules_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">编码</th>
+          <td class="col-xs-4"><%= @rule.code %></td>
+          <th class="col-xs-2 text-center info">名称</th>
+          <td class="col-xs-4"><%= @rule.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">模块</th>
+          <td class="col-xs-4"><%= @rule.mould.name %></td>
+          <th class="col-xs-2 text-center info">工艺</th>
+          <td class="col-xs-4"><%= @rule.craft.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">板件</th>
+          <td class="col-xs-4"><%= @rule.board.name %></td>
+          <th class="col-xs-2 text-center info">板件数量</th>
+          <td class="col-xs-4"><%= @rule.board_num %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">长度</th>
+          <td class="col-xs-4"><%= @rule.length %></td>
+          <th class="col-xs-2 text-center info">宽度</th>
+          <td class="col-xs-4"><%= @rule.width %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">高度</th>
+          <td class="col-xs-4"><%= @rule.height %></td>
+          <th class="col-xs-2 text-center info">配件</th>
+          <td class="col-xs-4"><%= @rule.part.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">配件尺寸</th>
+          <td class="col-xs-4"><%= @rule.part_size %></td>
+          <th class="col-xs-2 text-center info">配件数量</th>
+          <td class="col-xs-4"><%= @rule.part_num %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">创建者</th>
+          <td class="col-xs-4"><%= @rule.creator %></td>
+          <th class="col-xs-2 text-center info">状态</th>
+          <td class="col-xs-4"><%= @rule.status ? '可用' : '不可用' %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">备注</th>
+          <td colspan="3" class="col-xs-10"><%= @rule.note %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

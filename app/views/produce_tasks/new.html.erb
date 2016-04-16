@@ -2,7 +2,7 @@
 <div class="page-title">
   <h3><i class="fa fa-desktop color"></i> 生产任务单管理<small>创建生产任务</small>
   <span class="pull-right">
-    
+
   </span>
   </h3>
   <hr />
@@ -10,35 +10,36 @@
 <%=form_tag produce_tasks_path(@produce_task), class: 'form-inline' do%>
 <div class="awidget full-width">
   <div class="awidget-head">
-    <div class="row">
-        <div class="col-xs-2 col-sm-2">
-          <%=label_tag 'ply','厚度'%>
-          <%= select_tag(:ply, options_for_select(@material_categories.where(oftype: 0).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
-        </div>
-        <div class="col-xs-2 col-sm-2">
-          <%=label_tag 'texture','材质'%>
-          <%= select_tag(:texture, options_for_select(@material_categories.where(oftype: 1).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
-        </div>
-        <div class="col-xs-2 col-sm-2">
-          <%=label_tag 'face','表面'%>
-          <%= select_tag(:face, options_for_select(@material_categories.where(oftype: 2).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
-        </div>
-        <div class="col-xs-2 col-sm-2">
-          <%=label_tag 'color','颜色'%>
-          <%= select_tag(:color, options_for_select(@material_categories.where(oftype: 3).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
-        </div>
-        <div class="col-xs-4 col-sm-4 ">
-          <%=label_tag 'area','面积' %>
-          <%= number_field_tag :area, nil,:step => 'any', class: 'form-control', :required => true, style: "width: 20%"%>
-          <%=label_tag 'number','数量' %>
-          <%= number_field_tag :number, nil, :class => 'form-control', :required => true, style: "width: 20%"%>
-        </div>
-    </div>
-    <div>
-      <p class="pull-right"><%= submit_tag "创建任务单", class: 'btn btn-info'%></p>
-    </div>
-    <br/>
+      <div class="row">
+          <div class="col-xs-2 col-sm-2">
+            <%=label_tag 'ply','厚度'%>
+            <%= select_tag(:ply, options_for_select(@material_categories.where(oftype: 0).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+          </div>
+          <div class="col-xs-2 col-sm-2">
+            <%=label_tag 'texture','材质'%>
+            <%= select_tag(:texture, options_for_select(@material_categories.where(oftype: 1).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+          </div>
+          <div class="col-xs-2 col-sm-2">
+            <%=label_tag 'face','表面'%>
+            <%= select_tag(:face, options_for_select(@material_categories.where(oftype: 2).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+          </div>
+          <div class="col-xs-2 col-sm-2">
+            <%=label_tag 'color','颜色'%>
+            <%= select_tag(:color, options_for_select(@material_categories.where(oftype: 3).map {|mc| [mc.name,mc.id]}),{ :class => 'form-control'}) %>
+          </div>
+          <div class="col-xs-4 col-sm-4 ">
+            <%=label_tag 'area','面积' %>
+            <%= number_field_tag :area, nil,:step => 'any', class: 'form-control', :required => true, style: "width: 20%"%>
+            <%=label_tag 'number','数量' %>
+            <%= number_field_tag :number, nil, :class => 'form-control', :required => true, style: "width: 20%"%>
+          </div>
+      <br/>
+     </div>
+      <div>
+        <p class="pull-right"><%= submit_tag "创建任务单", class: 'btn btn-info'%></p>
+      </div>
   </div>
+
   <div class="awidget-body">
     <div class="table-responsive" style="height: 500px;">
       <table class="table table-border">

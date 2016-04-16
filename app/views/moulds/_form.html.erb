@@ -1,12 +1,35 @@
-<%= simple_form_for(@mould) do |f| %>
+<%= simple_form_for(@mould, url: @mould.new_record? ? moulds_path : mould_path(@mould)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :code %>
+    <%= f.input :code, readonly: true %>
     <%= f.input :name %>
+    <%= f.association :mould_category, include_blank: false %>
+    <%= f.input :mould_num %>
+    <%= f.input :length %>
+    <%= f.input :width %>
+    <%= f.input :height %>
+    <%= f.input :stand %>
+    <%= f.input :layer %>
+    <%= f.input :move %>
+    <%= f.input :clothes_rail %>
+    <%= f.input :door %>
+    <%= f.input :miss_left %>
+    <%= f.input :miss_right %>
+    <%= f.input :miss_birdge %>
+    <%= f.input :miss_angle %>
+    <%= f.input :corner %>
+    <%= f.input :left_division %>
+    <%= f.input :board_back %>
+    <%= f.input :board_stand %>
+    <%= f.input :board_top %>
+    <%= f.input :board_foot %>
+    <%= f.input :note %>
+    <%= f.input :creator %>
+    <%= f.input :status, as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-lg btn-block btn-primary', value: '提交' %>
   </div>
 <% end %>

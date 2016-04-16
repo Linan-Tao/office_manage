@@ -14,7 +14,7 @@ class MouldCategoriesController < ApplicationController
 
   # GET /mould_categories/new
   def new
-    @mould_category = MouldCategory.new
+    @mould_category = MouldCategory.new(code: 'MKLX' + Time.new.strftime('%y%m%d') + SecureRandom.hex(1).upcase)
   end
 
   # GET /mould_categories/1/edit
@@ -69,6 +69,6 @@ class MouldCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mould_category_params
-      params.require(:mould_category).permit(:code, :name)
+      params.require(:mould_category).permit(:code, :name, :note, :creator, :status)
     end
 end
