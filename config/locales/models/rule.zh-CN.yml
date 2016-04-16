@@ -1,13 +1,26 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       rule: Rule
     attributes:
       rule:
-        code: Code
-        name: Name
+        code: 编码
+        name: 名称
+        mould: 模块
+        board: 板件
+        craft: 工艺
+        part: 配件
+        board_num: 板件数量
+        length: 长度
+        width: 宽度
+        height: 高度
+        part_size: 配件尺寸
+        part_num: 配件数量
+        note: 备注
+        creator: 创建者
+        status: 状态
     errors:
-      rule: 
+      rule:
   helpers:
-    rule: 
+    rule:

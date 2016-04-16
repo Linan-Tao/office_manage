@@ -14,7 +14,7 @@ class CraftsController < ApplicationController
 
   # GET /crafts/new
   def new
-    @craft = Craft.new
+    @craft = Craft.new(code: 'GYDY' + Time.new.strftime('%y%m%d') + SecureRandom.hex(1).upcase)
   end
 
   # GET /crafts/1/edit
@@ -69,6 +69,6 @@ class CraftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def craft_params
-      params.require(:craft).permit(:code, :name)
+      params.require(:craft).permit(:code, :name, :note, :creator, :status)
     end
 end

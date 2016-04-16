@@ -1,13 +1,16 @@
 ---
 zh-CN:
-  active_record:
+  activerecord:
     models:
       board: Board
     attributes:
       board:
-        code: Code
-        name: Name
+        code: 编码
+        name: 名称
+        note: 备注
+        creator: 创建者
+        status: 状态
     errors:
-      board: 
+      board:
   helpers:
-    board: 
+    board:

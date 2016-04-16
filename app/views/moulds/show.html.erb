@@ -1,14 +1,92 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Code:</strong>
-  <%= @mould.code %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @mould.name %>
-</p>
-
-<%= link_to 'Edit', edit_mould_path(@mould) %> |
-<%= link_to 'Back', moulds_path %>
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i>  模块管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to('返回', moulds_path, class: 'btn btn-lg btn-default') %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-body">
+    <table class="table table-hover table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-xs-2 text-center info">编码</th>
+          <td class="col-xs-4"><%= @mould.code %></td>
+          <th class="col-xs-2 text-center info">名称</th>
+          <td class="col-xs-4"><%= @mould.name %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">所属类型</th>
+          <td class="col-xs-4"><%= @mould.mould_category.name %></td>
+          <th class="col-xs-2 text-center info">数量</th>
+          <td class="col-xs-4"><%= @mould.mould_num %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">长度</th>
+          <td class="col-xs-4"><%= @mould.length %></td>
+          <th class="col-xs-2 text-center info">宽度</th>
+          <td class="col-xs-4"><%= @mould.width %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">高度</th>
+          <td class="col-xs-4"><%= @mould.height %></td>
+          <th class="col-xs-2 text-center info">中站</th>
+          <td class="col-xs-4"><%= @mould.stand %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">层板</th>
+          <td class="col-xs-4"><%= @mould.layer %></td>
+          <th class="col-xs-2 text-center info">活隔</th>
+          <td class="col-xs-4"><%= @mould.move %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">衣杆</th>
+          <td class="col-xs-4"><%= @mould.clothes_rail %></td>
+          <th class="col-xs-2 text-center info">门板</th>
+          <td class="col-xs-4"><%= @mould.door %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">左缺</th>
+          <td class="col-xs-4"><%= @mould.miss_left %></td>
+          <th class="col-xs-2 text-center info">右缺</th>
+          <td class="col-xs-4"><%= @mould.miss_right %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">梁缺</th>
+          <td class="col-xs-4"><%= @mould.miss_birdge %></td>
+          <th class="col-xs-2 text-center info">缺角</th>
+          <td class="col-xs-4"><%= @mould.miss_angle %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">转角</th>
+          <td class="col-xs-4"><%= @mould.corner %></td>
+          <th class="col-xs-2 text-center info">左分割</th>
+          <td class="col-xs-4"><%= @mould.left_division %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">背板</th>
+          <td class="col-xs-4"><%= @mould.board_back %></td>
+          <th class="col-xs-2 text-center info">站板</th>
+          <td class="col-xs-4"><%= @mould.board_stand %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">顶板</th>
+          <td class="col-xs-4"><%= @mould.board_top %></td>
+          <th class="col-xs-2 text-center info">底板</th>
+          <td class="col-xs-4"><%= @mould.board_foot %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">备注</th>
+          <td class="col-xs-4"><%= @mould.note %></td>
+          <th class="col-xs-2 text-center info">创建者</th>
+          <td class="col-xs-4"><%= @mould.creator %></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2 text-center info">状态</th>
+          <td class="col-xs-4"><%= @mould.status ? '可用' : '不可用' %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

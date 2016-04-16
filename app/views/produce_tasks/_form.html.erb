@@ -2,15 +2,11 @@
   <%= f.error_notification %>
 <!-- 重写此form参考new.html.erb -->
   <div class="form-inputs">
-    <%= f.input :order,disable: true %>
-    <% if @material_category_id && @material_type_id %>
+    <%= f.input :order,disabled: true %>
+    <% if @material_category_id %>
     <div class="form-group">
     <%= label_tag '板料种类' %>
     <%= select_tag :material_category, options_from_collection_for_select(MaterialCategory.all, "id", "name", @material_category_id), class: 'form-control' %>
-    </div>
-    <div class="form-group">
-    <%= label_tag '板料型号' %>
-    <%= select_tag :material_type, options_from_collection_for_select(MaterialType.all, "id", "name", @material_type_id), class: 'form-control' %>
     </div>
     <% else %>
     <%= label_tag '部件' %>
