@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mould Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mould_categories.each do |mould_category| %>
+      <tr>
+        <td><%= mould_category.code %></td>
+        <td><%= mould_category.name %></td>
+        <td><%= link_to 'Show', mould_category %></td>
+        <td><%= link_to 'Edit', edit_mould_category_path(mould_category) %></td>
+        <td><%= link_to 'Destroy', mould_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mould category', new_mould_category_path %>

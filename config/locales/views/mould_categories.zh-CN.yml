@@ -1,0 +1,20 @@
+---
+zh-CN:
+  mould_categories:
+    index:
+      title: Mould categories
+    show:
+      title: Mould category
+    edit:
+      title: Editing Mould category
+    new:
+      title: New Mould category
+  flash:
+    mould_categories:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :crafts
+  resources :boards
+  resources :rules
+  resources :moulds
+  resources :mould_categories
   resources :order_unions do
     resources :offers
   end
