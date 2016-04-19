@@ -60,7 +60,12 @@ class OrderUnitsController < ApplicationController
     else
       return_message = import_order_units(params[:file], @order.order_code)
     end
-    redirect_to order_path(@order), notice: return_message
+
+    if return_message == "success"
+      return redirect_to order_path(@order), notice: "拆单导入成功"
+    else
+      return redirect_to order_path(@order), alert: return_message
+    end
   end
 
   # DELETE /order_units/1

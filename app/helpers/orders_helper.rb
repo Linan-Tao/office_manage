@@ -9,26 +9,42 @@ module OrdersHelper
       order_units_order_code = table.map{|r| r[8]}.uniq.join(',')
       if order &&  order_units_order_code == order_code
         ActiveRecord::Base.transaction do
+          # 如果该订单已拆单则删除
           OrderUnit.where(order_id: order.id).destroy_all
           table.each do |row|
+            # 板材按空格分开，中英文空格
+            color,face,texture,ply = row[1].split(/ | /)
+            
+            [color,face,texture,ply].compact.each do |c| 
+              unless MaterialCategory.all.map(&:name).include?(c)
+                return "板料信息错误，请检查或联系管理员添加!找不到物料类型######{c}"
+              end
+            end
+
+            color_id,face_id,texture_id,ply_id = [color,face,texture,ply].map do |b|
+              MaterialCategory.find_by(name: b).try(:id)
+            end
+
             record = OrderUnit.new(
                 :order_id   => order.id,
                 :unit_name => row[0],
                 :name => row[1],
-                :lenght => row[2],
+                :color => color_id,
+                :face => face_id,
+                :texture => texture_id,
+                :ply => ply_id,
+                :length => row[2],
                 :width => row[3],
-                :thick => row[4],
                 :number => row[5],
                 :size => row[6],
                 :edge => row[11],
-                :texture => row[12],
                 :note => row[13]
             )
             record.save!
           end
           order.separated!
         end
-        return "订单已经拆单成功！"
+        return "success"
       else
         return "请导入与该订单#{order_code}相对应的拆单文件，您导入的订单号是:#{order_units_order_code}请检查!"
       end
@@ -56,13 +72,17 @@ module OrdersHelper
 # 创建报价单
   def import_offers(offers_params)
     order_union = OrderUnion.find(offers_params[:id])
+    order_union.offers.destroy_all
     ActiveRecord::Base.transaction do
       # 板料
       if offers_params[:order_union] && offers_params[:order_union][:offers_attributes]
         offers_params[:order_union][:offers_attributes].values.each do |offer|
           next unless offer[:_destroy] == "false"
           material = Material.find_by(ply: offer[:ply], texture: offer[:texture], face: offer[:face], color: offer[:color])
-          return '生成报价单错误！未查到物料信息，请联系管理员！' unless material
+          unless material
+            order_union.offers.destroy_all
+            return '生成报价单错误！未查到物料信息，请联系管理员！' 
+          end
           offer_m = order_union.offers.find_or_create_by(item_id: material.id, item_type: material.class)
           offer_m.price = material.sell.to_f
           offer_m.number = offer[:number].to_f
