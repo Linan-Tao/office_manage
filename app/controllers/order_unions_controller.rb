@@ -35,7 +35,7 @@ class OrderUnionsController < ApplicationController
     @agent = Agent.new
     respond_to do |format|
       if @order_union.save
-        format.html { redirect_to order_unions_path, notice: '订单创建成功！' }
+        format.html { redirect_to order_union_path(@order_union), notice: '订单创建成功！' }
         format.json { render :show, status: :created, location: @order_union }
       else
         format.html { render :new }
