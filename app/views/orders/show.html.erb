@@ -1,5 +1,5 @@
 <div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 订单管理 <small>详细</small>
+  <h2><i class="fa fa-desktop color"></i> 生产单管理 <small>详细</small>
   <small><%= @order.order_type_name%></small>&nbsp;&nbsp;<small>发货时间：<%=@order.require_time.try(:to_date)%></small>
   <span class="pull-right">
     <%= link_to '所属客户单',  order_union_path(@order.order_union), class: 'btn btn-lg btn-info' %>
@@ -10,28 +10,28 @@
 <div class="awidget full-width">
   <div class="awidget-head">
     <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <div class="pull-left">
-          订单号：<code id="orderCode"><%= @order.order_code%></code>&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="col-md-10 col-sm-10">
+          生产单号：<code id="orderCode"><%= @order.order_code%></code>&nbsp;&nbsp;&nbsp;&nbsp;
           订单状态：<%= @order.work.name %>&nbsp;&nbsp;&nbsp;&nbsp;
           下单客户：<%=link_to @order.order_union.agent.name, agent_path(@order.order_union.agent)%>&nbsp;&nbsp;&nbsp;&nbsp;
           <%if @order.file_file_name%>
               <%= link_to '下载图纸', download_order_path(@order), class: 'btn btn-info btn-xs' %>
           <%end%>
-        </div>
-        <div class="pull-right">
-          <% if @order.separated? %>
-          已拆单
-          <% elsif @order.not_separate? %>
-              <%= form_for @order, class:'' do |f| %>
-              <%= f.hidden_field :work_id, value: 2 %>
-              <%= f.submit '完成拆单', data: {:confirm => '完成拆单后该订单所需的部件和配件将无法再修改，确定提交拆单信息?'}, class:'btn btn-info' %>
-              <% end %>
-          <% else %>
-          其他
-          <% end %>
-        </div>
       </div>
+      <div class="col-md-2 col-sm-2">
+        <div class="pull-right">
+            <% if @order.separated? %>
+            已拆单
+            <% elsif @order.not_separate? %>
+                <%= form_for @order, class:'' do |f| %>
+                <%= f.hidden_field :work_id, value: 2 %>
+                <%= f.submit '完成拆单', data: {:confirm => '完成拆单后该订单所需的部件和配件将无法再修改，确定提交拆单信息?'}, class:'btn btn-info' %>
+                <% end %>
+            <% else %>
+            其他
+            <% end %>
+          </div>
+        </div>
     </div>
     <div class="row">
       <div class="col-md-12 col-sm-12">
@@ -41,7 +41,6 @@
         </div>
         <div class="pull-right">
           <%= submit_tag "导入CSV文件", class: 'btn btn-info btn-xs' %>
-          <%= link_to '打开拆单软件', "#", class: 'btn btn-info btn-xs', id: 'openOutExcel' %>
         </div>
       <% end %>
       </div>

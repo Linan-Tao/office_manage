@@ -63,6 +63,11 @@ class Order < ActiveRecord::Base
     work.symbol_name == "checked"
   end
 
+  # 订单是否通过审核
+  def is_checked?
+    work.id >= Work.find_by(symbol_name: "checked").id
+  end
+
   def separated!
     self.work_id = Work.find_by(symbol_name: "separated").id
     self.save!

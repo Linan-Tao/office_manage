@@ -6,7 +6,7 @@
             <p class="pull-right">
                <!-- Button trigger modal -->
 
-               <% if @order.not_separate? %>
+               <% unless @order.is_checked? %>
                     <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#orderUnitsModal">编辑</button>
                 <% else %>
                     <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#orderUnitsModal" disabled="true">编辑</button>
