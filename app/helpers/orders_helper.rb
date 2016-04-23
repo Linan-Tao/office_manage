@@ -12,6 +12,7 @@ module OrdersHelper
         ActiveRecord::Base.transaction do
           # 如果该订单已拆单则删除
           OrderUnit.where(order_id: order.id).destroy_all
+          index = 1;
           table.each do |row|
             # 板材按空格分开，中英文空格
             color,face,texture,ply = row[1].split(/ | /)
@@ -38,10 +39,13 @@ module OrdersHelper
                 :width => row[3],
                 :number => row[5],
                 :size => row[6],
+                :terminal => row[10],
                 :edge => row[11],
-                :note => row[13]
+                :note => row[13],
+                :serial_number => "ESR-"+order.name+"-"+index.to_s
             )
             record.save!
+            index += 1
           end
           order.separated!
         end

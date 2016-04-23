@@ -18,43 +18,60 @@
 
 <div>
     <hr/>
-    <div>
-      <table class="table table-hover table-striped table-bordered text-center table-condensed" id="orders">
-        <tr  class="info">
-          <th class="col-md-2 col-sm-2 text-center">产品</th>
-          <th class="col-md-1 col-sm-1 text-center">数量</th>
-          <th class="col-md-1 col-sm-1 text-center">类型</th>
-          <th class="col-md-3 col-sm-3 text-center">发货时间(十天后)</th>
-          <th class="col-md-3 col-sm-3 text-center">上传图纸(重复上传图纸会被覆盖)</th>
-          <th class="col-md-1 col-sm-1 text-center">操作</th>
-        </tr>
-        <%= f.fields_for :orders, :wrapper => false do |order_form| %>
-        <tr class="fields">
-          <td>
-            <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
-          </td>
-          <td>
-            <%= order_form.number_field :number, class: "control",value: 1, min: 1, style: 'width:70%;' %>
-          </td>
-          <td>
-             <%= order_form.select :order_type, Order.order_type, class: 'form-control'%>
-          </td>
-          <td>
-            <div class="field date-selector marked_for_destruction">
-              <%= order_form.date_select :require_time,  default: 10.days.from_now, require_time: [:year, :month, :day]%>
+    <div id="orders">
+      <%= f.fields_for :orders, :wrapper => false do |order_form| %>
+        <div class="fields awidget full-width" style="border-color: #16CBE6">
+          <div class="row" style="padding-top: 10px">
+            <div class="col-md-2">
+              <label>产品</label>
+              <%= order_form.select :product_id, Product.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
             </div>
-          </td>
-          <td>
-            <%= order_form.file_field :file, style: 'width:70%;' %>
-          </td>
-          <td>
-            <%= order_form.link_to_remove "删除", class: 'btn btn-info btn-xs' %>
-          </td>
-        </tr>
-        <% end %>
-      </table>
+            <div class="col-md-2">
+              <label>数量</label>
+              <%= order_form.number_field :number, class: "input-sm",value: 1, min: 1, style: 'width:50%;' %>
+            </div>
+            <div class="col-md-2" >
+              <label>类型</label>
+               <%= order_form.select :order_type, Order.order_type, class: 'form-control'%>
+            </div>
+            <div class="col-md-4">
+              <div class="field date-selector marked_for_destruction">
+                <label>送货日期</label>
+                <%= order_form.date_select :require_time,  default: 10.days.from_now, require_time: [:year, :month, :day]%>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="padding-top: 10px">
+            <div class="col-md-2">
+              <label>厚度</label>
+              <%= order_form.select(:ply, options_for_select(MaterialCategory.where(oftype: 0).map {|mc| [mc.name,mc.id]}, order_form.object.ply),{ :class => 'form-control'}) %>
+            </div>
+            <div class="col-md-2">
+              <label>材质</label>
+              <%= order_form.select(:texture, options_for_select(MaterialCategory.where(oftype: 1).map {|mc| [mc.name,mc.id]}, order_form.object.texture),{ :class => 'form-control'}) %>
+            </div>
+            <div class="col-md-2">
+              <label>表面</label>
+               <%= order_form.select(:face, options_for_select(MaterialCategory.where(oftype: 2).map {|mc| [mc.name,mc.id]}, order_form.object.face),{ :class => 'form-control'})%>
+            </div>
+            <div class="col-md-4">
+              <%= order_form.file_field :file%>
+            </div>
+            <div class="col-md-2">
+              <%= order_form.link_to_remove "删除", class: 'btn btn-info btn-lg' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <%= order_form.text_field :terminal, class: "form-control", placeholder: "终端客户信息"%>
+            </div>
+          </div>
+        </div>
+        
+      <% end %>
+
 </div>
-<div class="row">
+<div class="row" style="padding-top: 10px">
   <div class="col-md-12 col-sm-12">
     <div class="pull-left">
       <p><%= f.link_to_add "添加子订单", :orders, :data => { :target => "#orders" }, class: 'btn btn-info' %></p>
