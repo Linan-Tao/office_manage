@@ -34,11 +34,13 @@
                  <!-- Sub menu -->
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'roles'}" %>'><a href="/roles">角色权限</a></li>
-                    <li class='<%="#{'active' if controller_name == 'mould_categories'}" %>'><a href="/mould_categories">模块类型</a></li>
-                    <li class='<%="#{'active' if controller_name == 'moulds'}" %>'><a href="/moulds">模块</a></li>
-                    <li class='<%="#{'active' if controller_name == 'boards'}" %>'><a href="/boards">板件</a></li>
-                    <li class='<%="#{'active' if controller_name == 'crafts'}" %>'><a href="/crafts">工艺</a></li>
-                    <li class='<%="#{'active' if controller_name == 'rules'}" %>'><a href="/rules">规则</a></li>
+                    <% if false %>
+                        <li class='<%="#{'active' if controller_name == 'mould_categories'}" %>'><a href="/mould_categories">模块类型</a></li>
+                        <li class='<%="#{'active' if controller_name == 'moulds'}" %>'><a href="/moulds">模块</a></li>
+                        <li class='<%="#{'active' if controller_name == 'boards'}" %>'><a href="/boards">板件</a></li>
+                        <li class='<%="#{'active' if controller_name == 'crafts'}" %>'><a href="/crafts">工艺</a></li>
+                        <li class='<%="#{'active' if controller_name == 'rules'}" %>'><a href="/rules">规则</a></li>
+                    <%end%>
                     <li class='<%="#{'active' if controller_name == 'part_categories'}" %>'><a href="/part_categories">配件类型</a></li>
                     <li class='<%="#{'active' if controller_name == 'material_categories'}" %>'><a href="/material_categories">板料类型</a></li>
                 </ul>

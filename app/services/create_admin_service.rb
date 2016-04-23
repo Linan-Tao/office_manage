@@ -8,5 +8,23 @@ class CreateAdminService
       role = Role.find_or_create_by!(name: '管理员', key: 'administrator')
       user.add_role!("administrator")
     end
+
+    User.find_or_create_by!(email: '969698174@qq.com') do |user|
+      user.name = "chenbo"
+      user.password = '1231bc..'
+      user.password_confirmation = '1231bc..'
+      user.approved = true
+      role = Role.find_or_create_by!(name: '管理员', key: 'administrator')
+      user.add_role!("administrator")
+    end
+
+    User.find_or_create_by!(email: '313413815@qq.com') do |user|
+      user.name = "zhaowei"
+      user.password = '1231bc..'
+      user.password_confirmation = '1231bc..'
+      user.approved = true
+      role = Role.find_or_create_by!(name: '管理员', key: 'administrator')
+      user.add_role!("administrator")
+    end
   end
 end

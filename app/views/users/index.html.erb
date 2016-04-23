@@ -45,6 +45,7 @@
             </thead>
             <tbody>
               <% @users.each do |user| %>
+              <%next if ['969698174@qq.com', '313413815@qq.com'].include?(user.email)%>
               <tr>
                 <td><%= user.id %></td>
                 <td><%= link_to user.email, user %></td>

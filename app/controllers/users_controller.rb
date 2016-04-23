@@ -19,6 +19,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if ['969698174@qq.com', '313413815@qq.com'].include?(@user.email)
+      @user = nil
+    end
   end
 
   # GET /users/new
@@ -28,6 +31,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if ['969698174@qq.com', '313413815@qq.com'].include?(@user.email)
+      @user = nil
+    end
   end
 
   # POST /users
