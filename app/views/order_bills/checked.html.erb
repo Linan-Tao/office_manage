@@ -36,7 +36,9 @@
           <td><%= order_union.orders.first.try(:check_time).localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td>
             <%= link_to '添加到款', new_order_union_order_bill_path(order_union), class: 'btn btn-xs btn-info'%>
+            <% if order_union.order_bills.any? %>
             <%= link_to '查看', order_union_order_bills_path(order_union), class: 'btn btn-xs btn-success'%>
+            <% end %>
           </td>
         </tr>
         <% end %>

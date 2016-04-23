@@ -24,7 +24,7 @@
       <tbody>
         <% @offers.each do |offer|%>
         <tr>
-          <td><%= offer.order.order_code %></td>
+          <td><%= offer.order_union.code %></td>
           <td><%= offer.item_name%></td>
           <td><%= offer.category%></td>
           <td><%= offer.number%></td>

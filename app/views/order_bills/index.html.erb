@@ -15,7 +15,7 @@
         <h5>客户单号：<%=@order_union.code%>
           <span class="pull-right">
             应收款：<%=@order_bills.first.total %>元&nbsp;&nbsp;实收：<%= @order_bills.map(&:paid).sum%>元
-             <% if @order_union.offered? || @order_union.unpaid! %>
+             <% if @order_union.offered?  %>
               <%= link_to '审核下单', open_order_union_path(@order_union), class: "btn btn-xs btn-warning"%>
              <%end%>
           </span>

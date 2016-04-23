@@ -4,7 +4,7 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    @offers = Offer.where(order_id: params[:order_id])
+    @offers = Offer.where(order_union_id: params[:order_union_id])
   end
 
   # GET /offers/1

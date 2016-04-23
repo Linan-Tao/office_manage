@@ -33,6 +33,7 @@
           </div>
         </div>
     </div>
+    <% unless @order.is_checked? %>
     <div class="row">
       <div class="col-md-12 col-sm-12">
       <%= form_tag import_order_order_units_path(@order), multipart: true, class: 'form-inline' do %>
@@ -45,6 +46,7 @@
       <% end %>
       </div>
     </div>
+    <%end%>
   </div>
 </div>
 <%= render 'order_units'%>
