@@ -26,7 +26,7 @@
       <tbody>
         <% @delivery_plans.each do |delivery_plan| %>
         <tr>
-          <td><%= delivery_plan.order.order_code %></td>
+          <td><%= delivery_plan.order.name %></td>
           <td><%= delivery_plan.produce_task_ids %></td>
           <td><%= delivery_plan.number %></td>
           <td><%= delivery_plan.fin_type %></td>

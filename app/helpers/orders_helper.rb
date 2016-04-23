@@ -1,14 +1,14 @@
 module OrdersHelper
 	# 导入拆单文件
-  def import_order_units(file, order_code)
+  def import_order_units(file, name)
     table = CSV.read(file.path, {:headers => true, :encoding => 'GB18030:UTF-8'})
     headers = table.headers[0..15].map(&:strip)
     standard = ["部件名称", "板材", "长", "宽", "厚", "数量", "裁切尺寸", "柜体名称", "订单号", "订货商", "终端信息", "封边", "纹理", "备注", "条码", "流水号"]
     if headers == standard
-      order = Order.find_by(order_code: order_code)
+      order = Order.find_by(name: name)
       # 拆单文件中的订单号
       order_units_order_code = table.map{|r| r[8]}.uniq.join(',')
-      if order &&  order_units_order_code == order_code
+      if order &&  order_units_order_code == name
         ActiveRecord::Base.transaction do
           # 如果该订单已拆单则删除
           OrderUnit.where(order_id: order.id).destroy_all
@@ -47,7 +47,7 @@ module OrdersHelper
         end
         return "success"
       else
-        return "请导入与该订单#{order_code}相对应的拆单文件，您导入的订单号是:#{order_units_order_code}请检查!"
+        return "请导入与该订单#{name}相对应的拆单文件，您导入的订单号是:#{order_units_order_code}请检查!"
       end
     else
       return "文件头不正确，请检查是否是:#{standard}"
@@ -82,7 +82,7 @@ module OrdersHelper
           material = Material.find_by(ply: offer[:ply], texture: offer[:texture], face: offer[:face], color: offer[:color])
           unless material
             order_union.offers.destroy_all
-            return '生成报价单错误！未查到\"仓储 -- 板料信息\"，请联系管理员！'
+            return '生成报价单错误！未查到 "仓储信息 -- 板料"，请联系管理员！'
           end
           offer_m = order_union.offers.find_or_create_by(item_id: material.id, item_type: material.class)
           offer_m.price = material.sell.to_f

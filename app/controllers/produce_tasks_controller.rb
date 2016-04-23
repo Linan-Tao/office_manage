@@ -5,7 +5,7 @@ class ProduceTasksController < ApplicationController
   # GET /produce_tasks.json
   def index
     @produce_tasks = ProduceTask.all
-    @produce_tasks = @produce_tasks.joins(:order).where(orders: { order_code: params[:q] }) if params[:q].present?
+    @produce_tasks = @produce_tasks.joins(:order).where(orders: { name: params[:q] }) if params[:q].present?
   end
 
   # GET /produce_tasks/1

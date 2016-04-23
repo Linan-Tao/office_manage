@@ -63,7 +63,7 @@
           <% @order_units.each do |unit|%>
           <tr>
             <td><%=check_box_tag 'units[id][]', unit.id%></td>
-            <td><%= unit.order.order_code %></td>
+            <td><%= unit.order.name %></td>
             <td><%= unit.unit_name%></td>
             <td><%= unit.ply_name%></td>
             <td><%= unit.texture_name%></td>

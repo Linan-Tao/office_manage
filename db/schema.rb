@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416132101) do
+ActiveRecord::Schema.define(version: 20160416072919) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   end
 
   create_table "boards", force: :cascade do |t|
-    t.string   "code",       limit: 255
+    t.string   "code",       limit: 255,                null: false
     t.string   "name",       limit: 255
     t.string   "note",       limit: 255
     t.string   "creator",    limit: 255
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20160416132101) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
+
+  add_index "boards", ["code"], name: "index_boards_on_code", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.integer "province_id", limit: 4
@@ -70,7 +72,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   end
 
   create_table "crafts", force: :cascade do |t|
-    t.string   "code",       limit: 255
+    t.string   "code",       limit: 255,                null: false
     t.string   "name",       limit: 255
     t.string   "note",       limit: 255
     t.string   "creator",    limit: 255
@@ -78,6 +80,8 @@ ActiveRecord::Schema.define(version: 20160416132101) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
+
+  add_index "crafts", ["code"], name: "index_crafts_on_code", using: :btree
 
   create_table "delivery_plans", force: :cascade do |t|
     t.integer  "order_id",             limit: 4
@@ -272,8 +276,10 @@ ActiveRecord::Schema.define(version: 20160416132101) do
     t.datetime "updated_at",                            null: false
   end
 
+  add_index "mould_categories", ["code"], name: "index_mould_categories_on_code", using: :btree
+
   create_table "moulds", force: :cascade do |t|
-    t.string   "code",              limit: 255
+    t.string   "code",              limit: 255,                null: false
     t.string   "name",              limit: 255
     t.integer  "mould_num",         limit: 4
     t.integer  "length",            limit: 4
@@ -302,6 +308,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
     t.datetime "updated_at",                                   null: false
   end
 
+  add_index "moulds", ["code"], name: "index_moulds_on_code", using: :btree
   add_index "moulds", ["mould_category_id"], name: "index_moulds_on_mould_category_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
@@ -323,20 +330,20 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
   create_table "order_bills", force: :cascade do |t|
-    t.integer  "order_id",      limit: 4
-    t.decimal  "total",                     precision: 8, scale: 2
-    t.decimal  "paid",                      precision: 8, scale: 2
-    t.decimal  "left",                      precision: 8, scale: 2
+    t.integer  "order_union_id", limit: 4
+    t.decimal  "total",                      precision: 8, scale: 2
+    t.decimal  "paid",                       precision: 8, scale: 2
+    t.decimal  "left",                       precision: 8, scale: 2
     t.datetime "pay_date"
-    t.string   "pay_account",   limit: 255
-    t.integer  "directive",     limit: 4
-    t.integer  "user_id",       limit: 4
+    t.string   "pay_account",    limit: 255
+    t.integer  "directive",      limit: 4
+    t.integer  "user_id",        limit: 4
     t.date     "delivery_date"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
-  add_index "order_bills", ["order_id"], name: "index_order_bills_on_order_id", using: :btree
+  add_index "order_bills", ["order_union_id"], name: "index_order_bills_on_order_union_id", using: :btree
   add_index "order_bills", ["user_id"], name: "index_order_bills_on_user_id", using: :btree
 
   create_table "order_parts", force: :cascade do |t|
@@ -355,11 +362,6 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   add_index "order_parts", ["part_id"], name: "index_order_parts_on_part_id", using: :btree
   add_index "order_parts", ["produce_task_id"], name: "index_order_parts_on_produce_task_id", using: :btree
 
-  create_table "order_splits", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_unions", force: :cascade do |t|
     t.string   "code",       limit: 255
     t.integer  "agent_id",   limit: 4
@@ -376,15 +378,16 @@ ActiveRecord::Schema.define(version: 20160416132101) do
     t.string   "code",             limit: 255
     t.string   "unit_name",        limit: 255
     t.string   "name",             limit: 255
-    t.integer  "lenght",           limit: 4
+    t.integer  "ply",              limit: 4
+    t.integer  "texture",          limit: 4
+    t.integer  "face",             limit: 4
+    t.integer  "color",            limit: 4
+    t.integer  "length",           limit: 4
     t.integer  "width",            limit: 4
-    t.integer  "thick",            limit: 4
     t.integer  "number",           limit: 4
     t.string   "size",             limit: 255
     t.string   "note",             limit: 255
-    t.string   "color",            limit: 255
     t.string   "edge",             limit: 255
-    t.string   "texture",          limit: 255
     t.string   "terminal",         limit: 255
     t.integer  "out_edge_thick",   limit: 4
     t.integer  "in_edge_thick",    limit: 4
@@ -405,7 +408,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   add_index "order_units", ["produce_task_id"], name: "index_order_units_on_produce_task_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_code",        limit: 255
+    t.string   "name",              limit: 255
     t.integer  "product_id",        limit: 4
     t.string   "customer_code",     limit: 255
     t.integer  "agent_id",          limit: 4
@@ -574,7 +577,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
   create_table "rules", force: :cascade do |t|
-    t.string   "code",       limit: 255
+    t.string   "code",       limit: 255,                null: false
     t.string   "name",       limit: 255
     t.integer  "mould_id",   limit: 4
     t.integer  "board_id",   limit: 4
@@ -594,6 +597,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   end
 
   add_index "rules", ["board_id"], name: "index_rules_on_board_id", using: :btree
+  add_index "rules", ["code"], name: "index_rules_on_code", using: :btree
   add_index "rules", ["craft_id"], name: "index_rules_on_craft_id", using: :btree
   add_index "rules", ["mould_id"], name: "index_rules_on_mould_id", using: :btree
   add_index "rules", ["part_id"], name: "index_rules_on_part_id", using: :btree
@@ -672,7 +676,7 @@ ActiveRecord::Schema.define(version: 20160416132101) do
   add_foreign_key "moulds", "mould_categories"
   add_foreign_key "offers", "order_unions"
   add_foreign_key "offers", "users"
-  add_foreign_key "order_bills", "orders"
+  add_foreign_key "order_bills", "order_unions"
   add_foreign_key "order_bills", "users"
   add_foreign_key "order_parts", "orders"
   add_foreign_key "order_parts", "parts"

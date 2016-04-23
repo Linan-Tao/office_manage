@@ -62,16 +62,16 @@ $(document).ready(function() {
         },
         formatResult: function(order) {
             var markup = "<ul>";
-            markup += "<li>" + order.order_code + "</li>";
+            markup += "<li>" + order.name + "</li>";
             markup += "</ul>"
             return markup;
         },
         formatSelection: function(order) {
-            return ("<input type='hidden' id='order_id' name='order[order_code]' value=" + order.id + " />" + order.order_code);
+            return ("<input type='hidden' id='order_id' name='order[name]' value=" + order.id + " />" + order.name);
         }
     }).select2("data", {
         "id": $("#remoteOrder").data("id"),
-        "order_code": $("#remoteOrder").data("name")
+        "name": $("#remoteOrder").data("name")
     }); //初始化数据
 
 

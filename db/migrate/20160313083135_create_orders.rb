@@ -2,7 +2,7 @@ class CreateOrders < ActiveRecord::Migration
   def change
     # 订单表
     create_table :orders do |t|
-      t.string :order_code # 全局唯一标识符号
+      t.string :name # 全局唯一标识符号
       t.references :product # 产品编号
       t.string :customer_code # 客户单号
       t.references :agent # 经销商
