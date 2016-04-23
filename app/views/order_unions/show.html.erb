@@ -38,6 +38,7 @@
         <td>订单状态</td>
       </tr>
       <% @order_union.orders.each do |order|%>
+      <% next if order.is_delete%>
         <tr>
           <td><%= link_to order.name, order_path(order), class: 'detail-link' %></td>
           <td><%= order.product.name%></td>

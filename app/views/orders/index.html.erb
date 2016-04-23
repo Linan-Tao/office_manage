@@ -50,7 +50,11 @@
             <% @orders.each do |order|%>
             <tr>
               <td>
-                <%= link_to order.name, order_path(order), class: 'detail-link' %>
+                <% if order.is_delete %>
+                  <%=order.name%>
+                <%else%>
+                  <%= link_to order.name, order_path(order), class: 'detail-link' %>
+                <%end%>
               </td>
               <td><%= order.created_at.localtime.strftime("%Y-%m-%d")%></td>
               <td><%= order.product.name%></td>
