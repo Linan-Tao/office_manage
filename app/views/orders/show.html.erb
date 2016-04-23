@@ -8,7 +8,7 @@
   <hr />
 </div>
 <div class="awidget full-width">
-  <div class="awidget-head">
+  <div class="awidget-body">
     <div class="row">
       <div class="col-md-10 col-sm-10">
           生产单号：<code id="orderCode"><%= @order.name%></code>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,21 +33,37 @@
           </div>
         </div>
     </div>
-    <% unless @order.is_checked? %>
     <div class="row">
-      <div class="col-md-12 col-sm-12">
-      <%= form_tag import_order_order_units_path(@order), multipart: true, class: 'form-inline' do %>
-        <div class="pull-left">
-            <%= file_field_tag :file, required: true, accept: 'csv', class: 'btn btn-info btn-xs' %>
-        </div>
-        <div class="pull-right">
-          <%= submit_tag "导入CSV文件", class: 'btn btn-info btn-xs' %>
-        </div>
-      <% end %>
+      <div class="col-md-2 col-sm-2">
+        厚度:<%=MaterialCategory.find(@order.ply).name %>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        材质:<%=MaterialCategory.find(@order.texture).name %>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        表面:<%=MaterialCategory.find(@order.face).name %>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        终端客户:<%=@order.terminal %>
       </div>
     </div>
-    <%end%>
   </div>
 </div>
+<% unless @order.is_checked? %>
+  <div class="awidget full-width">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+        <%= form_tag import_order_order_units_path(@order), multipart: true, class: 'form-inline' do %>
+          <div class="pull-left">
+              <%= file_field_tag :file, required: true, accept: 'csv', class: 'btn btn-info btn-xs' %>
+          </div>
+          <div class="pull-right">
+            <%= submit_tag "导入CSV文件", class: 'btn btn-info btn-xs' %>
+          </div>
+        <% end %>
+        </div>
+      </div> 
+  </div>
+<%end%>
 <%= render 'order_units'%>
 <%= render 'order_parts'%>

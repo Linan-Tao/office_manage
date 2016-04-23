@@ -26,11 +26,13 @@ class OrderUnionsController < ApplicationController
   # GET /order_unions/1/edit
   def edit
     @agent = @order_union.agent
+    @material_categories = MaterialCategory.all
   end
 
   # POST /order_unions
   # POST /order_unions.json
   def create
+    @material_categories = MaterialCategory.all
     @order_union = OrderUnion.new(order_union_params)
     @agent = Agent.new
     respond_to do |format|
@@ -96,6 +98,6 @@ class OrderUnionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_union_params
-      params.require(:order_union).permit(:code, :agent_id, orders_attributes: [:id, :number, :product_id, :require_time, :order_type, :file, :_destroy])
+      params.require(:order_union).permit(:code, :agent_id, orders_attributes: [:id, :number, :product_id, :require_time, :order_type, :ply, :texture, :face, :terminal, :file, :_destroy])
     end
 end

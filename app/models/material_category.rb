@@ -1,5 +1,6 @@
 class MaterialCategory < ActiveRecord::Base
   validates_presence_of :name, :oftype
+  validates_uniqueness_of :name, :message => "该名称已存在!"
 
 
   #下单条件：1.厚度 2.材质 3.表面 4.颜色
