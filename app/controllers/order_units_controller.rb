@@ -58,7 +58,7 @@ class OrderUnitsController < ApplicationController
     if params[:file].original_filename !~ /.csv$/
       return redirect_to order_path(@order), notice: '文件格式不正确！'
     else
-      return_message = import_order_units(params[:file], @order.order_code)
+      return_message = import_order_units(params[:file], @order.name)
     end
 
     if return_message == "success"

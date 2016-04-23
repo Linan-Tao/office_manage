@@ -5,7 +5,7 @@ zh-CN:
       order: Order
     attributes:
       order:
-        order_code: 订单编号
+        name: 订单编号
         work: 工序
         order_type: 订单类型
         require_time: 要求发货时间

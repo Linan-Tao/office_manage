@@ -5,11 +5,11 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.where(is_delete: false).order(created_at: :desc)
-    @orders = @orders.where("order_code LIKE '%#{params[:term]}%'")  if params[:term].present?
+    @orders = @orders.where("name LIKE '%#{params[:term]}%'")  if params[:term].present?
     @orders = @orders.where(work_id: params[:work_id]) if params[:work_id].present?
     respond_to do |format|
        format.html
-       format.json { render json: {:orders => @orders.select(:id, :order_code), :total => @orders.size} }
+       format.json { render json: {:orders => @orders.select(:id, :name), :total => @orders.size} }
      end
   end
 
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new(order_code: Time.new.strftime('%Y%m%d%H%M%S'))
+    @order = Order.new(name: Time.new.strftime('%Y%m%d%H%M%S'))
   end
 
   # GET /orders/1/edit
@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: '订单更新成功！' }
+        format.html { redirect_to orders_url, notice: '订单更新成功！' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_code, :agent_id, :order_type, :require_time, :work_id,:is_delete,:file,
+      params.require(:order).permit(:name, :agent_id, :order_type, :require_time, :work_id,:is_delete,:file,
                                                               order_units_attributes: [:id, :unit_name, :name, :ply, :texture, :face, :color, :length, :width,
                                                               :number, :size, :edge, :note, :_destroy],
                                                               order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])

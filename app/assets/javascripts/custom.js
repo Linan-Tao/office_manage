@@ -19,11 +19,8 @@ $(document).ready(function(){
       }
     });
 
+
+    $("#order-parts-category-id").focus(function(){
+      alert(123);
+    });
   });
-
-
-
-
-
-
-

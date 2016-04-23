@@ -1,5 +1,5 @@
 <%= simple_form_for(@order, url: @order.new_record? ? orders_path : order_path(@order)) do |f| %>
-  	<%= f.input :order_code, readonly: true %>
+  	<%= f.input :name, readonly: true %>
   	<%= f.input :agent, input_html: { value: @order.order_union.agent.name }, readonly: true %>
   	<%= f.input :order_type, collection: Order.order_type, as: :radio_buttons, item_wrapper_class: 'radio-inline' %>
   	<%= f.input :require_time%>

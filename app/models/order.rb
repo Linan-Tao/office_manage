@@ -24,9 +24,9 @@ class Order < ActiveRecord::Base
   def generate_order_code
     begin
       orders_count = self.order_union.orders.count
-      self.order_code = self.order_union.code + "-" + (orders_count+1).to_s
+      self.name = self.order_union.code + "-" + (orders_count+1).to_s
       self.work_id = 1
-    end while self.class.exists?(:order_code => order_code)
+    end while self.class.exists?(:name => name)
   end
 
   enum order_type: {

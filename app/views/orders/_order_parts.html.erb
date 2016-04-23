@@ -50,10 +50,10 @@
       <%= nested_form_for @order do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">订单：<%= @order.order_code %>  <small>配件</small></h4>
+        <h4 class="modal-title" id="myModalLabel">订单：<%= @order.name %>  <small>配件</small></h4>
       </div>
       <div class="modal-body">
-        <table class="table" id="parts">
+        <table class="table tabel-border table-condensed" id="parts">
           <tr>
             <th>配件类型</th>
             <th>配件名称</th>
@@ -62,28 +62,28 @@
             <th>操作</th>
           </tr>
           <%= f.fields_for :order_parts, :wrapper => false do |part_form| %>
-          <tr class="fields">
+          <tr class="fields" id="order-parts-category-id">
             <td>
-              <%= part_form.select :part_category_id, PartCategory.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control' %>
+              <%= part_form.select :part_category_id, PartCategory.all.collect { |pc| [pc.name, pc.id] }, class: 'form-control input-sm' %>
             </td>
             <td>
-              <%= part_form.select :part_id, Part.all.collect { |p| [p.name, p.id] } , class: 'form-control' %>
+              <%= part_form.select :part_id, Part.all.collect { |p| [p.name, p.id] } , class: 'form-control input-sm' %>
             </td>
             <td>
-              <%= part_form.number_field :number, value: 1, in: 1..500, class: 'form-control' %>
+              <%= part_form.number_field :number, value: 1, in: 1..500, class: 'form-control input-sm' %>
             </td>
             <td>
-              <%= part_form.text_field :note, class: 'form-control'%>
+              <%= part_form.text_field :note, class: 'form-control input-sm'%>
             </td>
             <td>
-              <%= part_form.link_to_remove "删除", class: 'btn btn-info' %>
+              <%= part_form.link_to_remove "删除", class: 'btn btn-info input-sm' %>
             </td>
           </tr>
           <% end %>
         </table>
-        <p><%= f.link_to_add "添加", :order_parts, :data => { :target => "#parts" }, class: 'btn btn-info' %></p>
       </div>
       <div class="modal-footer">
+        <p class="pull-left"><%= f.link_to_add "添加部件", :order_parts, :data => { :target => "#parts" }, class: 'btn btn-info' %></p>
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <%= submit_tag "保存", class: 'btn btn-info'%>
       </div>

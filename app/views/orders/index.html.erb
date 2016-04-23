@@ -50,7 +50,7 @@
             <% @orders.each do |order|%>
             <tr>
               <td>
-                <%= link_to order.order_code, order_path(order), class: 'detail-link' %>
+                <%= link_to order.name, order_path(order), class: 'detail-link' %>
               </td>
               <td><%= order.created_at.localtime.strftime("%Y-%m-%d")%></td>
               <td><%= order.product.name%></td>
@@ -73,7 +73,7 @@
               <td>
                 <%= form_for order, {class: 'form-inline'} do |f|%>
                   <input type="hidden" name="order[is_delete]" value="true">
-                  <button class="btn btn-xs btn-warning">删除</button>
+                  <button class="btn btn-xs btn-warning" data-confirm="操作不可逆，请谨慎选择！确定删除？">删除</button>
                 <%end%>
               </td>
             </tr>
@@ -90,10 +90,10 @@
     <div class="modal fade" id="uploadFile_<%= order.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          
+
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel"><h3>订单号<%=order.order_code%></h3></h4>
+            <h4 class="modal-title" id="myModalLabel"><h3>订单号<%=order.name%></h3></h4>
           </div>
           <div class="modal-body">
             <%= f.input :file, as: :file%>

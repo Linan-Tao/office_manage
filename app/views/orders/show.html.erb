@@ -11,7 +11,7 @@
   <div class="awidget-head">
     <div class="row">
       <div class="col-md-10 col-sm-10">
-          生产单号：<code id="orderCode"><%= @order.order_code%></code>&nbsp;&nbsp;&nbsp;&nbsp;
+          生产单号：<code id="orderCode"><%= @order.name%></code>&nbsp;&nbsp;&nbsp;&nbsp;
           订单状态：<%= @order.work.name %>&nbsp;&nbsp;&nbsp;&nbsp;
           下单客户：<%=link_to @order.order_union.agent.name, agent_path(@order.order_union.agent)%>&nbsp;&nbsp;&nbsp;&nbsp;
           <%if @order.file_file_name%>
