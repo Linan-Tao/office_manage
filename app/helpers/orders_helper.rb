@@ -28,7 +28,7 @@ module OrdersHelper
             # end
 
             if row[1] =~ /([  ]+\d+厚\s*)/
-              ply = $1.strip
+              ply = $1.strip.gsub("厚", 'mm')
             end
 
             unless MaterialCategory.all.map(&:name).include?(ply)
