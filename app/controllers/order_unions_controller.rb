@@ -98,6 +98,6 @@ class OrderUnionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_union_params
-      params.require(:order_union).permit(:code, :agent_id, orders_attributes: [:id, :number, :product_id, :require_time, :order_type, :ply, :texture, :face, :terminal, :file, :_destroy])
+      params.require(:order_union).permit(:code, :agent_id, orders_attributes: [:id, :number, :product_id, :require_time, :order_type, :ply, :texture, :face, :color, :terminal, :file, :_destroy])
     end
 end

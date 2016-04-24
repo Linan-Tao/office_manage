@@ -35,13 +35,13 @@
     </div>
     <div class="row">
       <div class="col-md-2 col-sm-2">
-        厚度:<%=MaterialCategory.find(@order.ply).name %>
+        颜色:<%=MaterialCategory.find(@order.color).try(:name) %>
       </div>
       <div class="col-md-2 col-sm-2">
-        材质:<%=MaterialCategory.find(@order.texture).name %>
+        材质:<%=MaterialCategory.find(@order.texture).try(:name)%>
       </div>
       <div class="col-md-2 col-sm-2">
-        表面:<%=MaterialCategory.find(@order.face).name %>
+        表面:<%=MaterialCategory.find(@order.face).try(:name) %>
       </div>
       <div class="col-md-6 col-sm-6">
         终端客户:<%=@order.terminal %>
