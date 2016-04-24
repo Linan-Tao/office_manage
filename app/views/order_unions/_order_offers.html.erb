@@ -5,6 +5,7 @@
             <h3>报价单
                <p class="pull-right">
                   总价: <%=@order_offers.map(&:total).sum %>元
+                  <%= link_to '下载报价单', export_order_union_offers_path(@order_union,format: "csv"),class: "btn btn-info"%>
                </p>
             </h3>
          </div>

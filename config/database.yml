@@ -12,7 +12,10 @@ base: &base
   port: 3306
   # 部署环境需要修改此账号密码
   username: root
-  password:  '123abc..'
+  strict: false
+  password:
+  port: 3307
+
 
 development:
   <<: *base

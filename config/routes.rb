@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :moulds
   resources :mould_categories
   resources :order_unions do
-    resources :offers
+    resources :offers do
+      collection do 
+        get "export"
+      end
+    end
     resources :order_bills
     member do
       get :open

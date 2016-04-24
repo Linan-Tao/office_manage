@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   include OrdersHelper
+  include OffersHelper
   # GET /orders
   # GET /orders.json
   def index
@@ -55,6 +56,8 @@ class OrdersController < ApplicationController
       if @order.update(order_params)
         @order.work_id = 2 if @order.work.sequence > 2
         @order.save
+        @order.order_union.offering!
+        create_offer(@order.order_union)
         format.html { redirect_to order_path(@order), notice: '订单更新成功！' }
         format.json { render :show, status: :ok, location: @order }
       else
