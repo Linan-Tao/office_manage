@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :agent_id, :order_type, :require_time, :ply, :texture, :face, :terminal, :work_id,:is_delete,:file,
+      params.require(:order).permit(:name, :agent_id, :order_type, :require_time, :ply, :texture, :face, :color, :terminal, :work_id,:is_delete,:file,
                                                               order_units_attributes: [:id, :unit_name, :name, :ply, :texture, :face, :color, :length, :width,
                                                               :number, :size, :edge, :note, :_destroy],
                                                               order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])

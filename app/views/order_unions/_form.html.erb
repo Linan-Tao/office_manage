@@ -43,8 +43,8 @@
           </div>
           <div class="row" style="padding-top: 10px">
             <div class="col-md-2">
-              <label>厚度</label>
-              <%= order_form.select(:ply, options_for_select(MaterialCategory.where(oftype: 0).map {|mc| [mc.name,mc.id]}, order_form.object.ply),{ :class => 'form-control'}) %>
+              <label>颜色</label>
+              <%= order_form.select(:color, options_for_select(MaterialCategory.where(oftype: 3).map {|mc| [mc.name,mc.id]}, order_form.object.color),{ :class => 'form-control'}) %>
             </div>
             <div class="col-md-2">
               <label>材质</label>

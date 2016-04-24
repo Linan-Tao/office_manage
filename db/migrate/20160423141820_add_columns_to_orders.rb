@@ -4,5 +4,6 @@ class AddColumnsToOrders < ActiveRecord::Migration
     add_column :orders, :ply, :integer
     add_column :orders, :texture, :integer
     add_column :orders, :face, :integer
+    add_column :orders, :color, :integer
   end
 end

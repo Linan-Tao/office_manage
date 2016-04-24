@@ -5,7 +5,7 @@ class MaterialCategoriesController < ApplicationController
   # GET /material_categories.json
   def index
     @material_categories = MaterialCategory.all
-    @material_categories.where(oftype:  MaterialCategory.oftypes[params[:oftype]]) if params[:oftype].present?
+    @material_categories = @material_categories.where(oftype:  MaterialCategory.oftypes[params[:oftype]]) if params[:oftype].present?
   end
 
   # GET /material_categories/1
