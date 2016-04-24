@@ -18,9 +18,11 @@
         </div>
         <div class="pull-right">
           <% if @order_union.orders.map{|o| o.separated?}.uniq.join(',') == "true" %>
-              <button type="button" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#offer">生成报价单</button>
+              <!-- <button type="button" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#offer">生成报价单</button> -->
+              <%= link_to "生产报价单", new_order_union_offer_path(@order_union), class: "btn btn-info btn-xs pull-right"%>
           <% else %>
-              <button type="button" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#offer" disabled="true">生成报价单</button>
+              <!-- <button type="button" class="btn btn-xs btn-info pull-right" data-toggle="modal" data-target="#offer" disabled="true">生成报价单</button> -->
+              <%= link_to "生产报价单", new_order_union_offer_path(@order_union), class: "btn btn-info btn-xs pull-right", disabled: "true"%>
           <% end %>
         </div>
       </div>

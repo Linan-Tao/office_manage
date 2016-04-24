@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
     @order_units = @order.order_units
     @part_categories = PartCategory.all
     @order_parts = @order.order_parts
+    @labor_costs = @order.labor_costs
     @material_categories = MaterialCategory.all
   end
 
@@ -92,6 +93,7 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:name, :agent_id, :order_type, :require_time, :ply, :texture, :face, :color, :terminal, :work_id,:is_delete,:file,
                                                               order_units_attributes: [:id, :unit_name, :name, :ply, :texture, :face, :color, :length, :width,
                                                               :number, :size, :edge, :note, :_destroy],
-                                                              order_parts_attributes:[:id, :part_id, :number, :note, :_destroy])
+                                                              order_parts_attributes:[:id, :part_id, :number, :note, :_destroy],
+                                                              labor_costs_attributes: [:id, :price, :number, :item, :_destroy])
     end
 end
