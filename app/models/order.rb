@@ -64,9 +64,9 @@ class Order < ActiveRecord::Base
     work.symbol_name == "checked"
   end
 
-  # 订单是否通过审核
+  # 订单是否通过下单
   def is_checked?
-    work.id >= Work.find_by(symbol_name: "checked").id
+    work.id >= Work.find_by(symbol_name: "open").id
   end
 
   def separated!
@@ -96,6 +96,22 @@ class Order < ActiveRecord::Base
     if (Date.parse(self.require_time.to_s) - Date.parse(time.to_s)).to_i < 10
       self.errors.add(:require_time, '发货时间需在十天以后')
     end
+  end
+
+  def ply_name
+    MaterialCategory.find_by(id: self.ply).try(:name)
+  end
+
+  def texture_name
+    MaterialCategory.find_by(id: self.texture).try(:name)
+  end
+
+  def face_name
+    MaterialCategory.find_by(id: self.face).try(:name)
+  end
+
+  def color_name
+    MaterialCategory.find_by(id: self.color).try(:name)
   end
 
 end
