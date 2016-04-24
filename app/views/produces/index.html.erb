@@ -34,7 +34,9 @@
           <td><%= pt.area %></td>
           <td><%= pt.number %></td>
           <td>
+           <% if Work.find(work_id).next_seq  %>
             <%= link_to "完成"+Work.find(work_id).next_seq.name, new_produce_path(produce_task_id: pt.id), class: "btn btn-xs btn-success"%>
+            <%end%>
           </td>
         </tr>
         <% end %>

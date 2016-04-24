@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to orders_url, notice: '订单更新成功！' }
+        format.html { redirect_to order_path(@order), notice: '订单更新成功！' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }

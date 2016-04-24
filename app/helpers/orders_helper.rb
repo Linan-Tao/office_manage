@@ -15,26 +15,26 @@ module OrdersHelper
           index = 1;
           table.each do |row|
             # 板材按空格分开，中英文空格
-            color,face,texture,ply = row[1].split(/ | /)
+            # color,face,texture,ply = row[1].split(/ | /)
 
-            [color,face,texture,ply].compact.each do |c|
-              unless MaterialCategory.all.map(&:name).include?(c)
-                return "板料信息错误，请检查或联系管理员添加！找不到板料 \"#{c}\""
-              end
-            end
+            # [color,face,texture,ply].compact.each do |c|
+            #   unless MaterialCategory.all.map(&:name).include?(c)
+            #     return "板料信息错误，请检查或联系管理员添加！找不到板料 \"#{c}\""
+            #   end
+            # end
 
-            color_id,face_id,texture_id,ply_id = [color,face,texture,ply].map do |b|
-              MaterialCategory.find_by(name: b).try(:id)
-            end
+            # color_id,face_id,texture_id,ply_id = [color,face,texture,ply].map do |b|
+            #   MaterialCategory.find_by(name: b).try(:id)
+            # end
 
             record = OrderUnit.new(
                 :order_id   => order.id,
                 :unit_name => row[0],
                 :name => row[1],
-                :color => color_id,
-                :face => face_id,
-                :texture => texture_id,
-                :ply => ply_id,
+                # :color => color_id,
+                # :face => face_id,
+                # :texture => texture_id,
+                # :ply => ply_id,
                 :length => row[2],
                 :width => row[3],
                 :number => row[5],

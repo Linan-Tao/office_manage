@@ -7,6 +7,28 @@
   <hr />
 </div>
 <div class="awidget full-width">
+  <div class="awidget-head">
+    <form class="form-inline" role="search">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="btn-group" role="group" aria-label="">
+            <% MaterialCategory.oftype.push(['所有', nil]).each do |k, name| %>
+              <%= link_to k, material_categories_path(oftype: name), class: "btn btn-default #{'btn-primary' if params[:oftype].presence == name}" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-lg-6 text-right">
+          <div class="input-group">
+            <%= hidden_field_tag :role_type, params[:role_type] %>
+            <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: '输入Email/登录名称...' %>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">查询</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
   <div class="awidget-body">
     <table class="table table-hover table-striped table-bordered table-condensed text-center">
       <thead>

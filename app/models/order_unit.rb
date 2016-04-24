@@ -8,18 +8,18 @@ class OrderUnit < ActiveRecord::Base
   }
 
   def ply_name
-    MaterialCategory.find(self.ply).name
+    MaterialCategory.find_by(id: self.ply).try(:name)
   end
 
   def texture_name
-    MaterialCategory.find(self.texture).name
+    MaterialCategory.find_by(id: self.texture).try(:name)
   end
 
   def face_name
-    MaterialCategory.find(self.face).name
+    MaterialCategory.find_by(id: self.face).try(:name)
   end
 
   def color_name
-    MaterialCategory.find(self.color).name
+    MaterialCategory.find_by(id: self.color).try(:name)
   end
 end

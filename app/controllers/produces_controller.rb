@@ -6,7 +6,7 @@ class ProducesController < ApplicationController
   def index
     @produces = Produce.all
     # 生产任务按工序分类
-    @produce_tasks = ProduceTask.joins(:work).where("works.sequence in (8,9, 10, 11, 12, 13, 14)").order(:work_id).group_by(&:work_id)
+    @produce_tasks = ProduceTask.joins(:work).where("works.sequence > 7").order(:work_id).group_by(&:work_id)
   end
 
   # GET /produces/1
@@ -25,8 +25,10 @@ class ProducesController < ApplicationController
     @produce.end_time = Time.now()
     @produce.work_id = work.id
     @produce.save!
-    @produce_task.work_id = next_work.id
-    @produce_task.save!
+    if next_work
+      @produce_task.work_id = next_work.id
+      @produce_task.save!
+    end
 
     redirect_to produces_path, notice: '生产创建成功！'
   end

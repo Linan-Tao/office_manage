@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416072919) do
+ActiveRecord::Schema.define(version: 20160423141820) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -402,6 +402,7 @@ ActiveRecord::Schema.define(version: 20160416072919) do
     t.integer  "user_id",          limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "serial_number",    limit: 255
   end
 
   add_index "order_units", ["order_id"], name: "index_order_units_on_order_id", using: :btree
@@ -424,13 +425,17 @@ ActiveRecord::Schema.define(version: 20160416072919) do
     t.string   "employee",          limit: 255
     t.integer  "order_union_id",    limit: 4
     t.integer  "number",            limit: 4
-    t.boolean  "is_delete",                     default: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.boolean  "is_delete",                      default: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "file_file_name",    limit: 255
     t.string   "file_content_type", limit: 255
     t.integer  "file_file_size",    limit: 4
     t.datetime "file_updated_at"
+    t.string   "terminal",          limit: 1024
+    t.integer  "ply",               limit: 4
+    t.integer  "texture",           limit: 4
+    t.integer  "face",              limit: 4
   end
 
   add_index "orders", ["order_union_id"], name: "index_orders_on_order_union_id", using: :btree

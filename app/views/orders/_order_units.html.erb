@@ -23,16 +23,18 @@
                <tr>
                   <th>编号</th>
                   <th>名称</th>
-                  <th>厚度</th>
+                  <th>板料</th>
+                  <!-- <th>厚度</th>
                   <th>材质</th>
                   <th>表面</th>
-                  <th>颜色</th>
+                  <th>颜色</th> -->
                   <th>封边</th>
                   <th>长</th>
                   <th>宽</th>
                   <th>数量</th>
                   <th>剪裁尺寸</th>
                   <th>备注</th>
+                  <th>流水号</th>
                </tr>
             </thead>
             <tbody>
@@ -40,16 +42,18 @@
                <tr>
                   <td><%= unit.id%></td>
                   <td><%= unit.unit_name%></td>
-                  <td><%= unit.ply_name%></td>
+                  <td><%= unit.name %></td>
+                  <!-- <td><%= unit.ply_name%></td>
                   <td><%= unit.texture_name%></td>
                   <td><%= unit.face_name%></td>
-                  <td><%= unit.color_name%></td>
+                  <td><%= unit.color_name%></td> -->
                   <td><%= unit.edge%></td>
                   <td><%= unit.length%></td>
                   <td><%= unit.width%></td>
                   <td><%= unit.number%></td>
                   <td><%= unit.size%></td>
                   <td><%= unit.note%></td>
+                  <td><%= unit.serial_number %></td>
                </tr>
                <% end %>
             </tbody>

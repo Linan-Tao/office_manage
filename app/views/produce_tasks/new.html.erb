@@ -47,6 +47,7 @@
             <th>勾选</th>
             <th>订单号</th>
             <th>名称</th>
+            <th>板料</th>
             <th>厚度</th>
             <th>材质</th>
             <th>表面</th>
@@ -65,6 +66,7 @@
             <td><%=check_box_tag 'units[id][]', unit.id%></td>
             <td><%= unit.order.name %></td>
             <td><%= unit.unit_name%></td>
+            <td><%= unit.name%></td>
             <td><%= unit.ply_name%></td>
             <td><%= unit.texture_name%></td>
             <td><%= unit.face_name%></td>
