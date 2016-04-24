@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423141820) do
+ActiveRecord::Schema.define(version: 20160424064849) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "code",            limit: 255
@@ -195,6 +195,18 @@ ActiveRecord::Schema.define(version: 20160423141820) do
   add_index "item_storages", ["purchase_id"], name: "index_item_storages_on_purchase_id", using: :btree
   add_index "item_storages", ["supplier_id"], name: "index_item_storages_on_supplier_id", using: :btree
 
+  create_table "labor_costs", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "number",     limit: 4
+    t.string   "item",       limit: 255
+    t.decimal  "price",                  precision: 8, scale: 2
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "labor_costs", ["order_id"], name: "index_labor_costs_on_order_id", using: :btree
+
   create_table "logistic_providers", force: :cascade do |t|
     t.string   "name",           limit: 255
     t.string   "phone",          limit: 255
@@ -323,9 +335,11 @@ ActiveRecord::Schema.define(version: 20160423141820) do
     t.integer  "user_id",        limit: 4
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
+    t.integer  "order_id",       limit: 4
   end
 
   add_index "offers", ["item_id"], name: "index_offers_on_item_id", using: :btree
+  add_index "offers", ["order_id"], name: "index_offers_on_order_id", using: :btree
   add_index "offers", ["order_union_id"], name: "index_offers_on_order_union_id", using: :btree
   add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
@@ -436,6 +450,7 @@ ActiveRecord::Schema.define(version: 20160423141820) do
     t.integer  "ply",               limit: 4
     t.integer  "texture",           limit: 4
     t.integer  "face",              limit: 4
+    t.integer  "color",             limit: 4
   end
 
   add_index "orders", ["order_union_id"], name: "index_orders_on_order_union_id", using: :btree
@@ -676,10 +691,12 @@ ActiveRecord::Schema.define(version: 20160423141820) do
   add_foreign_key "flow_bills", "application_funds"
   add_foreign_key "item_storages", "purchases"
   add_foreign_key "item_storages", "suppliers"
+  add_foreign_key "labor_costs", "orders"
   add_foreign_key "materials", "suppliers"
   add_foreign_key "month_salaries", "users"
   add_foreign_key "moulds", "mould_categories"
   add_foreign_key "offers", "order_unions"
+  add_foreign_key "offers", "orders"
   add_foreign_key "offers", "users"
   add_foreign_key "order_bills", "order_unions"
   add_foreign_key "order_bills", "users"
