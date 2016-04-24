@@ -53,6 +53,8 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
+        @order.work_id = 2 if @order.work.sequence > 2
+        @order.save
         format.html { redirect_to order_path(@order), notice: '订单更新成功！' }
         format.json { render :show, status: :ok, location: @order }
       else

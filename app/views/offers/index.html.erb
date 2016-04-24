@@ -1,38 +1,57 @@
-<!-- Page title -->
-<div class="page-title">
-  <h2><i class="fa fa-desktop color"></i> 报价单 <small>列表</small>
-  <span class="pull-right">
-    <%= link_to('返回', :back, class: 'btn btn-lg btn-default') %>
-  </span>
-  </h2>
-  <hr />
-</div>
-<!-- Page title -->
+
+
 <div class="awidget full-width">
-  <div class="awidget-body">
-    <table class="table table-hover table-striped table-bordered table-condensed text-center">
-      <thead>
-        <tr class="info">
-          <td>订单号</td>
-          <td>计件项目</td>
-          <td>类别</td>
-          <td>数量</td>
-          <td>单价</td>
-          <td>总额</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @offers.each do |offer|%>
-        <tr>
-          <td><%= offer.order_union.code %></td>
-          <td><%= offer.item_name%></td>
-          <td><%= offer.category%></td>
-          <td><%= offer.number%></td>
-          <td><%= offer.price%></td>
-          <td><%= offer.total%></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+   <div class="awidget-head">
+      <div class="row">
+         <div class="col-md-12 col-sm-12">
+            <h3>报价单&nbsp;&nbsp;总价: <%=@offers.map(&:total).sum %>元
+                 <span class="pull-right">
+                  <%= link_to('返回', :back, class: 'btn btn-lg btn-default') %>
+                </span>
+            </h3>
+         </div>
+      </div>
+   </div>
+   <div class="awidget-body">
+    <% @offers.group_by(&:order_id).each_pair do |order_id, offers|%>
+      <div class="panel-group" id="accordion<%=order_id%>" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="button" id="heading<%=order_id%>" style="background-color: #D9EDF7" data-toggle="collapse" data-parent="#accordion<%=order_id%>" href="#collapse<%=order_id%>" aria-expanded="false" aria-controls="collapse<%=order_id%>">
+              <h4 class="panel-title" role="button" >
+                <%=offers.first.order.name%>&nbsp;&nbsp;汇总
+                <span class="pull-right"><%= offers.map(&:total).sum %>元</span>
+              </h4>
+            </div>
+            <div id="collapse<%=order_id%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%=order_id%>">
+              <div class="panel-body">
+                <table class="table table-border">
+                  <thead>
+                     <tr>
+                        <td>计件项目</td>
+                        <td>数量</td>
+                        <td>单价</td>
+                        <td>总额</td>
+                        <td>类别</td>
+                        <td>终端名称</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% offers.each do |offer|%>
+                        <tr>
+                          <td><%= offer.item_name%></td>
+                           <td><%= offer.number%></td>
+                           <td><%= offer.price%></td>
+                           <td><%= offer.total%></td>
+                           <td><%= offer.category%></td>
+                           <td><%= offer.order.terminal%></td>
+                        </tr>
+                     <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+      <%end%>
+   </div>
 </div>

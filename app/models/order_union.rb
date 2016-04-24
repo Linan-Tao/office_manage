@@ -13,18 +13,18 @@ class OrderUnion < ActiveRecord::Base
     end while self.class.exists?(:code => code)
   end
 
-  #下单状态：1.报价中 2.已报价 3.待付款 4.已审核 5.生产中 6.包装入库 7.已发货
-  enum status: [:offering, :offered, :checked, :producing, :package, :sent]
+  #下单状态：1.报价中 2.已报价 3.待付款 4.已审核 5.已下单 6.包装入库 7.已发货
+  enum status: [:offering, :offered, :checked, :open, :package, :sent]
 
   def self.status
-    [['报价中', 'offering'], ['已报价', 'offered'], ["已审核", "checked"], ["生产中","producing"], ["包装入库", "package"], ["已发货", "sent"]]
+    [['报价中', 'offering'], ['已报价', 'offered'], ["已审核", "checked"], ["已下单","open"], ["包装入库", "package"], ["已发货", "sent"]]
   end
   def status_name
     case status
       when 'offering' then '报价中'
       when 'offered' then '已报价'
       when 'checked' then '已审核'
-      when "producing" then '生产中'
+      when "open" then '已下单'
       when "package" then '包装入库'
       when "sent" then '已发货'
     else

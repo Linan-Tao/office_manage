@@ -66,6 +66,7 @@ class ProduceTasksController < ApplicationController
       Order.checked.each do |ord|
         if ord.order_units.where(state: 0).empty? && ord.order_parts.where(state: 0).empty?
           ord.open!
+          ord.order_union.open!
         end
       end
       redirect_to produce_tasks_path, notice: "所有订单的生产任务单创建完成，采购单已经生成。"
