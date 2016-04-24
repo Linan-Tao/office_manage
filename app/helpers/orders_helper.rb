@@ -27,6 +27,16 @@ module OrdersHelper
             #   MaterialCategory.find_by(name: b).try(:id)
             # end
 
+            if row[1] =~ /([  ]+\d+厚\s*)/
+              ply = $1.strip
+            end
+
+            unless MaterialCategory.all.map(&:name).include?(ply)
+              return "板料信息错误，请检查或联系管理员添加！找不到板料 \"#{ply}\""
+            end
+
+            ply_id = MaterialCategory.find_by(name: ply).id
+
             record = OrderUnit.new(
                 :order_id   => order.id,
                 :unit_name => row[0],
@@ -34,7 +44,7 @@ module OrdersHelper
                 # :color => color_id,
                 # :face => face_id,
                 # :texture => texture_id,
-                # :ply => ply_id,
+                :ply => ply_id,
                 :length => row[2],
                 :width => row[3],
                 :number => row[5],
@@ -75,57 +85,57 @@ module OrdersHelper
 #  "action"=>"update",
 #  "id"=>"1"}
 # 创建报价单
-  def import_offers(offers_params)
-    order_union = OrderUnion.find(offers_params[:id])
-    order_union.offers.destroy_all
-    ActiveRecord::Base.transaction do
-      # 板料
-      if offers_params[:order_union] && offers_params[:order_union][:offers_attributes]
-        offers_params[:order_union][:offers_attributes].values.each do |offer|
-          next unless offer[:_destroy] == "false"
-          material = Material.find_by(ply: offer[:ply], texture: offer[:texture], face: offer[:face], color: offer[:color])
-          unless material
-            order_union.offers.destroy_all
-            return '生成报价单错误！未查到 "仓储信息 -- 板料"，请联系管理员！'
-          end
-          offer_m = order_union.offers.find_or_create_by(item_id: material.id, item_type: material.class)
-          offer_m.price = material.sell.to_f
-          offer_m.number = offer[:number].to_f
-          offer_m.total = offer_m.price * offer_m.number
-          mc_ids = [material.ply, material.texture, material.face, material.color]
-          offer_m.item_name = MaterialCategory.where(id: mc_ids).map(&:name).join("-")
-          # 删除 material_type
-          #offer_m.category = material.material_type.name
-          offer_m.save
-        end
-      end
-      # 配件
-      order_union.orders.map(&:order_parts).flatten.each do |order_part|
-        part = order_part.part
-        offer_p = order_union.offers.find_or_create_by(item_id: part.id, item_type: part.class)
-        offer_p.number = offer_p.number.to_i + order_part.number.to_i
-        offer_p.price = part.sell.to_f
-        offer_p.total = offer_p.price * offer_p.number
-        offer_p.item_name = part.name
-        offer_p.category = part.part_category.name
-        offer_p.save
-      end
-      # 人工费
-      if offers_params[:item].present? &&  offers_params[:item_price].present?
-        offer_r = order_union.offers.new
-        offer_r.item_name = offers_params[:item]
-        offer_r.price = offers_params[:item_price].to_f
-        offer_r.number = offers_params[:item_number].to_i
-        offer_r.total = offer_r.price * offer_r.number
-        offer_r.save
-      end
-      order_union.orders.each do |order|
-        order.offered!
-        order.offer_time = Time.now()
-        order.save!
-      end
-      order_union.offered!
-      return "success"
-    end
-  end
+  # def import_offers(offers_params)
+  #   order_union = OrderUnion.find(offers_params[:id])
+  #   order_union.offers.destroy_all
+  #   ActiveRecord::Base.transaction do
+  #     # 板料
+  #     if offers_params[:order_union] && offers_params[:order_union][:offers_attributes]
+  #       offers_params[:order_union][:offers_attributes].values.each do |offer|
+  #         next unless offer[:_destroy] == "false"
+  #         material = Material.find_by(ply: offer[:ply], texture: offer[:texture], face: offer[:face], color: offer[:color])
+  #         unless material
+  #           order_union.offers.destroy_all
+  #           return '生成报价单错误！未查到 "仓储信息 -- 板料"，请联系管理员！'
+  #         end
+  #         offer_m = order_union.offers.find_or_create_by(item_id: material.id, item_type: material.class)
+  #         offer_m.price = material.sell.to_f
+  #         offer_m.number = offer[:number].to_f
+  #         offer_m.total = offer_m.price * offer_m.number
+  #         mc_ids = [material.ply, material.texture, material.face, material.color]
+  #         offer_m.item_name = MaterialCategory.where(id: mc_ids).map(&:name).join("-")
+  #         # 删除 material_type
+  #         #offer_m.category = material.material_type.name
+  #         offer_m.save
+  #       end
+  #     end
+  #     # 配件
+  #     order_union.orders.map(&:order_parts).flatten.each do |order_part|
+  #       part = order_part.part
+  #       offer_p = order_union.offers.find_or_create_by(item_id: part.id, item_type: part.class)
+  #       offer_p.number = offer_p.number.to_i + order_part.number.to_i
+  #       offer_p.price = part.sell.to_f
+  #       offer_p.total = offer_p.price * offer_p.number
+  #       offer_p.item_name = part.name
+  #       offer_p.category = part.part_category.name
+  #       offer_p.save
+  #     end
+  #     # 人工费
+  #     if offers_params[:item].present? &&  offers_params[:item_price].present?
+  #       offer_r = order_union.offers.new
+  #       offer_r.item_name = offers_params[:item]
+  #       offer_r.price = offers_params[:item_price].to_f
+  #       offer_r.number = offers_params[:item_number].to_i
+  #       offer_r.total = offer_r.price * offer_r.number
+  #       offer_r.save
+  #     end
+  #     order_union.orders.each do |order|
+  #       order.offered!
+  #       order.offer_time = Time.now()
+  #       order.save!
+  #     end
+  #     order_union.offered!
+  #     return "success"
+  #   end
+  # end
 end

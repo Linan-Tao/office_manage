@@ -9,11 +9,10 @@
   <%= f.select :color,MaterialCategory.where(oftype: 3).map { |mc| [mc.name, mc.id]} %>
   </div>
   <% if current_user.name == 'admin'  %>
-    <%= f.input :buy %>
+    <%= f.input :buy, hint: "每平方" %>
   <% end %>
-  <%= f.input :number %>
-  <%= f.input :sell %>
-  <%= f.input :unit %>
+  <%= f.input :number , hint: "张"%>
+  <%= f.input :sell, hint: "每平方" %>
   <%= f.association :supplier %>
 </div>
 <div class="form-actions">
