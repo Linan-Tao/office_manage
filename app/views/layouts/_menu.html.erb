@@ -29,20 +29,23 @@
                 </ul>
             </li>
 
-            <li class="has_submenu <%= 'current open' if ['roles', 'moulds', 'boards', 'crafts', 'rules', 'mould_categories', 'part_categories', 'material_categories'].include?(controller_name) %>">
+            <li class="has_submenu <%= 'current open' if ['roles', 'moulds', 'boards', 'crafts', 'rules', 'mould_categories', 'part_categories', 'material_categories', 'logistic_providers', 'drivers', 'instalers'].include?(controller_name) %>">
                 <a href="#"><i class="fa fa-sitemap"></i> 基础数据<span class="caret pull-right"></span></a>
                  <!-- Sub menu -->
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'roles'}" %>'><a href="/roles">角色权限</a></li>
-                    <% if false %>
-                        <li class='<%="#{'active' if controller_name == 'mould_categories'}" %>'><a href="/mould_categories">模块类型</a></li>
-                        <li class='<%="#{'active' if controller_name == 'moulds'}" %>'><a href="/moulds">模块</a></li>
-                        <li class='<%="#{'active' if controller_name == 'boards'}" %>'><a href="/boards">板件</a></li>
-                        <li class='<%="#{'active' if controller_name == 'crafts'}" %>'><a href="/crafts">工艺</a></li>
-                        <li class='<%="#{'active' if controller_name == 'rules'}" %>'><a href="/rules">规则</a></li>
-                    <%end%>
+                    <!--
+                    <li class='<%="#{'active' if controller_name == 'mould_categories'}" %>'><a href="/mould_categories">模块类型</a></li>
+                    <li class='<%="#{'active' if controller_name == 'moulds'}" %>'><a href="/moulds">模块</a></li>
+                    <li class='<%="#{'active' if controller_name == 'boards'}" %>'><a href="/boards">板件</a></li>
+                    <li class='<%="#{'active' if controller_name == 'crafts'}" %>'><a href="/crafts">工艺</a></li>
+                    <li class='<%="#{'active' if controller_name == 'rules'}" %>'><a href="/rules">规则</a></li>
+                     -->
                     <li class='<%="#{'active' if controller_name == 'part_categories'}" %>'><a href="/part_categories">配件类型</a></li>
                     <li class='<%="#{'active' if controller_name == 'material_categories'}" %>'><a href="/material_categories">板料类型</a></li>
+                    <li class='<%="#{'active' if controller_name == 'logistic_providers' }" %>'><a href="/logistic_providers">物流商</a></li>
+                    <li class='<%="#{'active' if controller_name == 'drivers'}" %>'><a href="/drivers">司机</a></li>
+                    <li class='<%="#{'active' if controller_name == 'instalers'}" %>'><a href="/instalers">安装工人</a></li>
                 </ul>
             </li>
 
@@ -52,13 +55,13 @@
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'order_bills' and action_name=='not_check'}" %>'><a href="/order_bills/not_check">未审核订单</a></li>
                     <li class='<%="#{'active' if controller_name == 'order_bills' and action_name == 'checked'}" %>'><a href="/order_bills/checked">已审核订单</a></li>
-                    <li class='<%="#{'active' if controller_name == 'purchases' and action_name == 'not_check'}" %>'><a href="/purchases/not_check">未审核采购单</a></li>
+                    <!-- <li class='<%="#{'active' if controller_name == 'purchases' and action_name == 'not_check'}" %>'><a href="/purchases/not_check">未审核采购单</a></li>
                     <li class='<%="#{'active' if controller_name == 'flow_bills'}" %>'><a href="/flow_bills">流水单</a></li>
                     <li class='<%="#{'active' if controller_name == 'application_funds'}" %>'><a href="/application_funds">资金科目</a></li>
                     <% if false%>
                         <li class='<%="#{'active' if controller_name == 'month_salaries'}" %>'><a href="/month_salaries">工资单</a></li>
                         <li class='<%="#{'active' if controller_name == 'estates'}" %>'><a href="/estates">耐用资产</a></li>
-                    <%end%>
+                    <%end%> -->
                 </ul>
             </li>
 
@@ -98,18 +101,17 @@
                 </li>
             <%end%>
 
+            <!--
             <li class='<%="#{'current' if controller_name == 'produces'}" %>'>
                 <a href="/produces"><i class="fa fa-th"></i> 生产过程</a>
             </li>
+            -->
 
-            <li class="has_submenu <%= 'current open' if ['delivery_plans', 'logistic_providers', 'drivers', 'instalers'].include?(controller_name) %>">
+            <li class="has_submenu <%= 'current open' if ['delivery_plans'].include?(controller_name) %>">
                  <a href="#"><i class="fa fa-sitemap"></i> 发货／物流<span class="caret pull-right"></span></a>
                  <!-- Sub menu -->
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'delivery_plans'}" %>'><a href="/delivery_plans">发货计划单</a></li>
-                    <li class='<%="#{'active' if controller_name == 'logistic_providers' }" %>'><a href="/logistic_providers">物流商</a></li>
-                    <li class='<%="#{'active' if controller_name == 'drivers'}" %>'><a href="/drivers">司机</a></li>
-                    <li class='<%="#{'active' if controller_name == 'instalers'}" %>'><a href="/instalers">安装工人</a></li>
                 </ul>
             </li>
         </ul>
