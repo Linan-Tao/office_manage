@@ -89,7 +89,7 @@
                <%= f.fields_for :order_units, :wrapper => false do |unit_form| %>
                <tr class="fields">
                   <td>
-                     <%= unit_form.text_field(:unit_name, class: 'form-control input-sm') %>
+                     <%= unit_form.text_field(:unit_name, class: 'form-control input-sm',required: true) %>
                   </td>
                   <td>
                      <%= unit_form.select(:ply, options_for_select(@material_categories.where(oftype: 0).map {|mc| [mc.name,mc.id]}, unit_form.object.ply),{ :class => 'form-control'}) %>
@@ -104,16 +104,16 @@
                      <%= unit_form.select(:color, options_for_select(@material_categories.where(oftype: 3).map {|mc| [mc.name,mc.id]}, unit_form.object.color),{ :class => 'form-control'}) %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:length, class: 'form-control input-sm') %>
+                     <%= unit_form.text_field(:length, class: 'form-control input-sm',required: true) %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:width, class: 'form-control input-sm') %>
+                     <%= unit_form.text_field(:width, class: 'form-control input-sm',required: true) %>
                   </td>
                   <td>
-                     <%= unit_form.number_field(:number, class: 'form-control input-sm', value: 1, min: 1) %>
+                     <%= unit_form.number_field(:number, class: 'form-control input-sm', value: 1, min: 1,required: true) %>
                   </td>
                   <td>
-                     <%= unit_form.text_field(:size, class: 'form-control input-sm') %>
+                     <%= unit_form.text_field(:size, class: 'form-control input-sm',required: true) %>
                   </td>
                   <td>
                      <%= unit_form.text_field(:edge, class: 'form-control input-sm') %>
