@@ -37,8 +37,8 @@
           <th class="text-center">颜色</th>
           <th class="text-center">售价(元/平方)</th>
           <!-- <th class="text-center">单位</th> -->
-          <th class="text-center">库存</th>
-          <th class="text-center">供应商</th>
+          <!-- <th class="text-center">库存</th> -->
+          <!-- <th class="text-center">供应商</th> -->
           <th class="text-center" colspan="3">操作</th>
         </tr>
       </thead>
@@ -52,8 +52,8 @@
           <td><%= MaterialCategory.find(material.color).name %></td>
           <td><%= material.sell %></td>
           <!-- <td><%= material.unit %></td> -->
-          <td><%= material.number %></td>
-          <td><%= material.supplier.try(:name) %></td>
+          <!-- <td><%= material.number %></td> -->
+          <!-- <td><%= material.supplier.try(:name) %></td> -->
           <td>
             <%= link_to edit_material_path(material), class: 'btn btn-xs btn-warning' do %><i class="fa fa-pencil"></i><% end %>
             <%= link_to material, method: :delete, data: { confirm: '确定删除?' }, class: 'btn btn-xs btn-danger' do %><i class="fa fa-times"></i><% end %>

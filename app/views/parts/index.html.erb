@@ -38,13 +38,11 @@
         <th class="text-center">编码</th>
         <th class="text-center">名称</th>
         <th class="text-center">部件种类</th>
-        <% if current_user.name == 'admin' %>
-        <th class="text-center">进价</th>
-        <% end %>
+        <!-- <th class="text-center">进价</th> -->
         <th class="text-center">售价</th>
-        <th class="text-center">库存</th>
+        <!-- <th class="text-center">库存</th> -->
         <th class="text-center">品牌</th>
-        <th class="text-center">供应商</th>
+        <!-- <th class="text-center">供应商</th> -->
         <th class="text-center" colspan="3">处理</th>
       </tr>
     </thead>
@@ -54,13 +52,11 @@
         <td><%= part.id %></td>
         <td><%= part.name %></td>
         <td><%= part.part_category.try(:name) %></td>
-        <% if current_user.name == 'admin' %>
-        <td><%= part.buy %></td>
-        <% end %>
+        <!-- <td><%= part.buy %></td> -->
         <td><%= part.sell %></td>
-        <td><%= part.number %></td>
+        <!-- <td><%= part.number %></td> -->
         <td><%= part.brand %></td>
-        <td><%= part.supplier.name %></td>
+        <!-- <td><%= part.supplier.name %></td> -->
         <td>
           <%= link_to  edit_part_path(part),  class: 'btn btn-xs btn-warning' do %>
           <i class="fa fa-pencil"></i>
