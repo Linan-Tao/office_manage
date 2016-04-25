@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160424064849) do
   add_index "crafts", ["code"], name: "index_crafts_on_code", using: :btree
 
   create_table "delivery_plans", force: :cascade do |t|
-    t.integer  "order_id",             limit: 4
+    t.integer  "order_union_id",       limit: 4
     t.string   "produce_task_ids",     limit: 255
     t.integer  "number",               limit: 4
     t.integer  "fin_type",             limit: 4
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20160424064849) do
   end
 
   add_index "delivery_plans", ["logistic_provider_id"], name: "index_delivery_plans_on_logistic_provider_id", using: :btree
-  add_index "delivery_plans", ["order_id"], name: "index_delivery_plans_on_order_id", using: :btree
+  add_index "delivery_plans", ["order_union_id"], name: "index_delivery_plans_on_order_union_id", using: :btree
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -686,7 +686,7 @@ ActiveRecord::Schema.define(version: 20160424064849) do
 
   add_foreign_key "cities", "provinces"
   add_foreign_key "delivery_plans", "logistic_providers"
-  add_foreign_key "delivery_plans", "orders"
+  add_foreign_key "delivery_plans", "order_unions"
   add_foreign_key "districts", "cities"
   add_foreign_key "flow_bills", "application_funds"
   add_foreign_key "item_storages", "purchases"

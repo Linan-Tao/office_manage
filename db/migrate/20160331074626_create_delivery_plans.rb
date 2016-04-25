@@ -2,7 +2,7 @@ class CreateDeliveryPlans < ActiveRecord::Migration
   # 出货计划单
   def change
     create_table :delivery_plans do |t|
-      t.references :order, index: true, foreign_key: true    #订单号
+      t.references :order_union, index: true, foreign_key: true    #订单号
       t.string :produce_task_ids    #关联生产单号
       t.integer :number    #包装件总数
       t.integer :fin_type    #财务审核 0 等待发货 1允许发货

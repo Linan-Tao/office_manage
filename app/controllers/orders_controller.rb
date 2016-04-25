@@ -57,7 +57,9 @@ class OrdersController < ApplicationController
         @order.work_id = 2 if @order.work.sequence > 2
         @order.save
         @order.order_union.offering!
-        create_offer(@order.order_union)
+        if @order.order_union.orders.select{|order| order.work.sequence >= 2}.size == @order.order_union.orders.size
+         create_offer(@order.order_union)
+        end
         format.html { redirect_to order_path(@order), notice: '订单更新成功！' }
         format.json { render :show, status: :ok, location: @order }
       else
