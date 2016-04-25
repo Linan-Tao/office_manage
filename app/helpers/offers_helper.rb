@@ -14,8 +14,9 @@ module OffersHelper
         size = unit.size.split(/[xX*]/).map(&:to_i)
         offer.number = offer.number.to_f + ((unit.number.to_f * size[0] * size[1])/(1000*1000))
         offer.total = offer.price * offer.number
-        mc_ids = [material.ply, material.texture, material.face, material.color]
-        offer.item_name = MaterialCategory.where(id: mc_ids).map(&:name).join("-")
+        # mc_ids = [material.ply, material.texture, material.face, material.color]
+        # offer.item_name = MaterialCategory.where(id: mc_ids).map(&:name).join("-")
+        offer.item_name = [MaterialCategory.find(material.ply).name, MaterialCategory.find(material.texture).name, MaterialCategory.find(material.face).name, MaterialCategory.find(material.color).name].join('-')
         offer.item_type = material.class
         offer.save
       end

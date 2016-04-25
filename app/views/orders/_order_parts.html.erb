@@ -70,7 +70,7 @@
               <%= part_form.select :part_id, Part.all.collect { |p| [p.name, p.id] } , class: 'form-control input-sm' %>
             </td>
             <td>
-              <%= part_form.number_field :number, value: 1, in: 1..500, class: 'form-control input-sm' %>
+              <%= part_form.number_field :number, value: 1, in: 1..500, class: 'form-control input-sm',required: true %>
             </td>
             <td>
               <%= part_form.text_field :note, class: 'form-control input-sm'%>

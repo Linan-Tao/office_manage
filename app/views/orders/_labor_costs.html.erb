@@ -58,13 +58,13 @@
           <%= f.fields_for :labor_costs, :wrapper => false do |cost_form| %>
           <tr class="fields">
             <td>
-              <%= cost_form.text_field :item, class: 'form-control input-sm'%>
+              <%= cost_form.text_field :item, class: 'form-control input-sm',required: true%>
             </td>
             <td>
-              <%= cost_form.number_field :number, value: 1, in: 1..500, class: 'form-control input-sm' %>
+              <%= cost_form.number_field :number, value: 1, in: 1..500, class: 'form-control input-sm' ,required: true%>
             </td>
             <td>
-              <%= cost_form.number_field :price, class: 'form-control input-sm'%>
+              <%= cost_form.number_field :price, class: 'form-control input-sm',required: true%>
             </td>
             <td>
               <%= cost_form.link_to_remove "删除", class: 'btn btn-info input-sm' %>

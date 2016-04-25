@@ -8,12 +8,15 @@ module OrdersHelper
       order = Order.find_by(name: name)
       # 拆单文件中的订单号
       order_units_order_code = table.map{|r| r[8]}.uniq.join(',')
+      order_units_order_code = order_units_order_code.gsub(/[，,  ]$/,'')
+      # binding.pry
       if order &&  order_units_order_code == name
         ActiveRecord::Base.transaction do
           # 如果该订单已拆单则删除
           OrderUnit.where(order_id: order.id).destroy_all
           index = 1;
           table.each do |row|
+            next if row[8].blank?
             # 板材按空格分开，中英文空格
             # color,face,texture,ply = row[1].split(/ | /)
 
@@ -26,11 +29,8 @@ module OrdersHelper
             # color_id,face_id,texture_id,ply_id = [color,face,texture,ply].map do |b|
             #   MaterialCategory.find_by(name: b).try(:id)
             # end
-
-            if row[1] =~ /([  ]+\d+厚\s*)/
-              ply = $1.strip.gsub("厚", 'mm')
-            end
-
+            ply = row[1].split(/板/).last
+            ply = ply.gsub(/厚/, 'mm')
             unless MaterialCategory.all.map(&:name).include?(ply)
               return "板料信息错误，请检查或联系管理员添加！找不到板料 \"#{ply}\""
             end
