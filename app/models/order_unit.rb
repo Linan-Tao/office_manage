@@ -1,5 +1,5 @@
 class OrderUnit < ActiveRecord::Base
-  has_one :produce_tasks, as: :item
+  belongs_to :produce_task
   belongs_to :order
 
   enum state: {
