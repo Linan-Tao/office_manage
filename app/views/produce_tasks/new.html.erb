@@ -44,7 +44,7 @@
       <table class="table table-border">
         <thead>
           <tr>
-            <th>勾选</th>
+            <th>全部<input type="checkbox" name="checkbox" onClick="CheckSelect()" checked="checked"></th>
             <th>订单号</th>
             <th>名称</th>
             <th>板料</th>
@@ -63,7 +63,7 @@
         <tbody>
           <% @order_units.each do |unit|%>
           <tr>
-            <td><%=check_box_tag 'units[id][]', unit.id%></td>
+            <td><%=check_box_tag 'units[id][]', unit.id, true, :class => 'checkbox'%></td>
             <td><%= unit.order.name %></td>
             <td><%= unit.unit_name%></td>
             <td><%= unit.name%></td>
