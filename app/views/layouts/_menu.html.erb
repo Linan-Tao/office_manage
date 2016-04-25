@@ -24,7 +24,7 @@
                  <a href="#"><i class="fa fa-sitemap"></i> 客户信息<span class="caret pull-right"></span></a>
                  <!-- Sub menu -->
                  <ul>
-                    <li class='<%="#{'active' if controller_name == 'suppliers'}" %>'><a href="/suppliers">供应商</a></li>
+                   <!--  <li class='<%="#{'active' if controller_name == 'suppliers'}" %>'><a href="/suppliers">供应商</a></li> -->
                     <li class='<%="#{'active' if controller_name == 'agents'}" %>'><a href="/agents">代理商</a></li>
                 </ul>
             </li>
@@ -66,7 +66,7 @@
             </li>
 
             <li class="has_submenu <%= 'current open' if  ['parts', 'material_types', 'materials', 'item_storages', 'out_storages'].include?(controller_name) %>">
-                <a href="#"><i class="fa fa-file"></i> 仓储信息<span class="caret pull-right"></span></a>
+                <a href="#"><i class="fa fa-file"></i> 价格表 <span class="caret pull-right"></span></a>
                 <ul>
                     <li class='<%="#{'active' if controller_name == 'materials'}" %>'><a href="/materials">板料</a></li>
                     <li class='<%="#{'active' if controller_name == 'parts'}" %>'><a href="/parts">配件</a></li>
@@ -92,6 +92,8 @@
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and ['not_open', 'new'].include?(action_name)}" %>'><a href="/produce_tasks/not_open">未下单</a></li>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">已下单</a></li>
+                    <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">包装</a></li>
+                    <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">入库</a></li>
                 </ul>
             </li>
 
