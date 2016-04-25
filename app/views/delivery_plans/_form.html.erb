@@ -2,7 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :order, as: :select %>
+    <div class="form-group">
+    <%= f.label '订单号' %>
+    <%= f.select :order_union_id, OrderUnion.all().map { |ou| [ou.code, ou.id]}%>
+    </div>
     <%= f.input :produce_task_ids %>
     <%= f.input :number %>
     <%= f.input :fin_type %>
