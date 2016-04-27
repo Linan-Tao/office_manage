@@ -10,7 +10,7 @@ body{
    font-size:13px;
    line-height:25px;
 	-webkit-font-smoothing: antialiased;
-   background:#fafafa url(<%= asset_data_uri 'main-back.png' %>) repeat;
+   background:#fafafa url('main-back') repeat;
 }
 
 h1,h2,h3,h4{
