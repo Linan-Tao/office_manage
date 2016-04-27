@@ -45,5 +45,6 @@ module OffersHelper
         order.save!
     end
     order_union.offered!
+    return 'success'
   end
 end

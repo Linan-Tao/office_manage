@@ -15,8 +15,12 @@ class OffersController < ApplicationController
   # GET /offers/new
   def new
     @order_union = OrderUnion.find(params[:order_union_id])
-    create_offer(@order_union)
-    redirect_to order_union_path(@order_union)
+    message = create_offer(@order_union)
+    if message == 'success'
+      redirect_to order_union_path(@order_union), notice: '报价成功！'
+    else
+      redirect_to order_union_path(@order_union), alert: message
+    end
   end
 
   # GET /offers/1/edit
