@@ -86,7 +86,7 @@ class OrdersController < ApplicationController
                 :filename => order.file_file_name,
                 :type => order.file_content_type,
                 :disposition => 'attachment'
-    flash[:notice] = "Your file has been downloaded"
+    flash[:notice] = "文件导出成功！"
   end
 
   private
