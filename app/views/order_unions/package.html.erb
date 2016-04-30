@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "伊思尔生产管理" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "伊思尔生产管理" %>">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body style="padding: 10px;" onload="localStorage.clear();localStorage.setItem('index', 1)">
+<div class="page-title">
+  <h2><i class="fa fa-desktop color"></i> 包装管理 <small>详细</small>
+  <span class="pull-right">
+    <%= link_to '返回', :back, class: 'btn btn-lg btn-info' %>
+  </span>
+  </h2>
+  <hr />
+</div>
+<div class="awidget full-width">
+  <div class="awidget-head">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="pull-left">
+          客户单号：<%= link_to @order_union.code, order_unions_path, class: 'detail-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          下单客户：<%=link_to @order_union.agent.name, agent_path(@order_union.agent), class: 'detail-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          状态：<span class='detail-link'><%= @order_union.status_name %></span>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <button class="btn btn-info btn-lg" style="margin-left: 20px;" onclick="print_page()">批量打印标签</button>
+        <!-- <button class="btn btn-info btn-lg" style="margin-left: 20px;">打印标签</button> -->
+        <button class="btn btn-info btn-lg" style="margin-left: 20px;" onclick="previous()">上一包</button>
+        <button class="btn btn-info btn-lg" style="margin-left: 20px;" onclick="next()">下一包</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="awidget full-width">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <table class="table table-striped table-condensed" id="old_table" style="page-break-before:always;">
+        <thead>
+        <tr class="info">
+          <th>条码编号</th>
+          <th>部件名称</th>
+          <th>板材</th>
+          <th>长</th>
+          <th>宽</th>
+          <th>厚</th>
+          <th>颜色</th>
+          <th>工艺</th>
+          <th>备用</th>
+          <th style="display: none;"></th>
+        </tr>
+        </thead>
+        <% @order_units.each do |order_unit|%>
+        <tr onclick="remove_order(this)">
+          <td><%= order_unit.order.name%></td>
+          <td><%= order_unit.unit_name%></td>
+          <td><%= order_unit.name%></td>
+          <td><%= order_unit.length%></td>
+          <td><%= order_unit.width%></td>
+          <td><%= order_unit.ply_name%></td>
+          <td><%= order_unit.color_name%></td>
+          <td></td>
+          <td></td>
+          <td style="display: none;"><%= "unit_"+order_unit.id.to_s%></td>
+        </tr>
+        <%end%>
+        <% @order_parts.each do |order_part|%>
+        <tr onclick="remove_order(this)">
+          <td><%= order_part.order.name%></td>
+          <td>配件</td>
+          <td><%= order_part.part.name%></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td style="display: none;"><%= "part_"+order_part.id.to_s%></td>
+        </tr>
+        <%end%>
+      </table>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <table class="table table-striped table-condensed" id="new_table" style="page-break-before:always;">
+        <thead>
+        <tr class="success">
+          <th>条码编号</th>
+          <th>部件名称</th>
+          <th>板材</th>
+          <th>长</th>
+          <th>宽</th>
+          <th>厚</th>
+          <th>颜色</th>
+          <th>工艺</th>
+          <th>备用</th>
+        </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+
+

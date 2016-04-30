@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :order_bills
     member do
       get :open
+      get :package
+    end
+    collection do
+      get :unpack
     end
   end
   resources :delivery_plans
