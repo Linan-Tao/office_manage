@@ -7,7 +7,7 @@ module OrdersHelper
     if headers == standard
       order = Order.find_by(name: name)
       # 拆单文件中的订单号
-      order_units_order_code = table.map{|r| r[8]}.uniq.join(',')
+      order_units_order_code = table.map{|r| r[8].strip!}.uniq.join(',')
       order_units_order_code = order_units_order_code.gsub(/[，,  ]$/,'')
       # binding.pry
       if order &&  order_units_order_code == name
