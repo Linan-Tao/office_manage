@@ -5,18 +5,16 @@ module OrdersHelper
     headers = table.headers[0..15].map(&:strip)
     standard = ["部件名称", "板材", "长", "宽", "厚", "数量", "裁切尺寸", "柜体名称", "订单号", "订货商", "终端信息", "封边", "纹理", "备注", "条码", "流水号"]
     if headers == standard
+      # 查询指定编号的订单
       order = Order.find_by(name: name)
-      # 拆单文件中的订单号
-      order_units_order_code = table.map{|r| r[8].strip!}.uniq.join(',')
-      order_units_order_code = order_units_order_code.gsub(/[，,  ]$/,'')
-      # binding.pry
-      if order &&  order_units_order_code == name
+      if order
         ActiveRecord::Base.transaction do
           # 如果该订单已拆单则删除
           OrderUnit.where(order_id: order.id).destroy_all
           index = 1;
           table.each do |row|
-            next if row[8].blank?
+            next if row[8].blank? || row[8].strip != name
+
             # 板材按空格分开，中英文空格
             # color,face,texture,ply = row[1].split(/ | /)
 
@@ -57,14 +55,20 @@ module OrdersHelper
             record.save!
             index += 1
           end
-          order.separated!
+          if index > 1
+            order.separated!
+          else
+            # 当导入的记录条数没有变化时，回滚事务（找回删除掉的拆单记录）
+            raise ActiveRecord::Rollback
+            return "所选文件中未找到订单号为 #{name} 的记录！"
+          end
         end
         return "success"
       else
-        return "请导入与该订单#{name}相对应的拆单文件，您导入的订单号是:#{order_units_order_code}请检查!"
+        return "未找到编号为 #{name} 的订单，请检查订单号是否正确！"
       end
     else
-      return "文件头不正确，请检查是否是:#{standard}"
+      return "文件头必须为: #{standard}"
     end
   end
 
