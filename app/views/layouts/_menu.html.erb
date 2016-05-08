@@ -92,7 +92,7 @@
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and ['not_open', 'new'].include?(action_name)}" %>'><a href="/produce_tasks/not_open">未下单</a></li>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">已下单</a></li>
-                    <li class='<%="#{'active' if controller_name == 'order_unions' and action_name == 'unpack'}" %>'><a href="/order_unions/unpack">包装</a></li>
+                    <li class='<%="#{'active' if controller_name == 'order_unions' and action_name == 'unpack'}" %>'><a href="/orders/unpack">包装</a></li>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">入库</a></li>
                 </ul>
             </li>

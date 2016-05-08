@@ -89,6 +89,37 @@ class OrdersController < ApplicationController
     flash[:notice] = "Your file has been downloaded"
   end
 
+
+  def unpack
+    work_id = Work.find_by(symbol_name: "open").id
+    @orders = Order.where("work_id >= ?", work_id)
+  end
+
+  def package
+    @order = Order.find(params[:id])
+    @order_units = @order.order_units
+    @order_parts = @order.order_parts
+    ids = ActiveSupport::JSON.decode(params[:order_unit_ids]) if params[:order_unit_ids].present?
+   # ids =>
+   #    {"1"=>["order_unit_10", "order_unit_11", "order_unit_12", "order_unit_13"],
+   # "2"=>["order_unit_14", "order_unit_15", "order_unit_16", "order_unit_17", "order_unit_18"],
+   # "3"=>["order_unit_19", "order_unit_20", "order_unit_21", "order_unit_22", "order_unit_23", "order_unit_24"],
+   # "4"=>["order_unit_25", "order_part_7", "order_part_8"]}
+   # 这些值需存在数据库表package中
+   # 打印尺寸需存在users表的default_print_size
+    respond_to do |format|
+      format.html {render :layout => false}
+      format.pdf do
+        # 打印尺寸毫米（长宽）
+        pdf = OrderPdf.new(80, 50, ids, @order.id)
+        send_data pdf.render, filename: "order_#{@order.id}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

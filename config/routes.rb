@@ -14,10 +14,6 @@ Rails.application.routes.draw do
     resources :order_bills
     member do
       get :open
-      get :package
-    end
-    collection do
-      get :unpack
     end
   end
   resources :delivery_plans
@@ -66,6 +62,13 @@ Rails.application.routes.draw do
     end
     member do
       get :download
+    end
+    member do
+      get :package
+      post :package
+    end
+    collection do
+      get :unpack
     end
   end
   get "order_bills/not_check"

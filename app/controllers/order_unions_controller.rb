@@ -90,17 +90,6 @@ class OrderUnionsController < ApplicationController
     redirect_to order_bills_checked_path, notice: "订单审核通过，可下单"
   end
 
-  def unpack
-    @order_unions = OrderUnion.open
-  end
-
-  def package
-    @order_union = OrderUnion.find(params[:id])
-    @order_units = @order_union.orders.where(is_delete: false).map(&:order_units).flatten
-    @order_parts = @order_union.orders.where(is_delete: false).map(&:order_parts).flatten
-    render layout: false
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order_union

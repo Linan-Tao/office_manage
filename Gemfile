@@ -34,6 +34,11 @@ gem 'i18n_yaml_generator'
 #Pinyin.t('中国', splitter: '-') => "zhong-guo"
 gem 'chinese_pinyin'
 
+gem 'prawn'
+gem "prawnto_2", :require => "prawnto"
+gem 'prawn-table'
+gem 'prawn-print'
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'

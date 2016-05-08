@@ -19,13 +19,13 @@
         </tr>
       </thead>
       <tbody>
-        <% @order_unions.each do |order_union|%>
+        <% @orders.each do |order|%>
         <tr>
-          <td><%= link_to '开始包装', package_order_union_path(order_union), class: 'detail-link' %></td>
-          <td><%= link_to order_union.code, order_union_path(order_union), class: 'detail-link' %></td>
-          <td><%= order_union.created_at.localtime.strftime("%Y-%m-%d")%></td>
-          <td><%= order_union.status_name%></td>
-          <td><%= order_union.agent.try(:name) %></td>
+          <td><%= link_to '开始包装', package_order_path(order), class: 'detail-link' %></td>
+          <td><%= link_to order.name, order_path(order), class: 'detail-link' %></td>
+          <td><%= order.created_at.localtime.strftime("%Y-%m-%d")%></td>
+          <td><%= order.work.name%></td>
+          <td><%= order.order_union.agent.try(:name) %></td>
         </tr>
         <%end%>
       </toby>
