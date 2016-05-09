@@ -17,6 +17,7 @@ module Office
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     config.autoload_paths << Rails.root.join("lib")
+    config.autoload_paths << Rails.root.join('app').join('pdfs')
     config.time_zone = 'Beijing'
     config.active_record.default_timezone = :local
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

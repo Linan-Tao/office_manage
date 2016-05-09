@@ -63,6 +63,13 @@ Rails.application.routes.draw do
     member do
       get :download
     end
+    member do
+      get :package
+      post :package
+    end
+    collection do
+      get :unpack
+    end
   end
   get "order_bills/not_check"
   get "order_bills/checked"

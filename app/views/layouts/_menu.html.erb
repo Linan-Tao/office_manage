@@ -86,13 +86,13 @@
                 </ul>
             </li>
 
-            <li class="has_submenu <%= 'current open' if ['produce_tasks'].include?(controller_name) %>">
+            <li class="has_submenu <%= 'current open' if ['produce_tasks', 'order_unions'].include?(controller_name) %>">
                  <a href="#"><i class="fa fa-sitemap"></i> 生产任务<span class="caret pull-right"></span></a>
                  <!-- Sub menu -->
                  <ul>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and ['not_open', 'new'].include?(action_name)}" %>'><a href="/produce_tasks/not_open">未下单</a></li>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">已下单</a></li>
-                    <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">包装</a></li>
+                    <li class='<%="#{'active' if controller_name == 'order_unions' and action_name == 'unpack'}" %>'><a href="/orders/unpack">包装</a></li>
                     <li class='<%="#{'active' if controller_name == 'produce_tasks' and !(['not_open', 'new'].include?(action_name))}" %>'><a href="/produce_tasks">入库</a></li>
                 </ul>
             </li>
@@ -102,12 +102,6 @@
                     <a href="/purchases"><i class="fa fa-th"></i> 采购</a>
                 </li>
             <%end%>
-
-            <!--
-            <li class='<%="#{'current' if controller_name == 'produces'}" %>'>
-                <a href="/produces"><i class="fa fa-th"></i> 生产过程</a>
-            </li>
-            -->
 
             <li class="has_submenu <%= 'current open' if ['delivery_plans'].include?(controller_name) %>">
                  <a href="#"><i class="fa fa-sitemap"></i> 发货／物流<span class="caret pull-right"></span></a>
